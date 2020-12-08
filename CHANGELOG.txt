@@ -1,0 +1,175 @@
+1.13.88.alpha.52 - 8th December 2020
+- Updated for game version 1.13.6.
+- Source code is now on GitHub for the time being due to CurseForge SVN migration to Overwolf.
+
+1.13.86 - 18th November 2020
+- Added a new option 'Easy item destroy' ('System').  If enabled, you will no longer need to type delete when destroying a superior quality item.  In addition, item links will be shown in all item destroy confirmation windows.
+- Updated minimap button code.
+
+1.13.85 - 14th November 2020
+- Fixed a situational issue with the Leatrix Plus minimap button which may have caused it to show or hide inconsistently.
+
+1.13.84 - 11th November 2020
+- Updated LibDBIcon.
+
+1.13.74 - 29th July 2020
+- The 'Hide the combat log' option ('Chat') now works with ElvUI as long as you disable the ElvUI Chat module.  To disable the Chat module, open ElvUI settings, click Chat menu, uncheck the Enable checkbox and reload.  Before disabling the Chat module, you may wish to hide the chat panel backdrop.  To do so, open ElvUI settings, click Chat menu, click Panels tab and set Panel Backdrop to Right Only or Hide Both.
+
+1.13.73 - 21st July 2020
+- The 'Manage frames' option no longer modifies the widget top center frame.  Instead, there is a new option called 'Manage widget' ('Frames').  If enabled, you will be able to position and scale the widget top center frame.
+- The 'Show raid button' and 'Show player chain' options are now in the 'Interface' menu.
+- The 'Combat plates' option is now in the 'System' menu.
+
+1.13.72 - 15th July 2020
+- The 'Manage frames' option no longer modifies the buffs frame.  Instead, there is a new option called 'Manage buffs' ('Frames').  If enabled, you will be able to position and scale the buffs frame.
+
+1.13.71 - 8th July 2020
+- Updated for game version 1.13.5.
+- If 'Automate quests' is enabled ('Automation'), you can now instruct Leatrix Plus to only automate available quests, completed quests or both.
+
+1.13.70 - 1st July 2020
+- The 'Invite from whispers' option will now work even if there are additional spaces before or after the whispered keyword.
+- Fixed a situational issue with several of the social menu options which may have caused a (harmless) Lua error if a friend check was initiated before the game world was loaded during login.
+
+1.13.69 - 24th June 2020
+- If 'Automate quests' is enabled ('Automation'), you can now instruct Leatrix Plus to only automate quests if you are holding down the shift key using a new setting in the configuration panel.  The setting is disabled by default.  In addition, the E'ko quests from Witch Doctor Mau'ari (Winterspring) will now be automated if you have the required E'ko in your bags.
+- The '/ltp quest' command is now likely to show the quest title without needing to enter the command twice.
+
+1.13.68 - 16th June 2020
+- If 'Automate quests' is enabled, the coin quests from Vinchaxa (Stranglethorn Vale) will now be automated if you have the required coins in your bags.
+
+1.13.67 - 10th June 2020
+- Added a version check so if you accidentally install Leatrix Plus (retail) instead of Leatrix Plus (Classic), the addon will not run and a notice will be shown in chat.
+
+1.13.65 - 27th May 2020
+- Fixed a minor issue with 'Show bag search box' ('Interface') which may have caused the search box to show in the wrong bag.
+- If 'Release in PvP' ('Automation') is enabled, there is now a small delay of 200ms before the release button is automatically clicked.
+
+1.13.64 - 20th May 2020
+- If 'Automate quests' ('Automation') is enabled, the battlemaster repeatable quests (requiring marks of honor) and the cloth quartermaster repeatable quests (requiring cloth) now require the alt key to be held for the quests to be selected automatically.  This information has been added to the option tooltip.  Also fixed a bug which caused the Horde versions of some of the marks of honor repeatable quests to not be automated.  Note that battlemaster and cloth quartermaster quest automation requires quest title translation so some locales may not work for all quests yet.
+- The 'Accept summon' option ('Automation') will now wait 10 seconds before automatically accepting a summon request giving you the opportunity to cancel the summon if needed.
+
+1.13.63 - 13th May 2020
+- Fixed an issue with 'Faster auto loot' ('System') which caused a Lua error when looting an item with Master Looter enabled.  Rare caveat: After you slay a monster with Master Looter enabled, if you disable Master Looter before the loot has been assigned and then attempt to loot the same monster with Master Looter disabled, you may still see the error.  This is a rare exception though as you wouldn't normally disable Master Looter after slaying a monster until you have assigned loot so you will probably never see the error.
+
+1.13.61 - 6th May 2020
+- If 'Accept resurrection' ('Automation') is enabled, automated resurrection will succeed even if there is a resurrection delay timer.  Also fixed a bug which caused the 'Accept' button to do nothing after a resurrection delay timer has passed.  In addition, resurrection requests from 'Chained Spirit' (Bloodlord Mandokir, Zul'Gurub) will no longer be accepted automatically.
+- If 'Automate quests' ('Automation') is enabled, quests from Rin'wosho the Trader (Zul'Gurub Isle, Stranglethorn Vale) will no longer be selected, accepted or turned-in automatically.
+- Added zhTW support for the cloth quartermaster quests and some of the marks of honor quests.
+
+1.13.60 - 29th April 2020
+- If 'Automate quests' ('Automation') is enabled, the battlemaster quests (requiring marks of honor) and the cloth quartermaster quests (requiring cloth) will now be automated if you have the required items in your bag.  Note that zhTW locale is not supported yet.
+- The /ltp quest command now shows the quest title (in addition to the quest ID) if it is cached by the client.  If the quest title shows 'Unknown', entering the command again should show the correct title.
+- Leatrix Plus is now partially translated into German.
+
+1.13.59 - 22nd April 2020
+- The 'Recent chat window' option ('Chat') now supports colors and Battle.net whispers.  In addition, the font size is larger and the window frame scales with the UI.
+
+1.13.58 - 15th April 2020
+- Fixed a situational issue with 'Release in PvP' ('Automation') which may have occasionally caused your character to release to a graveyard without a spirit healer.
+
+1.13.57 - 8th April 2020
+- Quests from Witch Doctor Mau'ari (Winterspring) will no longer be selected automatically.
+- Quests from Gelvas Grimegate (Darkmoon Faire Ticket Redemption, Elwynn Forest and Mulgore) will no longer be selected, accepted or turned-in automatically.
+
+1.13.54 - 18th March 2020
+- Updated for Wow patch 1.13.4.
+- Localisation updates.
+- French and Brazilian Portuguese translations added.
+
+1.13.48 - 5th February 2020
+- If 'Automate quests' ('Automation') is enabled, quests from J. D. Collie (Un'Goro Crater) will no longer be selected automatically.  If you manually select a quest, it will be accepted and turned-in automatically as before.
+
+1.13.46 - 23rd January 2020
+- If 'Automate quests' is enabled, quests from Duke Nicholas Zverenhoff (Eastern Plaguelands) will no longer be selected automatically.
+- Fixed a bug with 'Accept summon' ('Automation') which caused a Lua error when a summon request was received.  This was caused by a recent change to the game code.
+
+1.13.45 - 15th January 2020
+- If 'Automate quests' is enabled, quests from Alliance Brigadier General (Alliance PvP), Horde Warbringer (Horde PvP), Arch Druid Renferal (Alterac Valley) and Primalist Thurloga (Alterac Valley) will no longer be selected automatically.
+
+1.13.42 - 25th December 2019
+- Updated the 'Manage frames' code (specifically the buff frame).
+
+1.13.40 - 11th December 2019
+- Updated for 11303.
+
+1.13.39 - 4th December 2019
+- Leatrix Plus is now localised into Spanish (esES and esMX).  Thanks to dalanwoopy for the translations.
+
+1.13.38 - 20th November 2019
+- Fixed a potential, situational issue with 'Enhance quest log' which may have rarely caused a Lua error when showing quest levels.
+
+1.13.37 - 31st October 2019
+- If 'Enhance quest log' is enabled ('Interface'), group quest levels now have a suffix denoting group type - D for dungeon, R for raid and + for Elite.
+- If 'Hide error messages' is enabled ('Text'), 'Feign Death' resist errors (hunter spell) will no longer be hidden.
+
+1.13.36 - 23rd October 2019
+- The media library is now categorised (as it is in retail).  You can browse and search by zone, dungeon or track name.
+- Added a new setting to 'Invite from whispers' ('Social') which allows you to restrict group invites to friends and guild members only (it's disabled by default).  In addition, the option now works if you are ungrouped, group leader or raid assistant.
+- If 'Class colored frames' is enabled ('Frames'), you can now select which frames should be shown in class color (player, target or both).
+- Fixed an issue with 'Show player chain' ('Frames') which caused the rare elite chain texture to appear stretched around the player level indicator.
+- Fixed a situational issue with 'Manage frames' ('Frames') which may have caused the player and target frame positions to reset on login.  In addition, enabling and disabling 'Manage frames' will no longer change the 'Lock/Unlock frame' option in the player and target frame dropdown menus.
+- Leatrix Plus is now listed in the game options panel.
+
+1.13.35 - 16th October 2019
+- Added a new option 'Class icon portraits' ('Frames').  If enabled, class icons will be shown in the portrait frames.
+- Fixed an issue with 'Automate quests' ('Automation') which caused quests from NPCs who offer escort quests to be automatically accepted.
+- Fixed a situational issue with ElvUI which caused 'Enhance quest log', 'Enhance professions' and 'Enhance trainers' ('Interface') to show the double wide frames incorrectly if the relevant skins were disabled in ElvUI settings.
+
+1.13.34 - 9th October 2019
+- Added a new option 'Set weather density' ('System').  If enabled, you can set the density of weather effects using the configuration panel.
+- Added a new option 'Resize book text' ('System').  If enabled, you will be able to resize book text and the font used for books will be easier to read.
+- If 'Show vendor price' ('System') is enabled, the vendor price of quivers and ammo pouches will no longer include any arrows or ammunition that they may contain.
+- For fresh installations, a message will now be shown in chat advising how to open Leatrix Plus.  The message only appears when installing the addon for the first time and after wiping the settings.
+- Fixed a situational issue with 'Enhance professions' ('Interface') which may have caused the default profession frames to show under certain circumstances (such as when using the TradeSkillMaster addon).
+- Fixed a an issue which caused tooltips from the 'ClassicCodex' addon to not be shown if 'Manage tooltip' was enabled.  This fix involved making changes to the ClassicCodex code.  I have submitted a GitHub ticket to ask the author of ClassicCodex to add the fix code to ClassicCodex instead.
+- Fixed a minor issue with 'Enhance quest log' ('Interface') which caused the map button border to be colored incorrectly when using ElvUI with a custom profile.
+- Fixed a minor issue with 'Show player chain' ('Frames') which caused the player chain to show through the pet portrait.
+
+1.13.33 - 2nd October 2019
+- Added a new option 'Enhance professions' ('Interface').  If enabled, the professions frames will be larger.  This includes both tradeskills and crafting frames as well as the beast training frame (for hunters).  ElvUI fixes are included.
+- If 'Automate quests' is enabled, quests from NPCs who offer escort quests will not be selected or accepted automatically.
+- If 'Invite from whispers' ('Social') is enabled, you can now set the whisper keyword to anything you want.  The default is still 'inv'.
+
+1.13.32 - 25th September 2019
+- Added a new option 'Show free bag slots' ('Interface').  If enabled, functionality mirrors retail in that the number of free bag slots will be shown in the backpack icon and tooltip.
+- The quest log frame for the 'Enhance quest log' option ('Interface') has been updated.  It now uses the game's built in double-wide texture rather than a custom texture.  If you use ElvUI, make sure it's up to date for the new quest log to work properly.
+
+1.13.31 - 18th September 2019
+- Added a new option 'Enhance quest log' ('Interface').  If enabled, the quest log frame will be larger and feature a world map button and quest levels.
+- Added a new option 'Show bag search box' ('Interface').  If enabled, a bag search box will be shown in the backpack frame and the bank frame.  Search functionality mirrors that of retail in that it will search all bags including the bank (if you have the bank frame open).
+- The 'Show vanity controls' option ('Interface') has changed slightly.  The helm and cloak checkboxes are dimmed (when the pointer is not over them), the 'Cloak' checkbox is reversed and you can shift/right-click either of the checkboxes to switch layouts (the layout is saved between sessions).
+- Fixed a minor issue with 'Show vendor price' ('System') which caused it to show a blank line in the tooltip for bags.
+
+1.13.30 - 13th September 2019
+- Fixed a taint issue caused by 'Make shaman blue' ('System').  Sadly, that option has had to be removed.
+- The 'Show vendor price' option ('System') now shows the full vendor price once again for bags, bank, quests, etc.  The AH shows single stack prices (just as it does in retail).  Action bars show single stack prices too (in retail, the price shown varies depending on the bag slot the item is stored in).
+
+1.13.29 - 11th September 2019
+- Fixed an issue with 'Show vendor price' which caused some recipe tooltips to flash.
+
+1.13.28 - 11th September 2019
+- Added a new option 'Make shaman blue' ('System').  If enabled, the shaman class color will be changed from pink to blue.
+- If 'Manage frames' ('Frames') is enabled and you have Titan Panel installed with 'Disable screen adjust' unchecked, the 'Manage frames' configuration panel will now show a warning and offer to disable screen adjust for you.  This is required for 'Manage frames' to work correctly.
+- Fixed a bug with 'Show vendor price' ('System') which sometimes caused it to show an incorrect price.  As a result of the fix, the sell price shown is now per unit.
+
+1.13.27 - 4th September 2019
+- If 'Manage tooltip' is enabled, you can set a new dropdown menu in the configuration panel to anchor the tooltip in various ways.  You can choose 'None' (disable tooltip positioning), 'Overlay' (anchor all tooltips to the overlay frame), 'Cursor' (anchor world tooltips to the cursor and interface tooltips to the overlay frame) or 'Cursor left or right' (anchor world tooltips to the left or right of the cursor with optional offsets and interface tooltips to the overlay frame).  There is no longer a 'Reposition the tooltip' checkbox as you can disable tooltip positioning from the dropdown menu now.
+- If 'Hide error messages' is enabled, rogue pickpocket errors will no longer be hidden.
+- Fixed the Zygor minimap toggle so it now works with Zygor Classic.
+
+1.13.26 - 28th August 2019
+- Fixed an issue which caused the setting for the 'Max camera zoom' option ('System') to not be applied when logging into the game world.
+- Fixed issues with 'Show vendor price' ('System') which sometimes caused a Lua error to be shown (situational) and sometimes caused the sell price to be duplicated.
+- Updated Russian localisation.
+
+1.13.25 - 24th August 2019
+- Welcome to Leatrix Plus (Classic).  This release is very similar to Leatrix Plus (Retail) but there are a few changes.
+- Added 'Show vendor price' ('System').  If enabled, the vendor price will be shown in item tooltips.
+- Added 'Stand and dismount' ('System').  If enabled, your character will automatically stand or dismount when an action is prevented because you are either seated or mounted.
+- Added 'Show vanity controls' ('Interface').  If enabled, you can toggle your helm and cloak with two new checkboxes on the character sheet.
+- Added 'Use class colors in chat' ('Chat').  This is identical to the built-in class colors in modern Wow.
+- The 'Automate gossip' option ('Automation') will now automatically skip banker, taxi, trainer and vendor gossip item types without needing to hold the alt key.  You can hold shift to prevent this automation.  Traditional gossip windows still have the alt key requirement.
+- If 'Manage tooltip' ('Interface') is enabled, you can show guild names (and ranks for players in your own guild) using a new setting in the configuration panel.
+- The media library in Leatrix Plus (Classic) features music files rather than the sound kits that Leatrix Plus (Retail) features.  All playable music files in the game and both videos are included and continuous play is supported.
+- The 'Show Wowhead links' option ('Interface') shows the links above the quest log frame rather than inside it.
