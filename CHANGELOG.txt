@@ -1,6 +1,6 @@
-1.13.88.alpha.52 - 8th December 2020
+1.13.88 - 9th December 2020
 - Updated for game version 1.13.6.
-- Source code is now on GitHub for the time being due to CurseForge SVN migration to Overwolf.
+- Source code is now on GitHub (github.com/leatrix).
 
 1.13.86 - 18th November 2020
 - Added a new option 'Easy item destroy' ('System').  If enabled, you will no longer need to type delete when destroying a superior quality item.  In addition, item links will be shown in all item destroy confirmation windows.
