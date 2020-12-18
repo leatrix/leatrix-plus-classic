@@ -1,3 +1,6 @@
+1.13.89 - 18th December 2020
+- Added a slash command '/ltp help' which will display a list of commands you can use.
+
 1.13.88 - 9th December 2020
 - Updated for game version 1.13.6.
 - Source code is now on GitHub (github.com/leatrix).
