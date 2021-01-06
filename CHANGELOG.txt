@@ -1,4 +1,4 @@
-1.13.90.alpha.1 - 18th December 2020
+1.13.90 - 6th January 2021
 - Maintenance update.
 
 1.13.89 - 18th December 2020
