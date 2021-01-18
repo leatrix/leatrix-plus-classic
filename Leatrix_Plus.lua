@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.90 (6th January 2021)
+-- 	Leatrix Plus 1.13.91.alpha.1 (18th January 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.90"
+	LeaPlusLC["AddonVer"] = "1.13.91.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -241,6 +241,16 @@
 		-- Release memory
 		LeaPlusLC.ShowMemoryUsage = nil
 
+	end
+
+	-- Check if player is in LFG queue (battleground)
+	function LeaPlusLC:IsInLFGQueue()
+		for i = 1, GetMaxBattlefieldID() do
+			local status = GetBattlefieldStatus(i)
+			if status == "queued" or status == "confirmed" then
+				return true
+			end
+		end
 	end
 
 	-- Check if player is in combat
@@ -7321,18 +7331,20 @@
 
 		if event == "CHAT_MSG_WHISPER" or event == "CHAT_MSG_BN_WHISPER" then
 			if (not UnitExists("party1") or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")) and strlower(strtrim(arg1)) == strlower(LeaPlusLC["InvKey"]) then
-				if event == "CHAT_MSG_WHISPER" then
-					if LeaPlusLC:FriendCheck(strsplit("-", arg2, 2)) or LeaPlusLC["InviteFriendsOnly"] == "Off" then
-						InviteUnit(arg2)
-					end
-				elseif event == "CHAT_MSG_BN_WHISPER" then
-					local presenceID = select(11, ...)
-					if presenceID and BNIsFriend(presenceID) then
-						local index = BNGetFriendIndex(presenceID);
-						if index then
-							local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID = BNGetFriendInfo(index);
-							if toonID then
-								BNInviteFriend(toonID);
+				if not LeaPlusLC:IsInLFGQueue() then
+					if event == "CHAT_MSG_WHISPER" then
+						if LeaPlusLC:FriendCheck(strsplit("-", arg2, 2)) or LeaPlusLC["InviteFriendsOnly"] == "Off" then
+							InviteUnit(arg2)
+						end
+					elseif event == "CHAT_MSG_BN_WHISPER" then
+						local presenceID = select(11, ...)
+						if presenceID and BNIsFriend(presenceID) then
+							local index = BNGetFriendIndex(presenceID);
+							if index then
+								local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID = BNGetFriendInfo(index);
+								if toonID then
+									BNInviteFriend(toonID);
+								end
 							end
 						end
 					end
@@ -7423,21 +7435,23 @@
 
 		if event == "PARTY_INVITE_REQUEST" then
 
-			-- If a friend, accept if you're accepting friends
+			-- If a friend, accept if you're accepting friends and not in battleground queue
 			if (LeaPlusLC["AcceptPartyFriends"] == "On" and LeaPlusLC:FriendCheck(arg1)) then
-				AcceptGroup();
-				for i=1, STATICPOPUP_NUMDIALOGS do
-					if _G["StaticPopup"..i].which == "PARTY_INVITE" then
-						_G["StaticPopup"..i].inviteAccepted = 1
-						StaticPopup_Hide("PARTY_INVITE");
-						break
-					elseif _G["StaticPopup"..i].which == "PARTY_INVITE_XREALM" then
-						_G["StaticPopup"..i].inviteAccepted = 1
-						StaticPopup_Hide("PARTY_INVITE_XREALM");
-						break
+				if not LeaPlusLC:IsInLFGQueue() then
+					AcceptGroup()
+					for i=1, STATICPOPUP_NUMDIALOGS do
+						if _G["StaticPopup"..i].which == "PARTY_INVITE" then
+							_G["StaticPopup"..i].inviteAccepted = 1
+							StaticPopup_Hide("PARTY_INVITE")
+							break
+						elseif _G["StaticPopup"..i].which == "PARTY_INVITE_XREALM" then
+							_G["StaticPopup"..i].inviteAccepted = 1
+							StaticPopup_Hide("PARTY_INVITE_XREALM")
+							break
+						end
 					end
+					return
 				end
-				return
 			end
 
 			-- If not a friend and you're blocking invites, decline
@@ -9471,7 +9485,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoFriendRequests"			, 	"Block friend requests"			, 	146, -132, 	false,	"If checked, BattleTag and Real ID friend requests will be automatically declined.|n|nEnabling this option will automatically decline any pending requests.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Groups"					, 	340, -72);
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AcceptPartyFriends"		, 	"Party from friends"			, 	340, -92, 	false,	"If checked, party invitations from friends or guild members will be automatically accepted.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AcceptPartyFriends"		, 	"Party from friends"			, 	340, -92, 	false,	"If checked, party invitations from friends or guild members will be automatically accepted unless you are queued for a battleground.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "InviteFromWhisper"			,   "Invite from whispers"			,	340, -112,	false,	L["If checked, a group invite will be sent to anyone who whispers you with a set keyword as long as you are ungrouped, group leader or raid assistant."] .. "|n|n" .. L["Keyword"] .. ": |cffffffff" .. "dummy" .. "|r")
 
  	LeaPlusLC:CfgBtn("InvWhisperBtn", LeaPlusCB["InviteFromWhisper"])
