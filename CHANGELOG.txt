@@ -1,3 +1,6 @@
+1.13.92 - 9th February 2021
+- Maintenance update.
+
 1.13.91 - 22nd January 2021
 - The 'Party from friends' and 'Invite from whispers' options ('Social') will no longer automatically accept or send party invitations while you are queued for a battleground.
 
