@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.94 (24th February 2021)
+-- 	Leatrix Plus 1.13.95.alpha.1 (24th February 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.94"
+	LeaPlusLC["AddonVer"] = "1.13.95.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -9131,6 +9131,70 @@
 					table.insert(UISpecialFrames, "LeaPlusGlobalHelpPanel")
 				end
 				if LeaPlusLC.HelpFrame:IsShown() then LeaPlusLC.HelpFrame:Hide() else LeaPlusLC.HelpFrame:Show() end
+				return
+			elseif str == "ra" then
+				-- Announce target name, health percentage, coordinates and map pin link in General chat channel
+				local genChannel
+				if GameLocale == "deDE" 	then genChannel = "Allgemein"
+				elseif GameLocale == "esMX" then genChannel = "General"
+				elseif GameLocale == "esES" then genChannel = "General"
+				elseif GameLocale == "frFR" then genChannel = "Général"
+				elseif GameLocale == "itIT" then genChannel = "Generale"
+				elseif GameLocale == "ptBR" then genChannel = "Geral"
+				elseif GameLocale == "ruRU" then genChannel = "Общий"
+				elseif GameLocale == "koKR" then genChannel = "공개"
+				elseif GameLocale == "zhCN" then genChannel = "综合"
+				elseif GameLocale == "zhTW" then genChannel = "綜合"
+				else							 genChannel = "General"
+				end
+				if genChannel then
+					local index = GetChannelName(genChannel)
+					if index and index > 0 then
+						local mapID = C_Map.GetBestMapForUnit("player")
+						local pos = C_Map.GetPlayerMapPosition(mapID, "player")
+						if pos.x and pos.x ~= "0" and pos.y and pos.y ~= "0" then
+							local uHealth = UnitHealth("target")
+							local uHealthMax = UnitHealthMax("target")
+							-- Announce in chat
+							if uHealth and uHealth > 0 and uHealthMax and uHealthMax > 0 then
+								-- Get unit classification (elite, rare, rare elite or boss)
+								local unitType, unitTag = UnitClassification("target"), ""
+								if unitType then
+									if unitType == "rare" or unitType == "rareelite" then unitTag = "(" .. L["Rare"] .. ") " elseif unitType == "worldboss" then unitTag = "(" .. L["Boss"] .. ") " end
+								end
+								SendChatMessage(format("%%t " .. unitTag .. "(%d%%)%s", uHealth / uHealthMax * 100, " " .. string.format("%.0f", pos.x * 100) .. ":" .. string.format("%.0f", pos.y * 100)) .. " " .. L["by Leatrix Plus"], "CHANNEL", nil, index)
+								-- SendChatMessage(format("%%t " .. unitTag .. "(%d%%)%s", uHealth / uHealthMax * 100, " " .. string.format("%.0f", pos.x * 100) .. ":" .. string.format("%.0f", pos.y * 100)) .. " " .. L["by Leatrix Plus"], "WHISPER", nil, GetUnitName("player")) -- Debug
+							else
+								LeaPlusLC:Print("Invalid target.")
+							end
+						else
+							LeaPlusLC:Print("Cannot announce in this zone.")
+						end
+					else
+						LeaPlusLC:Print("Cannot find General chat channel.")
+					end
+				end
+				return
+			elseif str == "camp" then
+				-- Camp
+				local origCampMsg = _G.IDLE_MESSAGE
+				if not LeaPlusLC.NoCampFrame then
+					local frame = CreateFrame("FRAME", nil, UIParent)
+					LeaPlusLC.NoCampFrame = frame
+				end
+				if LeaPlusLC.NoCampFrame:IsEventRegistered("PLAYER_CAMPING") then
+					LeaPlusLC.NoCampFrame:UnregisterEvent("PLAYER_CAMPING")
+					_G.IDLE_MESSAGE = origCampMsg
+					LeaPlusLC:Print("Camping enabled.  You will camp.")
+				else
+					LeaPlusLC.NoCampFrame:RegisterEvent("PLAYER_CAMPING")
+					_G.IDLE_MESSAGE = nil
+					LeaPlusLC:Print("Camping disabled.  You won't camp.")
+				end
+				LeaPlusLC.NoCampFrame:SetScript("OnEvent", function()
+					local p = StaticPopup_Visible("CAMP")
+					_G[p .. "Button1"]:Click()
+				end)
 				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
