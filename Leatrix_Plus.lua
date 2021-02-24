@@ -9080,7 +9080,7 @@
 				-- Help panel
 				if not LeaPlusLC.HelpFrame then
 					local frame = CreateFrame("FRAME", nil, UIParent)
-					frame:SetSize(570, 340); frame:SetFrameStrata("FULLSCREEN_DIALOG"); frame:SetFrameLevel(100)
+					frame:SetSize(570, 360); frame:SetFrameStrata("FULLSCREEN_DIALOG"); frame:SetFrameLevel(100)
 					frame.tex = frame:CreateTexture(nil, "BACKGROUND"); frame.tex:SetAllPoints(); frame.tex:SetColorTexture(0.05, 0.05, 0.05, 0.9)
 					frame.close = CreateFrame("Button", nil, frame, "UIPanelCloseButton"); frame.close:SetSize(30, 30); frame.close:SetPoint("TOPRIGHT", 0, 0); frame.close:SetScript("OnClick", function() frame:Hide() end)
 					frame:ClearAllPoints(); frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
@@ -9122,10 +9122,12 @@
 					LeaPlusLC:MakeWD(frame, "Follow your target persistently (toggle).", col2, -250)
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp rsnd", col1, -270)
 					LeaPlusLC:MakeWD(frame, "Restart the sound system.", col2, -270)
-					LeaPlusLC:MakeWD(frame, color1 .. "/ltp con", col1, -290)
-					LeaPlusLC:MakeWD(frame, "Launch the developer console with a large font.", col2, -290)
-					LeaPlusLC:MakeWD(frame, color1 .. "/rl", col1, -310)
-					LeaPlusLC:MakeWD(frame, "Reload the UI.", col2, -310)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp ra", col1, -290)
+					LeaPlusLC:MakeWD(frame, "Announce target in General chat channel (useful for rares).", col2, -290)
+					LeaPlusLC:MakeWD(frame, color1 .. "/ltp con", col1, -310)
+					LeaPlusLC:MakeWD(frame, "Launch the developer console with a large font.", col2, -310)
+					LeaPlusLC:MakeWD(frame, color1 .. "/rl", col1, -330)
+					LeaPlusLC:MakeWD(frame, "Reload the UI.", col2, -330)
 					LeaPlusLC.HelpFrame = frame
 					_G["LeaPlusGlobalHelpPanel"] = frame
 					table.insert(UISpecialFrames, "LeaPlusGlobalHelpPanel")
