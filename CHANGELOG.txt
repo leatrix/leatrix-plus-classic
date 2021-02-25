@@ -1,4 +1,4 @@
-1.13.95.alpha.2 - 24th February 2021
+1.13.95.alpha.3 - 25th February 2021
 - Added a new command '/ltp ra'.  It announces your target's name, health remaining and coordinates in General chat channel.  To use it, just target a mob out in the open world and enter '/ltp ra'.  Requires that you are a member of General chat to function.  Does not work in instances.
 - Updated German translations.
 
