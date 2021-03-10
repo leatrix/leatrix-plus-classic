@@ -1,9 +1,9 @@
+1.13.96 - 10th March 2021
+- Maintenance update.
+
 1.13.95 - 4th March 2021
 - Added a new command '/ltp ra'.  It announces your target's name, health remaining and coordinates in General chat channel.  To use it, just target a mob out in the open world and enter '/ltp ra'.  Requires that you are a member of General chat to function.  Does not work in instances.
 - Updated German translations.
-
-1.13.94 - 24th February 2021
-- Maintenance update.
 
 1.13.91 - 22nd January 2021
 - The 'Party from friends' and 'Invite from whispers' options ('Social') will no longer automatically accept or send party invitations while you are queued for a battleground.
