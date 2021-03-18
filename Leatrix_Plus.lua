@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.97 (17th March 2021)
+-- 	Leatrix Plus 1.13.98.alpha.1 (18th March 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.97"
+	LeaPlusLC["AddonVer"] = "1.13.98.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -5103,10 +5103,21 @@
 
 			end
 
+			-- Change cooldown icon scale when player frame scale changes
+			PlayerFrame:HookScript("OnSizeChanged", function()
+				if LeaPlusLC["CooldownsOnPlayer"] == "On" then
+					for i = 1, iCount do
+						icon[i]:SetScale(PlayerFrame:GetScale())
+					end
+				end
+			end)
+
 			-- Change cooldown icon scale when target frame scale changes
 			TargetFrame:HookScript("OnSizeChanged", function()
-				for i = 1, iCount do
-					icon[i]:SetScale(TargetFrame:GetScale())
+				if LeaPlusLC["CooldownsOnPlayer"] == "Off" then
+					for i = 1, iCount do
+						icon[i]:SetScale(TargetFrame:GetScale())
+					end
 				end
 			end)
 
@@ -5224,6 +5235,7 @@
 			LeaPlusLC:MakeTx(CooldownPanel, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(CooldownPanel, "ShowCooldownID", "Show the spell ID in buff icon tooltips", 16, -92, false, "If checked, spell IDs will be shown in buff icon tooltips located in the buff frame and under the target frame.");
 			LeaPlusLC:MakeCB(CooldownPanel, "NoCooldownDuration", "Hide cooldown duration numbers (if enabled)", 16, -112, false, "If checked, cooldown duration numbers will not be shown over the cooldowns.|n|nIf unchecked, cooldown duration numbers will be shown over the cooldowns if they are enabled in the game options panel ('ActionBars' menu).")
+			LeaPlusLC:MakeCB(CooldownPanel, "CooldownsOnPlayer", "Show cooldowns above the player frame", 16, -132, false, "If checked, cooldown icons will be shown above the player frame instead of the target frame.|n|nIf unchecked, cooldown icons will be shown above the target frame.")
 
 			-- Function to save the panel control settings and refresh the cooldown icons
 			local function SavePanelControls()
@@ -5231,6 +5243,16 @@
 
 					-- Refresh the cooldown texture
 					icon[i].c:SetCooldown(0,0)
+
+					-- Show icons above target or player frame
+					icon[i]:ClearAllPoints()
+					if LeaPlusLC["CooldownsOnPlayer"] == "On" then
+						icon[i]:SetPoint("TOPLEFT", PlayerFrame, "TOPLEFT", 116 + (22 * (i - 1)), 5)
+						icon[i]:SetScale(PlayerFrame:GetScale())
+					else
+						icon[i]:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 6 + (22 * (i - 1)), 5)
+						icon[i]:SetScale(TargetFrame:GetScale())
+					end
 
 					-- Save control states to globals
 					LeaPlusDB["Cooldowns"][PlayerClass]["S" .. activeSpec .. "R" .. i .. "Idn"] = SpellEB[i]:GetText()
@@ -5280,6 +5302,7 @@
 
 			-- Update cooldown icons when checkboxes are clicked
 			LeaPlusCB["NoCooldownDuration"]:HookScript("OnClick", SavePanelControls)
+			LeaPlusCB["CooldownsOnPlayer"]:HookScript("OnClick", SavePanelControls)
 
 			-- Help button tooltip
 			CooldownPanel.h.tiptext = L["Enter the spell IDs for the cooldown icons that you want to see.|n|nIf a cooldown icon normally appears under the pet frame, check the pet checkbox.|n|nCooldown icons are saved to your class."]
@@ -5295,6 +5318,7 @@
 				-- Reset the checkboxes
 				LeaPlusLC["ShowCooldownID"] = "On"
 				LeaPlusLC["NoCooldownDuration"] = "On"
+				LeaPlusLC["CooldownsOnPlayer"] = "Off"
 				for i = 1, iCount do
 					-- Reset the panel controls
 					SpellEB[i]:SetText("");
@@ -7601,6 +7625,7 @@
 				LeaPlusLC:LoadVarChk("ShowCooldowns", "Off")				-- Show cooldowns
 				LeaPlusLC:LoadVarChk("ShowCooldownID", "On")				-- Show cooldown ID in tips
 				LeaPlusLC:LoadVarChk("NoCooldownDuration", "On")			-- Hide cooldown duration
+				LeaPlusLC:LoadVarChk("CooldownsOnPlayer", "Off")			-- Anchor to player
 				LeaPlusLC:LoadVarChk("DurabilityStatus", "Off")				-- Show durability status
 				LeaPlusLC:LoadVarChk("ShowVanityControls", "Off")			-- Show vanity controls
 				LeaPlusLC:LoadVarChk("VanityAltLayout", "Off")				-- Vanity alternative layout
@@ -7790,6 +7815,7 @@
 			LeaPlusDB["ShowCooldowns"]			= LeaPlusLC["ShowCooldowns"]
 			LeaPlusDB["ShowCooldownID"]			= LeaPlusLC["ShowCooldownID"]
 			LeaPlusDB["NoCooldownDuration"]		= LeaPlusLC["NoCooldownDuration"]
+			LeaPlusDB["CooldownsOnPlayer"]		= LeaPlusLC["CooldownsOnPlayer"]
 			LeaPlusDB["DurabilityStatus"]		= LeaPlusLC["DurabilityStatus"]
 			LeaPlusDB["ShowVanityControls"]		= LeaPlusLC["ShowVanityControls"]
 			LeaPlusDB["VanityAltLayout"]		= LeaPlusLC["VanityAltLayout"]
