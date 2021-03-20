@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.98.alpha.1 (18th March 2021)
+-- 	Leatrix Plus 1.13.98.alpha.2 (20th March 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.98.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.13.98.alpha.2"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -7437,12 +7437,12 @@
 
 		if event == "CONFIRM_SUMMON" then
 			if not UnitAffectingCombat("player") then
-				local sName = GetSummonConfirmSummoner()
-				local sLocation = GetSummonConfirmAreaName()
+				local sName = C_SummonInfo.GetSummonConfirmSummoner()
+				local sLocation = C_SummonInfo.GetSummonConfirmAreaName()
 				LeaPlusLC:Print(L["The summon from"] .. " " .. sName .. " (" .. sLocation .. ") " .. L["will be automatically accepted in 10 seconds unless cancelled."])
 				C_Timer.After(10, function()
-					local sNameNew = GetSummonConfirmSummoner()
-					local sLocationNew = GetSummonConfirmAreaName()
+					local sNameNew = C_SummonInfo.GetSummonConfirmSummoner()
+					local sLocationNew = C_SummonInfo.GetSummonConfirmAreaName()
 					if sName == sNameNew and sLocation == sLocationNew then
 						-- Automatically accept summon after 10 seconds if summoner name and location have not changed
 						C_SummonInfo.ConfirmSummon()
