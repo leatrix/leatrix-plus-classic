@@ -1,9 +1,6 @@
-1.13.98.alpha.2 - 20th March 2021
+1.13.98 - 25th March 2021
 - For 'Show cooldowns' ('Interface'), you can now show cooldowns above the player frame instead of the target frame if you wish.
 - Fixed an issue with 'Accept summon' ('Automation') which caused a Lua error.
-
-1.13.97 - 17th March 2021
-- Maintenance update.
 
 1.13.95 - 4th March 2021
 - Added a new command '/ltp ra'.  It announces your target's name, health remaining and coordinates in General chat channel.  To use it, just target a mob out in the open world and enter '/ltp ra'.  Requires that you are a member of General chat to function.  Does not work in instances.
