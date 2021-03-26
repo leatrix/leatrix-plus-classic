@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.99.alpha.1 (25th March 2021)
+-- 	Leatrix Plus 1.13.99.alpha.2 (26th March 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.99.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.13.99.alpha.2"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -2452,9 +2452,9 @@
 		----------------------------------------------------------------------
 
 		if LeaPlusLC["NoClassBar"] == "On" then
-			local stancebar = CreateFrame("FRAME")
-			stancebar:Hide();
-			UIPARENT_MANAGED_FRAME_POSITIONS["StanceBarFrame"] = nil;
+			local stancebar = CreateFrame("FRAME", nil, UIParent)
+			stancebar:Hide()
+			StanceBarFrame:UnregisterAllEvents()
 			StanceBarFrame:SetParent(stancebar)
 		end
 

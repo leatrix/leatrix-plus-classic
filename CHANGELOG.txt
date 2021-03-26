@@ -1,3 +1,6 @@
+1.13.99.alpha.2 - 26th March 2021
+- Fixed a minor issue with 'Hide stance bar' which may have caused the position of the leave vehicle button to be offset.
+
 1.13.99.alpha.1 - 25th March 2021
 - Maintenance update.
 
