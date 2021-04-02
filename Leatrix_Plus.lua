@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.99 (1st April 2021)
+-- 	Leatrix Plus 1.13.100.alpha.1 (2nd April 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.99"
+	LeaPlusLC["AddonVer"] = "1.13.100.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -4663,7 +4663,7 @@
 			UIWidgetTopCenterContainerFrame:SetScale(LeaPlusLC["WidgetScale"])
 
 			-- Create drag frame
-			local dragframe = CreateFrame("FRAME", nil, nil, LeaPlusLC.BackdropTemplate)
+			local dragframe = CreateFrame("FRAME")
 			dragframe:SetPoint("CENTER", topCenterHolder, "CENTER", 0, 1)
 			dragframe:SetBackdropColor(0.0, 0.5, 1.0)
 			dragframe:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = { left = 0, right = 0, top = 0, bottom = 0}})
