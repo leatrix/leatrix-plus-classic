@@ -1,5 +1,5 @@
-1.13.102.alpha.1 - 18th April 2021
-- Fixed an issue with 'Recent chat window' ('Chat') which may have caused some text to be colored incorrectly.
+1.13.102.alpha.2 - 18th April 2021
+- For 'Recent chat window' ('Chat'), the window is now wider, has a drag button for easy resizing and no longer excludes chat textures or braces.  Also fixed an issue which may have sometimes caused text in the recent chat window to be colored incorrectly.
 
 1.13.99 - 1st April 2021
 - Fixed a minor issue with 'Hide stance bar' which may have caused the position of the leave vehicle button to be offset.
