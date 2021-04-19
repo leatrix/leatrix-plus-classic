@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.102.alpha.4 (19th April 2021)
+-- 	Leatrix Plus 1.13.102.alpha.5 (19th April 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.102.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.13.102.alpha.5"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -4910,7 +4910,7 @@
 			-- Set frame parameters
 			editFrame:ClearAllPoints()
 			editFrame:SetPoint("BOTTOM", 0, 130)
-			editFrame:SetSize(600, 170)
+			editFrame:SetSize(600, LeaPlusLC["RecentChatSize"])
 			editFrame:SetFrameStrata("MEDIUM")
 			editFrame:SetToplevel(true)
 			editFrame:Hide()
@@ -4975,9 +4975,11 @@
 			titleFrame:HookScript("OnMouseUp", function(self, btn)
 				if btn == "LeftButton" then
 					editFrame:StopMovingOrSizing()
+					LeaPlusLC["RecentChatSize"] = editFrame:GetHeight()
 				elseif btn == "MiddleButton" then
 					-- Reset frame size
-					editFrame:SetSize(600, 170)
+					LeaPlusLC["RecentChatSize"] = 170
+					editFrame:SetSize(600, LeaPlusLC["RecentChatSize"])
 					editFrame:ClearAllPoints()
 					editFrame:SetPoint("BOTTOM", 0, 130)
 				end
@@ -6382,6 +6384,11 @@
 			maintitle:ClearAllPoints()
 			maintitle:SetPoint("TOP", 0, -72)
 
+			local expTitle = LeaPlusLC:MakeTx(interPanel, "World of Warcraft Classic", 0, 0)
+			expTitle:SetFont(expTitle:GetFont(), 32)
+			expTitle:ClearAllPoints()
+			expTitle:SetPoint("TOP", 0, -152)
+
 			local subTitle = LeaPlusLC:MakeTx(interPanel, "curseforge.com/wow/addons/leatrix-plus-classic", 0, 0)
 			subTitle:SetFont(subTitle:GetFont(), 20)
 			subTitle:ClearAllPoints()
@@ -7638,6 +7645,7 @@
 				LeaPlusLC:LoadVarChk("UnivGroupColor", "Off")				-- Universal group color
 				LeaPlusLC:LoadVarChk("ClassColorsInChat", "Off")			-- Use class colors in chat
 				LeaPlusLC:LoadVarChk("RecentChatWindow", "Off")				-- Recent chat window
+				LeaPlusLC:LoadVarNum("RecentChatSize", 170, 170, 560)		-- Recent chat size
 				LeaPlusLC:LoadVarChk("MaxChatHstory", "Off")				-- Increase chat history
 
 				-- Text
@@ -7828,6 +7836,7 @@
 			LeaPlusDB["UnivGroupColor"]			= LeaPlusLC["UnivGroupColor"]
 			LeaPlusDB["ClassColorsInChat"]		= LeaPlusLC["ClassColorsInChat"]
 			LeaPlusDB["RecentChatWindow"]		= LeaPlusLC["RecentChatWindow"]
+			LeaPlusDB["RecentChatSize"]			= LeaPlusLC["RecentChatSize"]
 			LeaPlusDB["MaxChatHstory"]			= LeaPlusLC["MaxChatHstory"]
 
 			-- Text
@@ -9319,6 +9328,7 @@
 				LeaPlusDB["UnivGroupColor"] = "On"				-- Universal group color
 				LeaPlusDB["ClassColorsInChat"] = "On"			-- Use class colors in chat
 				LeaPlusDB["RecentChatWindow"] = "On"			-- Recent chat window
+				LeaPlusDB["RecentChatSize"] = 170				-- Recent chat size
 				LeaPlusDB["MaxChatHstory"] = "Off"				-- Increase chat history
 
 				-- Text
