@@ -1,4 +1,5 @@
-1.13.102.alpha.7 - 20th April 2021
+1.13.102 - 21st April 2021
+- Updated for game version 1.13.7.
 - For 'Recent chat window' ('Chat'), the window is now wider and resizable (drag the title bar).  The window size is saved between login sessions.  Battle.net online status and broadcast messages will now be shown.  Fixed an issue with braces and text colors not being shown correctly.
 
 1.13.99 - 1st April 2021
