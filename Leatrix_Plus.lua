@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.103.alpha.3 (25th April 2021)
+-- 	Leatrix Plus 1.13.103.alpha.4 (25th April 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.103.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.13.103.alpha.4"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -834,7 +834,6 @@
 			-- Enable zooming and panning
 			----------------------------------------------------------------------
 
-
 			-- Enable zooming for character frame and dressup frame
 			CharacterModelFrame:EnableMouseWheel(true)
 			CharacterModelFrame:HookScript("OnMouseWheel", Model_OnMouseWheel)
@@ -871,15 +870,15 @@
 			DressUpModelFrame:SetPoint("TOPLEFT", DressUpFrame, 22, -76)
 			DressUpModelFrame:SetPoint("BOTTOMRIGHT", DressUpFrame, -46, 106)
 
-			-- Reset character frame when shown
-			hooksecurefunc(CharacterFrame, "Show", function()
+			-- Reset character frame when shown (not used to match retail)
+			--[[ hooksecurefunc(CharacterFrame, "Show", function()
 				CharacterModelFrame.rotation = 0
 				CharacterModelFrame:SetRotation(0)
 				CharacterModelFrame:SetPosition(0, 0, 0)
 				CharacterModelFrame.zoomLevel = 0
 				CharacterModelFrame:SetPortraitZoom(0)
 				CharacterModelFrame:RefreshCamera()
-			end)
+			end)--]]
 
 			-- Reset side dressup when shown and reset button clicked
 			local function ResetSideLayout()
@@ -892,7 +891,7 @@
 			end
 
 			SideDressUpModelResetButton:HookScript("OnClick", ResetSideLayout)
-			SideDressUpModelResetButton:HookScript("OnShow", ResetSideLayout)
+			-- SideDressUpModelResetButton:HookScript("OnShow", ResetSideLayout)
 
 			-- Reset dressup and remove special model animations when shown and reset button clicked
 			local function ResetModelLayout()
@@ -906,7 +905,7 @@
 				DressUpModelFrame:RefreshCamera()
 			end
 
-			DressUpFrameResetButton:HookScript("OnShow", ResetModelLayout)
+			-- DressUpFrameResetButton:HookScript("OnShow", ResetModelLayout)
 			DressUpFrameResetButton:HookScript("OnClick", ResetModelLayout)
 
 			----------------------------------------------------------------------
@@ -935,15 +934,15 @@
 					Model_StopPanning(self)
 				end)
 
-				-- Reset layout when inspect frame is shown
-				hooksecurefunc(InspectFrame, "Show", function()
+				-- Reset layout when inspect frame is shown (not used to match retail)
+				--[[hooksecurefunc(InspectFrame, "Show", function()
 					InspectModelFrame.rotation = 0
 					InspectModelFrame:SetRotation(0)
 					InspectModelFrame:SetPosition(0, 0, 0)
 					InspectModelFrame.zoomLevel = 0
 					InspectModelFrame:SetPortraitZoom(0)
 					InspectModelFrame:RefreshCamera()
-				end)
+				end)--]]
 
 			end
 
@@ -3634,8 +3633,8 @@
 		if LeaPlusLC["ShowVanityControls"] == "On" then
 
 			-- Create checkboxes
-			LeaPlusLC:MakeCB(CharacterModelFrame, "ShowHelm", L["Helm"], 2, -192, false, "")
-			LeaPlusLC:MakeCB(CharacterModelFrame, "ShowCloak", L["Cloak"], 281, -192, false, "")
+			LeaPlusLC:MakeCB(CharacterFrame, "ShowHelm", L["Helm"], 2, -192, false, "")
+			LeaPlusLC:MakeCB(CharacterFrame, "ShowCloak", L["Cloak"], 281, -192, false, "")
 			LeaPlusCB["ShowHelm"]:SetFrameStrata("HIGH")
 			LeaPlusCB["ShowCloak"]:SetFrameStrata("HIGH")
 
@@ -3645,7 +3644,7 @@
 					-- Alternative layout
 					LeaPlusCB["ShowHelm"].f:SetText(L["H"])
 					LeaPlusCB["ShowHelm"]:ClearAllPoints()
-					LeaPlusCB["ShowHelm"]:SetPoint("BOTTOMRIGHT", 0, 46)
+					LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 275, -224)
 					LeaPlusCB["ShowHelm"]:SetHitRectInsets(-LeaPlusCB["ShowHelm"].f:GetStringWidth() + 4, 3, 0, 0)
 					LeaPlusCB["ShowHelm"].f:ClearAllPoints()
 					LeaPlusCB["ShowHelm"].f:SetPoint("RIGHT", LeaPlusCB["ShowHelm"], "LEFT", 4, 0)
@@ -3660,14 +3659,14 @@
 					-- Default layout
 					LeaPlusCB["ShowHelm"].f:SetText(L["Helm"])
 					LeaPlusCB["ShowHelm"]:ClearAllPoints()
-					LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 2, -192)
+					LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 65, -270)
 					LeaPlusCB["ShowHelm"]:SetHitRectInsets(3, -LeaPlusCB["ShowHelm"].f:GetStringWidth(), 0, 0)
 					LeaPlusCB["ShowHelm"].f:ClearAllPoints()
 					LeaPlusCB["ShowHelm"].f:SetPoint("LEFT", LeaPlusCB["ShowHelm"], "RIGHT", 0, 0)
 
 					LeaPlusCB["ShowCloak"].f:SetText(L["Cloak"])
 					LeaPlusCB["ShowCloak"]:ClearAllPoints()
-					LeaPlusCB["ShowCloak"]:SetPoint("BOTTOMRIGHT", 0, 0)
+					LeaPlusCB["ShowCloak"]:SetPoint("TOPLEFT", 275, -270)
 					LeaPlusCB["ShowCloak"]:SetHitRectInsets(-LeaPlusCB["ShowCloak"].f:GetStringWidth(), 3, 0, 0)
 					LeaPlusCB["ShowCloak"].f:ClearAllPoints()
 					LeaPlusCB["ShowCloak"].f:SetPoint("RIGHT", LeaPlusCB["ShowCloak"], "LEFT", 0, 0)
