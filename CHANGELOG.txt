@@ -1,4 +1,4 @@
-1.13.103.alpha.5 - 25th April 2021
+1.13.103.alpha.6 - 25th April 2021
 - The 'Enhance dressup' option ('Interface') now adds pan (right-button) and zoom (mousewheel) functionality to the character frame, dressup frame and inspect frame (in addition to adding gear toggle buttons and hiding the model rotation controls).
 
 1.13.102 - 21st April 2021

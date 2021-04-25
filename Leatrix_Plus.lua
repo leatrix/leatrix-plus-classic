@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.103.alpha.5 (25th April 2021)
+-- 	Leatrix Plus 1.13.103.alpha.6 (25th April 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.103.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.13.103.alpha.6"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -765,7 +765,6 @@
 			LeaPlusCB["DressUpNudeBtn"]:ClearAllPoints()
 			LeaPlusCB["DressUpNudeBtn"]:SetPoint("RIGHT", DressUpFrameResetButton, "LEFT", 0, 0)
 			LeaPlusCB["DressUpNudeBtn"]:SetScript("OnClick", function()
-				DressUpFrameResetButton:Click() -- Done first in case any slots refuse to clear
 				DressUpFrame.DressUpModel:Undress()
 			end)
 
@@ -802,10 +801,7 @@
 			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameStrata(BtnStrata);
 			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameLevel(BtnLevel);
 			LeaPlusCB["DressUpSideNudeBtn"]:SetScript("OnClick", function()
-				SideDressUpModelResetButton:Click() -- Done first in case any slots refuse to clear
-				for i = 1, 19 do
-					SideDressUpModel:UndressSlot(i) -- Done this way to prevent issues with Undress
-				end
+				SideDressUpModel:Undress()
 			end)
 
 			-- Only show side dressup buttons if its a player (reset button will show too)
@@ -870,43 +866,25 @@
 			DressUpModelFrame:SetPoint("TOPLEFT", DressUpFrame, 22, -76)
 			DressUpModelFrame:SetPoint("BOTTOMRIGHT", DressUpFrame, -46, 106)
 
-			-- Reset character frame when shown (not used to match retail)
-			--[[ hooksecurefunc(CharacterFrame, "Show", function()
-				CharacterModelFrame.rotation = 0
-				CharacterModelFrame:SetRotation(0)
-				CharacterModelFrame:SetPosition(0, 0, 0)
-				CharacterModelFrame.zoomLevel = 0
-				CharacterModelFrame:SetPortraitZoom(0)
-				CharacterModelFrame:RefreshCamera()
-			end)--]]
-
-			-- Reset side dressup when shown and reset button clicked
-			local function ResetSideLayout()
-				SideDressUpModel.rotation = 0
-				SideDressUpModel:SetRotation(0)
-				SideDressUpModel:SetPosition(0, 0, -0.1)
-				SideDressUpModel.zoomLevel = 0
-				SideDressUpModel:SetPortraitZoom(0)
-				SideDressUpModel:RefreshCamera()
-			end
-
-			SideDressUpModelResetButton:HookScript("OnClick", ResetSideLayout)
-			-- SideDressUpModelResetButton:HookScript("OnShow", ResetSideLayout)
-
-			-- Reset dressup and remove special model animations when shown and reset button clicked
-			local function ResetModelLayout()
+			-- Reset dressup when reset button clicked
+			DressUpFrameResetButton:HookScript("OnClick", function()
 				DressUpModelFrame.rotation = 0
 				DressUpModelFrame:SetRotation(0)
 				DressUpModelFrame:SetPosition(0, 0, 0)
-				DressUpModelFrame:SetPosition(0, 0, 0)
 				DressUpModelFrame.zoomLevel = 0
 				DressUpModelFrame:SetPortraitZoom(0)
-				DressUpModelFrame:SetAnimation(0, 15)
 				DressUpModelFrame:RefreshCamera()
-			end
+			end)
 
-			-- DressUpFrameResetButton:HookScript("OnShow", ResetModelLayout)
-			DressUpFrameResetButton:HookScript("OnClick", ResetModelLayout)
+			-- Reset side dressup when reset button clicked
+			SideDressUpModelResetButton:HookScript("OnClick", function()
+				SideDressUpModel.rotation = 0
+				SideDressUpModel:SetRotation(0)
+				SideDressUpModel:SetPosition(0, 0, 0)
+				SideDressUpModel.zoomLevel = 0
+				SideDressUpModel:SetPortraitZoom(0)
+				SideDressUpModel:RefreshCamera()
+			end)
 
 			----------------------------------------------------------------------
 			-- Inspect system
@@ -933,16 +911,6 @@
 				InspectModelFrame:HookScript("OnMouseUp", function(self, btn)
 					Model_StopPanning(self)
 				end)
-
-				-- Reset layout when inspect frame is shown (not used to match retail)
-				--[[hooksecurefunc(InspectFrame, "Show", function()
-					InspectModelFrame.rotation = 0
-					InspectModelFrame:SetRotation(0)
-					InspectModelFrame:SetPosition(0, 0, 0)
-					InspectModelFrame.zoomLevel = 0
-					InspectModelFrame:SetPortraitZoom(0)
-					InspectModelFrame:RefreshCamera()
-				end)--]]
 
 			end
 
