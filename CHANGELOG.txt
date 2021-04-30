@@ -1,3 +1,6 @@
+1.13.104.alpha.1 - 30th April 2021
+- Fixed a minor issue with 'Show vanity buttons' ('Interface') which caused the helm and cloak checkboxes to appear in all character frame tabs.
+
 1.13.103 - 29th April 2021
 - The 'Enhance dressup' option ('Interface') now adds pan (right-button) and zoom (mousewheel) functionality to the character frame, dressup frame and inspect frame (in addition to adding gear toggle buttons and hiding the model rotation controls).
 

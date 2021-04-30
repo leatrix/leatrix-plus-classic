@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.103 (29th April 2021)
+-- 	Leatrix Plus 1.13.104.alpha.1 (30th April 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.103"
+	LeaPlusLC["AddonVer"] = "1.13.104.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -3601,8 +3601,8 @@
 		if LeaPlusLC["ShowVanityControls"] == "On" then
 
 			-- Create checkboxes
-			LeaPlusLC:MakeCB(CharacterFrame, "ShowHelm", L["Helm"], 2, -192, false, "")
-			LeaPlusLC:MakeCB(CharacterFrame, "ShowCloak", L["Cloak"], 281, -192, false, "")
+			LeaPlusLC:MakeCB(PaperDollFrame, "ShowHelm", L["Helm"], 2, -192, false, "")
+			LeaPlusLC:MakeCB(PaperDollFrame, "ShowCloak", L["Cloak"], 281, -192, false, "")
 			LeaPlusCB["ShowHelm"]:SetFrameStrata("HIGH")
 			LeaPlusCB["ShowCloak"]:SetFrameStrata("HIGH")
 
