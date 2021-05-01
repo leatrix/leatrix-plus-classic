@@ -1,4 +1,5 @@
-1.13.104.alpha.1 - 30th April 2021
+1.13.104.alpha.2 - 1st May 2021
+- If 'Enhance dressup' is enabled, you can now middle-click the character model in the character frame to toggle character attributes and make the model fill the character frame.  The model setting is saved between login sessions.
 - Fixed a minor issue with 'Show vanity buttons' ('Interface') which caused the helm and cloak checkboxes to appear in all character frame tabs.
 
 1.13.103 - 29th April 2021
