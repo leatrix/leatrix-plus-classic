@@ -1,3 +1,7 @@
+1.13.105.alpha.1 - 5th May 2021
+- Fixed a compatibility issue with 'Enhance dressup' ('Interface') and 'CharacterStatsClassic'.  As a result of this fix, middle-clicking the character model will do nothing if 'CharacterStatsClassic' is installed.
+- Fixed a minor cosmetic issue with 'Show vanity buttons' ('Interface') and 'CharacterStatsClassic'.  The default position of the show helm and cloak buttons will now be slightly higher if 'CharacterStatsClassic' is installed.
+
 1.13.104 - 4th May 2021
 - If 'Enhance dressup' is enabled, you can now middle-click the character model in the character frame to toggle character attributes and make the model fill the character frame.  The model setting is saved between login sessions.
 - Fixed a minor issue with 'Show vanity buttons' ('Interface') which caused the helm and cloak checkboxes to appear in all character frame tabs.
