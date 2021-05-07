@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.105.alpha.2 (5th May 2021)
+-- 	Leatrix Plus 1.13.105.alpha.3 (7th May 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.105.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.13.105.alpha.3"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -2681,7 +2681,13 @@
 			local function ToggleStats()
 				if LeaPlusLC["HideDressupStats"] == "On" then
 					CharacterResistanceFrame:Hide()
-					if CSC_HideStatsPanel then RunScript('CSC_HideStatsPanel()') else CharacterAttributesFrame:Hide() end
+					if CSC_HideStatsPanel then
+						-- CharacterStatsClassic is installed
+						RunScript('CSC_HideStatsPanel()')
+					else
+						-- CharacterStatsClassic is not installed
+						CharacterAttributesFrame:Hide()
+					end
 					CharacterModelFrame:ClearAllPoints()
 					CharacterModelFrame:SetPoint("TOPLEFT", PaperDollFrame, 66, -76)
 					CharacterModelFrame:SetPoint("BOTTOMRIGHT", PaperDollFrame, -86, 134)
@@ -2691,7 +2697,13 @@
 					end
 				else
 					CharacterResistanceFrame:Show()
-					if CSC_ShowStatsPanel then RunScript('CSC_ShowStatsPanel()') else CharacterAttributesFrame:Show() end
+					if CSC_ShowStatsPanel then
+						-- CharacterStatsClassic is installed
+						RunScript('CSC_ShowStatsPanel()')
+					else
+						-- CharacterStatsClassic is not installed
+						CharacterAttributesFrame:Show()
+					end
 					CharacterModelFrame:ClearAllPoints()
 					CharacterModelFrame:SetPoint("TOPLEFT", PaperDollFrame, 66, -76)
 					CharacterModelFrame:SetPoint("BOTTOMRIGHT", PaperDollFrame, -86, 220)
@@ -2710,6 +2722,18 @@
 				end
 			end)
 			ToggleStats()
+
+			-- Delay setting stats if CharacterStatsClassic is installed but hasn't loaded yet
+			if not CSC_HideStatsPanel and select(2, GetAddOnInfo("CharacterStatsClassic")) then
+				local waitFrame = CreateFrame("FRAME")
+				waitFrame:RegisterEvent("ADDON_LOADED")
+				waitFrame:SetScript("OnEvent", function(self, event, arg1)
+					if arg1 == "CharacterStatsClassic" then
+						ToggleStats()
+						waitFrame:UnregisterAllEvents()
+					end
+				end)
+			end
 
 			----------------------------------------------------------------------
 			-- Enable zooming and panning
