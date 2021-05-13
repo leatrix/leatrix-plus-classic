@@ -1,4 +1,4 @@
-1.13.105.alpha.3 - 7th May 2021
+1.13.105 - 13th May 2021
 - Fixed a compatibility issue with 'Enhance dressup' ('Interface') and 'CharacterStatsClassic'.
 - Fixed a minor compatibility issue with 'Show vanity buttons' ('Interface') and 'CharacterStatsClassic'.
 
