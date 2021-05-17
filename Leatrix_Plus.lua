@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.105 (13th May 2021)
+-- 	Leatrix Plus 1.13.106.alpha.1 (17th May 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.105"
+	LeaPlusLC["AddonVer"] = "1.13.106.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -2862,7 +2862,7 @@
 		----------------------------------------------------------------------
 
 		if LeaPlusLC["ClassIconPortraits"] == "On" then
-			local UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord = UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord
+			local select, UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord, UnitFramePortrait_Update, x = select, UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord, UnitFramePortrait_Update, "Interface\\TargetingFrame\\UI-Classes-Circles"
 			hooksecurefunc("UnitFramePortrait_Update",function(self)
 				if self.unit == "player" or self.unit == "pet" then
 					return
@@ -2871,7 +2871,7 @@
 					if UnitIsPlayer(self.unit) then
 						local t = CLASS_ICON_TCOORDS[select(2, UnitClass(self.unit))]
 						if t then
-							self.portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
+							self.portrait:SetTexture(x)
 							self.portrait:SetTexCoord(unpack(t))
 						end
 					else
@@ -9442,6 +9442,44 @@
 				LeaPlusLC.NoCampFrame:SetScript("OnEvent", function()
 					local p = StaticPopup_Visible("CAMP")
 					_G[p .. "Button1"]:Click()
+				end)
+				return
+			elseif str == "perf" then
+				-- Average FPS during combat
+				local fTab = {}
+				if not LeaPlusLC.perf then
+					LeaPlusLC.perf = CreateFrame("FRAME")
+				end
+				local fFrm = LeaPlusLC.perf
+				local k, startTime = 0, 0
+				if fFrm:IsEventRegistered("PLAYER_REGEN_DISABLED") then
+					fFrm:UnregisterAllEvents()
+					fFrm:SetScript("OnUpdate", nil)
+					LeaPlusLC:Print("PERF unloaded.")
+				else
+					fFrm:RegisterEvent("PLAYER_REGEN_DISABLED")
+					fFrm:RegisterEvent("PLAYER_REGEN_ENABLED")
+					LeaPlusLC:Print("Waiting for combat to start...")
+				end
+				fFrm:SetScript("OnEvent", function(self, event)
+					if event == "PLAYER_REGEN_DISABLED" then
+						LeaPlusLC:Print("Monitoring FPS during combat...")
+						fFrm:SetScript("OnUpdate", function()
+							k = k + 1
+							fTab[k] = GetFramerate()
+						end)
+						startTime = GetTime()
+					else
+						fFrm:SetScript("OnUpdate", nil)
+						local tSum = 0
+						for i = 1, #fTab do
+							tSum = tSum + fTab[i]
+						end
+						local timeTaken = string.format("%.0f", GetTime() - startTime)
+						if tSum > 0 then
+							LeaPlusLC:Print("Average FPS for " .. timeTaken .. " seconds of combat: " .. string.format("%.0f", tSum / #fTab))
+						end
+					end
 				end)
 				return
 			elseif str == "admin" then
