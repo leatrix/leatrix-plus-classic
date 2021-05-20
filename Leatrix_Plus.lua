@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.106 (20th May 2021)
+-- 	Leatrix Plus 1.13.107.alpha.1 (20th May 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.106"
+	LeaPlusLC["AddonVer"] = "1.13.107.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -5199,9 +5199,7 @@
 							local id = tonumber(string.match(chatMessage, "k:(%d+):%d+:" .. ctype .. ":"))
 							local totalBNFriends = BNGetNumFriends()
 							for friendIndex = 1, totalBNFriends do
-								local accountInfo = C_BattleNet.GetFriendAccountInfo(friendIndex)
-								local bnetAccountID = accountInfo.bnetAccountID
-								local battleTag = accountInfo.battleTag
+								local bnetAccountID, void, battleTag = BNGetFriendInfo(friendIndex)
 								if id == bnetAccountID then
 									battleTag = strsplit("#", battleTag)
 									chatMessage = chatMessage:gsub("(|HBNplayer%S-|k)(%d-)(:%S-" .. ctype .. "%S-|h)%[(%S-)%](|?h?)(:?)", "[" .. battleTag .. "]:")

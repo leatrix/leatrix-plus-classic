@@ -1,5 +1,5 @@
-1.13.106 - 20th May 2021
-- Maintenance update.
+1.13.107.alpha.1 - 20th May 2021
+- Fixed an issue with 'Recent chat window' which caused a Lua error when attempting to show Battle.net messages.
 
 1.13.105 - 13th May 2021
 - Fixed a compatibility issue with 'Enhance dressup' ('Interface') and 'CharacterStatsClassic'.
