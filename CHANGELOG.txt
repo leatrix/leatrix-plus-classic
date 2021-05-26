@@ -1,3 +1,6 @@
+1.13.108.alpha.1 - 26th May 2021
+- The 'Manage widget' configuration panel will now show a warning if Titan Panel is preventing the widget frame position from saving correctly.. 
+
 1.13.107 - 26th May 2021
 - Fixed an issue with 'Recent chat window' which caused a Lua error when attempting to show Battle.net messages.
 

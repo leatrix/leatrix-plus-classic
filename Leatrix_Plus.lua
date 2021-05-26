@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.107 (26th May 2021)
+-- 	Leatrix Plus 1.13.108.alpha.1 (26th May 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.107"
+	LeaPlusLC["AddonVer"] = "1.13.108.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -4476,20 +4476,6 @@
 			-- Create configuration panel
 			local SideFrames = LeaPlusLC:CreatePanel("Manage frames", "SideFrames")
 
-			-- Create Titan Panel screen adjust warning
-			local titanFrame = CreateFrame("FRAME", nil, SideFrames)
-			titanFrame:SetAllPoints()
-			titanFrame:Hide()
-			LeaPlusLC:MakeTx(titanFrame, "Warning", 16, -172)
-			titanFrame.txt = LeaPlusLC:MakeWD(titanFrame, "Titan Panel screen adjust needs to be disabled for frames to be saved correctly.", 16, -192, 500)
-			titanFrame.txt:SetWordWrap(false)
-			titanFrame.txt:SetWidth(520)
-			titanFrame.btn = LeaPlusLC:CreateButton("fixTitanBtn", titanFrame, "Okay, disable screen adjust for me", "TOPLEFT", 16, -212, 0, 25, true, "Click to disable Titan Panel screen adjust.  Your UI will be reloaded.")
-			titanFrame.btn:SetScript("OnClick", function()
-				TitanPanelSetVar("ScreenAdjust", 1)
-				ReloadUI()
-			end)
-
 			-- Variable used to store currently selected frame
 			local currentframe
 
@@ -4728,17 +4714,6 @@
 							LeaPlusDB["Frames"][vf]["Point"], void, LeaPlusDB["Frames"][vf]["Relative"], LeaPlusDB["Frames"][vf]["XOffset"], LeaPlusDB["Frames"][vf]["YOffset"] = _G[vf]:GetPoint()
 						end
 					else
-						-- Show Titan Panel screen adjust warning if Titan Panel is installed with screen adjust enabled
-						if select(2, GetAddOnInfo("TitanClassic")) then
-							if IsAddOnLoaded("TitanClassic") then
-								if TitanPanelSetVar and TitanPanelGetVar then
-									if not TitanPanelGetVar("ScreenAdjust") then
-										titanFrame:Show()
-									end
-								end
-							end
-						end
-
 						-- Show mover frame
 						SideFrames:Show()
 						LeaPlusLC:HideFrames()
@@ -4838,6 +4813,20 @@
 			-- Create configuration panel
 			local WidgetPanel = LeaPlusLC:CreatePanel("Manage widget", "WidgetPanel")
 
+			-- Create Titan Panel screen adjust warning
+			local titanFrame = CreateFrame("FRAME", nil, WidgetPanel)
+			titanFrame:SetAllPoints()
+			titanFrame:Hide()
+			LeaPlusLC:MakeTx(titanFrame, "Warning", 16, -172)
+			titanFrame.txt = LeaPlusLC:MakeWD(titanFrame, "Titan Panel screen adjust needs to be disabled for the frame to be saved correctly.", 16, -192, 500)
+			titanFrame.txt:SetWordWrap(false)
+			titanFrame.txt:SetWidth(520)
+			titanFrame.btn = LeaPlusLC:CreateButton("fixTitanBtn", titanFrame, "Okay, disable screen adjust for me", "TOPLEFT", 16, -212, 0, 25, true, "Click to disable Titan Panel screen adjust.  Your UI will be reloaded.")
+			titanFrame.btn:SetScript("OnClick", function()
+				TitanPanelSetVar("ScreenAdjust", 1)
+				ReloadUI()
+			end)
+
 			LeaPlusLC:MakeTx(WidgetPanel, "Scale", 16, -72)
 			LeaPlusLC:MakeSL(WidgetPanel, "WidgetScale", "Drag to set the widget scale.", 0.5, 2, 0.05, 16, -92, "%.2f")
 
@@ -4891,6 +4880,17 @@
 					topCenterHolder:SetScale(LeaPlusLC["WidgetScale"])
 					UIWidgetTopCenterContainerFrame:SetScale(LeaPlusLC["WidgetScale"])
 				else
+					-- Show Titan Panel screen adjust warning if Titan Panel is installed with screen adjust enabled
+					if select(2, GetAddOnInfo("TitanClassic")) then
+						if IsAddOnLoaded("TitanClassic") then
+							if TitanPanelSetVar and TitanPanelGetVar then
+								if not TitanPanelGetVar("ScreenAdjust") then
+									titanFrame:Show()
+								end
+							end
+						end
+					end
+
 					-- Find out if the UI has a non-standard scale
 					if GetCVar("useuiscale") == "1" then
 						LeaPlusLC["gscale"] = GetCVar("uiscale")
