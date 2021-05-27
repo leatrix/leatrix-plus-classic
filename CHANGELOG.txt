@@ -1,5 +1,6 @@
-1.13.108.alpha.1 - 26th May 2021
+1.13.108.alpha.2 - 27th May 2021
 - The 'Manage widget' configuration panel will now show a warning if Titan Panel is preventing the widget frame position from saving correctly.. 
+- The 'Stand and dismount' option ('System') will now dismount you when you talk to a flight master so that you are already dismounted and ready to go the moment you select a flight destination.
 
 1.13.107 - 26th May 2021
 - Fixed an issue with 'Recent chat window' which caused a Lua error when attempting to show Battle.net messages.

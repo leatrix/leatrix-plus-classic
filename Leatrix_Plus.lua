@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.108.alpha.1 (26th May 2021)
+-- 	Leatrix Plus 1.13.108.alpha.2 (27th May 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.108.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.13.108.alpha.2"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -3779,6 +3779,11 @@
 					end
 				end
 			end)
+
+			-- Dismount when flight point map is opened
+			local taxiFrame = CreateFrame("FRAME")
+			taxiFrame:RegisterEvent("TAXIMAP_OPENED")
+			taxiFrame:SetScript("OnEvent", function() if IsMounted() then Dismount() end end)
 
 		end
 
