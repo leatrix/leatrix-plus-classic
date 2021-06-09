@@ -1,4 +1,4 @@
-1.13.109.alpha.1 - 9th June 2021
+1.13.109 - 9th June 2021
 - Added a note about framerate to the 'Class icon portraits' ('Frames') tooltip.
 
 1.13.108 - 2nd June 2021
