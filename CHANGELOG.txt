@@ -1,3 +1,6 @@
+1.13.109.alpha.1 - 9th June 2021
+- Added a note about framerate to the 'Class icon portraits' ('Frames') tooltip.
+
 1.13.108 - 2nd June 2021
 - The 'Manage widget' configuration panel will now show a warning if Titan Panel is preventing the widget frame position from saving correctly.. 
 - The 'Stand and dismount' option ('System') will now dismount you when you talk to a flight master so that you are already dismounted and ready to go the moment you select a flight destination.
