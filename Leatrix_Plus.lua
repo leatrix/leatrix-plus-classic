@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.109 (9th June 2021)
+-- 	Leatrix Plus 1.13.110.alpha.1 (10th June 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.109"
+	LeaPlusLC["AddonVer"] = "1.13.110.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -434,7 +434,6 @@
 		or	(LeaPlusLC["ManageBuffs"]			~= LeaPlusDB["ManageBuffs"])			-- Manage buffs
 		or	(LeaPlusLC["ManageWidget"]			~= LeaPlusDB["ManageWidget"])			-- Manage widget
 		or	(LeaPlusLC["ClassColFrames"]		~= LeaPlusDB["ClassColFrames"])			-- Class colored frames
-		or	(LeaPlusLC["ClassIconPortraits"]	~= LeaPlusDB["ClassIconPortraits"])		-- Class icon portraits
 		or	(LeaPlusLC["NoGryphons"]			~= LeaPlusDB["NoGryphons"])				-- Hide gryphons
 		or	(LeaPlusLC["NoClassBar"]			~= LeaPlusDB["NoClassBar"])				-- Hide stance bar
 
@@ -2855,30 +2854,6 @@
 				end
 			end)
 
-		end
-
-		----------------------------------------------------------------------
-		--	Class icon portraits
-		----------------------------------------------------------------------
-
-		if LeaPlusLC["ClassIconPortraits"] == "On" then
-			local select, UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord, UnitFramePortrait_Update, x = select, UnitIsPlayer, UnitClass, CLASS_ICON_TCOORDS, SetTexture, SetTexCoord, UnitFramePortrait_Update, "Interface\\TargetingFrame\\UI-Classes-Circles"
-			hooksecurefunc("UnitFramePortrait_Update",function(self)
-				if self.unit == "player" or self.unit == "pet" then
-					return
-				end
-				if self.portrait then
-					if UnitIsPlayer(self.unit) then
-						local t = CLASS_ICON_TCOORDS[select(2, UnitClass(self.unit))]
-						if t then
-							self.portrait:SetTexture(x)
-							self.portrait:SetTexCoord(unpack(t))
-						end
-					else
-						self.portrait:SetTexCoord(0, 1, 0, 1)
-					end
-				end
-			end)
 		end
 
 		----------------------------------------------------------------------
@@ -7879,7 +7854,6 @@
 				LeaPlusLC:LoadVarChk("ClassColFrames", "Off")				-- Class colored frames
 				LeaPlusLC:LoadVarChk("ClassColPlayer", "On")				-- Class colored player frame
 				LeaPlusLC:LoadVarChk("ClassColTarget", "On")				-- Class colored target frame
-				LeaPlusLC:LoadVarChk("ClassIconPortraits", "Off")			-- Class icon portraits
 
 				LeaPlusLC:LoadVarChk("NoGryphons", "Off")					-- Hide gryphons
 				LeaPlusLC:LoadVarChk("NoClassBar", "Off")					-- Hide stance bar
@@ -8071,7 +8045,6 @@
 			LeaPlusDB["ClassColFrames"]			= LeaPlusLC["ClassColFrames"]
 			LeaPlusDB["ClassColPlayer"]			= LeaPlusLC["ClassColPlayer"]
 			LeaPlusDB["ClassColTarget"]			= LeaPlusLC["ClassColTarget"]
-			LeaPlusDB["ClassIconPortraits"]		= LeaPlusLC["ClassIconPortraits"]
 
 			LeaPlusDB["NoGryphons"]				= LeaPlusLC["NoGryphons"]
 			LeaPlusDB["NoClassBar"]				= LeaPlusLC["NoClassBar"]
@@ -9601,7 +9574,6 @@
 				LeaPlusDB["WidgetScale"] = 1.25					-- Manage widget scale
 
 				LeaPlusDB["ClassColFrames"] = "On"				-- Class colored frames
-				LeaPlusDB["ClassIconPortraits"] = "On"			-- Class icon portraits
 
 				LeaPlusDB["NoGryphons"] = "On"					-- Hide gryphons
 				LeaPlusDB["NoClassBar"] = "On"					-- Hide stance bar
@@ -9929,7 +9901,6 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageBuffs"				,	"Manage buffs"					, 	146, -112, 	true,	"If checked, you will be able to change the position and scale of the buffs frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageWidget"				,	"Manage widget"					, 	146, -132, 	true,	"If checked, you will be able to change the position and scale of the widget frame.|n|nThe widget frame is commonly used for showing PvP scores and tracking objectives.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColFrames"			, 	"Class colored frames"			,	146, -152, 	true,	"If checked, class coloring will be used in the player frame and target frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassIconPortraits"		, 	"Class icon portraits"			,	146, -172, 	true,	"If checked, class icons will be shown in the portrait frames.|n|nNote that this option may reduce framerate while the target of target window is showing.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Visibility"				, 	340, -72);
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoGryphons"				,	"Hide gryphons"					, 	340, -92, 	true,	"If checked, the main bar gryphons will not be shown.")
