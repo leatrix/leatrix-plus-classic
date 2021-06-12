@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.110.alpha.2 (11th June 2021)
+-- 	Leatrix Plus 1.13.110.alpha.3 (12th June 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.110.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.13.110.alpha.3"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -3265,6 +3265,16 @@
 					end)
 				end
 
+				-- Classic Profession Filter addon fixes
+				if IsAddOnLoaded("ClassicProfessionFilter") and TradeSkillFrame.SearchBox and TradeSkillFrame.HaveMats and TradeSkillFrame.HaveMats.text then
+					TradeSkillFrame.SearchBox:ClearAllPoints()
+					TradeSkillFrame.SearchBox:SetPoint("LEFT", TradeSkillRankFrame, "RIGHT", 20, -12)
+					TradeSkillFrame.HaveMats:ClearAllPoints()
+					TradeSkillFrame.HaveMats:SetPoint("LEFT", TradeSkillFrame.SearchBox, "RIGHT", 10, 0)
+					TradeSkillFrame.HaveMats.text:SetText("Have Mats?")
+					TradeSkillFrame.HaveMats:SetHitRectInsets(0, -TradeSkillFrame.HaveMats.text:GetStringWidth() + 4, 0, 0)
+				end
+
 			end
 
 			-- Run function when TradeSkill UI has loaded
@@ -3434,6 +3444,16 @@
 					CraftCreateButton:ClearAllPoints()
 					CraftCreateButton:SetPoint("RIGHT", CraftCancelButton, "LEFT", -1, 0)
 				end)
+
+				-- Classic Profession Filter addon fixes
+				if IsAddOnLoaded("ClassicProfessionFilter") and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text then
+					CraftFrame.SearchBox:ClearAllPoints()
+					CraftFrame.SearchBox:SetPoint("LEFT", CraftRankFrame, "RIGHT", 20, -12)
+					CraftFrame.HaveMats:ClearAllPoints()
+					CraftFrame.HaveMats:SetPoint("LEFT", CraftFrame.SearchBox, "RIGHT", 10, 0)
+					CraftFrame.HaveMats.text:SetText("Have Mats?")
+					CraftFrame.HaveMats:SetHitRectInsets(0, -CraftFrame.HaveMats.text:GetStringWidth() + 4, 0, 0)
+				end
 
 			end
 
