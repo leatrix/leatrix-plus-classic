@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.112.alpha.2 (26th June 2021)
+-- 	Leatrix Plus 1.13.112.alpha.3 (26th June 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.112.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.13.112.alpha.3"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -3464,13 +3464,31 @@
 				end)
 
 				-- Classic Profession Filter addon fixes
-				if IsAddOnLoaded("ClassicProfessionFilter") and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text then
+				if IsAddOnLoaded("ClassicProfessionFilter") and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text and CraftFrame.SearchMats and CraftFrame.SearchMats.text then
 					CraftFrame.SearchBox:ClearAllPoints()
-					CraftFrame.SearchBox:SetPoint("LEFT", CraftRankFrame, "RIGHT", 20, -12)
+					CraftFrame.SearchBox:SetPoint("LEFT", CraftRankFrame, "RIGHT", 20, -10)
+
 					CraftFrame.HaveMats:ClearAllPoints()
-					CraftFrame.HaveMats:SetPoint("LEFT", CraftFrame.SearchBox, "RIGHT", 10, 0)
-					CraftFrame.HaveMats.text:SetText("Have Mats?")
+					CraftFrame.HaveMats:SetPoint("LEFT", CraftFrame.SearchBox, "RIGHT", 10, 8)
+					CraftFrame.HaveMats.text:SetText(L["Have mats?"])
 					CraftFrame.HaveMats:SetHitRectInsets(0, -CraftFrame.HaveMats.text:GetStringWidth() + 4, 0, 0)
+					CraftFrame.HaveMats.text:SetJustifyH("LEFT")
+					CraftFrame.HaveMats.text:SetWordWrap(false)
+					if CraftFrame.HaveMats.text:GetWidth() > 80 then
+						CraftFrame.HaveMats.text:SetWidth(80)
+						CraftFrame.HaveMats:SetHitRectInsets(0, -80 + 4, 0, 0)
+					end
+
+					CraftFrame.SearchMats:ClearAllPoints()
+					CraftFrame.SearchMats:SetPoint("BOTTOMLEFT", CraftFrame.HaveMats, "BOTTOMLEFT", 0, -16)
+					CraftFrame.SearchMats.text:SetText(L["Search mats?"])
+					CraftFrame.SearchMats:SetHitRectInsets(0, -CraftFrame.SearchMats.text:GetStringWidth() + 2, 0, 0)
+					CraftFrame.SearchMats.text:SetJustifyH("LEFT")
+					CraftFrame.SearchMats.text:SetWordWrap(false)
+					if CraftFrame.SearchMats.text:GetWidth() > 80 then
+						CraftFrame.SearchMats.text:SetWidth(80)
+						CraftFrame.SearchMats:SetHitRectInsets(0, -80 + 4, 0, 0)
+					end
 				end
 
 			end
