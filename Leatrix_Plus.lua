@@ -3272,7 +3272,7 @@
 
 					TradeSkillFrame.HaveMats:ClearAllPoints()
 					TradeSkillFrame.HaveMats:SetPoint("LEFT", TradeSkillFrame.SearchBox, "RIGHT", 10, 8)
-					TradeSkillFrame.HaveMats.text:SetText("Have Mats?")
+					TradeSkillFrame.HaveMats.text:SetText(L["Have Mats?"])
 					TradeSkillFrame.HaveMats:SetHitRectInsets(0, -TradeSkillFrame.HaveMats.text:GetStringWidth() + 4, 0, 0)
 					TradeSkillFrame.HaveMats.text:SetJustifyH("LEFT")
 					TradeSkillFrame.HaveMats.text:SetWordWrap(false)
