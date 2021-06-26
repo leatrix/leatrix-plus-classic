@@ -1,3 +1,6 @@
+1.13.112.alpha.1 - 26th June 2021
+- Updated Classic Profession Filter addon compatibility fixes for 'Enhance professions' ('Interface') to support the latest version.  If you use Classic Profession Filter addon, you need to update it.
+
 1.13.111 - 24th June 2021
 - Updated the tooltip for 'Invite from whispers' ('Social') to highlight that an invite will not sent in response to Battle.net messages if the invite recipient is showing offline.
 
