@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.112.alpha.1 (26th June 2021)
+-- 	Leatrix Plus 1.13.112.alpha.2 (26th June 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.112.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.13.112.alpha.2"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -3272,7 +3272,7 @@
 
 					TradeSkillFrame.HaveMats:ClearAllPoints()
 					TradeSkillFrame.HaveMats:SetPoint("LEFT", TradeSkillFrame.SearchBox, "RIGHT", 10, 8)
-					TradeSkillFrame.HaveMats.text:SetText(L["Have Mats?"])
+					TradeSkillFrame.HaveMats.text:SetText(L["Have mats?"])
 					TradeSkillFrame.HaveMats:SetHitRectInsets(0, -TradeSkillFrame.HaveMats.text:GetStringWidth() + 4, 0, 0)
 					TradeSkillFrame.HaveMats.text:SetJustifyH("LEFT")
 					TradeSkillFrame.HaveMats.text:SetWordWrap(false)
@@ -3283,7 +3283,7 @@
 
 					TradeSkillFrame.SearchMats:ClearAllPoints()
 					TradeSkillFrame.SearchMats:SetPoint("BOTTOMLEFT", TradeSkillFrame.HaveMats, "BOTTOMLEFT", 0, -16)
-					TradeSkillFrame.SearchMats.text:SetText(L["Search Mats?"])
+					TradeSkillFrame.SearchMats.text:SetText(L["Search mats?"])
 					TradeSkillFrame.SearchMats:SetHitRectInsets(0, -TradeSkillFrame.SearchMats.text:GetStringWidth() + 2, 0, 0)
 					TradeSkillFrame.SearchMats.text:SetJustifyH("LEFT")
 					TradeSkillFrame.SearchMats.text:SetWordWrap(false)
