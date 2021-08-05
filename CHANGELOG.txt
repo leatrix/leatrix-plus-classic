@@ -1,5 +1,5 @@
-1.13.115 - 22nd July 2021
-Maintenance update.
+1.13.116 - 5th August 2021
+- Maintenance update.
 
 1.13.112 - 30th June 2021
 - Updated Classic Profession Filter addon compatibility fixes for 'Enhance professions' ('Interface') to support the latest version.  If you use Classic Profession Filter addon, you need to update it.
