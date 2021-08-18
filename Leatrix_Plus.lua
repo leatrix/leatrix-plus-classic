@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.116 (5th August 2021)
+-- 	Leatrix Plus 1.13.117 (18th August 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.116"
+	LeaPlusLC["AddonVer"] = "1.13.117"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
