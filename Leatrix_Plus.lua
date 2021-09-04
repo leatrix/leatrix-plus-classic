@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.117 (18th August 2021)
+-- 	Leatrix Plus 1.13.118.alpha.1 (4th September 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.117"
+	LeaPlusLC["AddonVer"] = "1.13.118.alpha.1"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -36,6 +36,9 @@
 				print(L["LEATRIX PLUS: WRONG VERSION INSTALLED!"])
 			end)
 			return
+		end
+		if gametocversion and gametocversion >= 11400 then
+			LeaPlusLC.BackdropTemplate = "BackdropTemplate"
 		end
 	end
 
@@ -1666,10 +1669,14 @@
 			if CompactRaidFrameManagerDisplayFrameHiddenModeToggle then
 
 				-- Create a border for the button
-				CompactRaidFrameManagerDisplayFrameHiddenModeToggle:SetBackdrop({ 
-					edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-					tile = false, tileSize = 0, edgeSize = 16,
-					insets = { left = 0, right = 0, top = 0, bottom = 0 }})
+				if LeaPlusLC.BackdropTemplate then
+					local cBackdrop = CreateFrame("Frame", nil, CompactRaidFrameManagerDisplayFrameHiddenModeToggle, "BackdropTemplate")
+					cBackdrop:SetAllPoints()
+					cBackdrop.backdropInfo = {edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = {left = 0, right = 0, top = 0, bottom = 0}}
+					cBackdrop:ApplyBackdrop()
+				else
+					CompactRaidFrameManagerDisplayFrameHiddenModeToggle:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = {left = 0, right = 0, top = 0, bottom = 0}})
+				end
 
 				-- Move the button (function runs after PLAYER_ENTERING_WORLD and PARTY_LEADER_CHANGED)
 				hooksecurefunc("CompactRaidFrameManager_UpdateOptionsFlowContainer", function()
@@ -4338,7 +4345,7 @@
 			end)
 
 			-- Create drag frame
-			local dragframe = CreateFrame("FRAME")
+			local dragframe = CreateFrame("FRAME", nil, nil, LeaPlusLC.BackdropTemplate)
 			dragframe:SetPoint("TOPRIGHT", BuffFrame, "TOPRIGHT", 0, 2.5)
 			dragframe:SetBackdropColor(0.0, 0.5, 1.0)
 			dragframe:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = { left = 0, right = 0, top = 0, bottom = 0 }})
@@ -4636,7 +4643,7 @@
 			-- Create drag frames
 			local function LeaPlusMakeDrag(dragframe,realframe)
 
-				local dragframe = CreateFrame("Frame", nil)
+				local dragframe = CreateFrame("Frame", nil, nil, LeaPlusLC.BackdropTemplate)
 				LeaPlusLC[dragframe] = dragframe
 				dragframe:SetSize(realframe:GetSize())
 				dragframe:SetPoint("TOP", realframe, "TOP", 0, 2.5)
@@ -4812,7 +4819,7 @@
 			UIWidgetTopCenterContainerFrame:SetScale(LeaPlusLC["WidgetScale"])
 
 			-- Create drag frame
-			local dragframe = CreateFrame("FRAME")
+			local dragframe = CreateFrame("FRAME", nil, nil, LeaPlusLC.BackdropTemplate)
 			dragframe:SetPoint("CENTER", topCenterHolder, "CENTER", 0, 1)
 			dragframe:SetBackdropColor(0.0, 0.5, 1.0)
 			dragframe:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = { left = 0, right = 0, top = 0, bottom = 0}})
@@ -5698,7 +5705,7 @@
 			LT["ColorBlind"] = GetCVar("colorblindMode")
 
 			-- 	Create drag frame
-			local TipDrag = CreateFrame("Frame", nil, UIParent)
+			local TipDrag = CreateFrame("Frame", nil, UIParent, LeaPlusLC.BackdropTemplate)
 			TipDrag:SetToplevel(true);
 			TipDrag:SetClampedToScreen(false);
 			TipDrag:SetSize(130, 64);
@@ -8533,7 +8540,7 @@
 		eb:SetScript("OnEnterPressed", eb.ClearFocus)
 
 		-- Add editbox border and backdrop
-		eb.f = CreateFrame("FRAME", nil, eb)
+		eb.f = CreateFrame("FRAME", nil, eb, LeaPlusLC.BackdropTemplate)
 		eb.f:SetBackdrop({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = false, tileSize = 16, edgeSize = 16, insets = { left = 5, right = 5, top = 5, bottom = 5 }})
 		eb.f:SetPoint("LEFT", -6, 0)
 		eb.f:SetWidth(eb:GetWidth()+6)
@@ -8636,7 +8643,7 @@
 		dbtn:SetScript("OnLeave", GameTooltip_Hide)
 
 		-- Create dropdown list
-		local ddlist =  CreateFrame("Frame",nil,frame)
+		local ddlist = CreateFrame("Frame", nil, frame, LeaPlusLC.BackdropTemplate)
 		LeaPlusCB["ListFrame"..ddname] = ddlist
 		ddlist:SetPoint("TOP",0,-42)
 		ddlist:SetWidth(frame:GetWidth())
@@ -8873,7 +8880,12 @@
 				-- Show quest completed status
 				if arg1 and arg1 ~= "" then
 					if tonumber(arg1) and tonumber(arg1) < 999999999 then
-						local questCompleted = IsQuestFlaggedCompleted(arg1)
+						local questCompleted
+						if LeaPlusLC.BackdropTemplate then
+							questCompleted = C_QuestLog.IsQuestFlaggedCompleted(arg1)
+						else
+							questCompleted = IsQuestFlaggedCompleted(arg1)
+						end
 						local questTitle = C_QuestLog.GetQuestInfo(arg1) or L["Unknown"]
 						C_Timer.After(0.5, function()
 							local questTitle = C_QuestLog.GetQuestInfo(arg1) or L["Unknown"]
