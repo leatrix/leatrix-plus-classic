@@ -1,5 +1,6 @@
-1.13.118.alpha.1 - 4th September 2021
+1.13.118.alpha.2 - 5th September 2021
 - Updated for patch 1.14.0 (currently on PTR).
+- Added 'Mute game sounds' ('System').
 
 1.13.112 - 30th June 2021
 - Updated Classic Profession Filter addon compatibility fixes for 'Enhance professions' ('Interface') to support the latest version.  If you use Classic Profession Filter addon, you need to update it.

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.13.118.alpha.1 (4th September 2021)
+-- 	Leatrix Plus 1.13.118.alpha.2 (5th September 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.13.118.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.13.118.alpha.2"
 	LeaPlusLC["RestartReq"] = nil
 
 	-- Get locale table
@@ -384,6 +384,7 @@
 		LeaPlusLC:LockOption("ClassColFrames", "ClassColFramesBtn", true)			-- Class colored frames
 		LeaPlusLC:LockOption("SetWeatherDensity", "SetWeatherDensityBtn", false)	-- Set weather density
 		LeaPlusLC:LockOption("ViewPortEnable", "ModViewportBtn", true)				-- Enable viewport
+		LeaPlusLC:LockOption("MuteGameSounds", "MuteGameSoundsBtn", false)			-- Mute game sounds
 	end
 
 ----------------------------------------------------------------------
@@ -587,6 +588,139 @@
 					StaticPopup1Button1:Enable()
 					local link = select(3, GetCursorInfo())
 					StaticPopup1Text:SetText(gsub(StaticPopup1Text:GetText(), gsub(TypeDeleteLine, "@", ""), "") .. "|n|n" .. link)
+				end
+			end)
+
+		end
+
+		----------------------------------------------------------------------
+		-- Mute game sounds (no reload required) (MuteGameSounds)
+		----------------------------------------------------------------------
+
+		do
+
+			-- Create soundtable
+			local muteTable = {
+
+				["MuteFizzle"] = {			"sound/spells/fizzle/fizzlefirea.ogg#569773", "sound/spells/fizzle/FizzleFrostA.ogg#569775", "sound/spells/fizzle/FizzleHolyA.ogg#569772", "sound/spells/fizzle/FizzleNatureA.ogg#569774", "sound/spells/fizzle/FizzleShadowA.ogg#569776",},
+				["MuteInterface"] = {		"sound/interface/iUiInterfaceButtonA.ogg#567481", "sound/interface/uChatScrollButton.ogg#567407", "sound/interface/uEscapeScreenClose.ogg#567464", "sound/interface/uEscapeScreenOpen.ogg#567490",},
+
+				-- Trains
+				["MuteTrains"] = {
+
+					--[[Dwarf]]		"sound#539802", "sound#539881", 
+					--[[Gnome]]		"sound#540271", "sound#540275", 
+					--[[Human]]		"sound#540535", "sound#540734", 
+					--[[Night Elf]]	"sound#540870", "sound#540947", 
+					--[[Orc]]		"sound#541157", "sound#541239", 
+					--[[Tauren]]	"sound#542818", "sound#542896", 
+					--[[Troll]] 	"sound#543085", "sound#543093", 
+					--[[Undead]]	"sound#542526", "sound#542600", 
+
+				},
+
+				-- Ready check
+				["MuteReady"] = {
+					"sound/interface/levelup2.ogg#567478",
+					"sound/interface/readycheck.ogg#567409",
+				},
+
+			}
+
+			-- Give table file level scope (its used during logout and for wipe and admin commands)
+			LeaPlusLC["muteTable"] = muteTable
+
+			-- Load saved settings or set default values
+			for k, v in pairs(muteTable) do
+				if LeaPlusDB[k] and type(LeaPlusDB[k]) == "string" and LeaPlusDB[k] == "On" or LeaPlusDB[k] == "Off" then
+					LeaPlusLC[k] = LeaPlusDB[k]
+				else
+					LeaPlusLC[k] = "Off"
+					LeaPlusDB[k] = "Off"
+				end
+			end
+
+			-- Create configuration panel
+			local SoundPanel = LeaPlusLC:CreatePanel("Mute game sounds", "SoundPanel")
+
+			-- Add checkboxes
+			LeaPlusLC:MakeTx(SoundPanel, "General", 16, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteFizzle", "Fizzle", 16, -92, false, "If checked, the spell fizzle sounds will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteInterface", "Interface", 16, -112, false, "If checked, the interface button sound, the chat frame tab click sound and the game menu toggle sound will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteTrains", "Trains", 16, -132, false, "If checked, train sounds will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -152, false, "If checked, the ready check sound will be muted.")
+
+			-- Set click width for sounds checkboxes
+			for k, v in pairs(muteTable) do
+				LeaPlusCB[k].f:SetWidth(80)
+				if LeaPlusCB[k].f:GetStringWidth() > 80 then
+					LeaPlusCB[k]:SetHitRectInsets(0, -70, 0, 0)
+				else
+					LeaPlusCB[k]:SetHitRectInsets(0, -LeaPlusCB[k].f:GetStringWidth() + 4, 0, 0)
+				end
+			end
+
+			-- Function to mute and unmute sounds
+			local function SetupMute()
+				for k, v in pairs(muteTable) do
+					if LeaPlusLC["MuteGameSounds"] == "On" and LeaPlusLC[k] == "On" then
+						for i, e in pairs(v) do
+							local file, soundID = e:match("([^,]+)%#([^,]+)")
+							MuteSoundFile(soundID)
+						end
+					else
+						for i, e in pairs(v) do
+							local file, soundID = e:match("([^,]+)%#([^,]+)")
+							UnmuteSoundFile(soundID)
+						end
+					end
+				end
+			end
+
+			-- Setup mute on startup if option is enabled
+			if LeaPlusLC["MuteGameSounds"] == "On" then SetupMute() end
+
+			-- Setup mute when options are clicked
+			for k, v in pairs(muteTable) do
+				LeaPlusCB[k]:HookScript("OnClick", SetupMute)
+			end
+			LeaPlusCB["MuteGameSounds"]:HookScript("OnClick", SetupMute)
+
+			-- Help button hidden
+			SoundPanel.h:Hide()
+
+			-- Back button handler
+			SoundPanel.b:SetScript("OnClick", function() 
+				SoundPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page7"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			SoundPanel.r:SetScript("OnClick", function()
+
+				-- Reset checkboxes
+				for k, v in pairs(muteTable) do
+					LeaPlusLC[k] = "Off"
+				end
+				SetupMute()
+
+				-- Refresh panel
+				SoundPanel:Hide(); SoundPanel:Show()
+
+			end)
+
+			-- Show panal when options panel button is clicked
+			LeaPlusCB["MuteGameSoundsBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					for k, v in pairs(muteTable) do
+						LeaPlusLC[k] = "On"
+					end
+					LeaPlusLC["MuteReady"] = "Off"
+					SetupMute()
+				else
+					SoundPanel:Show()
+					LeaPlusLC:HideFrames()
 				end
 			end)
 
@@ -7949,6 +8083,7 @@
 				LeaPlusLC:LoadVarNum("ViewPortAlpha", 0, 0, 0.9)			-- Border alpha
 
 				LeaPlusLC:LoadVarChk("NoRestedEmotes", "Off")				-- Silence rested emotes
+				LeaPlusLC:LoadVarChk("MuteGameSounds", "Off")				-- Mute game sounds
 
 				LeaPlusLC:LoadVarChk("NoBagAutomation", "Off")				-- Disable bag automation
 				LeaPlusLC:LoadVarChk("CharAddonList", "Off")				-- Show character addons
@@ -8141,6 +8276,7 @@
 			LeaPlusDB["ViewPortAlpha"]			= LeaPlusLC["ViewPortAlpha"]
 
 			LeaPlusDB["NoRestedEmotes"]			= LeaPlusLC["NoRestedEmotes"]
+			LeaPlusDB["MuteGameSounds"]			= LeaPlusLC["MuteGameSounds"]
 
 			LeaPlusDB["NoBagAutomation"]		= LeaPlusLC["NoBagAutomation"]
 			LeaPlusDB["CharAddonList"]			= LeaPlusLC["CharAddonList"]
@@ -8167,6 +8303,11 @@
 
 			-- Start page
 			LeaPlusDB["LeaStartPage"]			= LeaPlusLC["LeaStartPage"]
+
+			-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
+			for k, v in pairs(LeaPlusLC["muteTable"]) do
+				LeaPlusDB[k] = LeaPlusLC[k]
+			end
 
 		end
 
@@ -8211,6 +8352,14 @@
 
 			-- Use class colors in chat (LeaPlusLC["ClassColorsInChat"])
 			SetCVar("chatClassColorOverride", "1")
+
+			-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
+			for k, v in pairs(LeaPlusLC["muteTable"]) do
+				for i, e in pairs(v) do
+					local file, soundID = e:match("([^,]+)%#([^,]+)")
+					UnmuteSoundFile(soundID)
+				end
+			end
 
 		end
 
@@ -9667,6 +9816,7 @@
 				LeaPlusDB["MaxCameraZoom"] = "On"				-- Max camera zoom
 				LeaPlusDB["ViewPortEnable"] = "On"				-- Enable viewport
 				LeaPlusDB["NoRestedEmotes"] = "On"				-- Silence rested emotes
+				LeaPlusDB["MuteGameSounds"] = "On"				-- Mute game sounds
 
 				LeaPlusDB["NoBagAutomation"] = "On"				-- Disable bag automation
 				LeaPlusDB["CharAddonList"] = "On"				-- Show character addons
@@ -9718,6 +9868,12 @@
 				setIcon("MAGE", 		1, --[[1]] 235450, 0, 	--[[2]] 0, 0, 		--[[3]] 0, 0, 		--[[4]] 0, 0, 		--[[5]] 0, 0) -- Prismatic Barrier
 				setIcon("WARLOCK", 		1, --[[1]] 0, 0, 		--[[2]] 0, 0, 		--[[3]] 0, 0, 		--[[4]] 0, 0, 		--[[5]] 0, 0)
 				setIcon("PRIEST", 		1, --[[1]] 17, 0, 		--[[2]] 0, 0, 		--[[3]] 0, 0, 		--[[4]] 0, 0, 		--[[5]] 0, 0) -- Power Word: Shield
+
+				-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
+				for k, v in pairs(LeaPlusLC["muteTable"]) do
+					LeaPlusDB[k] = "On"
+				end
+				LeaPlusDB["MuteReady"] = "Off"	-- Mute ready check
 
 				-- Reload
 				ReloadUI()
@@ -10005,6 +10161,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MaxCameraZoom"				, 	"Max camera zoom"				, 	146, -152, 	false,	"If checked, you will be able to zoom out to a greater distance.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ViewPortEnable"			,	"Enable viewport"				,	146, -172, 	true,	"If checked, you will be able to create a viewport.  A viewport adds adjustable black borders around the game world.|n|nThe borders are placed on top of the game world but under the UI so you can place UI elements over them.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoRestedEmotes"			, 	"Silence rested emotes"			,	146, -192, 	true,	"If checked, emote sounds will be silenced while your character is resting or at the Grim Guzzler.|n|nEmote sounds will be enabled at all other times.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteGameSounds"			, 	"Mute game sounds"				,	146, -212, 	false,	"If checked, you will be able to mute a selection of game sounds.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Game Options"				, 	340, -72);
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoBagAutomation"			, 	"Disable bag automation"		, 	340, -92, 	true,	"If checked, your bags will not be opened or closed automatically when you interact with a merchant, bank or mailbox.")
@@ -10019,6 +10176,7 @@
 
 	LeaPlusLC:CfgBtn("SetWeatherDensityBtn", LeaPlusCB["SetWeatherDensity"])
 	LeaPlusLC:CfgBtn("ModViewportBtn", LeaPlusCB["ViewPortEnable"])
+	LeaPlusLC:CfgBtn("MuteGameSoundsBtn", LeaPlusCB["MuteGameSounds"])
 
 ----------------------------------------------------------------------
 -- 	LC8: Settings
