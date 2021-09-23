@@ -1,3 +1,6 @@
+1.13.119 - 23rd September 2021
+- Maintenance update.
+
 1.13.118 - 16th September 2021
 - Updated for patch 1.14.0 (currently on PTR).
 - Added 'Mute game sounds' ('System').
