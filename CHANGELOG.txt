@@ -1,5 +1,5 @@
-1.13.119 - 23rd September 2021
-- Maintenance update.
+1.13.120 - 23rd September 2021
+- The 'Mute game sounds' option was added for the PTR only (game version 1.14.0) so it has been removed for the time being to avoid confusion.  It will be added again when game version 1.14.0 is live.
 
 1.13.118 - 16th September 2021
 - Updated for patch 1.14.0 (currently on PTR).
