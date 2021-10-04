@@ -1,5 +1,5 @@
-1.14.01.alpha.1 - 4th October 2021
-- The 'Stand and dismount' option ('System') is now 'Dismount me' (same as BCC).
+1.14.01.alpha.2 - 4th October 2021
+- The 'Stand and dismount' option ('System') is now 'Dismount me' (same as BCC).  Dismount automatically is now built into the game so the 'Dismount me' option now simply adds some additional configuration settings.  The dismount settings now apply to Shaman Ghost Wolf in addition to mounts.  The setting to dismount when selecting a flight point has been removed as it's now built into the game.
 
 1.14.00 - 29th September 2021
 - Updated for patch 1.14.0.

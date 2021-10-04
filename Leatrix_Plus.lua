@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.01.alpha.1 (4th October 2021)
+-- 	Leatrix Plus 1.14.01.alpha.2 (4th October 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.01.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.01.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
