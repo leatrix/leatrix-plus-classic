@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.01.alpha.5 (9th October 2021)
+-- 	Leatrix Plus 1.14.01.alpha.6 (10th October 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.01.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.14.01.alpha.6"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -4084,11 +4084,11 @@
 				cancelFormBtn:SetScript("OnEvent", function()
 					local form = GetShapeshiftForm() or 0
 					if form ~= 0 then
-						if not cancelFormBtn:IsShown() then
-							cancelFormBtn:Show()
+						if cancelFormBtn:GetAlpha() ~= 1 then
+							cancelFormBtn:SetAlpha(1)
 						end
 					else
-						cancelFormBtn:Hide()
+						cancelFormBtn:SetAlpha(0)
 					end
 				end)
 
@@ -4097,10 +4097,10 @@
 					if LeaPlusLC["DismountShowFormBtn"] == "On" then
 						cancelFormBtn:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
 						local form = GetShapeshiftForm() or 0
-						if form ~= 0 then cancelFormBtn:Show() else cancelFormBtn:Hide() end
+						if form ~= 0 then cancelFormBtn:SetAlpha(1) else cancelFormBtn:SetAlpha(0) end
 					else
 						cancelFormBtn:UnregisterEvent("UPDATE_SHAPESHIFT_FORM")
-						cancelFormBtn:Hide()
+						cancelFormBtn:SetAlpha(0)
 					end
 				end
 
