@@ -1,5 +1,5 @@
-1.14.01.alpha.6 - 10th October 2021
-- The 'Stand and dismount' option ('System') is now 'Dismount me' (same as BCC).  Dismount automatically is now built into the game so the 'Dismount me' option now simply adds some additional configuration settings.  The dismount settings now apply to Shaman Ghost Wolf in addition to mounts.  Added a new setting to show a cancel form button on the flight map while you are playing as a shapeshifted druid or shaman.  The setting to dismount when selecting a flight point has been removed as it's now built into the game.
+1.14.01.alpha.7 - 11th October 2021
+- The 'Stand and dismount' option ('System') is now 'Dismount me' (same as BCC).  Dismount automatically is now built into the game so the 'Dismount me' option now simply adds some additional configuration settings.  The setting to dismount when selecting a flight point has been removed as it's now built into the game.
 - The 'Release in PvP' option ('Automation') now has a configuration panel that lets you exclude Alterac Valley.  You can also set a delay timer before you are automatically released.  You can hold shift as the timer is ending to cancel automatic release.
 
 1.14.00 - 29th September 2021
