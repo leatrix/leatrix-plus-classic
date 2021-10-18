@@ -1,4 +1,4 @@
-1.14.02.alpha.2 - 18th October 2021
+1.14.02.alpha.3 - 18th October 2021
 - Added 'Chimes' to 'Mute game sounds' ('System').  If enabled, clock hourly chimes will be muted.
 - The 'Enhance tooltip' option ('Interface') now scales Total RP 3 tooltips.
 
