@@ -1,4 +1,4 @@
-1.14.04.alpha.3 - 24th October 2021
+1.14.04.alpha.4 - 24th October 2021
 - The 'Enhance quest log' option now has a setting to toggle showing quest levels.
 - The 'Sell junk automatically' option now has a setting to toggle the vendor summary in chat.
 - The 'Repair automatically' option now has a setting to toggle the repair summary in chat.
