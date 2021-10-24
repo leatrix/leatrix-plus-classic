@@ -1,3 +1,7 @@
+1.14.04.alpha.1 - 24th October 2021
+- Fixed a minor issue with 'Recent chat window' ('Chat') which caused the title bar text to overlap the message count for some locales.
+- Fixed a few locale issues with invalid translations.
+
 1.14.03 - 21st October 2021
 - Added 'Chimes' to 'Mute game sounds' ('System').  If enabled, clock hourly chimes will be muted.
 - The 'Enhance tooltip' option ('Interface') now scales Total RP 3 tooltips.

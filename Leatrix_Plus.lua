@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.03 (21st October 2021)
+-- 	Leatrix Plus 1.14.04.alpha.1 (24th October 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.03"
+	LeaPlusLC["AddonVer"] = "1.14.04.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5511,6 +5511,9 @@
 			titleFrame.x:SetPoint("RIGHT", -4, 0)
 			titleFrame.x:SetText(L["Drag to size"] .. " | " .. L["Right-click to close"])
 			titleFrame.x:SetFont(titleFrame.x:GetFont(), 16, nil)
+			titleFrame.x:SetWidth(600 - titleFrame.m:GetStringWidth() - 30)
+			titleFrame.x:SetWordWrap(false)
+			titleFrame.x:SetJustifyH("RIGHT")
 
 			local titleBox = titleFrame.EditBox
 			titleBox:Hide()
