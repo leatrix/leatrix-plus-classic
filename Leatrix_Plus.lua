@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.04.alpha.4 (24th October 2021)
+-- 	Leatrix Plus 1.14.04.alpha.5 (26th October 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.04.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.14.04.alpha.5"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2954,63 +2954,82 @@
 		if LeaPlusLC["EnhanceDressup"] == "On" then
 
 			----------------------------------------------------------------------
-			-- Nude and tabard buttons
+			-- Buttons
 			----------------------------------------------------------------------
 
-			-- Add buttons to main dressup frames
-			LeaPlusLC:CreateButton("DressUpNudeBtn", DressUpFrame, "Nude", "BOTTOMLEFT", 106, 79, 80, 22, false, "")
-			LeaPlusCB["DressUpNudeBtn"]:SetFrameLevel(3)
-			LeaPlusCB["DressUpNudeBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpNudeBtn"]:SetPoint("RIGHT", DressUpFrameResetButton, "LEFT", 0, 0)
-			LeaPlusCB["DressUpNudeBtn"]:SetScript("OnClick", function()
-				DressUpFrame.DressUpModel:Undress()
-			end)
+			-- Function to modify a button
+			local function SetButton(where, text, tip)
+				if text ~= "" then
+					where:SetText(L[text])
+					where:SetWidth(where:GetFontString():GetStringWidth() + 20)
+				end
+				where:HookScript("OnEnter", function() 
+					GameTooltip:SetOwner(where, "ANCHOR_NONE")
+					GameTooltip:SetPoint("TOP", where, "TOP", 0, 40)
+					GameTooltip:SetText(tip, nil, nil, nil, nil, true)
+				end)
+				where:HookScript("OnLeave", GameTooltip_Hide)
+			end
 
-			LeaPlusLC:CreateButton("DressUpTabBtn", DressUpFrame, "Tabard", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			-- Close
+			SetButton(DressUpFrameCancelButton, "", "Close")
+			DressUpFrameCancelButton:ClearAllPoints()
+			DressUpFrameCancelButton:SetPoint("BOTTOMRIGHT", DressUpFrame, "BOTTOMRIGHT", -40, 80)
+
+			-- Reset
+			SetButton(DressUpFrameResetButton, "R", "Reset")
+
+			-- Tabard
+			LeaPlusLC:CreateButton("DressUpTabBtn", DressUpFrameResetButton, "B", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpTabBtn"]:SetFrameLevel(3)
 			LeaPlusCB["DressUpTabBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpTabBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
+			LeaPlusCB["DressUpTabBtn"]:SetPoint("RIGHT", DressUpFrameResetButton, "LEFT", 0, 0)
+			SetButton(LeaPlusCB["DressUpTabBtn"], "B", "Tabard")
 			LeaPlusCB["DressUpTabBtn"]:SetScript("OnClick", function()
 				DressUpFrame.DressUpModel:UndressSlot(19)
 			end)
 
-			-- Only show dressup buttons if its a player (reset button will show too)
-			hooksecurefunc(DressUpFrameResetButton, "Show", function()
-				LeaPlusCB["DressUpNudeBtn"]:Show()
-				LeaPlusCB["DressUpTabBtn"]:Show()
+			-- Nude
+			LeaPlusLC:CreateButton("DressUpNudeBtn", DressUpFrameResetButton, "N", "BOTTOMLEFT", 106, 79, 80, 22, false, "")
+			LeaPlusCB["DressUpNudeBtn"]:SetFrameLevel(3)
+			LeaPlusCB["DressUpNudeBtn"]:ClearAllPoints()
+			LeaPlusCB["DressUpNudeBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpTabBtn"], "LEFT", 0, 0)
+			SetButton(LeaPlusCB["DressUpNudeBtn"], "N", "Nude")
+			LeaPlusCB["DressUpNudeBtn"]:SetScript("OnClick", function()
+				DressUpFrame.DressUpModel:Undress()
 			end)
 
-			hooksecurefunc(DressUpFrameResetButton, "Hide", function()
-				LeaPlusCB["DressUpNudeBtn"]:Hide()
-				LeaPlusCB["DressUpTabBtn"]:Hide()
+			-- Target
+			LeaPlusLC:CreateButton("DressUpTargetBtn", DressUpFrameResetButton, "T", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			LeaPlusCB["DressUpTargetBtn"]:ClearAllPoints()
+			LeaPlusCB["DressUpTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
+			SetButton(LeaPlusCB["DressUpTargetBtn"], "T", "Target")
+			LeaPlusCB["DressUpTargetBtn"]:SetScript("OnClick", function()
+				if UnitIsPlayer("target") then
+					DressUpFrame.DressUpModel:SetUnit("target")
+				end
+			end)
+
+			-- Change player actor to player when reset button is clicked (needed because target button changes it)
+			DressUpFrameResetButton:HookScript("OnClick", function()
+				DressUpFrame.DressUpModel:SetUnit("player")
 			end)
 
 			local BtnStrata, BtnLevel = SideDressUpModelResetButton:GetFrameStrata(), SideDressUpModelResetButton:GetFrameLevel()
 
 			-- Add buttons to auction house dressup frame
-			LeaPlusLC:CreateButton("DressUpSideBtn", SideDressUpFrame, "Tabard", "BOTTOMLEFT", 14, 20, 60, 22, false, "")
+			LeaPlusLC:CreateButton("DressUpSideBtn", SideDressUpModelResetButton, "Tabard", "BOTTOMLEFT", -36, -31, 60, 22, false, "")
 			LeaPlusCB["DressUpSideBtn"]:SetFrameStrata(BtnStrata);
 			LeaPlusCB["DressUpSideBtn"]:SetFrameLevel(BtnLevel);
 			LeaPlusCB["DressUpSideBtn"]:SetScript("OnClick", function()
 				SideDressUpModel:UndressSlot(19)
 			end)
 
-			LeaPlusLC:CreateButton("DressUpSideNudeBtn", SideDressUpFrame, "Nude", "BOTTOMRIGHT", -18, 20, 60, 22, false, "")
+			LeaPlusLC:CreateButton("DressUpSideNudeBtn", SideDressUpModelResetButton, "Nude", "BOTTOMRIGHT", 39, -31, 60, 22, false, "")
 			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameStrata(BtnStrata);
 			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameLevel(BtnLevel);
 			LeaPlusCB["DressUpSideNudeBtn"]:SetScript("OnClick", function()
 				SideDressUpModel:Undress()
-			end)
-
-			-- Only show side dressup buttons if its a player (reset button will show too)
-			hooksecurefunc(SideDressUpModelResetButton, "Show", function()
-				LeaPlusCB["DressUpSideBtn"]:Show()
-				LeaPlusCB["DressUpSideNudeBtn"]:Show()
-			end)
-
-			hooksecurefunc(SideDressUpModelResetButton, "Hide", function()
-				LeaPlusCB["DressUpSideBtn"]:Hide()
-				LeaPlusCB["DressUpSideNudeBtn"]:Hide()
 			end)
 
 			----------------------------------------------------------------------
