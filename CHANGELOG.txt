@@ -1,4 +1,4 @@
-1.14.04.alpha.8 - 27th October 2021
+1.14.04 - 28th October 2021
 - The 'Enhance dressup' option ('Interface') now shows a 'Show target model' button in the dressup window.  Requires a player target.  The nude and tabard buttons will apply whichever model is showing.  Transformations such as shapeshift and appearance change will be removed.  The 'Reset' button will set the model back to your character.  Dressup window buttons are now much smaller and have tooltips.
 - The 'Enhance quest log' option now has a setting to toggle showing quest levels.
 - The 'Sell junk automatically' option now has a setting to toggle the vendor summary in chat.
