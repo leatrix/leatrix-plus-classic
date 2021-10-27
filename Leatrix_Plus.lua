@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.04.alpha.7 (27th October 2021)
+-- 	Leatrix Plus 1.14.04.alpha.8 (27th October 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.04.alpha.7"
+	LeaPlusLC["AddonVer"] = "1.14.04.alpha.8"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3000,7 +3000,7 @@
 			end)
 
 			-- Show my outfit on target
-			LeaPlusLC:CreateButton("DressUpOutfitOnTargetBtn", DressUpFrameResetButton, "O", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			--[[LeaPlusLC:CreateButton("DressUpOutfitOnTargetBtn", DressUpFrameResetButton, "O", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpOutfitOnTargetBtn"]:ClearAllPoints()
 			LeaPlusCB["DressUpOutfitOnTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
 			SetButton(LeaPlusCB["DressUpOutfitOnTargetBtn"], "O", "Show my outfit on target")
@@ -3017,12 +3017,12 @@
 						end
 					end)
 				end
-			end)
+			end)]]
 
 			-- Target
 			LeaPlusLC:CreateButton("DressUpTargetBtn", DressUpFrameResetButton, "T", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpTargetBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpOutfitOnTargetBtn"], "LEFT", 0, 0)
+			LeaPlusCB["DressUpTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
 			SetButton(LeaPlusCB["DressUpTargetBtn"], "T", "Show target model")
 			LeaPlusCB["DressUpTargetBtn"]:SetScript("OnClick", function()
 				if UnitIsPlayer("target") then
@@ -3031,7 +3031,7 @@
 			end)
 
 			-- Show nearby target outfit on me button
-			LeaPlusLC:CreateButton("DressUpTargetSelfBtn", DressUpFrameResetButton, "S", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			--[[LeaPlusLC:CreateButton("DressUpTargetSelfBtn", DressUpFrameResetButton, "S", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpTargetSelfBtn"]:ClearAllPoints()
 			LeaPlusCB["DressUpTargetSelfBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpTargetBtn"], "LEFT", 0, 0)
 			SetButton(LeaPlusCB["DressUpTargetSelfBtn"], "S", "Show nearby target outfit on me")
@@ -3059,7 +3059,7 @@
 						LeaPlusCB["DressUpTargetSelfBtn"]:UnregisterEvent("INSPECT_READY")
 					end)
 				end
-			end)
+			end)]]
 
 			-- Change player actor to player when reset button is clicked (needed because target button changes it)
 			DressUpFrameResetButton:HookScript("OnClick", function()
