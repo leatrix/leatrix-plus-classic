@@ -1,5 +1,5 @@
-1.14.06.alpha.2 - 30th October 2021
-- Maintenance update.
+1.14.06.alpha.3 - 2nd November 2021
+- Added a new option 'More font sizes' ('Chat').  If enabled, additional font sizes will be available in the chat frame font size menu.
 
 1.14.05 - 29th October 2021
 - Replaced packager to fix CurseForge App issue.
