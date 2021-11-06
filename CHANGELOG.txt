@@ -1,3 +1,6 @@
+1.14.07.alpha.1 - 6th November 2021
+- Added a new option 'Hide action button text' ('Text').  If enabled, macro and keybind text will not be shown on action buttons.
+
 1.14.06 - 6th November 2021
 - Added a new option 'More font sizes' ('Chat').  If enabled, additional font sizes will be available in the chat frame font size menu.
 - Leatrix Plus for Classic Era is compatible with Season of Mastery too.
