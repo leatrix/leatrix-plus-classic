@@ -1,5 +1,6 @@
 1.14.06 - 6th November 2021
 - Added a new option 'More font sizes' ('Chat').  If enabled, additional font sizes will be available in the chat frame font size menu.
+- Leatrix Plus for Classic Era is compatible with Season of Mastery too.
 
 1.14.05 - 29th October 2021
 - Replaced packager to fix CurseForge App issue.
