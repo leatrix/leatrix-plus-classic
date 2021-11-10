@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.07.alpha.1 (6th November 2021)
+-- 	Leatrix Plus 1.14.07 (10th November 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.07.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.07"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -364,6 +364,7 @@
 		LeaPlusLC:LockOption("BookFontChange", "BookTextBtn", true)					-- Resize book text
 		LeaPlusLC:LockOption("MinimapMod", "ModMinimapBtn", true)					-- Enhance minimap
 		LeaPlusLC:LockOption("TipModEnable", "MoveTooltipButton", true)				-- Enhance tooltip
+		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
 		LeaPlusLC:LockOption("ShowCooldowns", "CooldownsButton", true)				-- Show cooldowns
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
@@ -2990,6 +2991,138 @@
 
 		if LeaPlusLC["EnhanceDressup"] == "On" then
 
+			-- Create configuration panel
+			local DressupPanel = LeaPlusLC:CreatePanel("Enhance dressup", "DressupPanel")
+
+			LeaPlusLC:MakeTx(DressupPanel, "Settings", 16, -72)
+			LeaPlusLC:MakeCB(DressupPanel, "DressupItemButtons", "Show item buttons", 16, -92, false, "If checked, item buttons will be shown in the dressing room.  You can click the item buttons to remove individual items from the model.")
+
+			-- Help button hidden
+			DressupPanel.h:Hide()
+
+			-- Back button handler
+			DressupPanel.b:SetScript("OnClick", function() 
+				DressupPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			DressupPanel.r:SetScript("OnClick", function()
+
+				-- Refresh configuration panel
+				DressupPanel:Hide(); DressupPanel:Show()
+
+			end)
+
+			-- Show configuration panal when options panel button is clicked
+			LeaPlusCB["EnhanceDressupBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+				else
+					DressupPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
+			----------------------------------------------------------------------
+			-- Item buttons
+			----------------------------------------------------------------------
+
+			do
+
+				local buttons = {}
+				local slotTable = {"HeadSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot", "HandsSlot", "WaistSlot", "LegsSlot", "FeetSlot", "MainHandSlot", "SecondaryHandSlot"}
+				local texTable = {"INV_Misc_Desecrated_ClothHelm", "INV_Misc_Desecrated_ClothShoulder", "INV_Misc_Cape_01", "INV_Misc_Desecrated_ClothChest", "INV_Shirt_01", "INV_Shirt_GuildTabard_01", "INV_Misc_Desecrated_ClothBracer", "INV_Misc_Desecrated_ClothGlove", "INV_Misc_Desecrated_ClothBelt", "INV_Misc_Desecrated_ClothPants", "INV_Misc_Desecrated_ClothBoots", "INV_Sword_01", "INV_Shield_01"}
+
+				local function MakeSlotButton(number, slot, anchor, x, y)
+
+					-- Create slot button
+					local slotBtn = CreateFrame("Button", nil, DressUpFrame)
+					slotBtn:SetFrameStrata("HIGH")
+					slotBtn:SetSize(30, 30)
+					slotBtn.slot = slot
+					slotBtn:ClearAllPoints()
+					slotBtn:SetPoint(anchor, x, y)
+					slotBtn:RegisterForClicks("LeftButtonUp")
+					slotBtn:SetMotionScriptsWhileDisabled(true)
+
+					-- Slot button click
+					slotBtn:SetScript("OnClick", function(self, btn)
+						if btn == "LeftButton" then
+							local slotID = GetInventorySlotInfo(self.slot)
+							DressUpFrame.DressUpModel:UndressSlot(slotID)
+						end
+					end)
+
+					-- Slot button tooltip
+					slotBtn:SetScript("OnEnter", function(self)
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+						if self.item then
+							GameTooltip:SetHyperlink(self.item)
+						else
+							if self.slot then
+								GameTooltip:SetText(_G[string.upper(self.slot)])
+							end
+						end
+					end)
+					slotBtn:SetScript("OnLeave", GameTooltip_Hide)
+
+					-- Slot button textures
+					slotBtn.t = slotBtn:CreateTexture(nil, "BACKGROUND")
+					slotBtn.t:SetSize(30, 30)
+					slotBtn.t:SetPoint("CENTER")
+					slotBtn.t:SetDesaturated(true)
+					slotBtn.t:SetTexture("interface\\icons\\" .. texTable[number])
+
+					slotBtn.h = slotBtn:CreateTexture()
+					slotBtn.h:SetSize(30, 30)
+					slotBtn.h:SetPoint("CENTER")
+					slotBtn.h:SetAtlas("bags-glow-white")
+					slotBtn.h:SetBlendMode("ADD")
+					slotBtn:SetHighlightTexture(slotBtn.h)
+
+					-- Add slot button to table
+					tinsert(buttons, slotBtn)
+
+				end
+
+				-- Show left column slot buttons
+				for i = 1, 7 do
+					MakeSlotButton(i, slotTable[i], "TOPLEFT", 22, -80 + -35 * (i - 1))
+				end
+
+				-- Show right column slot buttons
+				for i = 8, 13 do
+					MakeSlotButton(i, slotTable[i], "TOPRIGHT", -46, -80 + -35 * (i - 8))
+				end
+
+				-- Function to set item buttons
+				local function ToggleItemButtons()
+					if LeaPlusLC["DressupItemButtons"] == "On" then
+						for i = 1, #buttons do buttons[i]:Show() end
+					else
+						for i = 1, #buttons do buttons[i]:Hide() end
+					end
+				end
+				LeaPlusLC.ToggleItemButtons = ToggleItemButtons
+
+				-- Set item buttons for option click, startup, reset click and preset click 
+				LeaPlusCB["DressupItemButtons"]:HookScript("OnClick", ToggleItemButtons)
+				ToggleItemButtons()
+				DressupPanel.r:HookScript("OnClick", function()
+					LeaPlusLC["DressupItemButtons"] = "On"
+					ToggleItemButtons()
+					DressupPanel:Hide(); DressupPanel:Show()
+				end)
+				LeaPlusCB["EnhanceDressupBtn"]:HookScript("OnClick", function()
+					if IsShiftKeyDown() and IsControlKeyDown() then
+						LeaPlusLC["DressupItemButtons"] = "On"
+						ToggleItemButtons()
+					end
+				end)
+
+			end
+
 			----------------------------------------------------------------------
 			-- Buttons
 			----------------------------------------------------------------------
@@ -3016,24 +3149,23 @@
 			-- Reset
 			SetButton(DressUpFrameResetButton, "R", "Reset")
 
-			-- Tabard
-			LeaPlusLC:CreateButton("DressUpTabBtn", DressUpFrameResetButton, "B", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
-			LeaPlusCB["DressUpTabBtn"]:SetFrameLevel(3)
-			LeaPlusCB["DressUpTabBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpTabBtn"]:SetPoint("RIGHT", DressUpFrameResetButton, "LEFT", 0, 0)
-			SetButton(LeaPlusCB["DressUpTabBtn"], "B", "Remove tabard")
-			LeaPlusCB["DressUpTabBtn"]:SetScript("OnClick", function()
-				DressUpFrame.DressUpModel:UndressSlot(19)
-			end)
-
 			-- Nude
 			LeaPlusLC:CreateButton("DressUpNudeBtn", DressUpFrameResetButton, "N", "BOTTOMLEFT", 106, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpNudeBtn"]:SetFrameLevel(3)
 			LeaPlusCB["DressUpNudeBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpNudeBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpTabBtn"], "LEFT", 0, 0)
+			LeaPlusCB["DressUpNudeBtn"]:SetPoint("RIGHT", DressUpFrameResetButton, "LEFT", 0, 0)
 			SetButton(LeaPlusCB["DressUpNudeBtn"], "N", "Remove all items")
 			LeaPlusCB["DressUpNudeBtn"]:SetScript("OnClick", function()
 				DressUpFrame.DressUpModel:Undress()
+			end)
+
+			-- Show me
+			LeaPlusLC:CreateButton("DressUpShowMeBtn", DressUpFrameResetButton, "M", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			LeaPlusCB["DressUpShowMeBtn"]:ClearAllPoints()
+			LeaPlusCB["DressUpShowMeBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
+			SetButton(LeaPlusCB["DressUpShowMeBtn"], "M", "Show me")
+			LeaPlusCB["DressUpShowMeBtn"]:SetScript("OnClick", function()
+				DressUpFrame.DressUpModel:SetUnit("player")
 			end)
 
 			-- Show my outfit on target
@@ -3059,12 +3191,23 @@
 			-- Target
 			LeaPlusLC:CreateButton("DressUpTargetBtn", DressUpFrameResetButton, "T", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
 			LeaPlusCB["DressUpTargetBtn"]:ClearAllPoints()
-			LeaPlusCB["DressUpTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpNudeBtn"], "LEFT", 0, 0)
+			LeaPlusCB["DressUpTargetBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpShowMeBtn"], "LEFT", 0, 0)
 			SetButton(LeaPlusCB["DressUpTargetBtn"], "T", "Show target model")
 			LeaPlusCB["DressUpTargetBtn"]:SetScript("OnClick", function()
 				if UnitIsPlayer("target") then
 					DressUpFrame.DressUpModel:SetUnit("target")
 				end
+			end)
+
+			-- Toggle buttons
+			LeaPlusLC:CreateButton("DressUpButonsBtn", DressUpFrameResetButton, "B", "BOTTOMLEFT", 26, 79, 80, 22, false, "")
+			LeaPlusCB["DressUpButonsBtn"]:ClearAllPoints()
+			LeaPlusCB["DressUpButonsBtn"]:SetPoint("RIGHT", LeaPlusCB["DressUpTargetBtn"], "LEFT", 0, 0)
+			SetButton(LeaPlusCB["DressUpButonsBtn"], "B", "Toggle buttons")
+			LeaPlusCB["DressUpButonsBtn"]:SetScript("OnClick", function()
+				if LeaPlusLC["DressupItemButtons"] == "On" then LeaPlusLC["DressupItemButtons"] = "Off" else LeaPlusLC["DressupItemButtons"] = "On" end
+				LeaPlusLC:ToggleItemButtons()
+				if DressupPanel:IsShown() then DressupPanel:Hide(); DressupPanel:Show() end
 			end)
 
 			-- Show nearby target outfit on me button
@@ -3103,19 +3246,20 @@
 				DressUpFrame.DressUpModel:SetUnit("player")
 			end)
 
+			-- Auction house
 			local BtnStrata, BtnLevel = SideDressUpModelResetButton:GetFrameStrata(), SideDressUpModelResetButton:GetFrameLevel()
 
 			-- Add buttons to auction house dressup frame
 			LeaPlusLC:CreateButton("DressUpSideBtn", SideDressUpModelResetButton, "Tabard", "BOTTOMLEFT", -36, -31, 60, 22, false, "")
-			LeaPlusCB["DressUpSideBtn"]:SetFrameStrata(BtnStrata);
-			LeaPlusCB["DressUpSideBtn"]:SetFrameLevel(BtnLevel);
+			LeaPlusCB["DressUpSideBtn"]:SetFrameStrata(BtnStrata)
+			LeaPlusCB["DressUpSideBtn"]:SetFrameLevel(BtnLevel)
 			LeaPlusCB["DressUpSideBtn"]:SetScript("OnClick", function()
 				SideDressUpModel:UndressSlot(19)
 			end)
 
 			LeaPlusLC:CreateButton("DressUpSideNudeBtn", SideDressUpModelResetButton, "Nude", "BOTTOMRIGHT", 39, -31, 60, 22, false, "")
-			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameStrata(BtnStrata);
-			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameLevel(BtnLevel);
+			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameStrata(BtnStrata)
+			LeaPlusCB["DressUpSideNudeBtn"]:SetFrameLevel(BtnLevel)
 			LeaPlusCB["DressUpSideNudeBtn"]:SetScript("OnClick", function()
 				SideDressUpModel:Undress()
 			end)
@@ -8523,6 +8667,7 @@
 				LeaPlusLC:LoadVarNum("TipCursorY", 0, -128, 128)			-- Tooltip cursor Y offset
 
 				LeaPlusLC:LoadVarChk("EnhanceDressup", "Off")				-- Enhance dressup
+				LeaPlusLC:LoadVarChk("DressupItemButtons", "On")			-- Dressup item buttons
 				LeaPlusLC:LoadVarChk("HideDressupStats", "Off")				-- Hide dressup stats
 				LeaPlusLC:LoadVarChk("EnhanceQuestLog", "Off")				-- Enhance quest log
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
@@ -8727,6 +8872,7 @@
 			LeaPlusDB["TipCursorY"]				= LeaPlusLC["TipCursorY"]
 
 			LeaPlusDB["EnhanceDressup"]			= LeaPlusLC["EnhanceDressup"]
+			LeaPlusDB["DressupItemButtons"]		= LeaPlusLC["DressupItemButtons"]
 			LeaPlusDB["HideDressupStats"]		= LeaPlusLC["HideDressupStats"]
 			LeaPlusDB["EnhanceQuestLog"]		= LeaPlusLC["EnhanceQuestLog"]
 			LeaPlusDB["EnhanceQuestLevels"]		= LeaPlusLC["EnhanceQuestLevels"]
@@ -10706,6 +10852,7 @@
 
 	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapMod"])
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
+	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
 	LeaPlusLC:CfgBtn("CooldownsButton", LeaPlusCB["ShowCooldowns"])
 	LeaPlusLC:CfgBtn("ModPlayerChain", LeaPlusCB["ShowPlayerChain"])
