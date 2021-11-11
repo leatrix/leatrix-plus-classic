@@ -1,3 +1,6 @@
+1.14.08.alpha.1 - 11th November 2021
+- Added an animation slider setting to 'Enhance dressup' ('Interface').
+
 1.14.07 - 10th November 2021
 - Updated for game version 1.14.1.
 - Added a new setting to 'Enhance dressup' ('Interface') which adds item buttons to the dressing room.  Added a 'Show me' button and a button to toggle the new item buttons.  The 'Remove tabard' button is now part of the new item buttons.
