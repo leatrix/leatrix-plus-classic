@@ -1,5 +1,6 @@
-1.14.08.alpha.1 - 11th November 2021
+1.14.08.alpha.2 - 15th November 2021
 - Added an animation slider setting to 'Enhance dressup' ('Interface').
+- Added a 'Guild' setting to the 'Social' page which allows you to choose whether the 'Social' page options should apply to guild members or not (previously, 'Social' page options always applied to guild members).
 
 1.14.07 - 10th November 2021
 - Updated for game version 1.14.1.
