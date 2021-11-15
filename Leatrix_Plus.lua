@@ -10867,6 +10867,11 @@
 
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FriendlyGuild"				, 	"Guild"							, 	146, -282, 	false,	"If checked, members of your guild will be treated as friends for all of the options on this page.")
 
+	if LeaPlusCB["FriendlyGuild"].f:GetStringWidth() > 90 then
+		LeaPlusCB["FriendlyGuild"].f:SetWidth(90)
+		LeaPlusCB["FriendlyGuild"]:SetHitRectInsets(0, -84, 0, 0)
+	end
+
  	LeaPlusLC:CfgBtn("InvWhisperBtn", LeaPlusCB["InviteFromWhisper"])
 
 ----------------------------------------------------------------------
