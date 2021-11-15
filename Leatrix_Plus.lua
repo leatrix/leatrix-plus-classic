@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.08.alpha.2 (15th November 2021)
+-- 	Leatrix Plus 1.14.08.alpha.3 (15th November 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.08.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.08.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -616,18 +616,25 @@
 
 				},
 
-				-- Chimes
+				-- Chimes (sound/doodad/)
 				["MuteChimes"] = {
-					"sound/doodad/belltollalliance.ogg#566564",
-					"sound/doodad/belltollhorde.ogg#565853",
-					"sound/doodad/belltollnightelf.ogg#566558",
-					"sound/doodad/belltolltribal.ogg#566027",
+					"belltollalliance.ogg#566564",
+					"belltollhorde.ogg#565853",
+					"belltollnightelf.ogg#566558",
+					"belltolltribal.ogg#566027",
 				},
 
-				-- Ready check
+				-- Ready check (sound/interface/)
 				["MuteReady"] = {
-					"sound/interface/levelup2.ogg#567478",
-					"sound/interface/readycheck.ogg#567409",
+					"levelup2.ogg#567478",
+					"readycheck.ogg#567409",
+				},
+
+				-- Yawns (sound/creature/tiger/)
+				["MuteYawns"] = {
+
+					"mtigerstand2a.ogg#562388",
+
 				},
 
 			}
@@ -655,6 +662,9 @@
 			LeaPlusLC:MakeCB(SoundPanel, "MuteTrains", "Trains", 16, -132, false, "If checked, train sounds will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteChimes", "Chimes", 16, -152, false, "If checked, clock hourly chimes will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -172, false, "If checked, the ready check sound will be muted.")
+
+			LeaPlusLC:MakeTx(SoundPanel, "Pets", 140, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 140, -92, false, "If checked, yawns from hunter pet cats will be muted.")
 
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(muteTable) do
