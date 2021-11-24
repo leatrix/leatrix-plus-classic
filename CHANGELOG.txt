@@ -1,3 +1,6 @@
+1.14.09 - 24th November 2021
+- Maintenance update.
+
 1.14.08 - 17th November 2021
 - Added an animation slider setting to 'Enhance dressup' ('Interface').
 - Added a configuration panel for 'Accept resurrection' ('Automation') so you can choose whether combat resurrection should be excluded.
