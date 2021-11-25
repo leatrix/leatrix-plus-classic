@@ -1,5 +1,5 @@
-1.14.10.alpha.1 - 24th November 2021
-- Maintenance update.
+1.14.10.alpha.2 - 25th November 2021
+- The 'Show Wowhead links' option ('Interface') now has a configuration panel allowing you to choose whether links should go directly to the comments section.
 
 1.14.08 - 17th November 2021
 - Added an animation slider setting to 'Enhance dressup' ('Interface').
