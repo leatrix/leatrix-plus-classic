@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.10.alpha.4 (26th November 2021)
+-- 	Leatrix Plus 1.14.10.alpha.5 (28th November 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.10.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.14.10.alpha.5"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2071,118 +2071,86 @@
 			-- Create configuration panel
 			local SideMinimap = LeaPlusLC:CreatePanel("Enhance minimap", "SideMinimap")
 
-			-- Hide panel during combat
-			SideMinimap:SetScript("OnUpdate", function()
-				if UnitAffectingCombat("player") then
-					SideMinimap:Hide()
-				end
-			end)
-
 			-- Add checkboxes
 			LeaPlusLC:MakeTx(SideMinimap, "Settings", 16, -72)
-			LeaPlusLC:MakeCB(SideMinimap, "HideZoneTextBar", "Hide the zone text bar", 16, -92, false, "If checked, the zone text bar will be hidden.  The tracking button tooltip will show zone information.")
-			LeaPlusLC:MakeCB(SideMinimap, "HideMiniZoomBtns", "Hide the zoom buttons", 16, -112, false, "If checked, the zoom buttons will be hidden.  You can use the mousewheel to zoom regardless of this setting.")
+			LeaPlusLC:MakeCB(SideMinimap, "HideMiniZoomBtns", "Hide the zoom buttons", 16, -92, false, "If checked, the zoom buttons will be hidden.  You can use the mousewheel to zoom regardless of this setting.")
+			LeaPlusLC:MakeCB(SideMinimap, "HideMiniClock", "Hide the clock", 16, -112, false, "If checked, the clock will be hidden.")
+			LeaPlusLC:MakeCB(SideMinimap, "UnlockMinimap", "Unlock the minimap", 16, -132, false, "If checked, you can hold alt and drag the minimap to move it.")
 
 			-- Add slider control
 			LeaPlusLC:MakeTx(SideMinimap, "Scale", 356, -72)
 			LeaPlusLC:MakeSL(SideMinimap, "MinimapScale", "Drag to set the minimap scale.|n|nNote that if you are using the default action bars, rescaling the minimap will also rescale the right action bars at startup so you may want to leave this at 100%.", 1, 2, 0.1, 356, -92, "%.2f")
 
 			----------------------------------------------------------------------
-			-- Hide the zone text bar
+			-- Unlock the minimap
 			----------------------------------------------------------------------
 
-			-- Store Blizzard handler
-			local zonta, zontp, zontr, zontx, zonty = MinimapZoneTextButton:GetPoint()
+			-- Move the minimap up to the top
+			MinimapCluster:ClearAllPoints()
+			MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 20)
 
-			-- Function to show zone tooltip
-			local function ShowZoneTip(doNotShow)
-				if LeaPlusLC["HideZoneTextBar"] == "On" then
-					-- Show zone information in tooltip
-					local zoneName = GetZoneText()
-					local subzoneName = GetSubZoneText()
-					if subzoneName == zoneName then	subzoneName = "" end
-					-- Change the owner and position (needed for Minimap_SetTooltip)
-					GameTooltip:SetOwner(MinimapZoneTextButton, "ANCHOR_LEFT")
-					MinimapZoneTextButton:SetAllPoints(MiniMapTrackingButton)
-					-- Show the tooltip
-					local pvpType, isSubZonePvP, factionName = GetZonePVPInfo()
-					Minimap_SetTooltip(pvpType, factionName)
-					GameTooltip:Show()
-					if doNotShow == true then GameTooltip:Hide() end
-				else
-					MinimapZoneTextButton:ClearAllPoints()
-					MinimapZoneTextButton:SetPoint(zonta, zontp, zontr, zontx, zonty)
+			-- Raise the frame in case it's hidden
+			Minimap:Raise()
+
+			-- Enable minimap movement
+			Minimap:SetMovable(true)
+			Minimap:SetUserPlaced(true)
+			Minimap:SetDontSavePosition(true)
+			Minimap:SetClampedToScreen(true)
+			Minimap:SetClampRectInsets(-2, 0, 2, -2)
+
+			MinimapBackdrop:ClearAllPoints()
+			MinimapBackdrop:SetPoint("TOP", Minimap, "TOP", -9, 2)
+			Minimap:RegisterForDrag("LeftButton")
+
+			-- Set minimap position on startup
+			Minimap:ClearAllPoints()
+			Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
+
+			-- Drag functions
+			Minimap:SetScript("OnDragStart", function(self, btn)
+				-- Start dragging if left clicked
+				if LeaPlusLC["UnlockMinimap"] == "On" and IsAltKeyDown() and btn == "LeftButton" then
+					Minimap:StartMoving()
 				end
-			end
-
-			-- Function to set the zone text bar position
-			local function SetTitleBarPos()
-				if OrderHallCommandBar then
-					if OrderHallCommandBar:IsShown() then
-						-- Order hall command bar is showing so move minimap cluster to top
-						MinimapCluster:ClearAllPoints()
-						MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 0)
-						if LeaPlusLC["HideZoneTextBar"] == "Off" then
-							-- Zone text bar is showing so hide it as it will be behind the order hall command bar
-							MinimapBorderTop:SetTexture("")
-							MinimapZoneTextButton:Hide()
-							MiniMapWorldMapButton:Hide()
-						end
-					else
-						-- Order hall command bar is not showing
-						if LeaPlusLC["HideZoneTextBar"] == "On" then
-							-- Zone text bar is being hidden so move minimap cluster down below the order hall command bar
-							MinimapCluster:ClearAllPoints()
-							MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 20)
-						else
-							-- Zone text bar is not being hidden so move order hall command bar to top
-							MinimapCluster:ClearAllPoints()
-							MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 0)
-							-- Show zone text bar
-							MinimapZoneTextButton:Show()
-							MiniMapWorldMapButton:Show()
-							MinimapBorderTop:SetTexture("Interface\\Minimap\\UI-Minimap-Border")
-						end
-					end
-				else
-					-- Order hall command bar has not been loaded by the game yet
-					if LeaPlusLC["HideZoneTextBar"] == "On" then
-						MinimapCluster:ClearAllPoints()
-						MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 20)
-					else
-						MinimapCluster:ClearAllPoints()
-						MinimapCluster:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, 0)
-					end
-				end
-			end
-
-			-- Function to toggle the zone text bar
-			local function SetMiniZoneText()
-				if LeaPlusLC["HideZoneTextBar"] == "On" then
-					-- Hide the zone text bar
-					MinimapZoneTextButton:Hide()
-					MiniMapWorldMapButton:Hide()
-					MinimapBorderTop:SetTexture("")
-					-- Move the minimap up to the top
-					SetTitleBarPos()
-				else
-					-- Show the zone text bar
-					MinimapZoneTextButton:Show()
-					MiniMapWorldMapButton:Show()
-					MinimapBorderTop:SetTexture("Interface\\Minimap\\UI-Minimap-Border")
-					-- Move the minimap to its original position
-					SetTitleBarPos()
-				end
-			end
-
-			-- Set the zone text bar layout and tooltip position when option is clicked
-			LeaPlusCB["HideZoneTextBar"]:HookScript("OnClick", function()
-				SetMiniZoneText()
-				ShowZoneTip(true)
 			end)
 
-			-- Set the zone text bar layout on startup
-			SetMiniZoneText()
+			Minimap:SetScript("OnDragStop", function(self, btn)
+				-- Save minimap position
+				Minimap:StopMovingOrSizing()
+				LeaPlusLC["MinimapA"], void, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = Minimap:GetPoint()
+				Minimap:SetMovable(true)
+				Minimap:ClearAllPoints()
+				Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
+			end)
+
+			-- Reset position when reset button is clicked
+			SideMinimap.r:HookScript("OnClick", function()
+				LeaPlusLC["UnlockMinimap"] = "On"
+				Minimap:ClearAllPoints()
+				Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -17, -2)
+			end)
+
+			-- Preset profile
+			LeaPlusCB["ModMinimapBtn"]:HookScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["MinimapA"], LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = "TOPRIGHT", "TOPRIGHT", -17, -2
+					Minimap:SetMovable(true)
+					Minimap:ClearAllPoints()
+					Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
+				end
+			end)
+
+			----------------------------------------------------------------------
+			-- Hide the zone text bar, time of day button and world map button
+			----------------------------------------------------------------------
+
+			MinimapZoneTextButton:Hide()
+			MinimapBorderTop:SetTexture("")
+			GameTimeFrame:Hide()
+			MiniMapWorldMapButton:Hide()
+			hooksecurefunc(MiniMapWorldMapButton, "Show", MiniMapWorldMapButton.Hide)
 
 			----------------------------------------------------------------------
 			-- Hide the zoom buttons
@@ -2202,6 +2170,38 @@
 			-- Set the zoom buttons when the option is clicked and on startup
 			LeaPlusCB["HideMiniZoomBtns"]:HookScript("OnClick", ToggleZoomButtons)
 			ToggleZoomButtons()
+
+			----------------------------------------------------------------------
+			-- Hide the clock
+			----------------------------------------------------------------------
+
+			-- Function to show or hide the clock
+			local function SetMiniClock()
+				if IsAddOnLoaded("Blizzard_TimeManager") then
+					if LeaPlusLC["HideMiniClock"] == "On" then
+						TimeManagerClockButton:Hide()
+					else
+						TimeManagerClockButton:Show()
+					end
+				end
+			end
+
+			-- Run function when Blizzard addon is loaded
+			if IsAddOnLoaded("Blizzard_TimeManager") then
+				SetMiniClock()
+			else
+				local waitFrame = CreateFrame("FRAME")
+				waitFrame:RegisterEvent("ADDON_LOADED")
+				waitFrame:SetScript("OnEvent", function(self, event, arg1)
+					if arg1 == "Blizzard_TimeManager" then
+						SetMiniClock()
+						waitFrame:UnregisterAllEvents()
+					end
+				end)
+			end
+
+			-- Update the clock when the checkbox is clicked
+			LeaPlusCB["HideMiniClock"]:HookScript("OnClick", SetMiniClock)
 
 			----------------------------------------------------------------------
 			-- Enable mousewheel zoom
@@ -2249,8 +2249,8 @@
 			-- Buttons
 			----------------------------------------------------------------------
 
-			-- Help button tooltip
-			SideMinimap.h.tiptext = L["This panel will close automatically if you enter combat."]
+			-- Help button hidden
+			SideMinimap.h:Hide()
 
 			-- Back button handler
 			SideMinimap.b:SetScript("OnClick", function() 
@@ -2259,28 +2259,24 @@
 			end) 
 
 			-- Reset button handler
-			SideMinimap.r:SetScript("OnClick", function()
-				LeaPlusLC["HideZoneTextBar"] = "Off"; SetMiniZoneText(); ShowZoneTip(true)
+			SideMinimap.r:HookScript("OnClick", function()
 				LeaPlusLC["HideMiniZoomBtns"] = "Off"; ToggleZoomButtons()
+				LeaPlusLC["HideMiniClock"] = "Off"; SetMiniClock()
 				LeaPlusLC["MinimapScale"] = 1; SetMiniScale()
 				SideMinimap:Hide(); SideMinimap:Show()
 			end)
 
 			-- Configuration button handler
-			LeaPlusCB["ModMinimapBtn"]:SetScript("OnClick", function()
-				if LeaPlusLC:PlayerInCombat() then
-					return
+			LeaPlusCB["ModMinimapBtn"]:HookScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["HideMiniZoomBtns"] = "Off"; ToggleZoomButtons()
+					LeaPlusLC["HideMiniClock"] = "Off"; SetMiniClock()
+					LeaPlusLC["MinimapScale"] = 1.30; SetMiniScale()
 				else
-					if IsShiftKeyDown() and IsControlKeyDown() then
-						-- Preset profile
-						LeaPlusLC["HideZoneTextBar"] = "On"; SetMiniZoneText(); ShowZoneTip(true)
-						LeaPlusLC["HideMiniZoomBtns"] = "Off"; ToggleZoomButtons()
-						LeaPlusLC["MinimapScale"] = 1.30; SetMiniScale()
-					else
-						-- Show configuration panel
-						SideMinimap:Show()
-						LeaPlusLC:HideFrames()
-					end
+					-- Show configuration panel
+					SideMinimap:Show()
+					LeaPlusLC:HideFrames()
 				end
 			end)
 
@@ -8835,10 +8831,14 @@
 
 				-- Interface
 				LeaPlusLC:LoadVarChk("MinimapMod", "Off")					-- Enhance minimap
-				LeaPlusLC:LoadVarChk("HideZoneTextBar", "Off")				-- Hide zone text bar
 				LeaPlusLC:LoadVarChk("HideMiniZoomBtns", "Off")				-- Hide zoom buttons
+				LeaPlusLC:LoadVarChk("HideMiniClock", "Off")				-- Hide the clock
 				LeaPlusLC:LoadVarNum("MinimapScale", 1, 1, 2)				-- Minimap scale slider
-
+				LeaPlusLC:LoadVarChk("UnlockMinimap", "On")					-- Unlock the minimap
+				LeaPlusLC:LoadVarAnc("MinimapA", "TOPRIGHT")				-- Minimap anchor
+				LeaPlusLC:LoadVarAnc("MinimapR", "TOPRIGHT")				-- Minimap relative
+				LeaPlusLC:LoadVarNum("MinimapX", -17, -5000, 5000)			-- Minimap X
+				LeaPlusLC:LoadVarNum("MinimapY", -2, -5000, 5000)			-- Minimap Y
 				LeaPlusLC:LoadVarChk("TipModEnable", "Off")					-- Enhance tooltip
 				LeaPlusLC:LoadVarChk("TipShowRank", "On")					-- Show guild rank for your own guild
 				LeaPlusLC:LoadVarChk("TipShowOtherRank", "Off")				-- Show guild rank for other guilds
@@ -9044,9 +9044,14 @@
 
 			-- Interface
 			LeaPlusDB["MinimapMod"]				= LeaPlusLC["MinimapMod"]
-			LeaPlusDB["HideZoneTextBar"]		= LeaPlusLC["HideZoneTextBar"]
 			LeaPlusDB["HideMiniZoomBtns"]		= LeaPlusLC["HideMiniZoomBtns"]
+			LeaPlusDB["HideMiniClock"]			= LeaPlusLC["HideMiniClock"]
 			LeaPlusDB["MinimapScale"]			= LeaPlusLC["MinimapScale"]
+			LeaPlusDB["UnlockMinimap"]			= LeaPlusLC["UnlockMinimap"]
+			LeaPlusDB["MinimapA"]				= LeaPlusLC["MinimapA"]
+			LeaPlusDB["MinimapR"]				= LeaPlusLC["MinimapR"]
+			LeaPlusDB["MinimapX"]				= LeaPlusLC["MinimapX"]
+			LeaPlusDB["MinimapY"]				= LeaPlusLC["MinimapY"]
 
 			LeaPlusDB["TipModEnable"]			= LeaPlusLC["TipModEnable"]
 			LeaPlusDB["TipShowRank"]			= LeaPlusLC["TipShowRank"]
@@ -10650,8 +10655,13 @@
 
 				-- Interface
 				LeaPlusDB["MinimapMod"] = "On"					-- Enhance minimap
-				LeaPlusDB["HideZoneTextBar"] = "On"				-- Hide zone text bar
 				LeaPlusDB["MinimapScale"] = 1.30				-- Minimap scale slider
+				LeaPlusDB["UnlockMinimap"] = "On"				-- Unlock the minimap
+				LeaPlusDB["MinimapA"] = "TOPRIGHT"				-- Minimap anchor
+				LeaPlusDB["MinimapR"] = "TOPRIGHT"				-- Minimap relative
+				LeaPlusDB["MinimapX"] = -17						-- Minimap X
+				LeaPlusDB["MinimapY"] = -2						-- Minimap Y
+
 				LeaPlusDB["TipModEnable"] = "On"				-- Enhance tooltip
 				LeaPlusDB["TipBackSimple"] = "On"				-- Color backdrops
 				LeaPlusDB["LeaPlusTipSize"] = 1.25				-- Tooltip scale slider
