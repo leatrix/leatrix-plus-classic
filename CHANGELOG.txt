@@ -1,5 +1,5 @@
-1.14.10.alpha.5 - 28th November 2021
-- The 'Enhance minimap' option ('Frames') has a new setting called 'Unlock minimap'.  If enabled, you can hold alt and drag the minimap to move it.  The zone text bar and world map button (SoM) are now always hidden.
+1.14.10.alpha.6 - 28th November 2021
+- The 'Enhance minimap' option ('Frames') has a new setting called 'Unlock minimap'.  If enabled, you can hold alt and drag the minimap to move it.  The zone text bar is now always hidden.  Added a new setting to hide the world map button (Season of Mastery only).
 - The 'Show Wowhead links' option ('Interface') now has a configuration panel allowing you to choose whether links should go directly to the comments section.
 - The 'Recent chat window' option ('Chat') will now use the same font and size as the chat window.  Fixed an issue which sometimes caused the recent chat window font size to use a smaller than intended.
 
