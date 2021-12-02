@@ -1,3 +1,6 @@
+1.14.12.alpha.1 - 2nd December 2021
+- If 'Enhance minimap' is enabled, you can toggle the zone text bar once again using a setting in the configuration panel.
+
 1.14.11 - 2nd December 2021
 - To address issues with minimap cluster scaling (which have been present for a long time), the 'Scale entire cluster' setting has been removed.  Also fixed a minor issue causing the minimap toggle button to be visible.
 
