@@ -1,3 +1,6 @@
+1.14.13.alpha.1 - 3rd December 2021
+- Added 'Hide addon buttons' to 'Enhance minimap' ('Interface').  If enabled, addon buttons will be hidden while the pointer is not over the minimap.
+
 1.14.12 - 2nd December 2021
 - If 'Enhance minimap' is enabled, you can toggle the zone text bar once again using a setting in the configuration panel.
 
