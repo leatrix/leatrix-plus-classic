@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.13.alpha.1 (3rd December 2021)
+-- 	Leatrix Plus 1.14.13.alpha.2 (3rd December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.13.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.13.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -162,6 +162,15 @@
 		CfgBtn.tiptext = L["Click to configure the settings for this option."]
 		CfgBtn:SetScript("OnEnter", LeaPlusLC.ShowTooltip)
 		CfgBtn:SetScript("OnLeave", GameTooltip_Hide)
+	end
+
+	-- Show a footer
+	function LeaPlusLC:MakeFT(frame, text, full)
+		local left, width
+		if full then left, width = 16, 510 else left, width = 146, 380 end
+		local footer = LeaPlusLC:MakeTx(frame, text, left, 96)
+		footer:SetWidth(width); footer:SetJustifyH("LEFT"); footer:SetWordWrap(true); footer:ClearAllPoints()
+		if full then footer:SetPoint("BOTTOMLEFT", 16, 96) else footer:SetPoint("BOTTOMLEFT", left, 96) end
 	end
 
 	-- Capitalise first character in a string
@@ -2527,11 +2536,13 @@
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniZoneText", "Hide the zone text bar", 16, -132, false, "If checked, the zone text bar will be hidden.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniMapButton", "Hide the world map button (SoM only)", 16, -152, false, "If checked, the world map button will be hidden.|n|nThis setting only applies to Season of Mastery.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniAddonButtons", "Hide addon buttons", 16, -172, false, "If checked, addon buttons will be hidden while the pointer is not over the minimap.")
-			LeaPlusLC:MakeCB(SideMinimap, "UnlockMinimap", "Unlock the minimap", 16, -192, false, "If checked, you can hold alt and drag the minimap to move it.")
 
 			-- Add slider control
 			LeaPlusLC:MakeTx(SideMinimap, "Scale", 356, -72)
 			LeaPlusLC:MakeSL(SideMinimap, "MinimapScale", "Drag to set the minimap scale.", 1, 2, 0.1, 356, -92, "%.2f")
+
+			-- Show footer
+			LeaPlusLC:MakeFT(SideMinimap, "To move the minimap, hold down the alt key and drag it.", true)
 
 			----------------------------------------------------------------------
 			-- Hide addon buttons
@@ -2630,7 +2641,7 @@
 			-- Drag functions
 			Minimap:SetScript("OnDragStart", function(self, btn)
 				-- Start dragging if left clicked
-				if LeaPlusLC["UnlockMinimap"] == "On" and IsAltKeyDown() and btn == "LeftButton" then
+				if IsAltKeyDown() and btn == "LeftButton" then
 					Minimap:StartMoving()
 				end
 			end)
@@ -2646,7 +2657,6 @@
 
 			-- Reset position when reset button is clicked
 			SideMinimap.r:HookScript("OnClick", function()
-				LeaPlusLC["UnlockMinimap"] = "On"
 				LeaPlusLC["MinimapA"], LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = "TOPRIGHT", "TOPRIGHT", -17, -22
 				Minimap:ClearAllPoints()
 				Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
@@ -8960,7 +8970,6 @@
 				LeaPlusLC:LoadVarChk("HideMiniAddonButtons", "On")			-- Hide addon buttons
 				LeaPlusLC:LoadVarChk("HideMiniMapButton", "On")				-- Hide the world map button
 				LeaPlusLC:LoadVarNum("MinimapScale", 1, 1, 2)				-- Minimap scale slider
-				LeaPlusLC:LoadVarChk("UnlockMinimap", "On")					-- Unlock the minimap
 				LeaPlusLC:LoadVarAnc("MinimapA", "TOPRIGHT")				-- Minimap anchor
 				LeaPlusLC:LoadVarAnc("MinimapR", "TOPRIGHT")				-- Minimap relative
 				LeaPlusLC:LoadVarNum("MinimapX", -17, -5000, 5000)			-- Minimap X
@@ -9176,7 +9185,6 @@
 			LeaPlusDB["HideMiniAddonButtons"]	= LeaPlusLC["HideMiniAddonButtons"]
 			LeaPlusDB["HideMiniMapButton"]		= LeaPlusLC["HideMiniMapButton"]
 			LeaPlusDB["MinimapScale"]			= LeaPlusLC["MinimapScale"]
-			LeaPlusDB["UnlockMinimap"]			= LeaPlusLC["UnlockMinimap"]
 			LeaPlusDB["MinimapA"]				= LeaPlusLC["MinimapA"]
 			LeaPlusDB["MinimapR"]				= LeaPlusLC["MinimapR"]
 			LeaPlusDB["MinimapX"]				= LeaPlusLC["MinimapX"]
@@ -10814,7 +10822,6 @@
 				LeaPlusDB["HideMiniZoneText"] = "On"			-- Hide zone text bar
 				LeaPlusDB["HideMiniMapButton"] = "On"			-- Hide world map button
 				LeaPlusDB["MinimapScale"] = 1.30				-- Minimap scale slider
-				LeaPlusDB["UnlockMinimap"] = "On"				-- Unlock the minimap
 				LeaPlusDB["MinimapA"] = "TOPRIGHT"				-- Minimap anchor
 				LeaPlusDB["MinimapR"] = "TOPRIGHT"				-- Minimap relative
 				LeaPlusDB["MinimapX"] = -17						-- Minimap X
@@ -11140,10 +11147,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AcceptPartyFriends"		, 	"Party from friends"			, 	340, -92, 	false,	"If checked, party invitations from friends will be automatically accepted unless you are queued for a battleground.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "InviteFromWhisper"			,   "Invite from whispers"			,	340, -112,	false,	L["If checked, a group invite will be sent to anyone who whispers you with a set keyword as long as you are ungrouped, group leader or raid assistant and not queued for a battleground.|n|nFriends who message the keyword using Battle.net will not be sent a group invite if they are appearing offline.  They need to either change their online status or use character whispers."] .. "|n|n" .. L["Keyword"] .. ": |cffffffff" .. "dummy" .. "|r")
 
-	local socialFooter = LeaPlusLC:MakeTx(LeaPlusLC[pg], "For all of the social options above, you can treat guild members as friends too.", 146, -262)
-	socialFooter:SetWidth(380); socialFooter:SetJustifyH("LEFT"); socialFooter:SetWordWrap(true)
-	socialFooter:ClearAllPoints(); socialFooter:SetPoint("BOTTOMLEFT", 146, 96)
-
+	LeaPlusLC:MakeFT(LeaPlusLC[pg], "For all of the social options above, you can treat guild members as friends too.", false)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FriendlyGuild"				, 	"Guild"							, 	146, -282, 	false,	"If checked, members of your guild will be treated as friends for all of the options on this page.")
 
 	if LeaPlusCB["FriendlyGuild"].f:GetStringWidth() > 90 then
