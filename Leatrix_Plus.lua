@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.13.alpha.4 (8th December 2021)
+-- 	Leatrix Plus 1.14.13 (8th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.13.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.14.13"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -423,6 +423,8 @@
 
 		-- Interface
 		or	(LeaPlusLC["MinimapMod"]			~= LeaPlusDB["MinimapMod"])				-- Enhance minimap
+		or	(LeaPlusLC["SquareMinimap"]			~= LeaPlusDB["SquareMinimap"])			-- Square minimap
+		or	(LeaPlusLC["CombineAddonButtons"]	~= LeaPlusDB["CombineAddonButtons"])	-- Combine addon buttons
 		or	(LeaPlusLC["TipModEnable"]			~= LeaPlusDB["TipModEnable"])			-- Enhance tooltip
 		or	(LeaPlusLC["EnhanceDressup"]		~= LeaPlusDB["EnhanceDressup"])			-- Enhance dressup
 		or	(LeaPlusLC["EnhanceQuestLog"]		~= LeaPlusDB["EnhanceQuestLog"])		-- Enhance quest log
@@ -2529,6 +2531,18 @@
 
 		if LeaPlusLC["MinimapMod"] == "On" then
 
+			local miniFrame = CreateFrame("FRAME")
+			local LibDBIconStub = LibStub("LibDBIcon-1.0")
+
+			-- Function to set button radius
+			local function SetButtonRad()
+				if LeaPlusLC["SquareMinimap"] == "On" and LeaPlusLC["CombineAddonButtons"] == "Off" then
+					LibDBIconStub:SetButtonRadius(26)
+				else
+					LibDBIconStub:SetButtonRadius(1)
+				end
+			end
+
 			----------------------------------------------------------------------
 			-- Configuration panel
 			----------------------------------------------------------------------
@@ -2550,47 +2564,280 @@
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniZoneText", "Hide the zone text bar", 16, -132, false, "If checked, the zone text bar will be hidden.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniMapButton", "Hide the world map button (SoM only)", 16, -152, false, "If checked, the world map button will be hidden.|n|nThis setting only applies to Season of Mastery.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniAddonButtons", "Hide addon buttons", 16, -172, false, "If checked, addon buttons will be hidden while the pointer is not over the minimap.")
+			LeaPlusLC:MakeCB(SideMinimap, "CombineAddonButtons", "Combine addon buttons", 16, -192, true, "If checked, addon buttons will be combined into a single button frame which you can toggle by right-clicking the minimap.|n|nNote that enabling this option will lock out the 'Hide addon buttons' setting.")
+			LeaPlusLC:MakeCB(SideMinimap, "SquareMinimap", "Square minimap", 16, -212, true, "If checked, the minimap shape will be square.")
 
 			-- Add slider control
 			LeaPlusLC:MakeTx(SideMinimap, "Scale", 356, -72)
-			LeaPlusLC:MakeSL(SideMinimap, "MinimapScale", "Drag to set the minimap scale.", 1, 2, 0.1, 356, -92, "%.2f")
+			LeaPlusLC:MakeSL(SideMinimap, "MinimapScale", "Drag to set the minimap scale.", 1, 4, 0.1, 356, -92, "%.2f")
 
 			-- Show footer
 			LeaPlusLC:MakeFT(SideMinimap, "To move the minimap, hold down the alt key and drag it.", true)
 
 			----------------------------------------------------------------------
+			-- Combine addon buttons
+			----------------------------------------------------------------------
+
+			if LeaPlusLC["CombineAddonButtons"] == "On" then
+
+				-- Lock out hide minimap buttons
+				LeaPlusLC:LockItem(LeaPlusCB["HideMiniAddonButtons"], true)
+
+				-- Create button frame
+				local bFrame = CreateFrame("FRAME", nil, UIParent, "BackdropTemplate")
+				bFrame:ClearAllPoints()
+				bFrame:SetPoint("TOPLEFT", Minimap, "TOPRIGHT", 4, 4)
+				bFrame:Hide()
+				bFrame:SetFrameLevel(8)
+
+				-- Frame border
+				local bFrameBorder = CreateFrame("Frame", nil, bFrame, "BackdropTemplate")    
+				bFrameBorder:SetPoint("TOPLEFT", -3, 3)
+				bFrameBorder:SetPoint("BOTTOMRIGHT", 3, -3)
+				bFrameBorder:SetAlpha(0.8)
+				bFrameBorder:SetBackdrop({
+					edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+					edgeSize = 2.8,
+				})
+
+				local bFrameBg = 1
+				local bFrameBg = bFrame:CreateTexture(nil, "BACKGROUND")
+				bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+				bFrameBg:SetPoint("TOPLEFT", -1, 1)
+				bFrameBg:SetPoint("BOTTOMRIGHT", 1, -1)
+				bFrameBg:SetVertexColor(0, 0, 0, 0.5)
+
+				-- Hide button frame automatically
+				local ButtonFrameTicker
+				bFrame:HookScript("OnShow", function()
+					if ButtonFrameTicker then ButtonFrameTicker:Cancel() end
+					ButtonFrameTicker = C_Timer.NewTicker(2, function()
+						if not bFrame:IsMouseOver() and not Minimap:IsMouseOver() then
+							bFrame:Hide()
+							if ButtonFrameTicker then ButtonFrameTicker:Cancel() end
+						end
+					end, 15)
+				end)
+
+				-- Match scale with minimap
+				if LeaPlusLC["SquareMinimap"] == "On" then
+					bFrame:SetScale(LeaPlusLC["MinimapScale"] * 0.75)
+				else
+					bFrame:SetScale(LeaPlusLC["MinimapScale"])
+				end
+				LeaPlusCB["MinimapScale"]:HookScript("OnValueChanged", function()
+					if LeaPlusLC["SquareMinimap"] == "On" then
+						bFrame:SetScale(LeaPlusLC["MinimapScale"] * 0.75)
+					else
+						bFrame:SetScale(LeaPlusLC["MinimapScale"])
+					end
+				end)
+
+				-- Hide LibDBIcon icons
+				local buttons = LibDBIconStub:GetButtonList()
+				for i = 1, #buttons do
+					local button = LibDBIconStub:GetMinimapButton(buttons[i])
+					button:Hide()
+					button:SetScript("OnShow", function() if not bFrame:IsShown() then button:Hide() end end)
+				end
+
+				LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
+					C_Timer.After(0.1, function()
+						if not button.db.hide then
+							button:Hide()
+							button:SetScript("OnShow", function() if not bFrame:IsShown() then button:Hide() end end)
+						end
+					end)
+				end)
+
+				-- Toggle button frame
+				Minimap:SetScript("OnMouseUp", function(frame, button)
+					if button == "RightButton" then
+						if bFrame:IsShown() then
+							bFrame:Hide() 
+						else bFrame:Show()
+							-- Position button frame
+							local side
+							local m = Minimap:GetCenter()
+							local b = Minimap:GetEffectiveScale()
+							local w = GetScreenWidth()
+							local s = UIParent:GetEffectiveScale()
+							bFrame:ClearAllPoints()
+							if m * b > (w * s / 2) then
+								side = "Right"
+								bFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMLEFT", -10, -0)
+							else
+								side = "Left"
+								bFrame:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMRIGHT", 10, 0)
+							end
+							-- Show button frame
+							local x, y, row, col = 0, 0, 0, 0
+							local buttons = LibDBIconStub:GetButtonList()
+							-- Calculate buttons per row
+							local buttonsPerRow
+							local totalButtons = #buttons
+								if totalButtons > 36 then buttonsPerRow = 10
+							elseif totalButtons > 32 then buttonsPerRow = 9
+							elseif totalButtons > 28 then buttonsPerRow = 8
+							elseif totalButtons > 24 then buttonsPerRow = 7
+							elseif totalButtons > 20 then buttonsPerRow = 6
+							elseif totalButtons > 16 then buttonsPerRow = 5
+							elseif totalButtons > 12 then buttonsPerRow = 4
+							elseif totalButtons > 8 then buttonsPerRow = 3
+							elseif totalButtons > 4 then buttonsPerRow = 2
+							else
+								buttonsPerRow = 1
+							end
+							-- Build button grid
+							for i = 1, totalButtons do
+								local button = LibDBIconStub:GetMinimapButton(buttons[i])
+								if not button.db.hide then
+									button:SetParent(bFrame)
+									button:ClearAllPoints()
+									if side == "Left" then
+										-- Minimap is on left side of screen
+										button:SetPoint("TOPLEFT", bFrame, "TOPLEFT", x, y)
+										col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x + 30 end
+									else
+										-- Minimap is on right side of screen
+										button:SetPoint("TOPRIGHT", bFrame, "TOPRIGHT", x, y)
+										col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x - 30 end
+									end
+									if totalButtons <= buttonsPerRow then
+										bFrame:SetWidth(totalButtons * 30)
+									else
+										bFrame:SetWidth(buttonsPerRow * 30)
+									end
+									local void, void, void, void, e = button:GetPoint()
+									bFrame:SetHeight(0 - e + 30)
+									LibDBIconStub:Show(buttons[i])
+								end
+							end
+						end
+					else
+						Minimap_OnClick(frame, button)
+					end
+				end)
+
+			end
+
+			----------------------------------------------------------------------
+			-- Square minimap
+			----------------------------------------------------------------------
+
+			if LeaPlusLC["SquareMinimap"] == "On" then
+
+				-- Set minimap shape
+				_G.GetMinimapShape = function() return "SQUARE" end
+
+				-- Create black border around map
+				local miniBorder = CreateFrame("Frame", nil, Minimap, "BackdropTemplate")    
+				miniBorder:SetPoint("TOPLEFT", -3, 3)
+				miniBorder:SetPoint("BOTTOMRIGHT", 3, -3)
+				miniBorder:SetAlpha(0.8)
+				miniBorder:SetBackdrop({
+					edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
+					edgeSize = 3,
+				})
+
+				-- Hide the default border
+				MinimapBorder:Hide()
+
+				-- Mask texture
+				Minimap:SetMaskTexture('Interface\\ChatFrame\\ChatFrameBackground')
+
+				-- Hide the North tag
+				hooksecurefunc(MinimapNorthTag, "Show", function()
+					MinimapNorthTag:Hide()
+				end)
+
+				-- Mail button
+				MiniMapMailFrame:SetScale(0.75)
+				miniFrame.ClearAllPoints(MiniMapMailFrame)
+				MiniMapMailFrame:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -19, -43)
+
+				-- World map button
+				MiniMapWorldMapButton:SetScale(0.75)
+				MiniMapWorldMapButton:ClearAllPoints()
+				MiniMapWorldMapButton:SetPoint("TOP", MiniMapMailFrame, "BOTTOM", 3, -7)
+
+				-- Zoom in button
+				MinimapZoomIn:SetScale(0.75)
+				miniFrame.ClearAllPoints(MinimapZoomIn)
+				MinimapZoomIn:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 17, -120)
+
+				-- Zoom out button
+				MinimapZoomOut:SetScale(0.75)
+				miniFrame.ClearAllPoints(MinimapZoomOut)
+				MinimapZoomOut:SetPoint("TOP", MinimapZoomIn, "BOTTOM", 0, 0)
+
+				-- Calendar button
+				miniFrame.SetSize(GameTimeFrame, 32, 32)
+				miniFrame.ClearAllPoints(GameTimeFrame)
+				LibDBIconStub:SetButtonToPosition(GameTimeFrame, 44)
+
+				-- Rescale addon buttons if combine addon buttons is disabled
+				if LeaPlusLC["CombineAddonButtons"] == "Off" then
+					local buttons = LibDBIconStub:GetButtonList()
+					for i = 1, #buttons do
+						local button = LibDBIconStub:GetMinimapButton(buttons[i])
+						button:SetScale(0.75)
+					end
+					LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
+						button:SetScale(0.75)
+					end)
+				end
+
+				-- Refresh buttons
+				SetButtonRad()
+
+			else
+
+				-- Square minimap is disabled so use round shape
+				_G.GetMinimapShape = function() return "ROUND" end
+				Minimap:SetMaskTexture([[Interface\CharacterFrame\TempPortraitAlphaMask]])
+
+			end
+
+			----------------------------------------------------------------------
 			-- Hide addon buttons
 			----------------------------------------------------------------------
 
-			local LibDBIconStub = LibStub("LibDBIcon-1.0")
+			if LeaPlusLC["CombineAddonButtons"] == "Off" then
 
-			local function SetHideButtons()
-				if LeaPlusLC["HideMiniAddonButtons"] == "On" then
-					-- Hide existing buttons
-					local buttons = LibDBIconStub:GetButtonList()
-					for i = 1, #buttons do
-						LibDBIconStub:ShowOnEnter(buttons[i], true)
+				-- Function to set button state
+				local function SetHideButtons()
+					if LeaPlusLC["HideMiniAddonButtons"] == "On" then
+						-- Hide existing buttons
+						local buttons = LibDBIconStub:GetButtonList()
+						for i = 1, #buttons do
+							LibDBIconStub:ShowOnEnter(buttons[i], true)
+						end
+						-- Hide new buttons
+						LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
+							LibDBIconStub:ShowOnEnter(name, true)
+						end)
+					else
+						-- Show existing buttons
+						local buttons = LibDBIconStub:GetButtonList()
+						for i = 1, #buttons do
+							LibDBIconStub:ShowOnEnter(buttons[i], false)
+						end
+						-- Show new buttons
+						LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
+							LibDBIconStub:ShowOnEnter(name, false)
+						end)
 					end
-					-- Hide new buttons
-					LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
-						LibDBIconStub:ShowOnEnter(name, true)
-					end)
-				else
-					-- Hide existing buttons
-					local buttons = LibDBIconStub:GetButtonList()
-					for i = 1, #buttons do
-						LibDBIconStub:ShowOnEnter(buttons[i], false)
-					end
-					-- Hide new buttons
-					LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
-						LibDBIconStub:ShowOnEnter(name, false)
-					end)
 				end
-			end
 
-			-- Set buttons when option is clicked and on startup
-			LeaPlusCB["HideMiniAddonButtons"]:HookScript("OnClick", SetHideButtons)
-			SetHideButtons()
+				-- Assign file level scope (it's used in reset and preset)
+				LeaPlusLC.SetHideButtons = SetHideButtons
+
+				-- Set buttons when option is clicked and on startup
+				LeaPlusCB["HideMiniAddonButtons"]:HookScript("OnClick", SetHideButtons)
+				SetHideButtons()
+
+			end
 
 			----------------------------------------------------------------------
 			-- Hide the world map button (SoM only)
@@ -2621,13 +2868,6 @@
 					end
 				end)
 
-				-- Hook panel reset button
-				SideMinimap.r:HookScript("OnClick", function()
-					LeaPlusLC["HideMiniMapButton"] = "On"
-					SetWorldMapButton()
-					SideMinimap:Hide(); SideMinimap:Show()
-				end)
-
 			end
 
 			----------------------------------------------------------------------
@@ -2642,8 +2882,11 @@
 			Minimap:SetUserPlaced(true)
 			Minimap:SetDontSavePosition(true)
 			Minimap:SetClampedToScreen(true)
-			Minimap:SetClampRectInsets(-2, 0, 2, -2)
-
+			if LeaPlusLC["SquareMinimap"] == "On" then
+				Minimap:SetClampRectInsets(-3, 3, 3, -3)
+			else
+				Minimap:SetClampRectInsets(-2, 0, 2, -2)
+			end
 			MinimapBackdrop:ClearAllPoints()
 			MinimapBackdrop:SetPoint("TOP", Minimap, "TOP", -9, 2)
 			Minimap:RegisterForDrag("LeftButton")
@@ -2665,13 +2908,6 @@
 				Minimap:StopMovingOrSizing()
 				LeaPlusLC["MinimapA"], void, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = Minimap:GetPoint()
 				Minimap:SetMovable(true)
-				Minimap:ClearAllPoints()
-				Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
-			end)
-
-			-- Reset position when reset button is clicked
-			SideMinimap.r:HookScript("OnClick", function()
-				LeaPlusLC["MinimapA"], LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = "TOPRIGHT", "TOPRIGHT", -17, -22
 				Minimap:ClearAllPoints()
 				Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
 			end)
@@ -2711,6 +2947,12 @@
 					MinimapBorderTop:Show()
 					MinimapZoneTextButton:Show()
 					MinimapToggleButton:Show()
+					if LeaPlusDB["SquareMinimap"] == "On" then
+						MinimapBorderTop:Hide()
+						MinimapZoneTextButton:ClearAllPoints()
+						MinimapZoneTextButton:SetPoint("TOP", Minimap, "TOP", 0, 0)
+						MinimapToggleButton:Hide()
+					end
 				end
 			end
 
@@ -2745,8 +2987,20 @@
 			----------------------------------------------------------------------
 
 			-- Function to show or hide the clock
-			local function SetMiniClock()
+			local function SetMiniClock(firstRun)
 				if IsAddOnLoaded("Blizzard_TimeManager") then
+					if LeaPlusLC["SquareMinimap"] == "On" and firstRun == true then
+						local regions = {TimeManagerClockButton:GetRegions()}
+						regions[1]:Hide()
+						TimeManagerClockButton:ClearAllPoints()
+						TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -18, -8)
+						TimeManagerClockButton:SetHitRectInsets(18, 10, 5, 8)
+						local timeBG = TimeManagerClockButton:CreateTexture(nil, "BACKGROUND")
+						timeBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+						timeBG:SetPoint("TOPLEFT", 18, -5)
+						timeBG:SetPoint("BOTTOMRIGHT", -10, 8)
+						timeBG:SetVertexColor(0, 0, 0, 0.6)
+					end
 					if LeaPlusLC["HideMiniClock"] == "On" then
 						TimeManagerClockButton:Hide()
 					else
@@ -2757,13 +3011,13 @@
 
 			-- Run function when Blizzard addon is loaded
 			if IsAddOnLoaded("Blizzard_TimeManager") then
-				SetMiniClock()
+				SetMiniClock(true)
 			else
 				local waitFrame = CreateFrame("FRAME")
 				waitFrame:RegisterEvent("ADDON_LOADED")
 				waitFrame:SetScript("OnEvent", function(self, event, arg1)
 					if arg1 == "Blizzard_TimeManager" then
-						SetMiniClock()
+						SetMiniClock(true)
 						waitFrame:UnregisterAllEvents()
 					end
 				end)
@@ -2832,11 +3086,21 @@
 				LeaPlusLC["HideMiniZoomBtns"] = "Off"; ToggleZoomButtons()
 				LeaPlusLC["HideMiniClock"] = "Off"; SetMiniClock()
 				LeaPlusLC["HideMiniZoneText"] = "Off"; SetZoneTextBar()
-				LeaPlusLC["HideMiniAddonButtons"] = "On"; SetHideButtons()
+				LeaPlusLC["HideMiniAddonButtons"] = "On"; if LeaPlusLC.SetHideButtons then LeaPlusLC.SetHideButtons() end
+				LeaPlusLC["SquareMinimap"] = "Off"
+				LeaPlusLC["CombineAddonButtons"] = "Off"
 				LeaPlusLC["MinimapScale"] = 1
 				Minimap:SetScale(1)
 				SetMiniScale()
+				-- Reset map position
+				LeaPlusLC["MinimapA"], LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = "TOPRIGHT", "TOPRIGHT", -17, -22
+				Minimap:ClearAllPoints()
+				Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
+				-- Hide world map button (SoM only)
+				LeaPlusLC["HideMiniMapButton"] = "On"; if LeaPlusLC.SetWorldMapButton then LeaPlusLC.SetWorldMapButton() end
+				-- Refresh panel
 				SideMinimap:Hide(); SideMinimap:Show()
+				LeaPlusLC:ReloadCheck() -- Special reload check
 			end)
 
 			-- Configuration button handler
@@ -2849,18 +3113,20 @@
 						LeaPlusLC["HideMiniZoomBtns"] = "Off"; ToggleZoomButtons()
 						LeaPlusLC["HideMiniClock"] = "Off"; SetMiniClock()
 						LeaPlusLC["HideMiniZoneText"] = "On"; SetZoneTextBar()
-						LeaPlusLC["HideMiniAddonButtons"] = "On"; SetHideButtons()
+						LeaPlusLC["HideMiniAddonButtons"] = "On"; if LeaPlusLC.SetHideButtons then LeaPlusLC.SetHideButtons() end
+						LeaPlusLC["SquareMinimap"] = "On"
+						LeaPlusLC["CombineAddonButtons"] = "On"
 						LeaPlusLC["MinimapScale"] = 1.30
 						Minimap:SetScale(1)
 						SetMiniScale()
 						-- Hide world map button (SoM only)
-						LeaPlusLC["HideMiniMapButton"] = "On"
-						if LeaPlusLC.SetWorldMapButton then LeaPlusLC.SetWorldMapButton() end
+						LeaPlusLC["HideMiniMapButton"] = "On"; if LeaPlusLC.SetWorldMapButton then LeaPlusLC.SetWorldMapButton() end
 						-- Map position
 						LeaPlusLC["MinimapA"], LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"] = "TOPRIGHT", "TOPRIGHT", -17, -2
 						Minimap:SetMovable(true)
 						Minimap:ClearAllPoints()
 						Minimap:SetPoint(LeaPlusLC["MinimapA"], UIParent, LeaPlusLC["MinimapR"], LeaPlusLC["MinimapX"], LeaPlusLC["MinimapY"])
+						LeaPlusLC:ReloadCheck() -- Special reload check
 					else
 						-- Show configuration panel
 						SideMinimap:Show()
@@ -8978,12 +9244,14 @@
 
 				-- Interface
 				LeaPlusLC:LoadVarChk("MinimapMod", "Off")					-- Enhance minimap
+				LeaPlusLC:LoadVarChk("SquareMinimap", "Off")				-- Square minimap
+				LeaPlusLC:LoadVarChk("CombineAddonButtons", "Off")			-- Combine addon buttons
 				LeaPlusLC:LoadVarChk("HideMiniZoomBtns", "Off")				-- Hide zoom buttons
 				LeaPlusLC:LoadVarChk("HideMiniClock", "Off")				-- Hide the clock
 				LeaPlusLC:LoadVarChk("HideMiniZoneText", "Off")				-- Hide the zone text bar
 				LeaPlusLC:LoadVarChk("HideMiniAddonButtons", "On")			-- Hide addon buttons
 				LeaPlusLC:LoadVarChk("HideMiniMapButton", "On")				-- Hide the world map button
-				LeaPlusLC:LoadVarNum("MinimapScale", 1, 1, 2)				-- Minimap scale slider
+				LeaPlusLC:LoadVarNum("MinimapScale", 1, 1, 4)				-- Minimap scale slider
 				LeaPlusLC:LoadVarAnc("MinimapA", "TOPRIGHT")				-- Minimap anchor
 				LeaPlusLC:LoadVarAnc("MinimapR", "TOPRIGHT")				-- Minimap relative
 				LeaPlusLC:LoadVarNum("MinimapX", -17, -5000, 5000)			-- Minimap X
@@ -9193,6 +9461,8 @@
 
 			-- Interface
 			LeaPlusDB["MinimapMod"]				= LeaPlusLC["MinimapMod"]
+			LeaPlusDB["SquareMinimap"]			= LeaPlusLC["SquareMinimap"]
+			LeaPlusDB["CombineAddonButtons"]	= LeaPlusLC["CombineAddonButtons"]
 			LeaPlusDB["HideMiniZoomBtns"]		= LeaPlusLC["HideMiniZoomBtns"]
 			LeaPlusDB["HideMiniClock"]			= LeaPlusLC["HideMiniClock"]
 			LeaPlusDB["HideMiniZoneText"]		= LeaPlusLC["HideMiniZoneText"]
@@ -9380,6 +9650,13 @@
 		----------------------------------------------------------------------
 		-- Restore default values for options that require reloads
 		----------------------------------------------------------------------
+
+		-- Enhance minimap restore round minimap if wipe or enhance minimap is toggled off
+		if LeaPlusDB["MinimapMod"] == "On" and LeaPlusDB["SquareMinimap"] == "On" then
+			if wipe or (not wipe and LeaPlusLC["MinimapMod"] == "Off") then
+				Minimap:SetMaskTexture([[Interface\CharacterFrame\TempPortraitAlphaMask]])
+			end
+		end
 
 		-- Silence rested emotes
 		if LeaPlusDB["NoRestedEmotes"] == "On" then
@@ -10833,6 +11110,8 @@
 
 				-- Interface
 				LeaPlusDB["MinimapMod"] = "On"					-- Enhance minimap
+				LeaPlusDB["SquareMinimap"] = "On"				-- Square minimap
+				LeaPlusDB["CombineAddonButtons"] = "On"			-- Combine addon buttons
 				LeaPlusDB["HideMiniZoneText"] = "On"			-- Hide zone text bar
 				LeaPlusDB["HideMiniMapButton"] = "On"			-- Hide world map button
 				LeaPlusDB["MinimapScale"] = 1.30				-- Minimap scale slider
