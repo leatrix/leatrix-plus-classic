@@ -1,3 +1,6 @@
+1.14.14.alpha.1 - 9th December 2021
+- Fixed a few default UI minimap buttons for 'Enhance minima' ('Interface') when using the square minimap.
+
 1.14.13 - 8th December 2021
 - Added some new settings to 'Enhance minimap' ('Interface').  'Square minimap' changes the minimap shape to a square.  'Hide addon buttons' hides addon buttons automatically while the pointer is not over the minimap.  'Combine addon buttons' combines all addon buttons into a single frame which you can toggle by right-clicking the minimap (cannot be used with 'Hide addon buttons').  You can always drag the minimap now while holding the alt key so the 'Unlock map frame' setting has been removed.  The maximum minimap scale is now 400% (was 200%).
 - If 'Automate gossip' ('Automation') is enabled, battlemaster gossip will now be automatically selected and the battleground name will be shown at the top of the battlefield instance window.
