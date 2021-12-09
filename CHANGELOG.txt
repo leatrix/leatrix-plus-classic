@@ -1,4 +1,4 @@
-1.14.14.alpha.1 - 9th December 2021
+1.14.14.alpha.2 - 9th December 2021
 - Fixed a few default UI minimap buttons for 'Enhance minima' ('Interface') when using the square minimap.
 
 1.14.13 - 8th December 2021

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.14.alpha.1 (9th December 2021)
+-- 	Leatrix Plus 1.14.14.alpha.2 (9th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.14.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.14.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2768,10 +2768,15 @@
 				miniFrame.ClearAllPoints(MiniMapBattlefieldFrame)
 				MiniMapBattlefieldFrame:SetPoint("TOP", MiniMapMailFrame, "BOTTOM", 0, 0)
 
+				-- Looking For Group button
+				MiniMapLFGFrame:SetScale(0.75)
+				MiniMapLFGFrame:ClearAllPoints()
+				MiniMapLFGFrame:SetPoint("TOP", MiniMapBattlefieldFrame, "BOTTOM", 0, 0)
+
 				-- World map button
 				MiniMapWorldMapButton:SetScale(0.75)
 				MiniMapWorldMapButton:ClearAllPoints()
-				MiniMapWorldMapButton:SetPoint("TOP", MiniMapBattlefieldFrame, "BOTTOM", 0, 0)
+				MiniMapWorldMapButton:SetPoint("BOTTOM", MinimapZoomIn, "TOP", 0, 0)
 
 				-- Zoom in button
 				MinimapZoomIn:SetScale(0.75)
@@ -2789,13 +2794,15 @@
 				LibDBIconStub:SetButtonToPosition(GameTimeFrame, 44)
 
 				-- Debug buttons (should be commented out)
-				LeaPlusMiniMapDebug = nil
+				LeaPlusMiniMapDebug = false
 				if LeaPlusMiniMapDebug then
 					C_Timer.After(1, function()
 						MiniMapMailFrame:Show()
 						MiniMapBattlefieldFrame:Show()
 						MiniMapWorldMapButton:Show()
 						GameTimeFrame:Show()
+						MiniMapLFGFrame:Show()
+						MiniMapTrackingFrame:Show()
 					end)
 				end
 
