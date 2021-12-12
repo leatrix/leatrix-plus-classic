@@ -1,5 +1,5 @@
 1.14.15.alpha.1 - 11th December 2021
-- Maintenance update.
+- For 'Enhance minimap' ('Interface'), added square minimap buttons for ZPerl and BankItems.
 
 1.14.14 - 9th December 2021
 - Fixed a few default UI minimap buttons for 'Enhance minima' ('Interface') when using the square minimap.
