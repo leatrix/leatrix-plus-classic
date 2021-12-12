@@ -1,5 +1,6 @@
-1.14.15.alpha.1 - 11th December 2021
-- For 'Enhance minimap' ('Interface'), added square minimap buttons for ZPerl and BankItems.
+1.14.15.alpha.3 - 12th December 2021
+- Added a new slider setting to 'Enhance minimap' ('Interface') called 'Square size' which allows you to adjust the square minimap size (up to 400%).  While the scale slider makes the minimap and all the elements bigger, the size slider makes the minimap bigger but keeps all the elements the same size.  If you are using the square minimap, you can use either the scale slider or the size slider or a combination of the two.  The configuration panel reset button will not reset settings that require a UI reload.  Added square minimap buttons for ZPerl and BankItems.
+- Updated the tooltip for 'Manage frames' ('Frames').
 
 1.14.14 - 9th December 2021
 - Fixed a few default UI minimap buttons for 'Enhance minima' ('Interface') when using the square minimap.
