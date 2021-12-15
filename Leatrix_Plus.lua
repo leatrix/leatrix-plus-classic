@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.15.alpha.5 (13th December 2021)
+-- 	Leatrix Plus 1.14.15.alpha.6 (15th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.15.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.14.15.alpha.6"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -165,12 +165,10 @@
 	end
 
 	-- Show a footer
-	function LeaPlusLC:MakeFT(frame, text, full)
-		local left, width
-		if full then left, width = 16, 510 else left, width = 146, 380 end
+	function LeaPlusLC:MakeFT(frame, text, left, width)
 		local footer = LeaPlusLC:MakeTx(frame, text, left, 96)
 		footer:SetWidth(width); footer:SetJustifyH("LEFT"); footer:SetWordWrap(true); footer:ClearAllPoints()
-		if full then footer:SetPoint("BOTTOMLEFT", 16, 96) else footer:SetPoint("BOTTOMLEFT", left, 96) end
+		footer:SetPoint("BOTTOMLEFT", left, 96)
 	end
 
 	-- Capitalise first character in a string
@@ -2581,7 +2579,7 @@
 			LeaPlusLC:MakeSL(SideMinimap, "MinimapSize", "Drag to set the square minimap size.|n|nAdjusting this slider makes the minimap bigger but keeps the elements the same size.", 140, 560, 1, 356, -152, "%.0f")
 
 			-- Show footer
-			LeaPlusLC:MakeFT(SideMinimap, "To move the minimap, hold down the alt key and drag it.", true)
+			LeaPlusLC:MakeFT(SideMinimap, "To move the minimap, hold down the alt key and drag it.", 356, 180)
 
 			----------------------------------------------------------------------
 			-- Minimap size
@@ -11662,7 +11660,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AcceptPartyFriends"		, 	"Party from friends"			, 	340, -92, 	false,	"If checked, party invitations from friends will be automatically accepted unless you are queued for a battleground.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "InviteFromWhisper"			,   "Invite from whispers"			,	340, -112,	false,	L["If checked, a group invite will be sent to anyone who whispers you with a set keyword as long as you are ungrouped, group leader or raid assistant and not queued for a battleground.|n|nFriends who message the keyword using Battle.net will not be sent a group invite if they are appearing offline.  They need to either change their online status or use character whispers."] .. "|n|n" .. L["Keyword"] .. ": |cffffffff" .. "dummy" .. "|r")
 
-	LeaPlusLC:MakeFT(LeaPlusLC[pg], "For all of the social options above, you can treat guild members as friends too.", false)
+	LeaPlusLC:MakeFT(LeaPlusLC[pg], "For all of the social options above, you can treat guild members as friends too.", 146, 380)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FriendlyGuild"				, 	"Guild"							, 	146, -282, 	false,	"If checked, members of your guild will be treated as friends for all of the options on this page.")
 
 	if LeaPlusCB["FriendlyGuild"].f:GetStringWidth() > 90 then
