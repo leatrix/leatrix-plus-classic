@@ -1,8 +1,5 @@
-1.14.17 - 17th December 2021
-- Another fix for 'Replace non-standard buttons'.
-
-1.14.16 - 16th December 2021
-- Fixed an issue with 'Questie' addon and 'Replace non-standard buttons' for 'Enhance minimap' ('Interface').
+1.14.18 - 18th December 2021
+- Fixed a situational issue with 'Replace non-standard buttons' for 'Enhance minimap' ('Interface') creating unintended minimap buttons.
 
 1.14.15 - 16th December 2021
 - Added a new option 'Filter chat messages' ('Chat').  If enabled, you can block drunken spam (if it doesn't apply to your character) and duel victory and retreat spam (if you didn't take part in the duel).
