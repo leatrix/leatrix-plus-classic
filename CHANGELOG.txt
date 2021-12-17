@@ -1,5 +1,5 @@
-1.14.19.alpha.1 - 17 December 2021
-- Maintenance update.
+1.14.19.alpha.2 - 17 December 2021
+- If 'Combine addon buttons' ('Enhance minimap)' is enabled, addon button tooltips will now be shown under the minimap so as not to clutter the button frame.
 
 1.14.18 - 17th December 2021
 - Fixed a situational issue with 'Replace non-standard buttons' for 'Enhance minimap' ('Interface') creating unintended minimap buttons.
