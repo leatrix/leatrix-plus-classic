@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.19.alpha.5 (18th December 2021)
+-- 	Leatrix Plus 1.14.19 (18th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.19.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.14.19"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2950,6 +2950,8 @@
 							end
 						end
 					end
+
+					if not finalTex then finalTex = "Interface\\HELPFRAME\\HelpIcon-KnowledgeBase" end
 
 					local zeroButton = LibStub("LibDataBroker-1.1"):NewDataObject("LeaPlusCustomIcon_" .. name, {
 						type = "data source",
