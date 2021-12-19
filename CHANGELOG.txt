@@ -1,3 +1,6 @@
+1.14.20.alpha.1 - 19th December 2021
+- If 'Combine addon buttons' ('Enhance minimap)' is enabled, addon button tooltips will no longer show together with game tooltips.
+
 1.14.19 - 18 December 2021
 - If 'Combine addon buttons' ('Enhance minimap)' is enabled, addon button tooltips will now be shown under the minimap so as not to clutter the button frame.  This should work with most addon buttons.  Fixed a potential issue with addons using non-standard buttons that may have been caused Leatrix Plus not to load correctly.
 
