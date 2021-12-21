@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.20.alpha.5 (20th December 2021)
+-- 	Leatrix Plus 1.14.20.alpha.6 (21st December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.20.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.14.20.alpha.6"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3032,7 +3032,7 @@
 
 				-- Run the function a few times on startup
 				C_Timer.NewTicker(2, MakeButtons, 3)
-				MakeButtons()
+				C_Timer.After(0.1, MakeButtons)
 
 			end
 

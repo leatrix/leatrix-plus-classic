@@ -1,4 +1,4 @@
-1.14.20.alpha.5 - 20th December 2021
+1.14.20.alpha.6 - 21st December 2021
 - If 'Combine addon buttons' ('Enhance minimap)' is enabled, addon button tooltips will no longer show together with game tooltips.  Non-standard buttons are now always replaced with LibDBIcon buttons so the 'Replace non-standard buttons' setting has been removed.  You can now set the cluster scale again (note that adjusting the cluster scale has side effects so read the setting tooltip).  Method Raid Tools now has a standard LibDBIcon.  If you come across any addons that aren't given a standard icon, please let me know.
 
 1.14.19 - 18 December 2021
