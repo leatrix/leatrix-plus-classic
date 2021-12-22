@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.20.alpha.9 (21st December 2021)
+-- 	Leatrix Plus 1.14.20 (22nd December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.20.alpha.9"
+	LeaPlusLC["AddonVer"] = "1.14.20"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3005,7 +3005,7 @@
 							tooltip:AddLine(name)
 							tooltip:AddLine(L["This is a custom button."], 1, 1, 1)
 							tooltip:AddLine(L["Please ask the addon author to use LibDBIcon."], 1, 1, 1)
-							tooltip:AddLine(L["leatrix.com/icons"])
+							tooltip:AddLine(L["There is a helpful guide on leatrix.com."], 1, 1, 1)
 						end,
 					})
 					LeaPlusDB["CustomAddonButtons"][name] = LeaPlusDB["CustomAddonButtons"][name] or {}
