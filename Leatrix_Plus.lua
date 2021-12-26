@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.1 (25th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.2 (26th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -459,6 +459,7 @@
 		or	(LeaPlusLC["ShowPlayerChain"]		~= LeaPlusDB["ShowPlayerChain"])		-- Show player chain
 		or	(LeaPlusLC["ShowDruidPowerBar"]		~= LeaPlusDB["ShowDruidPowerBar"])		-- Show druid power bar
 		or	(LeaPlusLC["ShowWowheadLinks"]		~= LeaPlusDB["ShowWowheadLinks"])		-- Show Wowhead links
+		or	(LeaPlusLC["ShowFlightTimes"]		~= LeaPlusDB["ShowFlightTimes"])		-- Show flight times
 
 		-- Frames
 		or	(LeaPlusLC["FrmEnabled"]			~= LeaPlusDB["FrmEnabled"])				-- Manage frames
@@ -2541,6 +2542,104 @@
 ----------------------------------------------------------------------
 
 	function LeaPlusLC:Player()
+
+		----------------------------------------------------------------------
+		-- Show flight times
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["ShowFlightTimes"] == "On" then
+
+			-- Load library
+			Leatrix_Plus:LeaPlusCandyBar()
+
+			-- Variables
+			local faction, data = UnitFactionGroup("player"), Leatrix_Plus["FlightData"]
+			local currentNode
+
+			-- Function to get node name
+			local function GetNodeName(i)
+				return strmatch(TaxiNodeName(i), "[^,]+")
+			end
+
+			-- Event frame
+			local tFrame = CreateFrame("FRAME")
+			tFrame:RegisterEvent("TAXIMAP_OPENED")
+			tFrame:SetScript("OnEvent", function()
+				for i = 1, NumTaxiNodes() do
+					local nodeType = TaxiNodeGetType(i)
+					local nodeName = GetNodeName(i)
+					if nodeType == "CURRENT" then
+						currentNode = L[nodeName]
+					end
+				end
+			end)
+
+			-- Show progress bar when flight is taken
+			hooksecurefunc("TakeTaxiNode", function(node)
+
+				-- Create progress bar
+				local candy = LibStub("LibCandyBar-3.0")
+				local texture = "Interface\\TargetingFrame\\UI-StatusBar"
+				local mybar = candy:New(texture, 100, 16)
+				mybar:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+				mybar:SetScale(2)
+				mybar:SetWidth(300)
+
+				if faction == "Alliance" then
+					-- Alliance color blue
+					mybar:SetColor(0, 0.5, 1, 1)
+				else
+					-- Horde color red
+					mybar:SetColor(1, 0.5, 0, 1)
+				end
+
+				mybar:SetShadowColor(0, 0, 0, 1)
+				mybar:EnableMouse()
+				mybar:SetScript("OnMouseDown", function(self, btn)
+					if btn == "RightButton" then
+						mybar:Stop()
+					end
+				end)
+
+				-- Assign file level scope to the bar so it can be cancelled later
+				LeaPlusLC.FlightProgressBar = mybar
+
+				-- Get flight duration and start the progress timer
+				local destination = L[GetNodeName(node)]
+				if destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
+					local duration = data[faction][currentNode][destination]
+					if duration then
+						mybar:SetLabel(destination)
+						mybar:SetDuration(duration)
+						mybar:Start()
+					end
+				end
+
+				mybar:SetScript("OnEnter", function()
+					mybar:SetLabel(L["Right-click to close"])
+				end)
+
+				mybar:SetScript("OnLeave", function()
+					if destination then
+						mybar:SetLabel(destination)
+					end
+				end)
+
+			end)
+
+			-- Function to stop the progress bar
+			local function CeaseProgress()
+				if LeaPlusLC.FlightProgressBar then
+					LeaPlusLC.FlightProgressBar:Stop()
+				end
+			end
+
+			-- Stop the progress bar under various circumstances
+			hooksecurefunc("TaxiRequestEarlyLanding", CeaseProgress)
+			hooksecurefunc("AcceptBattlefieldPort", CeaseProgress) 
+			hooksecurefunc(C_SummonInfo, "ConfirmSummon", CeaseProgress)
+
+		end
 
 		----------------------------------------------------------------------
 		-- Minimap customisation
@@ -9661,6 +9760,7 @@
 				LeaPlusLC:LoadVarChk("ShowDruidPowerBar", "Off")			-- Show druid power bar
 				LeaPlusLC:LoadVarChk("ShowWowheadLinks", "Off")				-- Show Wowhead links
 				LeaPlusLC:LoadVarChk("WowheadLinkComments", "Off")			-- Show Wowhead links to comments
+				LeaPlusLC:LoadVarChk("ShowFlightTimes", "Off")				-- Show flight times
 
 				-- Frames
 				LeaPlusLC:LoadVarChk("FrmEnabled", "Off")					-- Manage frames
@@ -9885,6 +9985,7 @@
 			LeaPlusDB["ShowDruidPowerBar"]		= LeaPlusLC["ShowDruidPowerBar"]
 			LeaPlusDB["ShowWowheadLinks"]		= LeaPlusLC["ShowWowheadLinks"]
 			LeaPlusDB["WowheadLinkComments"]	= LeaPlusLC["WowheadLinkComments"]
+			LeaPlusDB["ShowFlightTimes"]		= LeaPlusLC["ShowFlightTimes"]
 
 			-- Frames
 			LeaPlusDB["FrmEnabled"]				= LeaPlusLC["FrmEnabled"]
@@ -11581,6 +11682,7 @@
 				LeaPlusDB["ShowDruidPowerBar"] = "On"			-- Show druid power bar
 				LeaPlusDB["ShowWowheadLinks"] = "On"			-- Show Wowhead links
 				LeaPlusDB["WowheadLinkComments"] = "On"			-- Show Wowhead links to comments
+				LeaPlusDB["ShowFlightTimes"] = "On"				-- Show flight times
 
 				-- Interface: Manage frames
 				LeaPlusDB["FrmEnabled"] = "On"
@@ -11961,6 +12063,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowPlayerChain"			, 	"Show player chain"				,	340, -212, 	true,	"If checked, you will be able to show a rare, elite or rare elite chain around the player frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowDruidPowerBar"			, 	"Show druid power bar"			,	340, -232, 	true,	"If checked, a power bar will be shown in the player frame when you are playing a shapeshifted druid.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowWowheadLinks"			, 	"Show Wowhead links"			, 	340, -252, 	true,	"If checked, Wowhead links will be shown above the quest log frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -272, 	true,	"If checked, a flight time progress bar will be shown when you take a flight.|n|nNote that for non-English locales, the progress bar will only show if the start and destination flight point names have been translated.")
 
 	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapMod"])
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
