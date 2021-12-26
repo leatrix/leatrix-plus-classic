@@ -1,4 +1,4 @@
-1.14.21.alpha.3 - 26th December 2021
+1.14.21.alpha.4 - 26th December 2021
 - Added a new setting 'Show flight times' ('Interface').  If enabled, a flight time progress bar will be shown when you take a flight.  Note that for non-English locales, the progress bar will only show if the start and destination flight point names have been translated.
 
 1.14.20 - 22nd December 2021

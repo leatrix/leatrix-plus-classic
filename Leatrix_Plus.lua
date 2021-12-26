@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.3 (26th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.4 (26th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2556,74 +2556,66 @@
 			local faction, data = UnitFactionGroup("player"), Leatrix_Plus["FlightData"]
 			local candy = LibStub("LibCandyBar-3.0")
 			local texture = "Interface\\TargetingFrame\\UI-StatusBar"
-			local currentNode
 
 			-- Function to get node name
 			local function GetNodeName(i)
 				return strmatch(TaxiNodeName(i), "[^,]+")
 			end
 
-			-- Event frame
-			local tFrame = CreateFrame("FRAME")
-			tFrame:RegisterEvent("TAXIMAP_OPENED")
-			tFrame:SetScript("OnEvent", function()
+			-- Show progress bar when flight is taken
+			hooksecurefunc("TakeTaxiNode", function(node)
 				for i = 1, NumTaxiNodes() do
 					local nodeType = TaxiNodeGetType(i)
 					local nodeName = GetNodeName(i)
 					if nodeType == "CURRENT" then
-						currentNode = L[nodeName]
+
+						-- Get current node
+						local currentNode = L[nodeName]
+
+						-- Create progress bar
+						local mybar = candy:New(texture, 230, 16)
+						mybar:SetPoint("TOP", UIParent, "TOP", 0, -66)
+						mybar:SetScale(2)
+						if faction == "Alliance" then
+							mybar:SetColor(0, 0.5, 1, 0.5)
+						else
+							mybar:SetColor(1, 0.5, 0, 0.5)
+						end
+						mybar:SetShadowColor(0, 0, 0, 0.5)
+						mybar:EnableMouse()
+						mybar:SetScript("OnMouseDown", function(self, btn)
+							if btn == "RightButton" then
+								mybar:Stop()
+								LeaPlusLC.FlightProgressBar = nil
+							end
+						end)
+
+						-- Assign file level scope to the bar so it can be cancelled later
+						LeaPlusLC.FlightProgressBar = mybar
+
+						-- Get flight duration and start the progress timer
+						local destination = L[GetNodeName(node)]
+						if destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
+							local duration = data[faction][currentNode][destination]
+							if duration then
+								mybar:SetLabel(destination)
+								mybar:SetDuration(duration)
+								mybar:Start()
+							end
+						end
+
+						mybar:SetScript("OnEnter", function()
+							mybar:SetLabel(L["Right-click to close"])
+						end)
+
+						mybar:SetScript("OnLeave", function()
+							if destination then
+								mybar:SetLabel(destination)
+							end
+						end)
+
 					end
 				end
-			end)
-
-			-- Show progress bar when flight is taken
-			hooksecurefunc("TakeTaxiNode", function(node)
-
-				-- Create progress bar
-				local mybar = candy:New(texture, 230, 16)
-				mybar:SetPoint("TOP", UIParent, "TOP", 0, -66)
-				mybar:SetScale(2)
-
-				if faction == "Alliance" then
-					-- Alliance color blue
-					mybar:SetColor(0, 0.5, 1, 0.5)
-				else
-					-- Horde color red
-					mybar:SetColor(1, 0.5, 0, 0.5)
-				end
-
-				mybar:SetShadowColor(0, 0, 0, 0.5)
-				mybar:EnableMouse()
-				mybar:SetScript("OnMouseDown", function(self, btn)
-					if btn == "RightButton" then
-						mybar:Stop()
-					end
-				end)
-
-				-- Assign file level scope to the bar so it can be cancelled later
-				LeaPlusLC.FlightProgressBar = mybar
-
-				-- Get flight duration and start the progress timer
-				local destination = L[GetNodeName(node)]
-				if destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
-					local duration = data[faction][currentNode][destination]
-					if duration then
-						mybar:SetLabel(destination)
-						mybar:SetDuration(duration)
-						mybar:Start()
-					end
-				end
-
-				mybar:SetScript("OnEnter", function()
-					mybar:SetLabel(L["Right-click to close"])
-				end)
-
-				mybar:SetScript("OnLeave", function()
-					if destination then
-						mybar:SetLabel(destination)
-					end
-				end)
-
 			end)
 
 			-- Function to stop the progress bar
