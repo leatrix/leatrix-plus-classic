@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.2 (26th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.3 (26th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2554,6 +2554,8 @@
 
 			-- Variables
 			local faction, data = UnitFactionGroup("player"), Leatrix_Plus["FlightData"]
+			local candy = LibStub("LibCandyBar-3.0")
+			local texture = "Interface\\TargetingFrame\\UI-StatusBar"
 			local currentNode
 
 			-- Function to get node name
@@ -2578,22 +2580,19 @@
 			hooksecurefunc("TakeTaxiNode", function(node)
 
 				-- Create progress bar
-				local candy = LibStub("LibCandyBar-3.0")
-				local texture = "Interface\\TargetingFrame\\UI-StatusBar"
-				local mybar = candy:New(texture, 100, 16)
-				mybar:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+				local mybar = candy:New(texture, 230, 16)
+				mybar:SetPoint("TOP", UIParent, "TOP", 0, -66)
 				mybar:SetScale(2)
-				mybar:SetWidth(300)
 
 				if faction == "Alliance" then
 					-- Alliance color blue
-					mybar:SetColor(0, 0.5, 1, 1)
+					mybar:SetColor(0, 0.5, 1, 0.5)
 				else
 					-- Horde color red
-					mybar:SetColor(1, 0.5, 0, 1)
+					mybar:SetColor(1, 0.5, 0, 0.5)
 				end
 
-				mybar:SetShadowColor(0, 0, 0, 1)
+				mybar:SetShadowColor(0, 0, 0, 0.5)
 				mybar:EnableMouse()
 				mybar:SetScript("OnMouseDown", function(self, btn)
 					if btn == "RightButton" then
@@ -2631,6 +2630,7 @@
 			local function CeaseProgress()
 				if LeaPlusLC.FlightProgressBar then
 					LeaPlusLC.FlightProgressBar:Stop()
+					LeaPlusLC.FlightProgressBar = nil
 				end
 			end
 
