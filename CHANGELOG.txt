@@ -1,4 +1,4 @@
-1.14.21.alpha.7 - 27th December 2021
+1.14.21.alpha.8 - 27th December 2021
 - Added a new setting 'Show flight times' ('Interface').  If enabled, a flight time progress bar will be shown when you take a flight.  Not all flights are included (yet) - see the 'flight' command below if you want to help.  Note that for non-English locales, the progress bar will only show if the start and destination flight point names have been translated.
 - Added a new command '/ltp flight'.  Once entered, all flights will be timed and you will see the total taken time after you land.  Used for getting times of unknown flights so they can be added to LTP.
 
