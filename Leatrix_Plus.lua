@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.6 (27th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.7 (27th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.6"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.7"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -11581,10 +11581,10 @@
 			elseif str == "flight" then
 				-- Show flight time after landing
 				if LeaPlusLC.FlightDebugActivated then
-					LeaPlusLC:Print("Flight tracking is already active.  Reload your UI to stop it.")
+					LeaPlusLC:Print("Flight tracking is already active.  Reload your UI to stop flight tracking.")
 				else
 					LeaPlusLC.FlightDebugActivated = true
-					LeaPlusLC:Print("Flight tracking activated.  Take a flight.  The time taken will be reported when you land.")
+					LeaPlusLC:Print("Flight tracking activated.  Take a flight.  The time taken will be reported when you land.  Reload your UI to stop flight tracking.")
 					local function GetNodeName(i)
 						return strmatch(TaxiNodeName(i), "[^,]+")
 					end
