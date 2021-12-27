@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.4 (26th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.6 (27th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.6"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2550,7 +2550,9 @@
 		if LeaPlusLC["ShowFlightTimes"] == "On" then
 
 			-- Load library
-			Leatrix_Plus:LeaPlusCandyBar()
+			if not LibStub("LibCandyBar", true) then
+				Leatrix_Plus:LeaPlusCandyBar()
+			end
 
 			-- Variables
 			local faction, data = UnitFactionGroup("player"), Leatrix_Plus["FlightData"]
@@ -11575,6 +11577,37 @@
 						print(('{"Arrow", ' .. floor(x * 1000 + 0.5) / 10) .. ',', (floor(y * 1000 + 0.5) / 10) .. ', L["Step 1"], L["Start here."], ' .. f.f:GetText() .. "},")
 					end
 				end)
+				return
+			elseif str == "flight" then
+				-- Show flight time after landing
+				if LeaPlusLC.FlightDebugActivated then
+					LeaPlusLC:Print("Flight tracking is already active.  Reload your UI to stop it.")
+				else
+					LeaPlusLC.FlightDebugActivated = true
+					LeaPlusLC:Print("Flight tracking activated.  Take a flight.  The time taken will be reported when you land.")
+					local function GetNodeName(i)
+						return strmatch(TaxiNodeName(i), "[^,]+")
+					end
+					local timeStart, timeEnd, flightFrame = 0, 0, CreateFrame("FRAME")
+					hooksecurefunc("TakeTaxiNode", function(node)
+						timeStart = GetTime()
+						for i = 1, NumTaxiNodes() do
+							local nodeType = TaxiNodeGetType(i)
+							local nodeName = GetNodeName(i)
+							local endName = GetNodeName(node)
+							if nodeType == "CURRENT" and nodeName and endName then
+								LeaPlusLC:Print("Tracking time from " .. nodeName .. " to " .. endName .. ".")
+							end
+						end
+						flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+					end)
+					flightFrame:SetScript("OnEvent", function()
+						timeEnd = GetTime()
+						local timeTaken = timeEnd - timeStart
+						LeaPlusLC:Print("Time taken: " .. string.format("%0.0f", timeTaken) .. " seconds.")
+						flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+					end)
+				end
 				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
