@@ -2610,7 +2610,7 @@
 								if faction == "Alliance" then
 									mybar:SetColor(0, 0.5, 1, 0.5)
 								else
-									mybar:SetColor(1, 0.5, 0, 0.5)
+									mybar:SetColor(1, 0.0, 0, 0.5)
 								end
 								mybar:SetShadowColor(0, 0, 0, 0.5)
 								mybar:EnableMouse()
