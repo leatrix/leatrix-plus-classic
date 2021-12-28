@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21.alpha.8 (27th December 2021)
+-- 	Leatrix Plus 1.14.21.alpha.9 (28th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21.alpha.8"
+	LeaPlusLC["AddonVer"] = "1.14.21.alpha.9"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2555,9 +2555,26 @@
 			end
 
 			-- Variables
-			local faction, data = UnitFactionGroup("player"), Leatrix_Plus["FlightData"]
+			local faction = UnitFactionGroup("player")
 			local candy = LibStub("LibCandyBar-3.0")
 			local texture = "Interface\\TargetingFrame\\UI-StatusBar"
+
+			-- Copy the flight data table but with localised keys
+			local function DeepCopy(orig)
+				local orig_type = type(orig)
+				local copy
+				if orig_type == 'table' then
+					copy = {}
+					for orig_key, orig_value in next, orig, nil do
+						copy[DeepCopy(L[orig_key])] = DeepCopy(orig_value)
+					end
+					setmetatable(copy, DeepCopy(getmetatable(orig)))
+				else
+					copy = orig
+				end
+				return copy
+			end
+			local data = DeepCopy(Leatrix_Plus["FlightData"])
 
 			-- Function to get node name
 			local function GetNodeName(i)
@@ -2572,49 +2589,51 @@
 					if nodeType == "CURRENT" then
 
 						-- Get current node
-						local currentNode = L[nodeName]
-
-						-- Create progress bar
-						local mybar = candy:New(texture, 230, 16)
-						mybar:SetPoint("TOP", UIParent, "TOP", 0, -66)
-						mybar:SetScale(2)
-						if faction == "Alliance" then
-							mybar:SetColor(0, 0.5, 1, 0.5)
-						else
-							mybar:SetColor(1, 0.5, 0, 0.5)
-						end
-						mybar:SetShadowColor(0, 0, 0, 0.5)
-						mybar:EnableMouse()
-						mybar:SetScript("OnMouseDown", function(self, btn)
-							if btn == "RightButton" then
-								mybar:Stop()
-								LeaPlusLC.FlightProgressBar = nil
-							end
-						end)
-
-						-- Assign file level scope to the bar so it can be cancelled later
-						LeaPlusLC.FlightProgressBar = mybar
+						local currentNode = nodeName
 
 						-- Get flight duration and start the progress timer
-						local destination = L[GetNodeName(node)]
+						local destination = GetNodeName(node)
 						if destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
 							local duration = data[faction][currentNode][destination]
 							if duration then
+
+								-- Create progress bar
+								local mybar = candy:New(texture, 230, 16)
+								mybar:SetPoint("TOP", UIParent, "TOP", 0, -66)
+								mybar:SetScale(2)
+								if faction == "Alliance" then
+									mybar:SetColor(0, 0.5, 1, 0.5)
+								else
+									mybar:SetColor(1, 0.5, 0, 0.5)
+								end
+								mybar:SetShadowColor(0, 0, 0, 0.5)
+								mybar:EnableMouse()
+								mybar:SetScript("OnMouseDown", function(self, btn)
+									if btn == "RightButton" then
+										mybar:Stop()
+										LeaPlusLC.FlightProgressBar = nil
+									end
+								end)
+
+								mybar:SetScript("OnEnter", function()
+									mybar:SetLabel(L["Right-click to close"])
+								end)
+
+								mybar:SetScript("OnLeave", function()
+									if destination then
+										mybar:SetLabel(destination)
+									end
+								end)
+
 								mybar:SetLabel(destination)
 								mybar:SetDuration(duration)
 								mybar:Start()
+
+								-- Assign file level scope to the bar so it can be cancelled later
+								LeaPlusLC.FlightProgressBar = mybar
+
 							end
 						end
-
-						mybar:SetScript("OnEnter", function()
-							mybar:SetLabel(L["Right-click to close"])
-						end)
-
-						mybar:SetScript("OnLeave", function()
-							if destination then
-								mybar:SetLabel(destination)
-							end
-						end)
 
 					end
 				end
@@ -2632,6 +2651,68 @@
 			hooksecurefunc("TaxiRequestEarlyLanding", CeaseProgress)
 			hooksecurefunc("AcceptBattlefieldPort", CeaseProgress) 
 			hooksecurefunc(C_SummonInfo, "ConfirmSummon", CeaseProgress)
+
+			-- Show flight time in node tooltips
+			hooksecurefunc("TaxiNodeOnButtonEnter", function(button)
+				local index = button:GetID()
+				for i = 1, NumTaxiNodes() do
+					local nodeType = TaxiNodeGetType(i)
+					local nodeName = GetNodeName(i)
+					if nodeType == "CURRENT" then
+						-- Get current node
+						local currentNode = nodeName
+						local destination = GetNodeName(index)
+						if currentNode and destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
+							local duration = data[faction][currentNode][destination]
+							if duration then
+								--duration = date("%M:%S", duration):gsub("^0","")
+								duration = date("%M:%S", duration)
+								GameTooltip:AddLine(duration, 0.9, 0.9, 0.9, true)
+								GameTooltip:Show()
+							end
+						end
+
+					end
+				end
+			end)
+
+			-- Show flight time after flight (may be temporary or optional)
+
+			do
+
+				-- Start flight time tracking
+				local timeStart, timeEnd = 0, 0
+				local startName, finishName
+				local flightFrame = CreateFrame("FRAME")
+				hooksecurefunc("TakeTaxiNode", function(node)
+					timeStart = GetTime()
+					for i = 1, NumTaxiNodes() do
+						local nodeType = TaxiNodeGetType(i)
+						local nodeName = GetNodeName(i)
+						local endName = GetNodeName(node)
+						if nodeType == "CURRENT" and nodeName and endName then
+							startName, finishName = nodeName, endName
+						end
+					end
+					-- Register landing event only if character is on a taxi
+					C_Timer.After(5, function()
+						if UnitOnTaxi("player") then
+							flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+						end
+					end)
+				end)
+
+				-- Show flight time when flight ends if the localised names exist
+				flightFrame:SetScript("OnEvent", function()
+					if data[faction][startName] and data[faction][finishName] then
+						timeEnd = GetTime()
+						local timeTaken = timeEnd - timeStart
+						LeaPlusLC:Print(startName .. " " .. "to" .. " " .. finishName .. ": " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] ..".  " .. L["Report innacurate or missing flight times for Leatrix Plus."])
+						flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+					end
+				end)
+
+			end
 
 		end
 
