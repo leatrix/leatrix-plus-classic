@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.21 (29th December 2021)
+-- 	Leatrix Plus 1.14.22.alpha.1 (29th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.21"
+	LeaPlusLC["AddonVer"] = "1.14.22.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2713,7 +2713,7 @@
 					if data[faction][startName] and data[faction][finishName] then
 						timeEnd = GetTime()
 						local timeTaken = timeEnd - timeStart
-						LeaPlusLC:Print(startName .. " " .. "to" .. " " .. finishName .. " (" .. faction .. "): " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] ..".  " .. L["Report innacurate or missing flight times for Leatrix Plus."])
+						LeaPlusLC:Print(startName .. " " .. "to" .. " " .. finishName .. " (" .. faction .. "): " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] ..".  " .. L["Report inaccurate or missing flight times for Leatrix Plus."])
 						flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
 					end
 				end)
