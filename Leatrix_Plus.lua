@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.22.alpha.1 (29th December 2021)
+-- 	Leatrix Plus 1.14.22.alpha.1 (30th December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -2576,6 +2576,22 @@
 			end
 			local data = DeepCopy(Leatrix_Plus["FlightData"])
 
+			-- Function to get continent
+			local function getContinent()
+				local mapID = C_Map.GetBestMapForUnit("player")
+				if(mapID) then
+					local info = C_Map.GetMapInfo(mapID)
+					if(info) then
+						while(info['mapType'] and info['mapType'] > 2) do
+							info = C_Map.GetMapInfo(info['parentMapID'])
+						end
+						if(info['mapType'] == 2) then
+							return info['mapID']
+						end
+					end
+				end
+			end
+
 			-- Function to get node name
 			local function GetNodeName(i)
 				return strmatch(TaxiNodeName(i), "[^,]+")
@@ -2589,12 +2605,22 @@
 					if nodeType == "CURRENT" then
 
 						-- Get current node
-						local currentNode = nodeName
+						--local currentNode = nodeName
+						local continent = getContinent()
+						local startX, startY = TaxiNodePosition(i)
+						local currentNode = string.format("%0.2f", startX) .. ":" .. string.format("%0.2f", startY)
+						--print(nodeName, currentNode)
+						--print(startX, startY)
 
 						-- Get flight duration and start the progress timer
-						local destination = GetNodeName(node)
-						if destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
-							local duration = data[faction][currentNode][destination]
+						-- local destination = GetNodeName(node)
+						local endX, endY = TaxiNodePosition(node)
+						local destination = string.format("%0.2f", endX) .. ":" .. string.format("%0.2f", endY)
+						-- print(GetNodeName(node), destination)
+						local barName = GetNodeName(node)
+
+						if destination and data[faction] and data[faction][continent] and data[faction][continent][currentNode] and data[faction][continent][currentNode][destination] then
+							local duration = data[faction][continent][currentNode][destination]
 							if duration then
 
 								-- Delete an existing progress bar if one exists
@@ -2627,11 +2653,11 @@
 
 								mybar:SetScript("OnLeave", function()
 									if destination then
-										mybar:SetLabel(destination)
+										mybar:SetLabel(barName)
 									end
 								end)
 
-								mybar:SetLabel(destination)
+								mybar:SetLabel(barName)
 								mybar:SetDuration(duration)
 								mybar:Start()
 
@@ -2666,10 +2692,25 @@
 					local nodeName = GetNodeName(i)
 					if nodeType == "CURRENT" then
 						-- Get current node
-						local currentNode = nodeName
-						local destination = GetNodeName(index)
-						if currentNode and destination and data[faction] and data[faction][currentNode] and data[faction][currentNode][destination] then
-							local duration = data[faction][currentNode][destination]
+						local continent = getContinent()
+						local startX, startY = TaxiNodePosition(i)
+						local currentNode = string.format("%0.2f", startX) .. ":" .. string.format("%0.2f", startY)
+
+						-- Get destination
+						local endX, endY = TaxiNodePosition(index)
+						local destination = string.format("%0.2f", endX) .. ":" .. string.format("%0.2f", endY)
+
+
+
+
+
+
+						print(GetNodeName(index), destination)
+
+
+
+						if currentNode and destination and data[faction] and data[faction][continent] and data[faction][continent][currentNode] and data[faction][continent][currentNode][destination] then
+							local duration = data[faction][continent][currentNode][destination]
 							if duration then
 								--duration = date("%M:%S", duration):gsub("^0","")
 								duration = date("%M:%S", duration)
@@ -2710,7 +2751,8 @@
 
 				-- Show flight time when flight ends if the localised names exist
 				flightFrame:SetScript("OnEvent", function()
-					if data[faction][startName] and data[faction][finishName] then
+					local continent = getContinent()
+					if data[faction][continent][startName] and data[faction][continent][finishName] then
 						timeEnd = GetTime()
 						local timeTaken = timeEnd - timeStart
 						LeaPlusLC:Print(startName .. " " .. "to" .. " " .. finishName .. " (" .. faction .. "): " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] ..".  " .. L["Report inaccurate or missing flight times for Leatrix Plus."])

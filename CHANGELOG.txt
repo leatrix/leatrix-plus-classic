@@ -1,5 +1,5 @@
-1.14.22.alpha.1 - 29th December 2021
-- Maintenance update.
+1.14.22.alpha.1 - 30th December 2021
+- The 'Show flight times' setting ('Interface') now works with any locale without the need for translations.
 
 1.14.21 - 29th December 2021
 - Added a new setting 'Show flight times' ('Interface').  If enabled, a flight time progress bar will be shown when you take a flight and travel times will be shown in the flight point tooltips (note: only for flight times that Leatrix Plus is aware of).  For the time being, all flight times (whether known or not) will be printed in chat when you land so that you can report inaccurate or missing flight times (there are some of both).  If a flight ends before or after the progress bar has reached zero, report the flight time printed in chat and the times will be updated.  You can report at github.com/leatrix or you can send a message to leatrix on CurseForge.  If you're using the 'Recent chat window' setting ('Chat'), you can use that to copy the text from chat for your report.  For non-English locales, the progress bar and flight times will only be shown if the start and end flight point names have been translated.  If you want to help with translations to solve that issue, send a message to leatrix on CurseForge.
