@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.22.alpha.2 (30th December 2021)
+-- 	Leatrix Plus 1.14.22.alpha.3 (31st December 2021)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.22.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.22.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2558,6 +2558,8 @@
 			local faction = UnitFactionGroup("player")
 			local candy = LibStub("LibCandyBar-3.0")
 			local texture = "Interface\\TargetingFrame\\UI-StatusBar"
+			local flightFrame = CreateFrame("FRAME")
+			LeaPlusLC.flightFrame = flightFrame
 
 			-- Copy the flight data table but with localised keys
 			local function DeepCopy(orig)
@@ -2614,6 +2616,36 @@
 						local destination = string.format("%0.2f", endX) .. ":" .. string.format("%0.2f", endY)
 						local barName = GetNodeName(node)
 
+						-- Handle flight time not correct or flight does not exist in database
+						local reportMessage = "Please report this information so that Leatrix Plus can be updated and you won't see this message again.|n|nCopy the information above (or take a screenshot) and create a ticket at github.com/leatrix or send a message to leatrix via CurseForge website or email support@leatrix.com."
+						local timeStart = GetTime()
+						C_Timer.After(5, function()
+							if UnitOnTaxi("player") then
+								flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+							else
+								flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+							end
+						end)
+						flightFrame:SetScript("OnEvent", function()
+							local timeEnd = GetTime()
+							local timeTaken = timeEnd - timeStart
+							local flightMsg = L["Flight details"] .. ": " .. nodeName .. " (" .. currentNode .. ") to" .. " " .. barName .. " (" .. destination .. ") (" .. faction .. ") took " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] .. "."
+							if destination and data[faction] and data[faction][continent] and data[faction][continent][currentNode] and data[faction][continent][currentNode][destination] then
+								local savedDuration = data[faction][continent][currentNode][destination]
+								if savedDuration then
+									if timeTaken > (savedDuration + 5) or timeTaken < (savedDuration - 5) then
+										LeaPlusLC:Print(flightMsg .. "|n|n" .. L["This flight's actual time of"] .. " " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds does not match the saved flight time of"] .. " " .. savedDuration .. " " .. L["seconds in Leatrix Plus."] .. "|n|n" .. reportMessage)
+									end
+								else
+									LeaPlusLC:Print(flightMsg .."|n|n" .. L["This flight does not have a saved duration in Leatrix Plus database."] .. "|n|n" .. reportMessage)
+								end
+							else
+								LeaPlusLC:Print(flightMsg .."|n|n" .. L["This flight does not exist in Leatrix Plus database."] .. "|n|n" .. reportMessage)
+							end
+							flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+						end)
+
+						-- Show flight progress bar if flight exists in database
 						if destination and data[faction] and data[faction][continent] and data[faction][continent][currentNode] and data[faction][continent][currentNode][destination] then
 							local duration = data[faction][continent][currentNode][destination]
 							if duration then
@@ -2711,51 +2743,15 @@
 				end
 			end)
 
-			-- Show flight time after flight (may be temporary or optional)
-
-			do
-
-				-- Start flight time tracking
-				local timeStart = 0
-				local startName, finishName
-				local flightFrame = CreateFrame("FRAME")
-				hooksecurefunc("TakeTaxiNode", function(node)
-					timeStart = GetTime()
-					for i = 1, NumTaxiNodes() do
-						local nodeType = TaxiNodeGetType(i)
-						local nodeName = GetNodeName(i)
-						local endName = GetNodeName(node)
-						if nodeType == "CURRENT" and nodeName and endName then
-							startName, finishName = nodeName, endName
-						end
-					end
-					-- Register landing event only if character is on a taxi
-					C_Timer.After(5, function()
-						if UnitOnTaxi("player") then
-							flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
-						end
-					end)
-				end)
-
-				-- Show flight time when flight ends if the localised names exist
-				flightFrame:SetScript("OnEvent", function()
-					local continent, timeEnd = getContinent(), GetTime()
-					local timeTaken = timeEnd - timeStart
-					LeaPlusLC:Print(startName .. " " .. "to" .. " " .. finishName .. " (" .. faction .. "): " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] ..".  " .. L["Please report inaccurate flight times for Leatrix Plus."])
-					flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
-				end)
-
-				-- Unregister event for various reasons that stop taxi early
-				local function StopLandingEvent()
-					flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
-				end
-
-				hooksecurefunc("TaxiNodeOnButtonEnter", StopLandingEvent)
-				hooksecurefunc("TaxiRequestEarlyLanding", StopLandingEvent)
-				hooksecurefunc("AcceptBattlefieldPort", StopLandingEvent)
-				hooksecurefunc(C_SummonInfo, "ConfirmSummon", StopLandingEvent)
-
+			-- Unregister landing event for various reasons that stop taxi early
+			local function StopLandingEvent()
+				LeaPlusLC.flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
 			end
+
+			hooksecurefunc("TaxiNodeOnButtonEnter", StopLandingEvent)
+			hooksecurefunc("TaxiRequestEarlyLanding", StopLandingEvent)
+			hooksecurefunc("AcceptBattlefieldPort", StopLandingEvent)
+			hooksecurefunc(C_SummonInfo, "ConfirmSummon", StopLandingEvent)
 
 		end
 
