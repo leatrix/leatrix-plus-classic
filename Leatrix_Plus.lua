@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.22.alpha.4 (1st January 2022)
+-- 	Leatrix Plus 1.14.22.alpha.5 (1st January 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.22.alpha.4"
+	LeaPlusLC["AddonVer"] = "1.14.22.alpha.5"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2555,28 +2555,12 @@
 			end
 
 			-- Variables
+			local data = Leatrix_Plus["FlightData"]
 			local faction = UnitFactionGroup("player")
 			local candy = LibStub("LibCandyBar-3.0")
 			local texture = "Interface\\TargetingFrame\\UI-StatusBar"
 			local flightFrame = CreateFrame("FRAME")
 			LeaPlusLC.flightFrame = flightFrame
-
-			-- Copy the flight data table but with localised keys
-			local function DeepCopy(orig)
-				local orig_type = type(orig)
-				local copy
-				if orig_type == 'table' then
-					copy = {}
-					for orig_key, orig_value in next, orig, nil do
-						copy[DeepCopy(L[orig_key])] = DeepCopy(orig_value)
-					end
-					setmetatable(copy, DeepCopy(getmetatable(orig)))
-				else
-					copy = orig
-				end
-				return copy
-			end
-			local data = DeepCopy(Leatrix_Plus["FlightData"])
 
 			-- Function to get continent
 			local function getContinent()
@@ -11729,6 +11713,51 @@
 					end)
 				end
 				return
+			elseif str == "dis" then
+				-- Disband group
+				if not LeaPlusLC:IsInLFGQueue() then
+					local x = GetNumGroupMembers() or 0
+					for i = x, 1, -1 do
+						if GetNumGroupMembers() > 0 then
+							local name = GetRaidRosterInfo(i)
+							if name and name ~= UnitName("player") then
+								UninviteUnit(name)
+							end
+						end
+					end
+				else
+					LeaPlusLC:Print("You cannot do that while in group finder.")
+				end
+				return
+			elseif str == "reinv" then
+				-- Disband and reinvite raid
+				if not LeaPlusLC:IsInLFGQueue() then
+					if UnitIsGroupLeader("player") then
+						-- Disband
+						local groupNames = {}
+						local x = GetNumGroupMembers() or 0
+						for i = x, 1, -1 do
+							if GetNumGroupMembers() > 0 then
+								local name = GetRaidRosterInfo(i)
+								if name and name ~= UnitName("player") then
+									UninviteUnit(name)
+									tinsert(groupNames, name)
+								end
+							end
+						end
+						-- Reinvite
+						C_Timer.After(0.1, function()
+							for k, v in pairs(groupNames) do
+								C_PartyInfo.InviteUnit(v)
+							end
+						end)
+					else
+						LeaPlusLC:Print("You need to be group leader.")
+					end
+				else
+					LeaPlusLC:Print("You cannot do that while in group finder.")
+				end
+				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
 				LpEvt:UnregisterAllEvents()						-- Prevent changes
@@ -12208,7 +12237,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowPlayerChain"			, 	"Show player chain"				,	340, -212, 	true,	"If checked, you will be able to show a rare, elite or rare elite chain around the player frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowDruidPowerBar"			, 	"Show druid power bar"			,	340, -232, 	true,	"If checked, a power bar will be shown in the player frame when you are playing a shapeshifted druid.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowWowheadLinks"			, 	"Show Wowhead links"			, 	340, -252, 	true,	"If checked, Wowhead links will be shown above the quest log frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -272, 	true,	"If checked, flight times will be shown in the flight map and a flight progress bar and countdown will be shown when you take a flight.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -272, 	true,	"If checked, flight times will be shown in the flight map and when you take a flight.")
 
 	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapMod"])
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
