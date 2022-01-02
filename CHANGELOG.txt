@@ -1,4 +1,4 @@
-1.14.22.alpha.7 - 2nd January 2022
+1.14.22.alpha.8 - 2nd January 2022
 - The 'Show flight times' setting ('Interface') now works with any locale without the need for translations.  Added some missing flight times.  After landing from a flight, you will now only see the flight time printed in chat if it does not match the time stored in the addon.  If you see the chat message with flight details, report the flight information shown so that it can be added to Leatrix Plus and you won't see the chat message for that flight again.
 
 1.14.21 - 29th December 2021
