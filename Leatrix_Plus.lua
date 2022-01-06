@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.22 (5th January 2022)
+-- 	Leatrix Plus 1.14.23.alpha.1 (6th January 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.22"
+	LeaPlusLC["AddonVer"] = "1.14.23.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2662,6 +2662,12 @@
 			local flightFrame = CreateFrame("FRAME")
 			LeaPlusLC.flightFrame = flightFrame
 
+			-- Set game title as shown in incorrect flight details window
+			local gameTitle = L["Classic Era"]
+			if C_Seasons.HasActiveSeason() then
+				gameTitle = L["Classic Era (SoM)"]
+			end
+
 			-- Function to get continent
 			local function getContinent()
 				local mapID = C_Map.GetBestMapForUnit("player")
@@ -2713,7 +2719,7 @@
 						flightFrame:SetScript("OnEvent", function()
 							local timeEnd = GetTime()
 							local timeTaken = timeEnd - timeStart
-							local flightMsg = L["Flight details"] .. ": " .. nodeName .. " (" .. currentNode .. ") to" .. " " .. barName .. " (" .. destination .. ") (" .. faction .. ") took " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] .. "."
+							local flightMsg = L["Flight details"] .. " (" .. gameTitle .. "): " .. nodeName .. " (" .. currentNode .. ") " .. L["to"] .. " " .. barName .. " (" .. destination .. ") (" .. faction .. ") " .. L["took"] .. " " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds"] .. "."
 							if destination and data[faction] and data[faction][continent] and data[faction][continent][currentNode] and data[faction][continent][currentNode][destination] then
 								local savedDuration = data[faction][continent][currentNode][destination]
 								if savedDuration then
