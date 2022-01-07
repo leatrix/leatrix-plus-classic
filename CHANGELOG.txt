@@ -1,7 +1,9 @@
-1.14.23.alpha.3 - 7th January 2022
+1.14.23.alpha.4 - 7th January 2022
 - Updated flight times:
-- Light Hope's Chapel to Stormwind (Alliance)
+- Alliance: Light Hope's Chapel to Stormwind
+- Alliance: Astranaar to Gadgetzan
 - Flight map tooltips will now show the number of flight hops as well as the flight time.
+- Currently, the flight times are only accurate if you know all the connecting flight points.
 
 1.14.22 - 5th January 2022
 - The 'Show flight times' setting ('Interface') now works with any locale without the need for translations.  Added lots of missing flight times.  After landing from a flight, if the saved flight time is missing or incorrect (greater than 5 second difference), you will see a copy-friendly window with the flight details making it very easy for you to report the missing or incorrect flight time.
