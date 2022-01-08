@@ -68,6 +68,12 @@
 			-- Alliance: Eastern Kingdoms
 			[1415] = {
 
+
+["0.43:0.67:0.51:0.49:0.59:0.52"] = 317, -- Stormwind, Ironforge, Thelsamar
+["0.43:0.67:0.51:0.49:0.51:0.57"] = 247, -- Stormwind, Thorium Point
+
+
+
 				[--[[Aerie Peak]] "0.55:0.25"] 				= {[--[[ Xxxxx Xxxx ]] "0.00:0.00"] = 0		, [--[[Booty Bay]] "0.43:0.93"] = 658	, [--[[Chillwind Camp]] "0.52:0.22"] = 54	, [--[[Darkshire]] "0.51:0.75"] = 531	, [--[[ Ironforge ]] "0.51:0.49"] = 256	, [--[[Lakeshire]] "0.56:0.70"] = 419	, [--[[Light's Hope Chapel]] "0.70:0.16"] = 164	, [--[[Menethil Harbor]] "0.49:0.44"] = 176	, [--[[Morgan's Vigil]] "0.58:0.65"] = 390	, [--[[Nethergarde Keep]] "0.61:0.78"] = 591	, [--[[Refuge Pointe]] "0.57:0.32"] = 75	, [--[[Sentinel Hill]] "0.41:0.75"] = 492	, [--[[Southshore]] "0.48:0.30"] = 68	, [--[[Stormwind]] "0.43:0.67"] = 429	, [--[[Thelsamar]] "0.59:0.52"] = 245	, [--[[Thorium Point]] "0.51:0.57"] = 304	,},
 				[--[[Booty Bay]] "0.43:0.93"] 				= {[--[[ Aerie Peak ]] "0.55:0.25"] = 714	, [--[[Xxxxx Xxx]] "0.00:0.00"] = 0		, [--[[Chillwind Camp]] "0.52:0.22"] = 712	, [--[[Darkshire]] "0.51:0.75"] = 175	, [--[[ Ironforge ]] "0.51:0.49"] = 464	, [--[[Lakeshire]] "0.56:0.70"] = 230	, [--[[Light's Hope Chapel]] "0.70:0.16"] = 770	, [--[[Menethil Harbor]] "0.49:0.44"] = 548	, [--[[Morgan's Vigil]] "0.58:0.65"] = 291	, [--[[Nethergarde Keep]] "0.61:0.78"] = 266	, [--[[Refuge Pointe]] "0.57:0.32"] = 655	, [--[[Sentinel Hill]] "0.41:0.75"] = 181	, [--[[Southshore]] "0.48:0.30"] = 649	, [--[[Stormwind]] "0.43:0.67"] = 220	, [--[[Thelsamar]] "0.59:0.52"] = 523	, [--[[Thorium Point]] "0.51:0.57"] = 383	,},
 				[--[[Chillwind Camp]] "0.52:0.22"] 			= {[--[[ Aerie Peak ]] "0.55:0.25"] = 66	, [--[[Booty Bay]] "0.43:0.93"] = 662	, [--[[Xxxxxxxxx Xxxx]] "0.00:0.00"] = 0	, [--[[Darkshire]] "0.51:0.75"] = 482	, [--[[ Ironforge ]] "0.51:0.49"] = 261	, [--[[Lakeshire]] "0.56:0.70"] = 424	, [--[[Light's Hope Chapel]] "0.70:0.16"] = 147	, [--[[Menethil Harbor]] "0.49:0.44"] = 193	, [--[[Morgan's Vigil]] "0.58:0.65"] = 395	, [--[[Nethergarde Keep]] "0.61:0.78"] = 595	, [--[[Refuge Pointe]] "0.57:0.32"] = 138	, [--[[Sentinel Hill]] "0.41:0.75"] = 495	, [--[[Southshore]] "0.48:0.30"] = 85	, [--[[Stormwind]] "0.43:0.67"] = 432											, [--[[Thorium Point]] "0.51:0.57"] = 309	,},

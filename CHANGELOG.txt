@@ -1,4 +1,4 @@
-1.14.23.alpha.4 - 7th January 2022
+1.14.23.alpha.5 - 8th January 2022
 - Updated flight times:
 - Alliance: Light Hope's Chapel to Stormwind
 - Alliance: Astranaar to Gadgetzan
