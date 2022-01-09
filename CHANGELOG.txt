@@ -1,5 +1,8 @@
+1.14.24.alpha.1 - 9th January 2022
+- Maintenance update.
+
 1.14.23 - 9th January 2022
-- The 'Show flight times' option now supports multiple flight routes to the same destination.  So it will work regardless of how many flight points you have unlocked.  Added more flight times.  Due to the code changes to include multiple routes, some of the submitted flight times could not be added.  Please report them again when you see the report window again.  Flight map tooltips will now show the number of flight hops as well as the flight time.
+- The 'Show flight times' option now supports multiple flight routes to the same destination.  So it will work regardless of how many flight points you have unlocked.  Due to the code changes to include multiple routes, some of the submitted flight times could not be added.  Please report them again when you see the report window again.
 
 1.14.22 - 5th January 2022
 - The 'Show flight times' setting ('Interface') now works with any locale without the need for translations.  Added lots of missing flight times.  After landing from a flight, if the saved flight time is missing or incorrect (greater than 5 second difference), you will see a copy-friendly window with the flight details making it very easy for you to report the missing or incorrect flight time.
