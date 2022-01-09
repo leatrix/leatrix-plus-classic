@@ -1,5 +1,5 @@
-1.14.24.alpha.1 - 9th January 2022
-- Maintenance update.
+1.14.24 - 9th January 2022
+- For 'Show flight times' ('Interface'), added support for odd flight points.
 
 1.14.23 - 9th January 2022
 - The 'Show flight times' option now supports multiple flight routes to the same destination.  So it will work regardless of how many flight points you have unlocked.  Due to the code changes to include multiple routes, some of the submitted flight times could not be added.  Please report them again when you see the report window again.

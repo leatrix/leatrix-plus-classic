@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.24.alpha.1 (9th January 2022)
+-- 	Leatrix Plus 1.14.24 (9th January 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.24.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.24"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2722,11 +2722,22 @@
 							routeString = routeString .. ":" .. hopPos
 						end
 
+						-- If route string does not contain destination, add it to the end (such as Altar of Sha'tar)
+						if not string.find(routeString, destination) then
+							debugString = debugString .. ":" .. destination
+							routeString = routeString .. ":" .. destination
+						end
+
 						debugString = debugString .. '"] = TimeTakenPlaceHolder,'
 						debugString = debugString .. " -- " .. nodeName
 						for i = 2, numHops + 1 do
 							local fpName = string.split(",", TaxiNodeName(TaxiGetNodeSlot(node, i, true)))
 							debugString = debugString .. ", " .. fpName
+						end
+
+						-- If debug string does not contain destination, add it to the end
+						if not string.find(debugString, barName) then
+							debugString = debugString .. ", " .. barName
 						end
 
 						-- Handle flight time not correct or flight does not exist in database
@@ -2842,6 +2853,11 @@
 						local startX, startY = TaxiNodePosition(i)
 						local currentNode = string.format("%0.2f", startX) .. ":" .. string.format("%0.2f", startY)
 
+						-- Get destination
+						local endX, endY = TaxiNodePosition(index)
+						local destination = string.format("%0.2f", endX) .. ":" .. string.format("%0.2f", endY)
+						local barName = GetNodeName(index)
+
 						-- Build route string and debug string
 						local numEnterHops = GetNumRoutes(index)
 						local debugString = '["' .. currentNode
@@ -2852,6 +2868,12 @@
 							local fpName = string.split(", ", TaxiNodeName(TaxiGetNodeSlot(index, i, true)))
 							debugString = debugString .. ":" .. hopPos
 							routeString = routeString .. ":" .. hopPos
+						end
+
+						-- If route string does not contain destination, add it to the end (such as Altar of Sha'tar)
+						if not string.find(routeString, destination) then
+							debugString = debugString .. ":" .. destination
+							routeString = routeString .. ":" .. destination
 						end
 						debugString = debugString .. '"] = '
 
@@ -2870,6 +2892,11 @@
 						for i = 2, numEnterHops + 1 do
 							local fpName = string.split(",", TaxiNodeName(TaxiGetNodeSlot(index, i, true)))
 							debugString = debugString .. ", " .. fpName
+						end
+
+						-- If debug string does not contain destination, add it to the end
+						if not string.find(debugString, barName) then
+							debugString = debugString .. ", " .. barName
 						end
 
 						-- Print debug string (used for showing full routes for nodes)
