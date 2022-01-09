@@ -948,6 +948,7 @@
 					["0.39:0.40:0.46:0.40"] = 154, -- Stonetalon Peak, Astranaar
 					["0.39:0.40:0.43:0.25"] = 177, -- Stonetalon Peak, Auberdine
 					["0.39:0.40:0.43:0.25:0.42:0.16"] = 261, -- Stonetalon Peak, Auberdine, Rut'theran Village
+					["0.39:0.40:0.46:0.40:0.61:0.40"] = 302, -- Stonetalon Peak, Astranaar, Talrendis Point
 
 					-- Alliance: Talonbranch Glade (Felwood)
 
