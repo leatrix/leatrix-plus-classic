@@ -770,6 +770,7 @@
 					["0.48:0.30:0.55:0.25"] = 71, -- Southshore, Aerie Peak
 					["0.48:0.30:0.52:0.22"] = 81, -- Southshore, Chillwind Camp
 					["0.48:0.30:0.52:0.22:0.70:0.16"] = 219, -- Southshore, Chillwind Camp, Light's Hope Chapel
+					["0.48:0.30:0.49:0.44:0.51:0.49:0.43:0.67:0.51:0.75"] = 468, -- Southshore, Menethil Harbor, Ironforge, Stormwind, Darkshire
 
 					-- Alliance: Stormwind (Elwynn Forest)
 					["0.43:0.67:0.43:0.93"] = 245, -- Stormwind, Booty Bay
