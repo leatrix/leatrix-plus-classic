@@ -972,6 +972,7 @@
 					["0.48:0.70:0.64:0.67:0.61:0.55"] = 274, -- Thalanaar, Theramore, Ratchet
 					["0.48:0.70:0.31:0.69:0.40:0.51"] = 405, -- Thalanaar, Feathermoon, Nijel's Point
 					["0.48:0.70:0.31:0.69:0.43:0.25:0.42:0.16"] = 729, -- Thalanaar, Feathermoon, Auberdine, Rut'theran Village
+					["0.48:0.70:0.64:0.67:0.40:0.51"] = 494, -- Thalanaar, Theramore, Nijel's Point
 
 					-- Alliance: Theramore (Dustwallow Marsh)
 					["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
