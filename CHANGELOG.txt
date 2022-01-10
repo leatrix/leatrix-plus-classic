@@ -1,5 +1,5 @@
-1.14.25.alpha.1 - 10th January 2022
-- Added flight times.
+1.14.25.alpha.2 - 10th January 2022
+- Added more flight times.  Keep reporting.
 
 1.14.24 - 9th January 2022
 - For 'Show flight times' ('Interface'), added support for odd flight points.
