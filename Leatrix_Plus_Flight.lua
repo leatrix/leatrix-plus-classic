@@ -834,6 +834,7 @@
 					["0.51:0.57:0.51:0.49:0.52:0.22"] = 342, -- Thorium Point, Ironforge, Chillwind Camp
 					["0.51:0.57:0.51:0.49:0.70:0.16"] = 398, -- Thorium Point, Ironforge, Light's Hope Chapel
 					["0.51:0.57:0.51:0.49:0.43:0.67"] = 258, -- Thorium Point, Ironforge, Stormwind
+					["0.51:0.57:0.58:0.65:0.56:0.70"] = 125, -- Thorium Point, Morgan's Vigil, Lakeshire
 
 				},
 
