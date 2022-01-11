@@ -790,6 +790,7 @@
 					["0.43:0.67:0.51:0.49:0.55:0.25"] = 508, -- Stormwind, Ironforge, Aerie Peak
 					["0.43:0.67:0.51:0.49:0.52:0.22"] = 506, -- Stormwind, Ironforge, Chillwind Camp
 					["0.43:0.67:0.51:0.49:0.70:0.16"] = 563, -- Stormwind, Ironforge, Light's Hope Chapel
+					["0.43:0.67:0.51:0.49:0.51:0.57"] = 291, -- Stormwind, Ironforge, Thorium Point
 
 					-- Alliance: Sentinel Hill (Westfall)
 					["0.41:0.75:0.43:0.93"] = 185, -- Sentinel Hill, Booty Bay
@@ -908,6 +909,7 @@
 					["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.42:0.16"] = 809, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Rut'theran Village
 
 					-- Alliance: Moonglade (Moonglade)
+					["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
