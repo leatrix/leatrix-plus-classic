@@ -676,6 +676,7 @@
 					["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 486, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak
 					["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.52:0.22"] = 485, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Chillwind Camp
 					["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.70:0.16"] = 540, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Light's Hope Chapel
+					["0.56:0.70:0.43:0.67:0.51:0.49:0.49:0.44:0.48:0.30"] = 542, -- Lakeshire, Stormwind, Ironforge, Menethil Harbor, Southshore
 
 					-- Alliance: Light's Hope Chapel (Eastern Plaguelands)
 					["0.70:0.16:0.51:0.49:0.43:0.67:0.43:0.93"] = 771, -- Light's Hope Chapel, Ironforge, Stormwind, Booty Bay
@@ -709,6 +710,7 @@
 					["0.49:0.44:0.48:0.30:0.52:0.22"] = 186, -- Menethil Harbor, Southshore, Chillwind Camp
 					["0.49:0.44:0.48:0.30:0.52:0.22:0.70:0.16"] = 324, -- Menethil Harbor, Southshore, Chillwind Camp, Light's Hope Chapel
 					["0.49:0.44:0.51:0.49:0.43:0.67:0.51:0.75"] = 362, -- Menethil Harbor, Ironforge, Stormwind, Darkshire
+					["0.49:0.44:0.51:0.49:0.43:0.67:0.56:0.70"] = 359, -- Menethil Harbor, Ironforge, Stormwind, Lakeshire
 
 					-- Alliance: Morgan's Vigil (Burning Steppes)
 					["0.58:0.65:0.56:0.70:0.51:0.75:0.43:0.93"] = 288, -- Morgan's Vigil, Lakeshire, Darkshire, Booty Bay
@@ -817,6 +819,7 @@
 					["0.59:0.52:0.57:0.32:0.48:0.30"] = 250, -- Thelsamar, Refuge Pointe, Southshore
 					["0.59:0.52:0.57:0.32:0.55:0.25"] = 235, -- Thelsamar, Refuge Pointe, Aerie Peak
 					["0.59:0.52:0.57:0.32:0.55:0.25:0.52:0.22"] = 285, -- Thelsamar, Refuge Pointe, Aerie Peak, Chillwind Camp
+					["0.59:0.52:0.51:0.49:0.43:0.67:0.56:0.70"] = 377, -- Thelsamar, Ironforge, Stormwind, Lakeshire
 
 					-- Alliance: Thorium Point (Searing Gorge)
 					["0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75:0.43:0.93"] = 350, -- Thorium Point, Morgan's Vigil, Lakeshire, Darkshire, Booty Bay
