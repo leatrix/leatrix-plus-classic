@@ -910,6 +910,7 @@
 					["0.31:0.69:0.40:0.51"] = 227, -- Feathermoon, Nijel's Point
 					["0.31:0.69:0.43:0.25"] = 468, -- Feathermoon, Auberdine
 					["0.31:0.69:0.43:0.25:0.42:0.16"] = 551, -- Feathermoon, Auberdine, Rut'theran Village
+					["0.31:0.69:0.42:0.79:0.50:0.76"] = 243, -- Feathermoon, Cenarion Hold, Marshal's Refuge
 
 					-- Alliance: Gadgetzan (Tanaris)
 					["0.60:0.81:0.50:0.76"] = 104, -- Gadgetzan, Marshal's Refuge
