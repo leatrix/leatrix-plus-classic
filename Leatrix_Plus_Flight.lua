@@ -834,6 +834,7 @@
 					["0.59:0.52:0.57:0.32:0.55:0.25:0.52:0.22"] = 285, -- Thelsamar, Refuge Pointe, Aerie Peak, Chillwind Camp
 					["0.59:0.52:0.51:0.49:0.43:0.67:0.56:0.70"] = 377, -- Thelsamar, Ironforge, Stormwind, Lakeshire
 					["0.59:0.52:0.51:0.49:0.70:0.16"] = 421, -- Thelsamar, Ironforge, Light's Hope Chapel
+					["0.59:0.52:0.51:0.49:0.43:0.67:0.51:0.75"] = 381, -- Thelsamar, Ironforge, Stormwind, Darkshire 
 
 					-- Alliance: Thorium Point (Searing Gorge)
 					["0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75:0.43:0.93"] = 350, -- Thorium Point, Morgan's Vigil, Lakeshire, Darkshire, Booty Bay
@@ -947,6 +948,7 @@
 					["0.55:0.21:0.43:0.25:0.42:0.16"] = 226, -- Moonglade, Auberdine, Rut'theran Village
 					["0.55:0.21:0.65:0.23:0.61:0.40"] = 307, -- Moonglade, Everlook, Talrendis Point
 					["0.55:0.21:0.43:0.25:0.39:0.40"] = 323, -- Moonglade, Auberdine, Stonetalon Peak
+					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 694, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
