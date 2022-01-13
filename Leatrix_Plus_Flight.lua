@@ -731,6 +731,7 @@
 					["0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 436, -- Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak
 					["0.58:0.65:0.51:0.57:0.51:0.49:0.52:0.22"] = 435, -- Morgan's Vigil, Thorium Point, Ironforge, Chillwind Camp
 					["0.58:0.65:0.51:0.57:0.51:0.49:0.70:0.16"] = 491, -- Morgan's Vigil, Thorium Point, Ironforge, Light's Hope Chapel
+					["0.58:0.65:0.43:0.67:0.51:0.49:0.59:0.52"] = 455, -- Morgan's Vigil, Stormwind, Ironforge, Thelsamar
 
 					-- Alliance: Nethergarde Keep (Blasted Lands)
 					["0.61:0.78:0.51:0.75:0.43:0.93"] = 260, -- Nethergarde Keep, Darkshire, Booty Bay
