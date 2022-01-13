@@ -1,4 +1,4 @@
-1.14.25.alpha.3 - 13th January 2022
+1.14.25 - 13th January 2022
 - Added more flight times.  Keep reporting.
 
 1.14.24 - 9th January 2022
