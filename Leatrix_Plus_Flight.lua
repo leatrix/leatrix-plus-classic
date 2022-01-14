@@ -1025,6 +1025,7 @@
 					["0.53:0.26:0.43:0.25:0.39:0.40"] = 369, -- Talonbranch Glade, Auberdine, Stonetalon Peak
 					["0.53:0.26:0.61:0.40:0.61:0.55"] = 417, -- Talonbranch Glade, Talrendis Point, Ratchet
 					["0.53:0.26:0.43:0.25:0.40:0.51"] = 479, -- Talonbranch Glade, Auberdine, Nijel's Point
+					["0.53:0.26:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 942, -- Talonbranch Glade, Auberdine, Nijel's Point, Theramore, Gadgetzan
 
 					-- Alliance: Talrendis Point (Azshara)
 					["0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 391, -- Talrendis Point, Ratchet, Theramore, Gadgetzan
