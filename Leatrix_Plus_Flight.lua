@@ -958,6 +958,7 @@
 					["0.55:0.21:0.43:0.25:0.46:0.40"] = 318, -- Moonglade, Auberdine, Astranaar
 					["0.55:0.21:0.43:0.25:0.40:0.51"] = 433, -- Moonglade, Auberdine, Nijel's Point
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55"] = 440, -- Moonglade, Everlook, Talrendis Point, Ratchet
+					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 695, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
