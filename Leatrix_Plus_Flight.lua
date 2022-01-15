@@ -908,6 +908,8 @@
 					["0.65:0.23:0.55:0.21:0.43:0.25"] = 263, -- Everlook, Moonglade, Auberdine
 					["0.65:0.23:0.61:0.40:0.46:0.40"] = 328, -- Everlook, Talrendis Point, Astranaar
 					["0.65:0.23:0.55:0.21:0.43:0.25:0.39:0.40"] = 443, -- Everlook, Moonglade, Auberdine, Stonetalon Peak
+					["0.65:0.23:0.61:0.40:0.61:0.55"] = 310, -- Everlook, Talrendis Point, Ratchet
+					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67"] = 408, -- Everlook, Talrendis Point, Ratchet, Theramore
 
 					-- Alliance: Feathermoon (Feralas)
 					["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan
@@ -961,6 +963,7 @@
 					["0.55:0.21:0.43:0.25:0.40:0.51"] = 433, -- Moonglade, Auberdine, Nijel's Point
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55"] = 440, -- Moonglade, Everlook, Talrendis Point, Ratchet
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 695, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
+					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67"] = 538, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -990,6 +993,7 @@
 					["0.61:0.55:0.61:0.40"] = 132, -- Ratchet, Talrendis Point
 					["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 805, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.61:0.55:0.61:0.40:0.53:0.26"] = 415, -- Ratchet, Talrendis Point, Talonbranch Glade
+					["0.61:0.55:0.61:0.40:0.65:0.23:0.55:0.21"] = 433, -- Ratchet, Talrendis Point, Everlook, Moonglade
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1071,6 +1075,7 @@
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.64:0.67:0.43:0.25:0.46:0.40"] = 796, -- Theramore, Auberdine, Astranaar
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.42:0.16"] = 700, -- Theramore, Nijel's Point, Auberdine, Rut'theran Village
+					["0.64:0.67:0.61:0.40:0.65:0.23"] = 414, -- Theramore, Talrendis Point, Everlook
 
 				},
 
