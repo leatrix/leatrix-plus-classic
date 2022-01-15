@@ -641,6 +641,7 @@
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.52:0.22"] = 543, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Chillwind Camp
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.70:0.16"] = 600, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Light's Hope Chapel
 					["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.48:0.30"] = 518, -- Darkshire, Stormwind, Ironforge, Menethil Harbor, Southshore
+					["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Stormwind, Ironforge, Menethil Harbor
 
 					-- Alliance: Ironforge (Dun Morogh)
 					["0.51:0.49:0.43:0.67:0.43:0.93"] = 440, -- Ironforge, Stormwind, Booty Bay
