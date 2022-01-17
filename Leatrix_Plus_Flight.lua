@@ -755,6 +755,7 @@
 					["0.61:0.78:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 444, -- Nethergarde Keep, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar
 					["0.61:0.78:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 577, -- Nethergarde Keep, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.55:0.25"] = 673, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Aerie Peak
+					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49"] = 424, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge
 
 					-- Alliance: Refuge Pointe (Arathi Highlands)
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 614, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -982,6 +983,7 @@
 					["0.50:0.76:0.42:0.79:0.31:0.69:0.40:0.51:0.39:0.40"] = 605, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Nijel's Point, Stonetalon Peak
 					["0.50:0.76:0.60:0.81:0.48:0.70:0.31:0.69"] = 458, -- Marshal's Refuge, Gadgetzan, Thalanaar, Feathermoon
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.65:0.23"] = 670, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Everlook
+					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 876, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 
 					-- Alliance: Moonglade (Moonglade)
 					["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
@@ -1029,7 +1031,7 @@
 					["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40"] = 437, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak
 					["0.61:0.55:0.61:0.40:0.46:0.40"] = 284, -- Ratchet, Talrendis Point, Astranaar
 					["0.61:0.55:0.61:0.40"] = 132, -- Ratchet, Talrendis Point
-					["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 805, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
+					["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 516, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.61:0.55:0.61:0.40:0.53:0.26"] = 415, -- Ratchet, Talrendis Point, Talonbranch Glade
 					["0.61:0.55:0.61:0.40:0.65:0.23:0.55:0.21"] = 433, -- Ratchet, Talrendis Point, Everlook, Moonglade
 					["0.61:0.55:0.61:0.40:0.65:0.23"] = 311, -- Ratchet, Talrendis Point, Everlook
