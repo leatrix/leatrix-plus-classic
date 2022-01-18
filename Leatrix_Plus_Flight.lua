@@ -661,7 +661,7 @@
 					["0.51:0.49:0.52:0.22"] = 294, -- Ironforge, Chillwind Camp
 					["0.51:0.49:0.70:0.16"] = 349, -- Ironforge, Light's Hope Chapel
 					["0.51:0.49:0.43:0.67:0.51:0.75"] = 313, -- Ironforge, Stormwind, Darkshire
-					["0.51:0.49:0.43:0.67:0.56:0.70"] = 309, -- Ironforge, Stormwind, Lakeshire
+					["0.51:0.49:0.43:0.67:0.56:0.70"] = 310, -- Ironforge, Stormwind, Lakeshire
 
 					-- Alliance: Lakeshire (Redridge Mountains)
 					["0.56:0.70:0.51:0.75:0.43:0.93"] = 227, -- Lakeshire, Darkshire, Booty Bay
@@ -927,7 +927,7 @@
 					["0.65:0.23:0.61:0.40:0.61:0.55"] = 310, -- Everlook, Talrendis Point, Ratchet
 					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67"] = 408, -- Everlook, Talrendis Point, Ratchet, Theramore
 					["0.65:0.23:0.55:0.21:0.43:0.25:0.40:0.51"] = 553, -- Everlook, Moonglade, Auberdine, Nijel's Point
-					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 564, -- Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
+					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 565, -- Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
 					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 668, -- Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
 					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 763, -- Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 					["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 571, -- Everlook, Talrendis Point, Ratchet, Theramore, Thalanaar
