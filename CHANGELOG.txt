@@ -1,6 +1,7 @@
-1.14.27.alpha.2 - 21st January 2022
+1.14.27.alpha.3 - 22nd January 2022
 - For 'Mute game sounds' ('System'), the 'Chimes' setting will now mute the Ironforge hourly horn sound.
 - Added lots of flight times.  Keep reporting.  Every little helps.
+- If you use ItemRack alongside 'Enhance minimap' with 'Combine addon buttons' enabled, the ItemRack minimap button flyout menu will remain visible as long as the mouse pointer is over it.
 
 1.14.26 - 19th January 2022
 - Added more flight times.  Keep reporting until there are no more flights left to report.  Some minor flight point tooltip tweaks.
