@@ -790,6 +790,7 @@
 					["0.41:0.75:0.43:0.67:0.51:0.49:0.55:0.25"] = 579, -- Sentinel Hill, Stormwind, Ironforge, Aerie Peak
 					["0.41:0.75:0.43:0.67:0.51:0.49:0.52:0.22"] = 578, -- Sentinel Hill, Stormwind, Ironforge, Chillwind Camp
 					["0.41:0.75:0.43:0.67:0.51:0.49:0.51:0.57"] = 363, -- Sentinel Hill, Stormwind, Ironforge, Thorium Point
+					["0.41:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 522, -- Sentinel Hill, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
 
 					-- Alliance: Southshore (Hillsbrad Foothills)
 					["0.48:0.30:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 597, -- Southshore, Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -1058,7 +1059,7 @@
 					["0.42:0.16:0.43:0.25:0.55:0.21"] = 236, -- Rut'theran Village, Auberdine, Moonglade
 					["0.42:0.16:0.43:0.25:0.55:0.21:0.65:0.23"] = 366, -- Rut'theran Village, Auberdine, Moonglade, Everlook
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 878, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
-					["0.42:0.16:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 840, -- Rut'theran Village, Auberdine, Nijel's Point, Theramore, Gadgetzan
+					["0.42:0.16:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 839, -- Rut'theran Village, Auberdine, Nijel's Point, Theramore, Gadgetzan
 					["0.42:0.16:0.43:0.25:0.64:0.67"] = 761, -- Rut'theran Village, Auberdine, Theramore
 
 					-- Alliance: Stonetalon Peak (Stonetalon Mountains)

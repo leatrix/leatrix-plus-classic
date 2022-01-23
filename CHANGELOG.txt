@@ -1,6 +1,6 @@
-1.14.27.alpha.4 - 22nd January 2022
+1.14.27.alpha.5 - 23rd January 2022
 - For 'Mute game sounds' ('System'), the 'Chimes' setting will now mute the Ironforge hourly horn sound.
-- Added lots of flight times.  Keep reporting.  Every little helps.
+- Added lots of flight times.  Keep reporting.  Every little helps.  There are now 980 flight times stored in Leatrix Plus.
 - If you use ItemRack alongside 'Enhance minimap' with 'Combine addon buttons' enabled, the ItemRack minimap button flyout menu will remain visible as long as the mouse pointer is over it.
 
 1.14.26 - 19th January 2022
