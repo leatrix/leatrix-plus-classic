@@ -971,6 +971,7 @@
 					["0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26"] = 671, -- Gadgetzan, Theramore, Talrendis Point, Talonbranch Glade
 					["0.60:0.81:0.64:0.67:0.61:0.40:0.65:0.23:0.55:0.21"] = 688, -- Gadgetzan, Theramore, Talrendis Point, Everlook, Moonglade
 					["0.60:0.81:0.64:0.67:0.40:0.51:0.31:0.69"] = 712, -- Gadgetzan, Theramore, Nijel's Point, Feathermoon
+					["0.60:0.81:0.64:0.67:0.61:0.40:0.65:0.23"] = 567, -- Gadgetzan, Theramore, Talrendis Point, Everlook
 
 					-- Alliance: Marshal's Refuge (Un'Goro Crater)
 					["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
