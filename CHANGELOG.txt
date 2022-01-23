@@ -1,6 +1,7 @@
-1.14.27.alpha.6 - 23rd January 2022
+1.14.27.alpha.7 - 23rd January 2022
+- If 'Automate quests' ('Automation') is enabled, you can now set the override key to be shift, alt or control.  Repeatable battlemaster and cloth quartermaster quests no longer require the alt key to be held.
 - For 'Mute game sounds' ('System'), the 'Chimes' setting will now mute the Ironforge hourly horn sound.
-- Added lots of flight times.  Keep reporting.  Every little helps.  There are now 981 flight times stored in Leatrix Plus.
+- Added lots of flight times.  Keep reporting.  Every little helps.  There are now 982 flight times stored in Leatrix Plus.
 - If you use ItemRack alongside 'Enhance minimap' with 'Combine addon buttons' enabled, the ItemRack minimap button flyout menu will remain visible as long as the mouse pointer is over it.
 
 1.14.26 - 19th January 2022

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.27.alpha.6 (23rd January 2022)
+-- 	Leatrix Plus 1.14.27.alpha.7 (23rd January 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.27.alpha.6"
+	LeaPlusLC["AddonVer"] = "1.14.27.alpha.7"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1122,9 +1122,13 @@
 			local QuestPanel = LeaPlusLC:CreatePanel("Automate quests", "QuestPanel")
 
 			LeaPlusLC:MakeTx(QuestPanel, "Settings", 16, -72)
-			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestShift", "Require shift key for quest automation", 16, -92, false, "If checked, you will need to hold the shift key down for quests to be automated.|n|nIf unchecked, holding shift will prevent quests from being automated.")
-			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestAvailable", "Accept available quests automatically", 16, -112, false, "If checked, available quests will be accepted automatically.")
-			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestCompleted", "Turn-in completed quests automatically", 16, -132, false, "If checked, completed quests will be turned-in automatically.")
+			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestAvailable", "Accept available quests automatically", 16, -92, false, "If checked, available quests will be accepted automatically.")
+			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestCompleted", "Turn-in completed quests automatically", 16, -112, false, "If checked, completed quests will be turned-in automatically.")
+
+			LeaPlusLC:MakeTx(QuestPanel, "Override key", 16, -152)
+			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestShift", "Require override key for quest automation", 16, -172, false, "If checked, you will need to hold the override key down for quests to be automated.|n|nIf unchecked, holding the override key will prevent quests from being automated.")
+
+			LeaPlusLC:CreateDropDown("AutoQuestKeyMenu", "Override key", QuestPanel, 146, "TOPLEFT", 356, -115, {L["SHIFT"], L["ALT"], L["CONTROL"]}, "")
 
 			-- Help button hidden
 			QuestPanel.h:Hide()
@@ -1142,6 +1146,7 @@
 				LeaPlusLC["AutoQuestShift"] = "Off"
 				LeaPlusLC["AutoQuestAvailable"] = "On"
 				LeaPlusLC["AutoQuestCompleted"] = "On"
+				LeaPlusLC["AutoQuestKeyMenu"] = 1
 
 				-- Refresh panel
 				QuestPanel:Hide(); QuestPanel:Show()
@@ -1155,11 +1160,22 @@
 					LeaPlusLC["AutoQuestShift"] = "Off"
 					LeaPlusLC["AutoQuestAvailable"] = "On"
 					LeaPlusLC["AutoQuestCompleted"] = "On"
+					LeaPlusLC["AutoQuestKeyMenu"] = 1
 				else
 					QuestPanel:Show()
 					LeaPlusLC:HideFrames()
 				end
 			end)
+
+			-- Function to determine if override key is being held
+			local function IsOverrideKeyDown()
+				if LeaPlusLC["AutoQuestKeyMenu"] == 1 and IsShiftKeyDown()
+				or LeaPlusLC["AutoQuestKeyMenu"] == 2 and IsAltKeyDown()
+				or LeaPlusLC["AutoQuestKeyMenu"] == 3 and IsControlKeyDown()
+				then
+					return true
+				end
+			end
 
 			-- Funcion to ignore specific NPCs
 			local function isNpcBlocked(actionType)
@@ -1335,33 +1351,33 @@
 					-- Battlemasters
 					elseif title == L["Concerted Efforts"] or title == L["For Great Honor"] then
 						-- Requires 3 Alterac Valley Mark of Honor, 3 Arathi Basin Mark of Honor, 3 Warsong Gulch Mark of Honor (must be before other Mark of Honor quests)
-						if IsAltKeyDown() and GetItemCount(20560) >= 3 and GetItemCount(20559) >= 3 and GetItemCount(20558) >= 3 then return true end
+						if GetItemCount(20560) >= 3 and GetItemCount(20559) >= 3 and GetItemCount(20558) >= 3 then return true end
 					elseif title == L["Remember Alterac Valley!"] or title == L["Invaders of Alterac Valley"] then
 						-- Requires 3 Alterac Valley Mark of Honor
-						if IsAltKeyDown() and GetItemCount(20560) >= 3 then return true end
+						if GetItemCount(20560) >= 3 then return true end
 					elseif title == L["Claiming Arathi Basin"] or title == L["Conquering Arathi Basin"] then
 						-- Requires 3 Arathi Basin Mark of Honor
-						if IsAltKeyDown() and GetItemCount(20559) >= 3 then return true end
+						if GetItemCount(20559) >= 3 then return true end
 					elseif title == L["Fight for Warsong Gulch"] or title == L["Battle of Warsong Gulch"] then
 						-- Requires 3 Warsong Gulch Mark of Honor
-						if IsAltKeyDown() and GetItemCount(20558) >= 3 then return true end
+						if GetItemCount(20558) >= 3 then return true end
 
 					-- Cloth quartermasters
 					elseif title == L["A Donation of Wool"] then
 						-- Requires 60 Wool Cloth
-						if IsAltKeyDown() and GetItemCount(2592) >= 60 then return true end
+						if GetItemCount(2592) >= 60 then return true end
 					elseif title == L["A Donation of Silk"] then
 						-- Requires 60 Silk Cloth
-						if IsAltKeyDown() and GetItemCount(4306) >= 60 then return true end
+						if GetItemCount(4306) >= 60 then return true end
 					elseif title == L["A Donation of Mageweave"] then
 						-- Requires 60 Mageweave
-						if IsAltKeyDown() and GetItemCount(4338) >= 60 then return true end
+						if GetItemCount(4338) >= 60 then return true end
 					elseif title == L["A Donation of Runecloth"] then
 						-- Requires 60 Runecloth
-						if IsAltKeyDown() and GetItemCount(14047) >= 60 then return true end
+						if GetItemCount(14047) >= 60 then return true end
 					elseif title == L["Additional Runecloth"] then
 						-- Requires 20 Runecloth
-						if IsAltKeyDown() and GetItemCount(14047) >= 20 then return true end
+						if GetItemCount(14047) >= 20 then return true end
 					elseif title == L["Gurubashi, Vilebranch, and Witherbark Coins"] then
 						-- Requires 1 Gurubashi Coin, 1 Vilebranch Coin, 1 Witherbark Coin
 						if GetItemCount(19701) >= 1 and GetItemCount(19702) >= 1 and GetItemCount(19703) >= 1 then return true end
@@ -1436,8 +1452,8 @@
 				end
 
 				-- Check for SHIFT key modifier
-				if LeaPlusLC["AutoQuestShift"] == "On" and not IsShiftKeyDown() then return 
-				elseif LeaPlusLC["AutoQuestShift"] == "Off" and IsShiftKeyDown() then return 
+				if LeaPlusLC["AutoQuestShift"] == "On" and not IsOverrideKeyDown() then return 
+				elseif LeaPlusLC["AutoQuestShift"] == "Off" and IsOverrideKeyDown() then return 
 				end
 
 				----------------------------------------------------------------------
@@ -9925,6 +9941,7 @@
 				LeaPlusLC:LoadVarChk("AutoQuestShift", "Off")				-- Automate quests requires shift
 				LeaPlusLC:LoadVarChk("AutoQuestAvailable", "On")			-- Accept available quests
 				LeaPlusLC:LoadVarChk("AutoQuestCompleted", "On")			-- Turn-in completed quests
+				LeaPlusLC:LoadVarNum("AutoQuestKeyMenu", 1, 1, 3)			-- Automate quests override key
 				LeaPlusLC:LoadVarChk("AutomateGossip", "Off")				-- Automate gossip
 				LeaPlusLC:LoadVarChk("AutoAcceptSummon", "Off")				-- Accept summon
 				LeaPlusLC:LoadVarChk("AutoAcceptRes", "Off")				-- Accept resurrection
@@ -10149,6 +10166,7 @@
 			LeaPlusDB["AutoQuestShift"]			= LeaPlusLC["AutoQuestShift"]
 			LeaPlusDB["AutoQuestAvailable"]		= LeaPlusLC["AutoQuestAvailable"]
 			LeaPlusDB["AutoQuestCompleted"]		= LeaPlusLC["AutoQuestCompleted"]
+			LeaPlusDB["AutoQuestKeyMenu"]		= LeaPlusLC["AutoQuestKeyMenu"]
 			LeaPlusDB["AutomateGossip"]			= LeaPlusLC["AutomateGossip"]
 			LeaPlusDB["AutoAcceptSummon"] 		= LeaPlusLC["AutoAcceptSummon"]
 			LeaPlusDB["AutoAcceptRes"] 			= LeaPlusLC["AutoAcceptRes"]
@@ -11953,6 +11971,7 @@
 				LeaPlusDB["AutoQuestShift"] = "Off"				-- Automate quests requires shift
 				LeaPlusDB["AutoQuestAvailable"] = "On"			-- Accept available quests
 				LeaPlusDB["AutoQuestCompleted"] = "On"			-- Turn-in completed quests
+				LeaPlusDB["AutoQuestKeyMenu"] = 1				-- Automate quests override key
 				LeaPlusDB["AutomateGossip"] = "On"				-- Automate gossip
 				LeaPlusDB["AutoAcceptSummon"] = "On"			-- Accept summon
 				LeaPlusDB["AutoAcceptRes"] = "On"				-- Accept resurrection
@@ -12306,7 +12325,7 @@
 	pg = "Page1";
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Character"					, 	146, -72);
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateQuests"			,	"Automate quests"				,	146, -92, 	false,	"If checked, quests will be selected, accepted and turned-in automatically.|n|nQuests which have a gold requirement will not be turned-in automatically.|n|nYou can hold the shift key down when you talk to a quest giver to override this setting.|n|nRepeatable battlemaster and cloth quartermaster quests can be automatically selected by holding down the alt key.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateQuests"			,	"Automate quests"				,	146, -92, 	false,	"If checked, quests will be selected, accepted and turned-in automatically.|n|nQuests which have a gold requirement will not be turned-in automatically.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateGossip"			,	"Automate gossip"				,	146, -112, 	false,	"If checked, you can hold down the alt key while opening a gossip window to automatically select a single gossip item.|n|nIf the gossip item type is banker, taxi, trainer, vendor or battlemaster, gossip will be skipped without needing to hold the alt key.  You can hold the shift key down to prevent this.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutoAcceptSummon"			,	"Accept summon"					, 	146, -132, 	false,	"If checked, summon requests will be accepted automatically unless you are in combat.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutoAcceptRes"				,	"Accept resurrection"			, 	146, -152, 	false,	"If checked, resurrection requests will be accepted automatically.")

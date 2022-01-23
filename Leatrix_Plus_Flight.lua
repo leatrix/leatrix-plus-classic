@@ -1149,6 +1149,7 @@
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.42:0.16"] = 700, -- Theramore, Nijel's Point, Auberdine, Rut'theran Village
 					["0.64:0.67:0.61:0.40:0.65:0.23"] = 414, -- Theramore, Talrendis Point, Everlook
 					["0.64:0.67:0.61:0.40:0.53:0.26"] = 518, -- Theramore, Talrendis Point, Talonbranch Glade
+					["0.64:0.67:0.43:0.25:0.42:0.16"] = 705, -- Theramore, Auberdine, Rut'theran Village
 
 				},
 
