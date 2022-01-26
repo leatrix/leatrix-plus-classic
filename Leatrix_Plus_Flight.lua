@@ -1044,6 +1044,7 @@
 					["0.61:0.55:0.61:0.40:0.65:0.23"] = 311, -- Ratchet, Talrendis Point, Everlook
 					["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25"] = 432, -- Ratchet, Talrendis Point, Astranaar, Auberdine
 					["0.61:0.55:0.64:0.67:0.43:0.25:0.46:0.40"] = 900, -- Ratchet, Theramore, Auberdine, Astranaar
+					["0.61:0.55:0.64:0.67:0.43:0.25:0.39:0.40"] = 906, -- Ratchet, Theramore, Auberdine, Stonetalon Peak
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan

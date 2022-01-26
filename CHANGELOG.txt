@@ -1,4 +1,4 @@
-1.14.27.alpha.12 - 26th January 2022
+1.14.27.alpha.13 - 26th January 2022
 - If 'Automate quests' ('Automation') is enabled, you can now set the override key to be shift, alt or control.  Repeatable battlemaster and cloth quartermaster quests no longer require the alt key to be held.
 - For 'Mute game sounds' ('System'), the 'Chimes' setting will now mute the Ironforge hourly horn sound.
 - Added lots of flight times.  Keep reporting.  Every little helps.  There are now 986 flight times stored in Leatrix Plus for Classic Era/SoM.
