@@ -462,6 +462,7 @@
 					["0.32:0.58:0.45:0.56:0.56:0.53:0.41:0.37"] = 566, -- Shadowprey Village, Thunder Bluff, Crossroads, Zoram'gar Outpost
 					["0.32:0.58:0.41:0.47"] = 199, -- Shadowprey Village, Sun Rock Retreat
 					["0.32:0.58:0.45:0.56"] = 178, -- Shadowprey Village, Thunder Bluff
+					["0.32:0.58:0.45:0.56:0.55:0.73"] = 382, -- Shadowprey Village, Thunder Bluff, Freewind Post
 
 					-- Horde: Splintertree Post (Ashenvale)
 					["0.55:0.42:0.56:0.53:0.55:0.73:0.61:0.80"] = 436, -- Splintertree Post, Crossroads, Freewind Post, Gadgetzan
@@ -890,6 +891,7 @@
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 545, -- Astranaar, Talrendis Point, Ratchet, Theramore, Thalanaar
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.42:0.79"] = 668, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Cenarion Hold
 					["0.46:0.40:0.43:0.25:0.40:0.51"] = 439, -- Astranaar, Auberdine, Nijel's Point
+					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 642, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1015,6 +1017,7 @@
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 701, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Thalanaar
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 799, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
 					["0.55:0.21:0.43:0.25:0.31:0.69:0.42:0.79"] = 772, -- Moonglade, Auberdine, Feathermoon, Cenarion Hold
+					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 897, -- Moonglade, Auberdine, Nijel's Point, Theramore, Gadgetzan
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan

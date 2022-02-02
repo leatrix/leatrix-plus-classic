@@ -1,5 +1,5 @@
-1.14.28.alpha.1 - 31st January 2022
-- Added more flight times.  There are now 993 flight times in Leatrix Plus for Classic Era/SoM.
+1.14.28.alpha.2 - 2nd February 2022
+- Added more flight times.  There are now 996 flight times in Leatrix Plus for Classic Era/SoM.
 
 1.14.27 - 26th January 2022
 - If 'Automate quests' ('Automation') is enabled, you can now set the override key to be shift, alt or control.  Repeatable battlemaster and cloth quartermaster quests no longer require the alt key to be held.
