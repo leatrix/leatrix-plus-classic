@@ -463,6 +463,7 @@
 					["0.32:0.58:0.41:0.47"] = 199, -- Shadowprey Village, Sun Rock Retreat
 					["0.32:0.58:0.45:0.56"] = 178, -- Shadowprey Village, Thunder Bluff
 					["0.32:0.58:0.45:0.56:0.55:0.73"] = 382, -- Shadowprey Village, Thunder Bluff, Freewind Post
+					["0.32:0.58:0.44:0.69:0.55:0.73:0.61:0.80:0.50:0.76"] = 503, -- Shadowprey Village, Camp Mojache, Freewind Post, Gadgetzan, Marshal's Refuge
 
 					-- Horde: Splintertree Post (Ashenvale)
 					["0.55:0.42:0.56:0.53:0.55:0.73:0.61:0.80"] = 436, -- Splintertree Post, Crossroads, Freewind Post, Gadgetzan
@@ -892,6 +893,8 @@
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.42:0.79"] = 668, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Cenarion Hold
 					["0.46:0.40:0.43:0.25:0.40:0.51"] = 439, -- Astranaar, Auberdine, Nijel's Point
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 642, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
+					["0.46:0.40:0.39:0.40:0.40:0.51:0.64:0.67:0.61:0.55"] = 701, -- Astranaar, Stonetalon Peak, Nijel's Point, Theramore, Ratchet
+					["0.46:0.40:0.43:0.25:0.64:0.67:0.48:0.70"] = 982, -- Astranaar, Auberdine, Theramore, Thalanaar
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1054,6 +1057,7 @@
 					["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25"] = 432, -- Ratchet, Talrendis Point, Astranaar, Auberdine
 					["0.61:0.55:0.64:0.67:0.43:0.25:0.46:0.40"] = 900, -- Ratchet, Theramore, Auberdine, Astranaar
 					["0.61:0.55:0.64:0.67:0.43:0.25:0.39:0.40"] = 906, -- Ratchet, Theramore, Auberdine, Stonetalon Peak
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.39:0.40:0.46:0.40"] = 711, -- Ratchet, Theramore, Nijel's Point, Stonetalon Peak, Astranaar
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
