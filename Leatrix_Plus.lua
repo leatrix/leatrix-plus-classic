@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.28 (3rd February 2022)
+-- 	Leatrix Plus 1.14.29.alpha.1 (5th February 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.28"
+	LeaPlusLC["AddonVer"] = "1.14.29.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -659,6 +659,38 @@
 
 				},
 
+				-- Screech (sound/spells/)
+				["MuteScreech"] = {
+
+					"screech.ogg#569429",
+
+				},
+
+				-- Striders
+				["MuteStriders"] = {
+
+					-- sound/creature/mechastrider/
+					"mechastrideraggro.ogg#555127", 
+					"mechastriderattacka.ogg#555125", 
+					"smechastriderattackb.ogg#555123", 
+					"mechastriderattackc.ogg#555132", 
+					"mechastriderloop.ogg#555124", 
+					"mechastriderwounda.ogg#555128", 
+					"mechastriderwoundb.ogg#555129", 
+					"mechastriderwoundc.ogg#555130", 
+					"mechastriderwoundcrit.ogg#555131",
+
+					-- sound/creature/gnomespidertank/
+					"gnomespidertankfootstepa.ogg#550507",
+					"gnomespidertankfootstepb.ogg#550514", 
+					"gnomespidertankfootstepc.ogg#550501", 
+					"gnomespidertankfootstepd.ogg#550500", 
+					"gnomespidertankwoundd.ogg#550511",
+					"gnomespidertankwounde.ogg#550504",
+					"gnomespidertankwoundf.ogg#550498",
+
+				},
+
 			}
 
 			-- Give table file level scope (its used during logout and for wipe and admin commands)
@@ -685,8 +717,12 @@
 			LeaPlusLC:MakeCB(SoundPanel, "MuteChimes", "Chimes", 16, -152, false, "If checked, clock hourly chimes will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -172, false, "If checked, the ready check sound will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Pets", 140, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 140, -92, false, "If checked, yawns from hunter pet cats will be muted.")
+			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 140, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 140, -92, false, "If checked, mechanostriders will be muted.")
+
+			LeaPlusLC:MakeTx(SoundPanel, "Pets", 264, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 264, -92, false, "If checked, yawns from hunter pet cats will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteScreech", "Screech", 264, -112, false, "If checked, Screech will be muted.|n|nThis is a spell used by some flying pets.")
 
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(muteTable) do
