@@ -1,5 +1,6 @@
 1.14.29 - 9th February 2022
 - Updated for game version 1.14.2.
+- There are now 1001 flight times in Leatrix Plus for Classic Era/SoM.
 - Added 'Screech' to 'Mute game sounds' ('System').  This is a spell used by some flying pets.
 - Added 'Striders' to 'Mute game sounds' ('System').  This will mute mechanostrider mounts.
 
