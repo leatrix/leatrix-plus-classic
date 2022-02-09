@@ -464,6 +464,7 @@
 					["0.32:0.58:0.45:0.56"] = 178, -- Shadowprey Village, Thunder Bluff
 					["0.32:0.58:0.45:0.56:0.55:0.73"] = 382, -- Shadowprey Village, Thunder Bluff, Freewind Post
 					["0.32:0.58:0.44:0.69:0.55:0.73:0.61:0.80:0.50:0.76"] = 503, -- Shadowprey Village, Camp Mojache, Freewind Post, Gadgetzan, Marshal's Refuge
+					["0.32:0.58:0.45:0.56:0.61:0.80"] = 468, -- Shadowprey Village, Thunder Bluff, Gadgetzan
 
 					-- Horde: Splintertree Post (Ashenvale)
 					["0.55:0.42:0.56:0.53:0.55:0.73:0.61:0.80"] = 436, -- Splintertree Post, Crossroads, Freewind Post, Gadgetzan
