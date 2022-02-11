@@ -1,5 +1,5 @@
-1.14.30.alpha.1 - 11th February 2022
-- For 'Enhance minimap' ('Interface'), added a new setting 'Show who pinged'.  It's enabled by default.
+1.14.30.alpha.2 - 11th February 2022
+- For 'Enhance minimap' ('Interface'), added a new setting 'Show who pinged'.  It's enabled by default.  Note that this does not apply to your own pings.
 
 1.14.29 - 9th February 2022
 - Updated for game version 1.14.2.
