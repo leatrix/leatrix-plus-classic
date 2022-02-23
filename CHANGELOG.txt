@@ -1,3 +1,6 @@
+1.14.31 - 23rd February 2022
+- Added more flight times.  There are now 1013 flight times in Leatrix Plus for Classic Era/SoM.
+
 1.14.30 - 16th February 2022
 - For 'Enhance minimap' ('Interface'), added a new setting 'Show who pinged'.  It's enabled by default.  Note that this does not apply to your own pings.
 - There are now 1007 flight times in Leatrix Plus for Classic Era/SoM.
