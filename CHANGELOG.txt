@@ -1,3 +1,6 @@
+1.14.32 - 2nd March 2022
+- Added more flight times.  There are now 1024 flight times in Leatrix Plus for Classic Era/SoM.
+
 1.14.31 - 23rd February 2022
 - Added more flight times.  There are now 1013 flight times in Leatrix Plus for Classic Era/SoM.
 
