@@ -671,7 +671,7 @@
 					["0.51:0.49:0.57:0.32"] = 253, -- Ironforge, Refuge Pointe
 					["0.51:0.49:0.48:0.30"] = 265, -- Ironforge, Southshore
 					["0.51:0.49:0.55:0.25"] = 298, -- Ironforge, Aerie Peak
-					["0.51:0.49:0.52:0.22"] = 294, -- Ironforge, Chillwind Camp
+					["0.51:0.49:0.52:0.22"] = 304, -- Ironforge, Chillwind Camp
 					["0.51:0.49:0.70:0.16"] = 349, -- Ironforge, Light's Hope Chapel
 					["0.51:0.49:0.43:0.67:0.51:0.75"] = 313, -- Ironforge, Stormwind, Darkshire
 					["0.51:0.49:0.43:0.67:0.56:0.70"] = 310, -- Ironforge, Stormwind, Lakeshire
@@ -885,6 +885,8 @@
 					["0.51:0.57:0.51:0.49:0.43:0.67"] = 257, -- Thorium Point, Ironforge, Stormwind
 					["0.51:0.57:0.51:0.49:0.43:0.67:0.61:0.78"] = 420, -- Thorium Point, Ironforge, Stormwind, Nethergarde Keep
 					["0.51:0.57:0.51:0.49:0.43:0.67:0.41:0.75"] = 321, -- Thorium Point, Ironforge, Stormwind, Sentinel Hill
+					["0.51:0.57:0.58:0.65:0.43:0.67"] = 220, -- Thorium Point, Morgan's Vigil, Stormwind
+					["0.51:0.57:0.51:0.49:0.43:0.67:0.56:0.70"] = 356, -- Thorium Point, Ironforge, Stormwind, Lakeshire
 
 				},
 
@@ -929,6 +931,7 @@
 					["0.43:0.25:0.31:0.69:0.48:0.70"] = 627, -- Auberdine, Feathermoon, Thalanaar
 					["0.43:0.25:0.31:0.69:0.42:0.79"] = 630, -- Auberdine, Feathermoon, Cenarion Hold
 					["0.43:0.25:0.53:0.26:0.65:0.23"] = 292, -- Auberdine, Talonbranch Glade, Everlook
+					["0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 755, -- Auberdine, Nijel's Point, Theramore, Gadgetzan
 
 					-- Alliance: Cenarion Hold (Silithus)
 					["0.42:0.79:0.60:0.81"] = 189, -- Cenarion Hold, Gadgetzan
@@ -983,6 +986,7 @@
 					["0.31:0.69:0.48:0.70:0.64:0.67:0.61:0.40"] = 548, -- Feathermoon, Thalanaar, Theramore, Talrendis Point
 					["0.31:0.69:0.43:0.25:0.55:0.21"] = 619, -- Feathermoon, Auberdine, Moonglade
 					["0.31:0.69:0.43:0.25:0.46:0.40"] = 643, -- Feathermoon, Auberdine, Astranaar
+					["0.31:0.69:0.43:0.25:0.53:0.26"] = 657, -- Feathermoon, Auberdine, Talonbranch Glade
 
 					-- Alliance: Gadgetzan (Tanaris)
 					["0.60:0.81:0.50:0.76"] = 104, -- Gadgetzan, Marshal's Refuge
@@ -1023,6 +1027,7 @@
 					["0.50:0.76:0.60:0.81:0.48:0.70:0.31:0.69"] = 458, -- Marshal's Refuge, Gadgetzan, Thalanaar, Feathermoon
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.65:0.23"] = 670, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Everlook
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 876, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
+					["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 1055, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 
 					-- Alliance: Moonglade (Moonglade)
 					["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
