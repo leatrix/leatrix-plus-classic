@@ -1,6 +1,7 @@
-1.14.34.alpha.1 - 21st March 2022
+1.14.35 - 23rd March 2022
 - Added more flight times.  There are now 1037 flight times in Leatrix Plus for Classic Era/SoM.
 - Updated the '/ltp ra' rare announcement message.
+- For 'Enhance tooltip', removed the setting to show tooltip backdrops in faction color.
 
 1.14.33 - 9th March 2022
 - Added more flight times.  There are now 1032 flight times in Leatrix Plus for Classic Era/SoM.
