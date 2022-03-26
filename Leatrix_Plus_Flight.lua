@@ -341,6 +341,7 @@
 					["0.55:0.73:0.45:0.56"] = 225, -- Freewind Post, Thunder Bluff
 					["0.55:0.73:0.44:0.69:0.32:0.58"] = 323, -- Freewind Post, Camp Mojache, Shadowprey Village
 					["0.55:0.73:0.56:0.53:0.57:0.64"] = 357, -- Freewind Post, Crossroads, Brackenwall Village
+					["0.55:0.73:0.45:0.56:0.32:0.58"] = 385, -- Freewind Post, Thunder Bluff, Shadowprey Village
 
 					-- Horde: Gadgetzan (Tanaris)
 					["0.61:0.80:0.42:0.79"] = 233, -- Gadgetzan, Cenarion Hold
