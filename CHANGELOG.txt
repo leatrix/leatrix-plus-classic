@@ -1,5 +1,5 @@
-1.14.36.alpha.2 - 26th March 2022
-- If 'Enhance trainers' ('Interface') is enabled, a 'Train All' button will now be shown in the train skills frame allowing you to train all available skills in one click.
+1.14.36.alpha.3 - 27th March 2022
+- If 'Enhance trainers' ('Interface') is enabled, a 'Train All' button will now be shown in the tradeskills trainer frame allowing you to train all available skills in one click.
 - PTR: Fixed a Lua error when logging into the PTR (1.14.3).
 - Added a flight time.  There are now 1038 flight times in Leatrix Plus for Classic Era/SoM.
 
