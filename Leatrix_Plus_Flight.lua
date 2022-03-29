@@ -880,7 +880,6 @@
 					["0.51:0.57:0.51:0.49:0.55:0.25"] = 343, -- Thorium Point, Ironforge, Aerie Peak
 					["0.51:0.57:0.51:0.49:0.52:0.22"] = 342, -- Thorium Point, Ironforge, Chillwind Camp
 					["0.51:0.57:0.51:0.49:0.70:0.16"] = 398, -- Thorium Point, Ironforge, Light's Hope Chapel
-					["0.51:0.57:0.51:0.49:0.43:0.67"] = 258, -- Thorium Point, Ironforge, Stormwind
 					["0.51:0.57:0.58:0.65:0.56:0.70"] = 125, -- Thorium Point, Morgan's Vigil, Lakeshire
 					["0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 286, -- Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe
 					["0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 280, -- Thorium Point, Ironforge, Menethil Harbor, Southshore
@@ -1039,7 +1038,6 @@
 					["0.55:0.21:0.43:0.25:0.42:0.16"] = 226, -- Moonglade, Auberdine, Rut'theran Village
 					["0.55:0.21:0.65:0.23:0.61:0.40"] = 307, -- Moonglade, Everlook, Talrendis Point
 					["0.55:0.21:0.43:0.25:0.39:0.40"] = 323, -- Moonglade, Auberdine, Stonetalon Peak
-					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 694, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan
 					["0.55:0.21:0.43:0.25:0.46:0.40"] = 318, -- Moonglade, Auberdine, Astranaar
 					["0.55:0.21:0.43:0.25:0.40:0.51"] = 433, -- Moonglade, Auberdine, Nijel's Point
 					["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55"] = 440, -- Moonglade, Everlook, Talrendis Point, Ratchet
