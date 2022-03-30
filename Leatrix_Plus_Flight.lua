@@ -658,6 +658,7 @@
 					["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Stormwind, Ironforge, Menethil Harbor
 					["0.51:0.75:0.43:0.67:0.51:0.49"] = 333, -- Darkshire, Stormwind, Ironforge
 					["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 524, -- Darkshire, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
+					["0.51:0.75:0.43:0.67:0.51:0.49:0.59:0.52"] = 392, -- Darkshire, Stormwind, Ironforge, Thelsamar
 
 					-- Alliance: Ironforge (Dun Morogh)
 					["0.51:0.49:0.43:0.67:0.43:0.93"] = 440, -- Ironforge, Stormwind, Booty Bay
@@ -673,7 +674,7 @@
 					["0.51:0.49:0.57:0.32"] = 253, -- Ironforge, Refuge Pointe
 					["0.51:0.49:0.48:0.30"] = 265, -- Ironforge, Southshore
 					["0.51:0.49:0.55:0.25"] = 298, -- Ironforge, Aerie Peak
-					["0.51:0.49:0.52:0.22"] = 304, -- Ironforge, Chillwind Camp
+					["0.51:0.49:0.52:0.22"] = 295, -- Ironforge, Chillwind Camp
 					["0.51:0.49:0.70:0.16"] = 349, -- Ironforge, Light's Hope Chapel
 					["0.51:0.49:0.43:0.67:0.51:0.75"] = 313, -- Ironforge, Stormwind, Darkshire
 					["0.51:0.49:0.43:0.67:0.56:0.70"] = 310, -- Ironforge, Stormwind, Lakeshire
