@@ -674,7 +674,7 @@
 					["0.51:0.49:0.57:0.32"] = 253, -- Ironforge, Refuge Pointe
 					["0.51:0.49:0.48:0.30"] = 265, -- Ironforge, Southshore
 					["0.51:0.49:0.55:0.25"] = 298, -- Ironforge, Aerie Peak
-					["0.51:0.49:0.52:0.22"] = 295, -- Ironforge, Chillwind Camp
+					["0.51:0.49:0.52:0.22"] = 294, -- Ironforge, Chillwind Camp
 					["0.51:0.49:0.70:0.16"] = 349, -- Ironforge, Light's Hope Chapel
 					["0.51:0.49:0.43:0.67:0.51:0.75"] = 313, -- Ironforge, Stormwind, Darkshire
 					["0.51:0.49:0.43:0.67:0.56:0.70"] = 310, -- Ironforge, Stormwind, Lakeshire
