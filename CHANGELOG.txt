@@ -1,3 +1,6 @@
+1.14.37.alpha.1 - 31st March 2022
+- The 'Enhance dressup' option now shows a toggle stats button in the character frame.  You can either click this button or middle-click the character frame to toggle stats.  For new Leatrix Plus users, stats are now shown by default.
+
 1.14.36 - 30th March 2022
 - If 'Enhance trainers' ('Interface') is enabled, a 'Train All' button will now be shown in the skill trainer frame allowing you to train all available skills in one click.
 - Added more flight times.  There are now 1038 flight times in Leatrix Plus for Classic Era/SoM.

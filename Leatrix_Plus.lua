@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.36 (30th March 2022)
+-- 	Leatrix Plus 1.14.37.alpha.1 (31st March 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.36"
+	LeaPlusLC["AddonVer"] = "1.14.37.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -4833,6 +4833,25 @@
 				end
 			end)
 			ToggleStats()
+
+			-- Create toggle stats button
+			local toggleButton = CreateFrame("Button", nil, PaperDollFrame)
+			toggleButton:SetSize(32, 29)
+			toggleButton:SetPoint("TOPLEFT", PaperDollFrame, "TOPLEFT", 70, -42)
+			toggleButton:SetNormalTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Up")
+			toggleButton:SetHighlightTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Up")
+			toggleButton:SetPushedTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Down")
+			toggleButton:SetScript("OnEnter", function()
+				GameTooltip:SetOwner(toggleButton, "ANCHOR_NONE")
+				GameTooltip:SetPoint("BOTTOMLEFT", toggleButton, "BOTTOMRIGHT", 0, 0)
+				GameTooltip:SetText(L["Toggle character stats"], nil, nil, nil, nil, true)
+				GameTooltip:Show()
+			end)
+			toggleButton:SetScript("OnLeave", GameTooltip_Hide)
+			toggleButton:SetScript("OnClick", function()
+				if LeaPlusLC["HideDressupStats"] == "On" then LeaPlusLC["HideDressupStats"] = "Off" else LeaPlusLC["HideDressupStats"] = "On" end
+				ToggleStats()
+			end)
 
 			-- Delay setting stats if CharacterStatsClassic is installed but hasn't loaded yet
 			if not CSC_HideStatsPanel and select(2, GetAddOnInfo("CharacterStatsClassic")) then
@@ -10194,7 +10213,7 @@
 				LeaPlusLC:LoadVarChk("EnhanceDressup", "Off")				-- Enhance dressup
 				LeaPlusLC:LoadVarChk("DressupItemButtons", "On")			-- Dressup item buttons
 				LeaPlusLC:LoadVarChk("DressupAnimControl", "On")			-- Dressup animation control
-				LeaPlusLC:LoadVarChk("HideDressupStats", "On")				-- Hide dressup stats
+				LeaPlusLC:LoadVarChk("HideDressupStats", "Off")				-- Hide dressup stats
 				LeaPlusLC:LoadVarChk("EnhanceQuestLog", "Off")				-- Enhance quest log
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
@@ -12582,7 +12601,7 @@
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Enhancements"				, 	146, -72);
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MinimapMod"				,	"Enhance minimap"				, 	146, -92, 	true,	"If checked, you will be able to customise the minimap.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "TipModEnable"				,	"Enhance tooltip"				,	146, -112, 	true,	"If checked, the tooltip will be color coded and you will be able to modify the tooltip layout and scale.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceDressup"			, 	"Enhance dressup"				,	146, -132, 	true,	"If checked, you will be able to pan (right-button) and zoom (mousewheel) in the character frame, dressup frame and inspect frame.|n|nYou will be able to middle-click the character model in the character frame to toggle character attributes.|n|nModel rotation controls will be hidden.  Buttons to toggle gear will be added to the dressup frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceDressup"			, 	"Enhance dressup"				,	146, -132, 	true,	"If checked, you will be able to pan (right-button) and zoom (mousewheel) in the character frame, dressup frame and inspect frame.|n|nA toggle stats button will be shown in the character frame.  You can also middle-click the character model to toggle stats.|n|nModel rotation controls will be hidden.  Buttons to toggle gear will be added to the dressup frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceQuestLog"			, 	"Enhance quest log"				,	146, -152, 	true,	"If checked, the quest log frame will be larger and feature a world map button and quest levels.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceProfessions"		, 	"Enhance professions"			,	146, -172, 	true,	"If checked, the professions frame will be larger.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceTrainers"			, 	"Enhance trainers"				,	146, -192, 	true,	"If checked, the skill trainer frame will be larger and feature a train all skills button.")
