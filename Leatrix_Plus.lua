@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.37.alpha.1 (31st March 2022)
+-- 	Leatrix Plus 1.14.37.alpha.2 (1st April 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.37.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.37.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -4836,11 +4836,11 @@
 
 			-- Create toggle stats button
 			local toggleButton = CreateFrame("Button", nil, PaperDollFrame)
-			toggleButton:SetSize(32, 29)
-			toggleButton:SetPoint("TOPLEFT", PaperDollFrame, "TOPLEFT", 70, -42)
-			toggleButton:SetNormalTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Up")
-			toggleButton:SetHighlightTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Up")
-			toggleButton:SetPushedTexture("Interface\\CHATFRAME\\UI-ChatIcon-BattleBro-Down")
+			toggleButton:SetSize(36, 36)
+			toggleButton:SetPoint("TOPLEFT", PaperDollFrame, "TOPLEFT", 64, -45)
+			toggleButton:SetNormalTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-RotationRight-Big-Up")
+			toggleButton:SetHighlightTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-RotationRight-Big-Up")
+			toggleButton:SetPushedTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-RotationRight-Big-Up")
 			toggleButton:SetScript("OnEnter", function()
 				GameTooltip:SetOwner(toggleButton, "ANCHOR_NONE")
 				GameTooltip:SetPoint("BOTTOMLEFT", toggleButton, "BOTTOMRIGHT", 0, 0)
