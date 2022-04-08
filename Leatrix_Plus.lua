@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.38.alpha.2 (8th April 2022)
+-- 	Leatrix Plus 1.14.38.alpha.3 (9th April 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.38.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.38.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3355,23 +3355,6 @@
 				bFrame:Hide()
 				bFrame:SetFrameLevel(8)
 
-				-- Frame border
-				local bFrameBorder = CreateFrame("Frame", nil, bFrame, "BackdropTemplate")    
-				bFrameBorder:SetPoint("TOPLEFT", -3, 3)
-				bFrameBorder:SetPoint("BOTTOMRIGHT", 3, -3)
-				bFrameBorder:SetAlpha(0.8)
-				bFrameBorder:SetBackdrop({
-					edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark",
-					edgeSize = 2.8,
-				})
-
-				local bFrameBg = 1
-				local bFrameBg = bFrame:CreateTexture(nil, "BACKGROUND")
-				bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-				bFrameBg:SetPoint("TOPLEFT", -1, 1)
-				bFrameBg:SetPoint("BOTTOMRIGHT", 1, -1)
-				bFrameBg:SetVertexColor(0, 0, 0, 0.5)
-
 				-- Hide button frame automatically
 				local ButtonFrameTicker
 				bFrame:HookScript("OnShow", function()
@@ -3428,6 +3411,12 @@
 					if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
 						button:Hide()
 						button:SetScript("OnShow", function() if not bFrame:IsShown() then button:Hide() end end)
+						-- Create background texture
+						local bFrameBg = button:CreateTexture(nil, "BACKGROUND")
+						bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+						bFrameBg:SetPoint("CENTER")
+						bFrameBg:SetSize(30, 30)
+						bFrameBg:SetVertexColor(0, 0, 0, 0.5)
 					elseif strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) and LeaPlusLC["SquareMinimap"] == "On" then
 						button:SetScale(0.75)
 					end
@@ -3443,6 +3432,12 @@
 								button:Hide()
 								button:SetScript("OnShow", function() if not bFrame:IsShown() then button:Hide() end end)
 							end
+							-- Create background texture
+							local bFrameBg = button:CreateTexture(nil, "BACKGROUND")
+							bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+							bFrameBg:SetPoint("CENTER")
+							bFrameBg:SetSize(30, 30)
+							bFrameBg:SetVertexColor(0, 0, 0, 0.5)
 						elseif strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) and LeaPlusLC["SquareMinimap"] == "On" then
 							button:SetScale(0.75)
 						end
