@@ -889,6 +889,7 @@
 					["0.51:0.57:0.51:0.49:0.43:0.67:0.41:0.75"] = 321, -- Thorium Point, Ironforge, Stormwind, Sentinel Hill
 					["0.51:0.57:0.58:0.65:0.43:0.67"] = 220, -- Thorium Point, Morgan's Vigil, Stormwind
 					["0.51:0.57:0.51:0.49:0.43:0.67:0.56:0.70"] = 356, -- Thorium Point, Ironforge, Stormwind, Lakeshire
+					["0.51:0.57:0.58:0.65:0.56:0.70:0.41:0.75"] = 257, -- Thorium Point, Morgan's Vigil, Lakeshire, Sentinel Hill
 
 				},
 

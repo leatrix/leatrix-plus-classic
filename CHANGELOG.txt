@@ -1,5 +1,6 @@
-1.14.38.alpha.1 - 8th April 2022
-- Maintenance update.
+1.14.38.alpha.2 - 8th April 2022
+- For 'Enhance minimap' ('Interface'), you can now specify addon buttons that you wish to be visible at all times.  To do so, open the configuration panel, click the 'Buttons' button and follow the directions in the Help button.  The 'Exclude BugSack' setting has been removed since you can now add BugSack to the 'Buttons' panel to achieve the same result.
+- Added flight times.  There are now 1041 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.37 - 6th April 2022
 - The 'Enhance dressup' option now shows a toggle stats button in the character frame.  You can either click this button or middle-click the character frame to toggle stats.  For new Leatrix Plus users, stats are now shown by default.
