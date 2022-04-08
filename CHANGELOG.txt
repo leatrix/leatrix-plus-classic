@@ -1,3 +1,6 @@
+1.14.38.alpha.1 - 8th April 2022
+- Maintenance update.
+
 1.14.37 - 6th April 2022
 - The 'Enhance dressup' option now shows a toggle stats button in the character frame.  You can either click this button or middle-click the character frame to toggle stats.  For new Leatrix Plus users, stats are now shown by default.
 - Added more flight times.  There are now 1040 flight times in Leatrix Plus for Classic Era/SoM.
