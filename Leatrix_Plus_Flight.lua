@@ -153,7 +153,7 @@
 					-- Horde: Thorium Point (Searing Gorge)
 					["0.51:0.57:0.55:0.57:0.45:0.84:0.43:0.93"] = 462, -- Thorium Point, Kargath, Grom'gol, Booty Bay
 					["0.51:0.57:0.55:0.57:0.45:0.84"] = 382, -- Thorium Point, Kargath, Grom'gol
-					["0.51:0.57:0.56:0.61:0.61:0.75"] = 350, -- Thorium Point, Flame Crest, Stonard
+					["0.51:0.57:0.56:0.61:0.61:0.75"] = 286, -- Thorium Point, Flame Crest, Stonard
 					["0.51:0.57:0.56:0.61"] = 77, -- Thorium Point, Flame Crest
 					["0.51:0.57:0.55:0.57"] = 70, -- Thorium Point, Kargath
 					["0.51:0.57:0.55:0.57:0.62:0.31"] = 331, -- Thorium Point, Kargath, Hammerfall
