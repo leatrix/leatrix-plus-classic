@@ -1,5 +1,5 @@
-1.14.39.alpha.1 - 14th April 2022
-- Updated flight times.
+1.14.39.alpha.1 - 18th April 2022
+- Added flight times.  There are now 1042 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.38 - 13th April 2022
 - For 'Enhance minimap' ('Interface'), if you use 'Hide addon buttons' or 'Combine addon buttons' but you want some buttons to remain visible around the minimap, you can now do so using a new 'Buttons' editor in the configuration panel.  Just follow the directions in the Help button.  The 'Exclude BugSack' setting has been removed since you can now add BugSack to the 'Buttons' panel to achieve the same result.
