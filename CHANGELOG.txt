@@ -1,3 +1,6 @@
+1.14.40.alpha.1 - 23rd April 2022
+- Added flight times.  There are now 1044 flight times stored in Leatrix Plus for Classic Era/SoM.
+
 1.14.39 - 20th April 2022
 - Updated for game version 1.14.3.
 - Added flight times.  There are now 1043 flight times stored in Leatrix Plus for Classic Era/SoM.
