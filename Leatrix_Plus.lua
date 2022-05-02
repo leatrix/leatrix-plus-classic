@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.40 (27th April 2022)
+-- 	Leatrix Plus 1.14.41.alpha.1 (2nd May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.40"
+	LeaPlusLC["AddonVer"] = "1.14.41.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3728,10 +3728,12 @@
 							local name = btn:GetName()
 							local btype = btn:GetObjectType()
 							if name and btype == "Button" and not CustomAddonTable[name] and btn:GetNumRegions() >= 3 and not issecurevariable(name) and btn:IsShown() then
-								if not string.find(name, "LibDBIcon") or name == "LibDBIcon10_MethodRaidTools" then
-									CreateBadButton(name)
-									btn:Hide()
-									btn:SetScript("OnShow", function() btn:Hide() end)
+								if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), strlower("##" .. name)) then
+									if not string.find(name, "LibDBIcon") or name == "LibDBIcon10_MethodRaidTools" then
+										CreateBadButton(name)
+										btn:Hide()
+										btn:SetScript("OnShow", function() btn:Hide() end)
+									end
 								end
 							end
 						end
