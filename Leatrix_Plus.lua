@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.41.alpha.1 (2nd May 2022)
+-- 	Leatrix Plus 1.14.41 (5th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.41.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.41"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -12206,15 +12206,15 @@
 			elseif str == "arrow" then
 				-- Arrow (left: drag, shift/ctrl: rotate, mouseup: loc, pointer must be on arrow stem)
 				local f = CreateFrame("Frame", nil, WorldMapFrame.ScrollContainer)
-				f:SetSize(64, 52)
+				f:SetSize(64, 64)
 				f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 				f:SetFrameLevel(500)
 				f:SetParent(WorldMapFrame.ScrollContainer)
+				f:SetScale(0.6)
 
 				f.t = f:CreateTexture(nil, "ARTWORK")
 				f.t:SetAtlas("Garr_LevelUpgradeArrow")
-				f.t:SetPoint("TOPLEFT", 18, -5)
-				f.t:SetPoint("BOTTOMRIGHT", -10, 8)
+				f.t:SetAllPoints()
 
 				f.f = f:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 				f.f:SetText("0.0")
@@ -12232,6 +12232,15 @@
 						f.t:SetRotation(x)
 						f.f:SetFormattedText("%.1f", x)
 					end
+					-- Print coordinates when mouse is in right place
+					local x, y = WorldMapFrame.ScrollContainer:GetNormalizedCursorPosition()
+					if x and y and x > 0 and y > 0 then
+						if MouseIsOver(f, -31, 31, 31, -31) then
+							ChatFrame1:Clear()
+							print(('{"Arrow", ' .. floor(x * 1000 + 0.5) / 10) .. ',', (floor(y * 1000 + 0.5) / 10) .. ', L["Step 1"], L["Start here."], arTex, nil, nil, nil, nil, nil, ' .. f.f:GetText() .. "},")
+							PlaySoundFile(567412, "Master", false, true)
+						end
+					end
 				end)
 
 				f:SetMovable(true)
@@ -12243,11 +12252,11 @@
 
 				f:SetScript("OnMouseUp", function()
 					f:StopMovingOrSizing()
-					ChatFrame1:Clear()
-					local x, y = WorldMapFrame.ScrollContainer:GetNormalizedCursorPosition()
-					if x and y and x > 0 and y > 0 and MouseIsOver(f) then
-						print(('{"Arrow", ' .. floor(x * 1000 + 0.5) / 10) .. ',', (floor(y * 1000 + 0.5) / 10) .. ', L["Step 1"], L["Start here."], ' .. f.f:GetText() .. "},")
-					end
+					--ChatFrame1:Clear()
+					--local x, y = WorldMapFrame.ScrollContainer:GetNormalizedCursorPosition()
+					--if x and y and x > 0 and y > 0 and MouseIsOver(f) then
+					--	print(('{"Arrow", ' .. floor(x * 1000 + 0.5) / 10) .. ',', (floor(y * 1000 + 0.5) / 10) .. ', L["Step 1"], L["Start here."], ' .. f.f:GetText() .. "},")
+					--end
 				end)
 				return
 			elseif str == "flight" then
