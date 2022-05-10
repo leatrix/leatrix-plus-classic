@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.42.alpha.1 (9th May 2022)
+-- 	Leatrix Plus 1.14.42.alpha.2 (10th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.42.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.42.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1687,6 +1687,7 @@
 			end)
 
 			-- Reset button handler
+			SellJunkFrame.r.tiptext = SellJunkFrame.r.tiptext .. "|n|n" .. L["Note that this will not reset your exclusions list."]
 			SellJunkFrame.r:SetScript("OnClick", function()
 
 				-- Reset checkboxes
@@ -1716,6 +1717,152 @@
 				SellJunkFrame:UnregisterEvent("ITEM_UNLOCKED")
 			end
 
+			-- Create excluded box
+			local titleTX = LeaPlusLC:MakeTx(SellJunkFrame, "Exclusions", 356, -72)
+			titleTX:SetWidth(200)
+			titleTX:SetWordWrap(false)
+			titleTX:SetJustifyH("LEFT")
+
+			local eb = CreateFrame("Frame", nil, SellJunkFrame, "BackdropTemplate")
+			eb:SetSize(200, 180)
+			eb:SetPoint("TOPLEFT", 350, -92)
+			eb:SetBackdrop({
+				bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+				edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight",
+				edgeSize = 16,
+				insets = {left = 8, right = 6, top = 8, bottom = 8},
+			})
+			eb:SetBackdropBorderColor(1.0, 0.85, 0.0, 0.5)
+
+			eb.scroll = CreateFrame("ScrollFrame", nil, eb, "UIPanelScrollFrameTemplate")
+			eb.scroll:SetPoint("TOPLEFT", eb, 12, -10)
+			eb.scroll:SetPoint("BOTTOMRIGHT", eb, -30, 10)
+
+			eb.Text = CreateFrame("EditBox", nil, eb)
+			eb.Text:SetMultiLine(true)
+			eb.Text:SetWidth(150)
+			eb.Text:SetPoint("TOPLEFT", eb.scroll)
+			eb.Text:SetPoint("BOTTOMRIGHT", eb.scroll)
+			eb.Text:SetMaxLetters(300)
+			eb.Text:SetFontObject(GameFontNormalLarge)
+			eb.Text:SetAutoFocus(false)
+			eb.Text:SetScript("OnEscapePressed", function(self) self:ClearFocus() end) 
+			eb.scroll:SetScrollChild(eb.Text)
+
+			-- Set focus on the editbox text when clicking the editbox
+			eb:SetScript("OnMouseDown", function()
+				eb.Text:SetFocus()
+				eb.Text:SetCursorPosition(eb.Text:GetMaxLetters())
+			end)
+
+			-- Function to create whitelist
+			local whiteList = {}
+			local function UpdateWhiteList()
+				wipe(whiteList)
+
+				local whiteString = eb.Text:GetText()
+				if whiteString and whiteString ~= "" then
+					whiteString = whiteString:gsub("[^,%d]", "")
+					local tList = {strsplit(",", whiteString)}
+					for i = 1, #tList do
+						if tList[i] then
+							tList[i] = tonumber(tList[i])
+							if tList[i] then
+								whiteList[tList[i]] = true
+							end
+						end
+					end
+				end
+
+				LeaPlusLC["AutoSellExcludeList"] = whiteString
+				eb.Text:SetText(LeaPlusLC["AutoSellExcludeList"])
+
+			end
+
+			-- Save the excluded list when it changes and at startup
+			eb.Text:SetScript("OnTextChanged", UpdateWhiteList)
+			eb.Text:SetText(LeaPlusLC["AutoSellExcludeList"])
+			UpdateWhiteList()
+
+			-- Create whitelist on startup and option or preset is clicked
+			UpdateWhiteList()
+			LeaPlusCB["AutoSellJunkBtn"]:HookScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					UpdateWhiteList()
+				end
+			end)
+
+			-- Editbox tooltip
+			local tipPrefix = L["Enter junk item IDs separated by commas."] .. "|n" .. L["Item IDs can be found in item toolips."] .. "|n" .. L["These items will not be sold."]
+
+			-- Function to make tooltip string
+			local function MakeTooltipString()
+
+				local msg = ""
+				local tipString = eb.Text:GetText()
+				if tipString and tipString ~= "" then
+					tipString = tipString:gsub("[^,%d]", "")
+					local tipList = {strsplit(",", tipString)}
+					for i = 1, #tipList do
+						if tipList[i] then
+							tipList[i] = tonumber(tipList[i])
+							if tipList[i] and tipList[i] > 0 and tipList[i] < 999999999 then
+								local void, tLink = GetItemInfo(tipList[i])
+								if tLink and tLink ~= "" then
+									local linkCol = string.sub(tLink, 1, 10)
+									if linkCol then
+										local linkName = tLink:match("%[(.-)%]")
+										if linkName then
+											msg = msg .. linkCol .. linkName .. " (" .. tipList[i] .. ")".. "|r|n"
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+
+				if msg ~= "" then msg = tipPrefix .. "|n|n" .. msg else msg = tipPrefix end
+				eb.tiptext = msg
+				eb.Text.tiptext = msg
+
+				if GameTooltip:IsShown() then
+					if MouseIsOver(eb) or MouseIsOver(eb.Text) then
+						GameTooltip:SetText(eb.tiptext, nil, nil, nil, nil, false)
+					end
+				end
+
+			end
+
+			eb.Text:HookScript("OnTextChanged", MakeTooltipString)
+			eb.Text:HookScript("OnTextChanged", function()
+				C_Timer.After(0.1, function()
+					MakeTooltipString()
+				end)
+			end)
+
+			-- Show the button tooltip for the editbox
+			eb:SetScript("OnEnter", MakeTooltipString)
+			eb:HookScript("OnEnter", LeaPlusLC.TipSee)
+			eb:HookScript("OnEnter", function() GameTooltip:SetText(eb.tiptext, nil, nil, nil, nil, false) end)
+			eb:SetScript("OnLeave", GameTooltip_Hide)
+			eb.Text:SetScript("OnEnter", MakeTooltipString)
+			eb.Text:HookScript("OnEnter", LeaPlusLC.ShowDropTip)
+			eb.Text:HookScript("OnEnter", function() GameTooltip:SetText(eb.tiptext, nil, nil, nil, nil, false) end)
+			eb.Text:SetScript("OnLeave", GameTooltip_Hide)
+
+			-- Show item ID in item tooltips while configuration panel is showing
+			GameTooltip:HookScript("OnTooltipSetItem", function(self)
+				if SellJunkFrame:IsShown() then
+					local void, itemLink = self:GetItem()
+					if itemLink then
+						local itemID = GetItemInfoFromHyperlink(itemLink)
+						if itemID then self:AddLine(L["Item ID"] .. ": " .. itemID) end
+					end
+				end
+			end)
+
 			-- Vendor function
 			local function SellJunkFunc()
 
@@ -1729,6 +1876,13 @@
 						CurrentItemLink = GetContainerItemLink(BagID, BagSlot)
 						if CurrentItemLink then
 							void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
+							-- Don't sell whitelisted items
+							local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
+							if itemID and whiteList[itemID] then 
+								Rarity = 3
+								ItemPrice = 0
+							end
+							-- Continue
 							local void, itemCount = GetContainerItemInfo(BagID, BagSlot)
 							if Rarity == 0 and ItemPrice ~= 0 then
 								SoldCount = SoldCount + 1
@@ -10317,6 +10471,7 @@
 
 				LeaPlusLC:LoadVarChk("AutoSellJunk", "Off")					-- Sell junk automatically
 				LeaPlusLC:LoadVarChk("AutoSellShowSummary", "On")			-- Sell junk summary in chat
+				LeaPlusLC:LoadVarStr("AutoSellExcludeList", "")				-- Sell junk exclude list
 				LeaPlusLC:LoadVarChk("AutoRepairGear", "Off")				-- Repair automatically
 				LeaPlusLC:LoadVarChk("AutoRepairShowSummary", "On")			-- Repair show summary in chat
 
@@ -10542,6 +10697,7 @@
 
 			LeaPlusDB["AutoSellJunk"] 			= LeaPlusLC["AutoSellJunk"]
 			LeaPlusDB["AutoSellShowSummary"] 	= LeaPlusLC["AutoSellShowSummary"]
+			LeaPlusDB["AutoSellExcludeList"] 	= LeaPlusLC["AutoSellExcludeList"]
 			LeaPlusDB["AutoRepairGear"] 		= LeaPlusLC["AutoRepairGear"]
 			LeaPlusDB["AutoRepairShowSummary"] 	= LeaPlusLC["AutoRepairShowSummary"]
 
@@ -12351,6 +12507,7 @@
 				LeaPlusDB["AutoAcceptRes"] = "On"				-- Accept resurrection
 				LeaPlusDB["AutoReleasePvP"] = "On"				-- Release in PvP
 				LeaPlusDB["AutoSellJunk"] = "On"				-- Sell junk automatically
+				LeaPlusDB["AutoSellExcludeList"] = ""			-- Sell junk exclusions list
 				LeaPlusDB["AutoRepairGear"] = "On"				-- Repair automatically
 
 				-- Social

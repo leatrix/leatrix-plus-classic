@@ -1,5 +1,5 @@
-1.14.42.alpha.1 - 9th May 2022
-- Maintenance update.
+1.14.42.alpha.2 - 10th May 2022
+- For 'Sell junk automatically' ('Automation'), you can now exclude specific junk items from being sold.  There is an exclusion list in the configuration panel where you can enter your own item IDs (separated by commas).  Item IDs will be shown in item tooltips while the configuration panel is showing.
 
 1.14.40 - 27th April 2022
 - Added flight times.  There are now 1045 flight times stored in Leatrix Plus for Classic Era/SoM.
