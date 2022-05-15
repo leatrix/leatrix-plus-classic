@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.43.alpha.1 (15th May 2022)
+-- 	Leatrix Plus 1.14.43.alpha.2 (15th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.43.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.43.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2144,7 +2144,7 @@
 
 				elseif chain == 3 then -- Rare Elite
 					PlayerFrameTexture:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-					PlayerFrameTexture:SetTexCoord(0.25, 0.0234375, 0, 0.09765625)
+					PlayerFrameTexture:SetTexCoord(0.25, 0.0234375, 0, 0.1953125)
 
 				end
 			end
@@ -5395,8 +5395,8 @@
 			-- Set tall or short trainers variables
 			local tall, numTallTrainers = 0, 0
 			if LeaPlusLC["TallerTrainers"] == "On" then 
-				tall = 104
-				numTallTrainers = 19
+				tall = 73
+				numTallTrainers = 17
 			else
 				tall = 0
 				numTallTrainers = 12
@@ -5516,26 +5516,24 @@
 				local regions = {_G["ClassTrainerFrame"]:GetRegions()}
 
 				-- Set top left texture
+				regions[2]:SetSize(512, 512)
 				if LeaPlusLC["TallerTrainers"] == "On" then
 					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-					regions[2]:SetSize(512, 1024)
 				else
 					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-					regions[2]:SetSize(512, 512)
 				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
+				regions[3]:SetSize(256, 512)
 
 				if LeaPlusLC["TallerTrainers"] == "On" then
 					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-					regions[3]:SetSize(256, 1024)
 				else
 					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-					regions[3]:SetSize(256, 512)
 				end
 
 				-- Hide bottom left and bottom right textures
@@ -5785,8 +5783,8 @@
 			-- Set tall or short quest log variables
 			local tall, numTallProfs = 0, 0
 			if LeaPlusLC["TallerProfessions"] == "On" then 
-				tall = 104
-				numTallProfs = 21
+				tall = 73
+				numTallProfs = 19
 			else
 				tall = 0
 				numTallProfs = 14
@@ -5903,26 +5901,24 @@
 				local regions = {_G["TradeSkillFrame"]:GetRegions()}
 
 				-- Set top left texture
+				regions[2]:SetSize(512, 512)
 				if LeaPlusLC["TallerProfessions"] == "On" then
 					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-					regions[2]:SetSize(512, 1024)
 				else
 					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-					regions[2]:SetSize(512, 512)
 				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
+				regions[3]:SetSize(256, 512)
 
 				if LeaPlusLC["TallerProfessions"] == "On" then
 					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-					regions[3]:SetSize(256, 1024)
 				else
 					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-					regions[3]:SetSize(256, 512)
 				end
 
 				-- Hide bottom left and bottom right textures
@@ -6114,26 +6110,24 @@
 				local regions = {_G["CraftFrame"]:GetRegions()}
 
 				-- Set top left texture
+				regions[2]:SetSize(512, 512)
 				if LeaPlusLC["TallerProfessions"] == "On" then
 					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-					regions[2]:SetSize(512, 1024)
 				else
 					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-					regions[2]:SetSize(512, 512)
 				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
+				regions[3]:SetSize(256, 512)
 
 				if LeaPlusLC["TallerProfessions"] == "On" then
 					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-					regions[3]:SetSize(256, 1024)
 				else
 					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-					regions[3]:SetSize(256, 512)
 				end
 
 				-- Hide bottom left and bottom right textures
@@ -6277,8 +6271,8 @@
 			-- Set tall or short quest log variables
 			local tall, numTallQuests = 0, 0
 			if LeaPlusLC["TallerQuestLog"] == "On" then 
-				tall = 104
-				numTallQuests = 23
+				tall = 73
+				numTallQuests = 21
 			else
 				tall = 0
 				numTallQuests = 16
@@ -6318,26 +6312,24 @@
 			local regions = {QuestLogFrame:GetRegions()}
 
 			-- Set top left texture
+			regions[3]:SetSize(512, 512)
 			if LeaPlusLC["TallerQuestLog"] == "On" then
 				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 				regions[3]:SetTexCoord(0.25, 0.75, 0, 1)
-				regions[3]:SetSize(512, 1024)
 			else
 				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				regions[3]:SetSize(512, 512)
 			end
 
 			-- Set top right texture
 			regions[4]:ClearAllPoints()
 			regions[4]:SetPoint("TOPLEFT", regions[3], "TOPRIGHT", 0, 0)
+			regions[4]:SetSize(256, 512)
 
 			if LeaPlusLC["TallerQuestLog"] == "On" then
 				regions[4]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
 				regions[4]:SetTexCoord(0.75, 1, 0, 1)
-				regions[4]:SetSize(256, 1024)
 			else
 				regions[4]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				regions[4]:SetSize(256, 512)
 			end
 
 			-- Hide bottom left and bottom right textures
@@ -11563,9 +11555,9 @@
 
 			-- Set skinned button textures
 			mbtn:SetNormalTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-			mbtn:GetNormalTexture():SetTexCoord(0.125, 0.25, 0.21875, 0.25)
+			mbtn:GetNormalTexture():SetTexCoord(0.125, 0.25, 0.4375, 0.5)
 			mbtn:SetHighlightTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-			mbtn:GetHighlightTexture():SetTexCoord(0, 0.125, 0.21875, 0.25)
+			mbtn:GetHighlightTexture():SetTexCoord(0, 0.125, 0.4375, 0.5)
 
 			-- Hide the default textures
 			mbtn:HookScript("OnShow", function() mbtn.Left:Hide(); mbtn.Middle:Hide(); mbtn.Right:Hide() end)

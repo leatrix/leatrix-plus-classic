@@ -1,4 +1,4 @@
-1.14.43.alpha.1 - 15th May 2022
+1.14.43.alpha.2 - 15th May 2022
 - For 'Enhance quest log' ('Interface'), you can now make the quest log taller using a new setting in the configuration panel.  It's disabled by default.
 - For 'Enhance professions' ('Interface'), you can now make the professions frame taller using a new configuration panel.  It's disabled by default.
 - For 'Enhance trainers' ('Interface'), you can now make the skill trainer frame taller using a new configuration panel.  It's disabled by default.
