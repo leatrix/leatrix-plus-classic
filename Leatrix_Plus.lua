@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.43.alpha.2 (15th May 2022)
+-- 	Leatrix Plus 1.14.43.alpha.3 (15th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.43.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.43.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -411,8 +411,6 @@
 		LeaPlusLC:LockOption("TipModEnable", "MoveTooltipButton", true)				-- Enhance tooltip
 		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
-		LeaPlusLC:LockOption("EnhanceProfessions", "EnhanceProfessionsBtn", true)	-- Enhance professions
-		LeaPlusLC:LockOption("EnhanceTrainers", "EnhanceTrainersBtn", true)			-- Enhance trainers
 		LeaPlusLC:LockOption("ShowCooldowns", "CooldownsButton", true)				-- Show cooldowns
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
 		LeaPlusLC:LockOption("ShowWowheadLinks", "ShowWowheadLinksBtn", true)		-- Show Wowhead links
@@ -465,11 +463,8 @@
 		or	(LeaPlusLC["TipModEnable"]			~= LeaPlusDB["TipModEnable"])			-- Enhance tooltip
 		or	(LeaPlusLC["EnhanceDressup"]		~= LeaPlusDB["EnhanceDressup"])			-- Enhance dressup
 		or	(LeaPlusLC["EnhanceQuestLog"]		~= LeaPlusDB["EnhanceQuestLog"])		-- Enhance quest log
-		or	(LeaPlusLC["TallerQuestLog"]		~= LeaPlusDB["TallerQuestLog"])			-- Taller quest log
 		or	(LeaPlusLC["EnhanceProfessions"]	~= LeaPlusDB["EnhanceProfessions"])		-- Enhance professions
-		or	(LeaPlusLC["TallerProfessions"]		~= LeaPlusDB["TallerProfessions"])		-- Taller professions
 		or	(LeaPlusLC["EnhanceTrainers"]		~= LeaPlusDB["EnhanceTrainers"])		-- Enhance trainers
-		or	(LeaPlusLC["TallerTrainers"]		~= LeaPlusDB["TallerTrainers"])			-- Taller trainers frame
 
 		or	(LeaPlusLC["ShowVolume"]			~= LeaPlusDB["ShowVolume"])				-- Show volume slider
 		or	(LeaPlusLC["AhExtras"]				~= LeaPlusDB["AhExtras"])				-- Show auction controls
@@ -5392,51 +5387,8 @@
 
 		if LeaPlusLC["EnhanceTrainers"] == "On" then
 
-			-- Set tall or short trainers variables
-			local tall, numTallTrainers = 0, 0
-			if LeaPlusLC["TallerTrainers"] == "On" then 
-				tall = 73
-				numTallTrainers = 17
-			else
-				tall = 0
-				numTallTrainers = 12
-			end
-
-			-- Create configuration panel
-			local TrainersPanel = LeaPlusLC:CreatePanel("Enhance trainers", "TrainersPanel")
-
-			LeaPlusLC:MakeTx(TrainersPanel, "Settings", 16, -72)
-			LeaPlusLC:MakeCB(TrainersPanel, "TallerTrainers", "Taller skill trainer frame", 16, -92, true, "If checked, the skill trainer frame will be taller.")
-
-			-- Help button hidden
-			TrainersPanel.h:Hide()
-
-			-- Back button handler
-			TrainersPanel.b:SetScript("OnClick", function() 
-				TrainersPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show();
-				return
-			end)
-
-			-- Reset button handler
-			TrainersPanel.r.tiptext = TrainersPanel.r.tiptext .. "|n|n" .. L["Note that this will not reset settings that require a UI reload."]
-			TrainersPanel.r:SetScript("OnClick", function()
-
-				-- Refresh panel
-				TrainersPanel:Hide(); TrainersPanel:Show()
-
-			end)
-
-			-- Show panal when options panel button is clicked
-			LeaPlusCB["EnhanceTrainersBtn"]:SetScript("OnClick", function()
-				if IsShiftKeyDown() and IsControlKeyDown() then
-					-- Preset profile
-					LeaPlusLC["TallerTrainers"] = "On"
-					LeaPlusLC:ReloadCheck() -- Special reload check
-				else
-					TrainersPanel:Show()
-					LeaPlusLC:HideFrames()
-				end
-			end)
+			-- Set increased height of skill trainer frame and maximum number of skills listed
+			local tall, numTallTrainers = 73, 17
 
 			----------------------------------------------------------------------
 			--	Skill trainer frame
@@ -5517,24 +5469,15 @@
 
 				-- Set top left texture
 				regions[2]:SetSize(512, 512)
-				if LeaPlusLC["TallerTrainers"] == "On" then
-					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-				else
-					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				end
+				regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
 				regions[3]:SetSize(256, 512)
-
-				if LeaPlusLC["TallerTrainers"] == "On" then
-					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-				else
-					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				end
+				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[3]:SetTexCoord(0.75, 1, 0, 1)
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -5780,51 +5723,8 @@
 
 		if LeaPlusLC["EnhanceProfessions"] == "On" then
 
-			-- Set tall or short quest log variables
-			local tall, numTallProfs = 0, 0
-			if LeaPlusLC["TallerProfessions"] == "On" then 
-				tall = 73
-				numTallProfs = 19
-			else
-				tall = 0
-				numTallProfs = 14
-			end
-
-			-- Create configuration panel
-			local EnhanceProfPanel = LeaPlusLC:CreatePanel("Enhance professions", "EnhanceProfPanel")
-
-			LeaPlusLC:MakeTx(EnhanceProfPanel, "Settings", 16, -72)
-			LeaPlusLC:MakeCB(EnhanceProfPanel, "TallerProfessions", "Taller professions frame", 16, -92, true, "If checked, the professions frame will be taller.")
-
-			-- Help button hidden
-			EnhanceProfPanel.h:Hide()
-
-			-- Back button handler
-			EnhanceProfPanel.b:SetScript("OnClick", function() 
-				EnhanceProfPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show();
-				return
-			end)
-
-			-- Reset button handler
-			EnhanceProfPanel.r.tiptext = EnhanceProfPanel.r.tiptext .. "|n|n" .. L["Note that this will not reset settings that require a UI reload."]
-			EnhanceProfPanel.r:SetScript("OnClick", function()
-
-				-- Refresh panel
-				EnhanceProfPanel:Hide(); EnhanceProfPanel:Show()
-
-			end)
-
-			-- Show panal when options panel button is clicked
-			LeaPlusCB["EnhanceProfessionsBtn"]:SetScript("OnClick", function()
-				if IsShiftKeyDown() and IsControlKeyDown() then
-					-- Preset profile
-					LeaPlusLC["TallerProfessions"] = "On"
-					LeaPlusLC:ReloadCheck() -- Special reload check
-				else
-					EnhanceProfPanel:Show()
-					LeaPlusLC:HideFrames()
-				end
-			end)
+			-- Set increased height of professions frame and maximum number of recipes listed
+			local tall, numTallProfs = 73, 19
 
 			----------------------------------------------------------------------
 			--	TradeSkill Frame
@@ -5902,24 +5802,15 @@
 
 				-- Set top left texture
 				regions[2]:SetSize(512, 512)
-				if LeaPlusLC["TallerProfessions"] == "On" then
-					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-				else
-					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				end
+				regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
 				regions[3]:SetSize(256, 512)
-
-				if LeaPlusLC["TallerProfessions"] == "On" then
-					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-				else
-					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				end
+				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[3]:SetTexCoord(0.75, 1, 0, 1)
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -6076,6 +5967,18 @@
 				CraftFramePointsText:ClearAllPoints()
 				CraftFramePointsText:SetPoint("LEFT", CraftFramePointsLabel, "RIGHT", 3, 0)
 
+				-- Move craft frame cost column (such as Beast Training)
+				hooksecurefunc("CraftFrame_Update", function()
+					for i = 1, CRAFTS_DISPLAYED, 1 do
+						if _G["Craft" .. i] then
+							local craftButtonCost = _G["Craft"..i.."Cost"]
+							if craftButtonCost then
+								craftButtonCost:SetPoint("RIGHT", -30, 0)
+							end
+						end
+					end
+				end)
+
 				-- Set highlight bar width when shown
 				hooksecurefunc(_G["CraftHighlightFrame"], "Show", function()
 					_G["CraftHighlightFrame"]:SetWidth(290)
@@ -6111,24 +6014,15 @@
 
 				-- Set top left texture
 				regions[2]:SetSize(512, 512)
-				if LeaPlusLC["TallerProfessions"] == "On" then
-					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
-				else
-					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				end
+				regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
 				regions[3]:SetSize(256, 512)
-
-				if LeaPlusLC["TallerProfessions"] == "On" then
-					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-					regions[3]:SetTexCoord(0.75, 1, 0, 1)
-				else
-					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				end
+				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[3]:SetTexCoord(0.75, 1, 0, 1)
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -6268,15 +6162,8 @@
 
 		if LeaPlusLC["EnhanceQuestLog"] == "On" then
 
-			-- Set tall or short quest log variables
-			local tall, numTallQuests = 0, 0
-			if LeaPlusLC["TallerQuestLog"] == "On" then 
-				tall = 73
-				numTallQuests = 21
-			else
-				tall = 0
-				numTallQuests = 16
-			end
+			-- Set increased height of quest log frame and maximum number of quests listed
+			local tall, numTallQuests = 73, 21
 
 			-- Make the quest log frame double-wide
 			UIPanelWindows["QuestLogFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
@@ -6313,24 +6200,15 @@
 
 			-- Set top left texture
 			regions[3]:SetSize(512, 512)
-			if LeaPlusLC["TallerQuestLog"] == "On" then
-				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-				regions[3]:SetTexCoord(0.25, 0.75, 0, 1)
-			else
-				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-			end
+			regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+			regions[3]:SetTexCoord(0.25, 0.75, 0, 1)
 
 			-- Set top right texture
 			regions[4]:ClearAllPoints()
 			regions[4]:SetPoint("TOPLEFT", regions[3], "TOPRIGHT", 0, 0)
 			regions[4]:SetSize(256, 512)
-
-			if LeaPlusLC["TallerQuestLog"] == "On" then
-				regions[4]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
-				regions[4]:SetTexCoord(0.75, 1, 0, 1)
-			else
-				regions[4]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-			end
+			regions[4]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+			regions[4]:SetTexCoord(0.75, 1, 0, 1)
 
 			-- Hide bottom left and bottom right textures
 			regions[5]:Hide()
@@ -6454,7 +6332,6 @@
 
 			LeaPlusLC:MakeTx(EnhanceQuestPanel, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestLevels", "Show quest levels", 16, -92, false, "If checked, quest levels will be shown.")
-			LeaPlusLC:MakeCB(EnhanceQuestPanel, "TallerQuestLog", "Taller quest log", 16, -112, true, "If checked, the quest log will be taller.")
 
 			-- Help button hidden
 			EnhanceQuestPanel.h:Hide()
@@ -6482,8 +6359,6 @@
 				if IsShiftKeyDown() and IsControlKeyDown() then
 					-- Preset profile
 					LeaPlusLC["EnhanceQuestLevels"] = "On"
-					LeaPlusLC["TallerQuestLog"] = "On"
-					LeaPlusLC:ReloadCheck() -- Special reload check
 				else
 					EnhanceQuestPanel:Show()
 					LeaPlusLC:HideFrames()
@@ -10776,11 +10651,8 @@
 				LeaPlusLC:LoadVarChk("HideDressupStats", "Off")				-- Hide dressup stats
 				LeaPlusLC:LoadVarChk("EnhanceQuestLog", "Off")				-- Enhance quest log
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
-				LeaPlusLC:LoadVarChk("TallerQuestLog", "Off")				-- Taller quest log
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
-				LeaPlusLC:LoadVarChk("TallerProfessions", "Off")			-- Taller professions frame
 				LeaPlusLC:LoadVarChk("EnhanceTrainers", "Off")				-- Enhance trainers
-				LeaPlusLC:LoadVarChk("TallerTrainers", "Off")				-- Taller trainers frame
 
 				LeaPlusLC:LoadVarChk("ShowVolume", "Off")					-- Show volume slider
 				LeaPlusLC:LoadVarChk("AhExtras", "Off")						-- Show auction controls
@@ -11006,11 +10878,8 @@
 			LeaPlusDB["HideDressupStats"]		= LeaPlusLC["HideDressupStats"]
 			LeaPlusDB["EnhanceQuestLog"]		= LeaPlusLC["EnhanceQuestLog"]
 			LeaPlusDB["EnhanceQuestLevels"]		= LeaPlusLC["EnhanceQuestLevels"]
-			LeaPlusDB["TallerQuestLog"]			= LeaPlusLC["TallerQuestLog"]
 			LeaPlusDB["EnhanceProfessions"]		= LeaPlusLC["EnhanceProfessions"]
-			LeaPlusDB["TallerProfessions"]		= LeaPlusLC["TallerProfessions"]
 			LeaPlusDB["EnhanceTrainers"]		= LeaPlusLC["EnhanceTrainers"]
-			LeaPlusDB["TallerTrainers"]			= LeaPlusLC["TallerTrainers"]
 
 			LeaPlusDB["ShowVolume"] 			= LeaPlusLC["ShowVolume"]
 			LeaPlusDB["AhExtras"]				= LeaPlusLC["AhExtras"]
@@ -12801,11 +12670,8 @@
 				LeaPlusDB["HideDressupStats"] = "On"			-- Hide dressup stats
 				LeaPlusDB["EnhanceQuestLog"] = "On"				-- Enhance quest log
 				LeaPlusDB["EnhanceQuestLevels"] = "On"			-- Enhance quest log quest levels
-				LeaPlusDB["TallerQuestLog"] = "On"				-- Taller quest log
 				LeaPlusDB["EnhanceProfessions"] = "On"			-- Enhance professions
-				LeaPlusDB["TallerProfessions"] = "On"			-- Taller professions frame
 				LeaPlusDB["EnhanceTrainers"] = "On"				-- Enhance trainers
-				LeaPlusDB["TallerTrainers"] = "On"				-- Taller trainers frame
 
 				LeaPlusDB["ShowVolume"] = "On"					-- Show volume slider
 				LeaPlusDB["AhExtras"] = "On"					-- Show auction controls
@@ -13207,8 +13073,6 @@
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
 	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
-	LeaPlusLC:CfgBtn("EnhanceProfessionsBtn", LeaPlusCB["EnhanceProfessions"])
-	LeaPlusLC:CfgBtn("EnhanceTrainersBtn", LeaPlusCB["EnhanceTrainers"])
 	LeaPlusLC:CfgBtn("CooldownsButton", LeaPlusCB["ShowCooldowns"])
 	LeaPlusLC:CfgBtn("ModPlayerChain", LeaPlusCB["ShowPlayerChain"])
 	LeaPlusLC:CfgBtn("ShowWowheadLinksBtn", LeaPlusCB["ShowWowheadLinks"])
