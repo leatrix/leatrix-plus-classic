@@ -1,3 +1,9 @@
+1.14.43.alpha.1 - 15th May 2022
+- For 'Enhance quest log' ('Interface'), you can now make the quest log taller using a new setting in the configuration panel.  It's disabled by default.
+- For 'Enhance professions' ('Interface'), you can now make the professions frame taller using a new configuration panel.  It's disabled by default.
+- For 'Enhance trainers' ('Interface'), you can now make the skill trainer frame taller using a new configuration panel.  It's disabled by default.
+- Added a flight time.  There are now 1046 flight times stored in Leatrix Plus for BCC.
+
 1.14.42 - 12th May 2022
 - For 'Sell junk automatically' ('Automation'), you can now exclude specific junk items from being sold.  There is an exclusion list in the configuration panel where you can enter your own item IDs (separated by commas).  Item IDs will be shown in item tooltips while the configuration panel is showing.
 - If you try to use 'Enhance minimap' ('Interface') and ElvUI Minimap together, you will now be asked which one you want to use on startup.  Choosing Leatrix Plus will disable ElvUI's minimap module.  Choosing ElvUI will disable Leatrix Plus 'Enhance minimap' setting.

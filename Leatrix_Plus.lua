@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.42 (12th May 2022)
+-- 	Leatrix Plus 1.14.43.alpha.1 (15th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.42"
+	LeaPlusLC["AddonVer"] = "1.14.43.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -411,6 +411,8 @@
 		LeaPlusLC:LockOption("TipModEnable", "MoveTooltipButton", true)				-- Enhance tooltip
 		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
+		LeaPlusLC:LockOption("EnhanceProfessions", "EnhanceProfessionsBtn", true)	-- Enhance professions
+		LeaPlusLC:LockOption("EnhanceTrainers", "EnhanceTrainersBtn", true)			-- Enhance trainers
 		LeaPlusLC:LockOption("ShowCooldowns", "CooldownsButton", true)				-- Show cooldowns
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
 		LeaPlusLC:LockOption("ShowWowheadLinks", "ShowWowheadLinksBtn", true)		-- Show Wowhead links
@@ -463,8 +465,11 @@
 		or	(LeaPlusLC["TipModEnable"]			~= LeaPlusDB["TipModEnable"])			-- Enhance tooltip
 		or	(LeaPlusLC["EnhanceDressup"]		~= LeaPlusDB["EnhanceDressup"])			-- Enhance dressup
 		or	(LeaPlusLC["EnhanceQuestLog"]		~= LeaPlusDB["EnhanceQuestLog"])		-- Enhance quest log
+		or	(LeaPlusLC["TallerQuestLog"]		~= LeaPlusDB["TallerQuestLog"])			-- Taller quest log
 		or	(LeaPlusLC["EnhanceProfessions"]	~= LeaPlusDB["EnhanceProfessions"])		-- Enhance professions
+		or	(LeaPlusLC["TallerProfessions"]		~= LeaPlusDB["TallerProfessions"])		-- Taller professions
 		or	(LeaPlusLC["EnhanceTrainers"]		~= LeaPlusDB["EnhanceTrainers"])		-- Enhance trainers
+		or	(LeaPlusLC["TallerTrainers"]		~= LeaPlusDB["TallerTrainers"])			-- Taller trainers frame
 
 		or	(LeaPlusLC["ShowVolume"]			~= LeaPlusDB["ShowVolume"])				-- Show volume slider
 		or	(LeaPlusLC["AhExtras"]				~= LeaPlusDB["AhExtras"])				-- Show auction controls
@@ -2139,7 +2144,7 @@
 
 				elseif chain == 3 then -- Rare Elite
 					PlayerFrameTexture:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-					PlayerFrameTexture:SetTexCoord(1,.09375, 0, 0.390625)
+					PlayerFrameTexture:SetTexCoord(0.25, 0.0234375, 0, 0.09765625)
 
 				end
 			end
@@ -5387,13 +5392,63 @@
 
 		if LeaPlusLC["EnhanceTrainers"] == "On" then
 
+			-- Set tall or short trainers variables
+			local tall, numTallTrainers = 0, 0
+			if LeaPlusLC["TallerTrainers"] == "On" then 
+				tall = 104
+				numTallTrainers = 19
+			else
+				tall = 0
+				numTallTrainers = 12
+			end
+
+			-- Create configuration panel
+			local TrainersPanel = LeaPlusLC:CreatePanel("Enhance trainers", "TrainersPanel")
+
+			LeaPlusLC:MakeTx(TrainersPanel, "Settings", 16, -72)
+			LeaPlusLC:MakeCB(TrainersPanel, "TallerTrainers", "Taller skill trainer frame", 16, -92, true, "If checked, the skill trainer frame will be taller.")
+
+			-- Help button hidden
+			TrainersPanel.h:Hide()
+
+			-- Back button handler
+			TrainersPanel.b:SetScript("OnClick", function() 
+				TrainersPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show();
+				return
+			end)
+
+			-- Reset button handler
+			TrainersPanel.r.tiptext = TrainersPanel.r.tiptext .. "|n|n" .. L["Note that this will not reset settings that require a UI reload."]
+			TrainersPanel.r:SetScript("OnClick", function()
+
+				-- Refresh panel
+				TrainersPanel:Hide(); TrainersPanel:Show()
+
+			end)
+
+			-- Show panal when options panel button is clicked
+			LeaPlusCB["EnhanceTrainersBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["TallerTrainers"] = "On"
+					LeaPlusLC:ReloadCheck() -- Special reload check
+				else
+					TrainersPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
+			----------------------------------------------------------------------
+			--	Skill trainer frame
+			----------------------------------------------------------------------
+
 			local function TrainerFunc(frame)
 
 				-- Make the frame double-wide
 				UIPanelWindows["ClassTrainerFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
 
 				-- Size the frame
-				_G["ClassTrainerFrame"]:SetSize(714, 487)
+				_G["ClassTrainerFrame"]:SetSize(714, 487 + tall)
 
 				-- Lower title text slightly
 				_G["ClassTrainerNameText"]:ClearAllPoints()
@@ -5402,7 +5457,7 @@
 				-- Expand the skill list to full height
 				_G["ClassTrainerListScrollFrame"]:ClearAllPoints()
 				_G["ClassTrainerListScrollFrame"]:SetPoint("TOPLEFT", _G["ClassTrainerFrame"], "TOPLEFT", 25, -75)
-				_G["ClassTrainerListScrollFrame"]:SetSize(295, 336)
+				_G["ClassTrainerListScrollFrame"]:SetSize(295, 336 + tall)
 
 				-- Create additional list rows
 				do
@@ -5416,7 +5471,7 @@
 					end
 
 					-- Create and position new buttons
-					_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + 12
+					_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + numTallTrainers
 					for i = oldSkillsDisplayed + 1, CLASS_TRAINER_SKILLS_DISPLAYED do
 						local button = CreateFrame("Button", "ClassTrainerSkill" .. i, ClassTrainerFrame, "ClassTrainerSkillButtonTemplate")
 						button:SetID(i)
@@ -5426,15 +5481,15 @@
 					end
 
 					hooksecurefunc("ClassTrainer_SetToTradeSkillTrainer", function()
-						_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + 12
-						ClassTrainerListScrollFrame:SetHeight(336)
-						ClassTrainerDetailScrollFrame:SetHeight(336)
+						_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + numTallTrainers
+						ClassTrainerListScrollFrame:SetHeight(336 + tall)
+						ClassTrainerDetailScrollFrame:SetHeight(336 + tall)
 					end)
 
 					hooksecurefunc("ClassTrainer_SetToClassTrainer", function()
-						_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + 11
-						ClassTrainerListScrollFrame:SetHeight(336)
-						ClassTrainerDetailScrollFrame:SetHeight(336)
+						_G.CLASS_TRAINER_SKILLS_DISPLAYED = _G.CLASS_TRAINER_SKILLS_DISPLAYED + numTallTrainers - 1
+						ClassTrainerListScrollFrame:SetHeight(336 + tall)
+						ClassTrainerDetailScrollFrame:SetHeight(336 + tall)
 					end)
 
 				end
@@ -5447,7 +5502,7 @@
 				-- Move the detail frame to the right and stretch it to full height
 				_G["ClassTrainerDetailScrollFrame"]:ClearAllPoints()
 				_G["ClassTrainerDetailScrollFrame"]:SetPoint("TOPLEFT", _G["ClassTrainerFrame"], "TOPLEFT", 352, -74)
-				_G["ClassTrainerDetailScrollFrame"]:SetSize(296, 336)
+				_G["ClassTrainerDetailScrollFrame"]:SetSize(296, 336 + tall)
 				-- _G["ClassTrainerSkillIcon"]:SetHeight(500) -- Debug
 
 				-- Hide detail scroll frame textures
@@ -5461,14 +5516,27 @@
 				local regions = {_G["ClassTrainerFrame"]:GetRegions()}
 
 				-- Set top left texture
-				regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				regions[2]:SetSize(512, 512)
+				if LeaPlusLC["TallerTrainers"] == "On" then
+					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
+					regions[2]:SetSize(512, 1024)
+				else
+					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
+					regions[2]:SetSize(512, 512)
+				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
-				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				regions[3]:SetSize(256, 512)
+
+				if LeaPlusLC["TallerTrainers"] == "On" then
+					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[3]:SetTexCoord(0.75, 1, 0, 1)
+					regions[3]:SetSize(256, 1024)
+				else
+					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
+					regions[3]:SetSize(256, 512)
+				end
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -5480,13 +5548,13 @@
 
 				-- Set skills list backdrop
 				local RecipeInset = _G["ClassTrainerFrame"]:CreateTexture(nil, "ARTWORK")
-				RecipeInset:SetSize(304, 361)
+				RecipeInset:SetSize(304, 361 + tall)
 				RecipeInset:SetPoint("TOPLEFT", _G["ClassTrainerFrame"], "TOPLEFT", 16, -72)
 				RecipeInset:SetTexture("Interface\\RAIDFRAME\\UI-RaidFrame-GroupBg")
 
 				-- Set detail frame backdrop
 				local DetailsInset = _G["ClassTrainerFrame"]:CreateTexture(nil, "ARTWORK")
-				DetailsInset:SetSize(302, 339)
+				DetailsInset:SetSize(302, 339 + tall)
 				DetailsInset:SetPoint("TOPLEFT", _G["ClassTrainerFrame"], "TOPLEFT", 348, -72)
 				DetailsInset:SetTexture("Interface\\ACHIEVEMENTFRAME\\UI-GuildAchievement-Parchment-Horizontal-Desaturated")
 
@@ -5583,7 +5651,7 @@
 						regions[3]:Hide()
 						RecipeInset:Hide()
 						DetailsInset:Hide()
-						_G["ClassTrainerFrame"]:SetHeight(512)
+						_G["ClassTrainerFrame"]:SetHeight(512 + tall)
 						_G["ClassTrainerTrainButton"]:ClearAllPoints()
 						_G["ClassTrainerTrainButton"]:SetPoint("BOTTOMRIGHT", _G["ClassTrainerFrame"], "BOTTOMRIGHT", -42, 78)
 						LeaPlusCB["TrainAllButton"]:ClearAllPoints()
@@ -5714,6 +5782,52 @@
 
 		if LeaPlusLC["EnhanceProfessions"] == "On" then
 
+			-- Set tall or short quest log variables
+			local tall, numTallProfs = 0, 0
+			if LeaPlusLC["TallerProfessions"] == "On" then 
+				tall = 104
+				numTallProfs = 21
+			else
+				tall = 0
+				numTallProfs = 14
+			end
+
+			-- Create configuration panel
+			local EnhanceProfPanel = LeaPlusLC:CreatePanel("Enhance professions", "EnhanceProfPanel")
+
+			LeaPlusLC:MakeTx(EnhanceProfPanel, "Settings", 16, -72)
+			LeaPlusLC:MakeCB(EnhanceProfPanel, "TallerProfessions", "Taller professions frame", 16, -92, true, "If checked, the professions frame will be taller.")
+
+			-- Help button hidden
+			EnhanceProfPanel.h:Hide()
+
+			-- Back button handler
+			EnhanceProfPanel.b:SetScript("OnClick", function() 
+				EnhanceProfPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show();
+				return
+			end)
+
+			-- Reset button handler
+			EnhanceProfPanel.r.tiptext = EnhanceProfPanel.r.tiptext .. "|n|n" .. L["Note that this will not reset settings that require a UI reload."]
+			EnhanceProfPanel.r:SetScript("OnClick", function()
+
+				-- Refresh panel
+				EnhanceProfPanel:Hide(); EnhanceProfPanel:Show()
+
+			end)
+
+			-- Show panal when options panel button is clicked
+			LeaPlusCB["EnhanceProfessionsBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["TallerProfessions"] = "On"
+					LeaPlusLC:ReloadCheck() -- Special reload check
+				else
+					EnhanceProfPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
 			----------------------------------------------------------------------
 			--	TradeSkill Frame
 			----------------------------------------------------------------------
@@ -5725,7 +5839,7 @@
 
 				-- Size the tradeskill frame
 				_G["TradeSkillFrame"]:SetWidth(714)
-				_G["TradeSkillFrame"]:SetHeight(487)
+				_G["TradeSkillFrame"]:SetHeight(487 + tall)
 
 				-- Adjust title text
 				_G["TradeSkillFrameTitleText"]:ClearAllPoints()
@@ -5734,7 +5848,7 @@
 				-- Expand the tradeskill list to full height
 				_G["TradeSkillListScrollFrame"]:ClearAllPoints()
 				_G["TradeSkillListScrollFrame"]:SetPoint("TOPLEFT", _G["TradeSkillFrame"], "TOPLEFT", 25, -75)
-				_G["TradeSkillListScrollFrame"]:SetSize(295, 336)
+				_G["TradeSkillListScrollFrame"]:SetSize(295, 336 + tall)
 
 				-- Create additional list rows
 				local oldTradeSkillsDisplayed = TRADE_SKILLS_DISPLAYED
@@ -5746,7 +5860,7 @@
 				end
 
 				-- Create and position new buttons
-				_G.TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED + 14
+				_G.TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED + numTallProfs
 				for i = oldTradeSkillsDisplayed + 1, TRADE_SKILLS_DISPLAYED do
 					local button = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
 					button:SetID(i)
@@ -5763,7 +5877,7 @@
 				-- Move the tradeskill detail frame to the right and stretch it to full height
 				_G["TradeSkillDetailScrollFrame"]:ClearAllPoints()
 				_G["TradeSkillDetailScrollFrame"]:SetPoint("TOPLEFT", _G["TradeSkillFrame"], "TOPLEFT", 352, -74)
-				_G["TradeSkillDetailScrollFrame"]:SetSize(298, 336)
+				_G["TradeSkillDetailScrollFrame"]:SetSize(298, 336 + tall)
 				-- _G["TradeSkillReagent1"]:SetHeight(500) -- Debug
 
 				-- Hide detail scroll frame textures
@@ -5772,13 +5886,13 @@
 
 				-- Create texture for skills list
 				local RecipeInset = _G["TradeSkillFrame"]:CreateTexture(nil, "ARTWORK")
-				RecipeInset:SetSize(304, 361)
+				RecipeInset:SetSize(304, 361 + tall)
 				RecipeInset:SetPoint("TOPLEFT", _G["TradeSkillFrame"], "TOPLEFT", 16, -72)
 				RecipeInset:SetTexture("Interface\\RAIDFRAME\\UI-RaidFrame-GroupBg")
 
 				-- Set detail frame backdrop
 				local DetailsInset = _G["TradeSkillFrame"]:CreateTexture(nil, "ARTWORK")
-				DetailsInset:SetSize(302, 339)
+				DetailsInset:SetSize(302, 339 + tall)
 				DetailsInset:SetPoint("TOPLEFT", _G["TradeSkillFrame"], "TOPLEFT", 348, -72)
 				DetailsInset:SetTexture("Interface\\ACHIEVEMENTFRAME\\UI-GuildAchievement-Parchment-Horizontal-Desaturated")
 
@@ -5789,14 +5903,27 @@
 				local regions = {_G["TradeSkillFrame"]:GetRegions()}
 
 				-- Set top left texture
-				regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				regions[2]:SetSize(512, 512)
+				if LeaPlusLC["TallerProfessions"] == "On" then
+					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
+					regions[2]:SetSize(512, 1024)
+				else
+					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
+					regions[2]:SetSize(512, 512)
+				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
-				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				regions[3]:SetSize(256, 512)
+
+				if LeaPlusLC["TallerProfessions"] == "On" then
+					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[3]:SetTexCoord(0.75, 1, 0, 1)
+					regions[3]:SetSize(256, 1024)
+				else
+					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
+					regions[3]:SetSize(256, 512)
+				end
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -5834,7 +5961,7 @@
 						regions[3]:Hide()
 						RecipeInset:Hide()
 						DetailsInset:Hide()
-						_G["TradeSkillFrame"]:SetHeight(512)
+						_G["TradeSkillFrame"]:SetHeight(512 + tall)
 						_G["TradeSkillCancelButton"]:ClearAllPoints()
 						_G["TradeSkillCancelButton"]:SetPoint("BOTTOMRIGHT", _G["TradeSkillFrame"], "BOTTOMRIGHT", -42, 78)
 						_G["TradeSkillRankFrame"]:ClearAllPoints()
@@ -5911,7 +6038,7 @@
 
 				-- Size the craft frame
 				_G["CraftFrame"]:SetWidth(714)
-				_G["CraftFrame"]:SetHeight(487)
+				_G["CraftFrame"]:SetHeight(487 + tall)
 
 				-- Adjust title text
 				_G["CraftFrameTitleText"]:ClearAllPoints()
@@ -5920,7 +6047,7 @@
 				-- Expand the crafting list to full height
 				_G["CraftListScrollFrame"]:ClearAllPoints()
 				_G["CraftListScrollFrame"]:SetPoint("TOPLEFT", _G["CraftFrame"], "TOPLEFT", 25, -75)
-				_G["CraftListScrollFrame"]:SetSize(295, 336)
+				_G["CraftListScrollFrame"]:SetSize(295, 336 + tall)
 
 				-- Create additional list rows
 				local oldCraftsDisplayed = CRAFTS_DISPLAYED
@@ -5936,7 +6063,7 @@
 				end
 
 				-- Create and position new buttons
-				_G.CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED + 14
+				_G.CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED + numTallProfs
 				for i = oldCraftsDisplayed + 1, CRAFTS_DISPLAYED do
 					local button = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
 					button:SetID(i)
@@ -5961,7 +6088,7 @@
 				-- Move the craft detail frame to the right and stretch it to full height
 				_G["CraftDetailScrollFrame"]:ClearAllPoints()
 				_G["CraftDetailScrollFrame"]:SetPoint("TOPLEFT", _G["CraftFrame"], "TOPLEFT", 352, -74)
-				_G["CraftDetailScrollFrame"]:SetSize(298, 336)
+				_G["CraftDetailScrollFrame"]:SetSize(298, 336 + tall)
 				-- _G["CraftReagent1"]:SetHeight(500) -- Debug
 
 				-- Hide detail scroll frame textures
@@ -5970,13 +6097,13 @@
 
 				-- Create texture for skills list
 				local RecipeInset = _G["CraftFrame"]:CreateTexture(nil, "ARTWORK")
-				RecipeInset:SetSize(304, 361)
+				RecipeInset:SetSize(304, 361 + tall)
 				RecipeInset:SetPoint("TOPLEFT", _G["CraftFrame"], "TOPLEFT", 16, -72)
 				RecipeInset:SetTexture("Interface\\RAIDFRAME\\UI-RaidFrame-GroupBg")
 
 				-- Set detail frame backdrop
 				local DetailsInset = _G["CraftFrame"]:CreateTexture(nil, "ARTWORK")
-				DetailsInset:SetSize(302, 339)
+				DetailsInset:SetSize(302, 339 + tall)
 				DetailsInset:SetPoint("TOPLEFT", _G["CraftFrame"], "TOPLEFT", 348, -72)
 				DetailsInset:SetTexture("Interface\\ACHIEVEMENTFRAME\\UI-GuildAchievement-Parchment-Horizontal-Desaturated")
 
@@ -5987,14 +6114,27 @@
 				local regions = {_G["CraftFrame"]:GetRegions()}
 
 				-- Set top left texture
-				regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-				regions[2]:SetSize(512, 512)
+				if LeaPlusLC["TallerProfessions"] == "On" then
+					regions[2]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[2]:SetTexCoord(0.25, 0.75, 0, 1)
+					regions[2]:SetSize(512, 1024)
+				else
+					regions[2]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
+					regions[2]:SetSize(512, 512)
+				end
 
 				-- Set top right texture
 				regions[3]:ClearAllPoints()
 				regions[3]:SetPoint("TOPLEFT", regions[2], "TOPRIGHT", 0, 0)
-				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-				regions[3]:SetSize(256, 512)
+
+				if LeaPlusLC["TallerProfessions"] == "On" then
+					regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+					regions[3]:SetTexCoord(0.75, 1, 0, 1)
+					regions[3]:SetSize(256, 1024)
+				else
+					regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
+					regions[3]:SetSize(256, 512)
+				end
 
 				-- Hide bottom left and bottom right textures
 				regions[4]:Hide()
@@ -6026,7 +6166,7 @@
 						regions[3]:Hide()
 						RecipeInset:Hide()
 						DetailsInset:Hide()
-						_G["CraftFrame"]:SetHeight(512)
+						_G["CraftFrame"]:SetHeight(512 + tall)
 						_G["CraftCancelButton"]:ClearAllPoints()
 						_G["CraftCancelButton"]:SetPoint("BOTTOMRIGHT", _G["CraftFrame"], "BOTTOMRIGHT", -42, 78)
 						_G["CraftRankFrame"]:ClearAllPoints()
@@ -6134,12 +6274,22 @@
 
 		if LeaPlusLC["EnhanceQuestLog"] == "On" then
 
+			-- Set tall or short quest log variables
+			local tall, numTallQuests = 0, 0
+			if LeaPlusLC["TallerQuestLog"] == "On" then 
+				tall = 104
+				numTallQuests = 23
+			else
+				tall = 0
+				numTallQuests = 16
+			end
+
 			-- Make the quest log frame double-wide
 			UIPanelWindows["QuestLogFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
 
 			-- Size the quest log frame
 			QuestLogFrame:SetWidth(714)
-			QuestLogFrame:SetHeight(487)
+			QuestLogFrame:SetHeight(487 + tall)
 
 			-- Adjust quest log title text
 			QuestLogTitleText:ClearAllPoints()
@@ -6148,14 +6298,14 @@
 			-- Move the detail frame to the right and stretch it to full height
 			QuestLogDetailScrollFrame:ClearAllPoints()
 			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 31, 1)
-			QuestLogDetailScrollFrame:SetHeight(336)
+			QuestLogDetailScrollFrame:SetHeight(336 + tall)
 
 			-- Expand the quest list to full height
-			QuestLogListScrollFrame:SetHeight(336)
+			QuestLogListScrollFrame:SetHeight(336 + tall)
 
 			-- Create additional quest rows
 			local oldQuestsDisplayed = QUESTS_DISPLAYED
-			_G.QUESTS_DISPLAYED = _G.QUESTS_DISPLAYED + 16
+			_G.QUESTS_DISPLAYED = _G.QUESTS_DISPLAYED + numTallQuests
 			for i = oldQuestsDisplayed + 1, QUESTS_DISPLAYED do
 				local button = CreateFrame("Button", "QuestLogTitle" .. i, QuestLogFrame, "QuestLogTitleButtonTemplate")
 				button:SetID(i)
@@ -6168,14 +6318,27 @@
 			local regions = {QuestLogFrame:GetRegions()}
 
 			-- Set top left texture
-			regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
-			regions[3]:SetSize(512,512)
+			if LeaPlusLC["TallerQuestLog"] == "On" then
+				regions[3]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[3]:SetTexCoord(0.25, 0.75, 0, 1)
+				regions[3]:SetSize(512, 1024)
+			else
+				regions[3]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Left")
+				regions[3]:SetSize(512, 512)
+			end
 
 			-- Set top right texture
 			regions[4]:ClearAllPoints()
 			regions[4]:SetPoint("TOPLEFT", regions[3], "TOPRIGHT", 0, 0)
-			regions[4]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
-			regions[4]:SetSize(256,512)
+
+			if LeaPlusLC["TallerQuestLog"] == "On" then
+				regions[4]:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus")
+				regions[4]:SetTexCoord(0.75, 1, 0, 1)
+				regions[4]:SetSize(256, 1024)
+			else
+				regions[4]:SetTexture("Interface\\QUESTFRAME\\UI-QuestLogDualPane-Right")
+				regions[4]:SetSize(256, 512)
+			end
 
 			-- Hide bottom left and bottom right textures
 			regions[5]:Hide()
@@ -6299,6 +6462,7 @@
 
 			LeaPlusLC:MakeTx(EnhanceQuestPanel, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestLevels", "Show quest levels", 16, -92, false, "If checked, quest levels will be shown.")
+			LeaPlusLC:MakeCB(EnhanceQuestPanel, "TallerQuestLog", "Taller quest log", 16, -112, true, "If checked, the quest log will be taller.")
 
 			-- Help button hidden
 			EnhanceQuestPanel.h:Hide()
@@ -6310,6 +6474,7 @@
 			end)
 
 			-- Reset button handler
+			EnhanceQuestPanel.r.tiptext = EnhanceQuestPanel.r.tiptext .. "|n|n" .. L["Note that this will not reset settings that require a UI reload."]
 			EnhanceQuestPanel.r:SetScript("OnClick", function()
 
 				-- Reset checkboxes
@@ -6325,6 +6490,8 @@
 				if IsShiftKeyDown() and IsControlKeyDown() then
 					-- Preset profile
 					LeaPlusLC["EnhanceQuestLevels"] = "On"
+					LeaPlusLC["TallerQuestLog"] = "On"
+					LeaPlusLC:ReloadCheck() -- Special reload check
 				else
 					EnhanceQuestPanel:Show()
 					LeaPlusLC:HideFrames()
@@ -10617,8 +10784,11 @@
 				LeaPlusLC:LoadVarChk("HideDressupStats", "Off")				-- Hide dressup stats
 				LeaPlusLC:LoadVarChk("EnhanceQuestLog", "Off")				-- Enhance quest log
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
+				LeaPlusLC:LoadVarChk("TallerQuestLog", "Off")				-- Taller quest log
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
+				LeaPlusLC:LoadVarChk("TallerProfessions", "Off")			-- Taller professions frame
 				LeaPlusLC:LoadVarChk("EnhanceTrainers", "Off")				-- Enhance trainers
+				LeaPlusLC:LoadVarChk("TallerTrainers", "Off")				-- Taller trainers frame
 
 				LeaPlusLC:LoadVarChk("ShowVolume", "Off")					-- Show volume slider
 				LeaPlusLC:LoadVarChk("AhExtras", "Off")						-- Show auction controls
@@ -10844,8 +11014,11 @@
 			LeaPlusDB["HideDressupStats"]		= LeaPlusLC["HideDressupStats"]
 			LeaPlusDB["EnhanceQuestLog"]		= LeaPlusLC["EnhanceQuestLog"]
 			LeaPlusDB["EnhanceQuestLevels"]		= LeaPlusLC["EnhanceQuestLevels"]
+			LeaPlusDB["TallerQuestLog"]			= LeaPlusLC["TallerQuestLog"]
 			LeaPlusDB["EnhanceProfessions"]		= LeaPlusLC["EnhanceProfessions"]
+			LeaPlusDB["TallerProfessions"]		= LeaPlusLC["TallerProfessions"]
 			LeaPlusDB["EnhanceTrainers"]		= LeaPlusLC["EnhanceTrainers"]
+			LeaPlusDB["TallerTrainers"]			= LeaPlusLC["TallerTrainers"]
 
 			LeaPlusDB["ShowVolume"] 			= LeaPlusLC["ShowVolume"]
 			LeaPlusDB["AhExtras"]				= LeaPlusLC["AhExtras"]
@@ -11390,9 +11563,9 @@
 
 			-- Set skinned button textures
 			mbtn:SetNormalTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-			mbtn:GetNormalTexture():SetTexCoord(0.5, 1, 0.875, 1)
+			mbtn:GetNormalTexture():SetTexCoord(0.125, 0.25, 0.21875, 0.25)
 			mbtn:SetHighlightTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-			mbtn:GetHighlightTexture():SetTexCoord(0, 0.5, 0.875, 1)
+			mbtn:GetHighlightTexture():SetTexCoord(0, 0.125, 0.21875, 0.25)
 
 			-- Hide the default textures
 			mbtn:HookScript("OnShow", function() mbtn.Left:Hide(); mbtn.Middle:Hide(); mbtn.Right:Hide() end)
@@ -12636,8 +12809,12 @@
 				LeaPlusDB["HideDressupStats"] = "On"			-- Hide dressup stats
 				LeaPlusDB["EnhanceQuestLog"] = "On"				-- Enhance quest log
 				LeaPlusDB["EnhanceQuestLevels"] = "On"			-- Enhance quest log quest levels
+				LeaPlusDB["TallerQuestLog"] = "On"				-- Taller quest log
 				LeaPlusDB["EnhanceProfessions"] = "On"			-- Enhance professions
+				LeaPlusDB["TallerProfessions"] = "On"			-- Taller professions frame
 				LeaPlusDB["EnhanceTrainers"] = "On"				-- Enhance trainers
+				LeaPlusDB["TallerTrainers"] = "On"				-- Taller trainers frame
+
 				LeaPlusDB["ShowVolume"] = "On"					-- Show volume slider
 				LeaPlusDB["AhExtras"] = "On"					-- Show auction controls
 				LeaPlusDB["ShowCooldowns"] = "On"				-- Show cooldowns
@@ -13038,6 +13215,8 @@
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
 	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
+	LeaPlusLC:CfgBtn("EnhanceProfessionsBtn", LeaPlusCB["EnhanceProfessions"])
+	LeaPlusLC:CfgBtn("EnhanceTrainersBtn", LeaPlusCB["EnhanceTrainers"])
 	LeaPlusLC:CfgBtn("CooldownsButton", LeaPlusCB["ShowCooldowns"])
 	LeaPlusLC:CfgBtn("ModPlayerChain", LeaPlusCB["ShowPlayerChain"])
 	LeaPlusLC:CfgBtn("ShowWowheadLinksBtn", LeaPlusCB["ShowWowheadLinks"])
