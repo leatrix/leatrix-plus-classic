@@ -1,7 +1,8 @@
-1.14.43.alpha.5 - 16th May 2022
+1.14.43.alpha.6 - 16th May 2022
 - For 'Enhance quest log' ('Interface'), the quest log is now taller.
 - For 'Enhance professions' ('Interface'), the professions frame is now taller.
 - For 'Enhance trainers' ('Interface'), the skill trainer frame is now taller.  Also fixed a cosmetic bug with the position of the beast training cost column.
+- If you are using ElvUI, 'Show Wowhead links' ('Interface') will now place links inside the quest log frame rather than above it.
 - Added a flight time.  There are now 1046 flight times stored in Leatrix Plus for BCC.
 
 1.14.42 - 12th May 2022
