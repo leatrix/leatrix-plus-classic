@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.43.alpha.6 (16th May 2022)
+-- 	Leatrix Plus 1.14.43.alpha.7 (17th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.43.alpha.6"
+	LeaPlusLC["AddonVer"] = "1.14.43.alpha.7"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -36,14 +36,6 @@
 			end)
 			return
 		end
-	end
-
-	-- Check for incompatible addons
-	if IsAddOnLoaded("NDui") then
-		C_Timer.After(5, function()
-			print("Leatrix Plus is not compatible with NDui.  To use Leatrix Plus, you need to uninstall NDui.")
-		end)
-		return
 	end
 
 ----------------------------------------------------------------------
@@ -2101,9 +2093,7 @@
 			end
 
 			-- ElvUI Fix
-			local eFixFuncApplied, eFixHookApplied
 			local function ElvUIFix()
-				if eFixFuncApplied then return end
 				local E = unpack(ElvUI)
 				if E.private.chat.enable then
 					C_Timer.After(2, function()
@@ -2111,16 +2101,6 @@
 						return
 					end)
 				end
-				hooksecurefunc(E, "PLAYER_ENTERING_WORLD", function()
-					if eFixHookApplied then return end
-					ChatFrame2Tab:EnableMouse(false)
-					ChatFrame2Tab:SetText(" ")
-					ChatFrame2Tab:SetScale(0.01)
-					ChatFrame2Tab:SetWidth(0.01)
-					ChatFrame2Tab:SetHeight(0.01)
-					eFixHookApplied = true
-				end)
-				eFixFuncApplied = true
 			end
 
 			-- Run ElvUI fix when ElvUI has loaded
