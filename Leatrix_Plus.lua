@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.44.alpha.1 (20th May 2022)
+-- 	Leatrix Plus 1.14.44.alpha.2 (22nd May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.44.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.44.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -467,6 +467,7 @@
 		or	(LeaPlusLC["ShowFreeBagSlots"]		~= LeaPlusDB["ShowFreeBagSlots"])		-- Show free bag slots
 		or	(LeaPlusLC["ShowRaidToggle"]		~= LeaPlusDB["ShowRaidToggle"])			-- Show raid button
 		or	(LeaPlusLC["ShowPlayerChain"]		~= LeaPlusDB["ShowPlayerChain"])		-- Show player chain
+		or	(LeaPlusLC["ShowReadyTimer"]		~= LeaPlusDB["ShowReadyTimer"])			-- Show ready timer
 		or	(LeaPlusLC["ShowDruidPowerBar"]		~= LeaPlusDB["ShowDruidPowerBar"])		-- Show druid power bar
 		or	(LeaPlusLC["ShowWowheadLinks"]		~= LeaPlusDB["ShowWowheadLinks"])		-- Show Wowhead links
 		or	(LeaPlusLC["ShowFlightTimes"]		~= LeaPlusDB["ShowFlightTimes"])		-- Show flight times
@@ -2782,6 +2783,67 @@
 ----------------------------------------------------------------------
 
 	function LeaPlusLC:Player()
+
+		----------------------------------------------------------------------
+		-- Show ready timer
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["ShowReadyTimer"] == "On" then
+
+			-- Player vs Player
+			do
+
+				-- Declare variables
+				local t, barTime = -1, -1
+
+				-- Create status bar below dungeon ready popup
+				local bar = CreateFrame("StatusBar", nil, PVPReadyDialog)
+				bar:SetPoint("TOPLEFT", PVPReadyDialog, "BOTTOMLEFT", 0, -5)
+				bar:SetPoint("TOPRIGHT", PVPReadyDialog, "BOTTOMRIGHT", 0, -5)
+				bar:SetHeight(5)
+				bar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+				bar:SetStatusBarColor(1.0, 0.85, 0.0)
+
+				-- Create status bar text
+				local text = bar:CreateFontString(nil, "ARTWORK")
+				text:SetFontObject("GameFontNormalLarge")
+				text:SetTextColor(1.0, 0.85, 0.0)
+				text:SetPoint("TOP", 0, -10)
+
+				-- Update bar as timer counts down
+				bar:SetScript("OnUpdate", function(self, elapsed)
+					t = t - elapsed
+					if barTime >= 1 or barTime == -1 then
+						self:SetValue(t)
+						text:SetText(SecondsToTime(floor(t + 0.5)))
+						barTime = 0
+					end
+					barTime = barTime + elapsed
+				end)
+
+				-- Show frame when PvP ready frame shows
+				hooksecurefunc("PVPReadyDialog_Display", function(self, id)
+					t = GetBattlefieldPortExpiration(id) + 1
+					-- t = 89; -- debug
+					if t and t > 1 then
+						bar:SetMinMaxValues(0, t)
+						barTime = -1
+						bar:Show()
+					else
+						bar:Hide()
+					end
+				end)
+
+				PVPReadyDialog:HookScript("OnHide", function()
+					bar:Hide()
+				end)
+
+				-- Debug
+				-- C_Timer.After(2, function() PVPReadyDialog_Display(self, 1, "Warsong Gulch", 0, "BATTLEGROUND", "", "DAMAGER"); bar:Show() end)
+
+			end
+
+		end
 
 		----------------------------------------------------------------------
 		-- Show flight times
@@ -10682,6 +10744,7 @@
 				LeaPlusLC:LoadVarChk("ShowFreeBagSlots", "Off")				-- Show free bag slots
 				LeaPlusLC:LoadVarChk("ShowRaidToggle", "Off")				-- Show raid button
 				LeaPlusLC:LoadVarChk("ShowPlayerChain", "Off")				-- Show player chain
+				LeaPlusLC:LoadVarChk("ShowReadyTimer", "Off")				-- Show ready timer
 				LeaPlusLC:LoadVarNum("PlayerChainMenu", 2, 1, 3)			-- Player chain dropdown value
 				LeaPlusLC:LoadVarChk("ShowDruidPowerBar", "Off")			-- Show druid power bar
 				LeaPlusLC:LoadVarChk("ShowWowheadLinks", "Off")				-- Show Wowhead links
@@ -10910,6 +10973,7 @@
 			LeaPlusDB["ShowRaidToggle"]			= LeaPlusLC["ShowRaidToggle"]
 			LeaPlusDB["ShowPlayerChain"]		= LeaPlusLC["ShowPlayerChain"]
 			LeaPlusDB["PlayerChainMenu"]		= LeaPlusLC["PlayerChainMenu"]
+			LeaPlusDB["ShowReadyTimer"]			= LeaPlusLC["ShowReadyTimer"]
 			LeaPlusDB["ShowDruidPowerBar"]		= LeaPlusLC["ShowDruidPowerBar"]
 			LeaPlusDB["ShowWowheadLinks"]		= LeaPlusLC["ShowWowheadLinks"]
 			LeaPlusDB["WowheadLinkComments"]	= LeaPlusLC["WowheadLinkComments"]
@@ -12695,6 +12759,7 @@
 				LeaPlusDB["ShowRaidToggle"] = "On"				-- Show raid button
 				LeaPlusDB["ShowPlayerChain"] = "On"				-- Show player chain
 				LeaPlusDB["PlayerChainMenu"] = 3				-- Player chain style
+				LeaPlusDB["ShowReadyTimer"] = "On"				-- Show ready timer
 				LeaPlusDB["ShowDruidPowerBar"] = "On"			-- Show druid power bar
 				LeaPlusDB["ShowWowheadLinks"] = "On"			-- Show Wowhead links
 				LeaPlusDB["WowheadLinkComments"] = "On"			-- Show Wowhead links to comments
@@ -13078,8 +13143,9 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowRaidToggle"			, 	"Show raid button"				,	340, -192, 	true,	"If checked, the button to toggle the raid container frame will be shown just above the raid management frame (left side of the screen) instead of in the raid management frame itself.|n|nThis allows you to toggle the raid container frame without needing to open the raid management frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowPlayerChain"			, 	"Show player chain"				,	340, -212, 	true,	"If checked, you will be able to show a rare, elite or rare elite chain around the player frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowDruidPowerBar"			, 	"Show druid power bar"			,	340, -232, 	true,	"If checked, a power bar will be shown in the player frame when you are playing a shapeshifted druid.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowWowheadLinks"			, 	"Show Wowhead links"			, 	340, -252, 	true,	"If checked, Wowhead links will be shown above the quest log frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -272, 	true,	"If checked, flight times will be shown in the flight map and when you take a flight.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowReadyTimer"			, 	"Show ready timer"				,	340, -252, 	true,	"If checked, a timer will be shown under the PvP encounter ready frame so that you know how long you have left to click the enter button.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowWowheadLinks"			, 	"Show Wowhead links"			, 	340, -272, 	true,	"If checked, Wowhead links will be shown above the quest log frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -292, 	true,	"If checked, flight times will be shown in the flight map and when you take a flight.")
 
 	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapMod"])
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])

@@ -1,4 +1,5 @@
-1.14.44.alpha.1 - 20th May 2022
+1.14.44.alpha.2 - 22nd May 2022
+- Added a new option 'Show ready timer' ('Interface').  If checked, a timer will be shown under the PvP encounter ready frame so that you know how long you have left to click the enter button.
 - Added a flight time.  There are now 1047 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.43 - 18th May 2022
