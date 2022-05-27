@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.44 (25th May 2022)
+-- 	Leatrix Plus 1.14.45.alpha.1 (27th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.44"
+	LeaPlusLC["AddonVer"] = "1.14.45.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -691,7 +691,12 @@
 					"mechastriderwoundc.ogg#555130", 
 					"mechastriderwoundcrit.ogg#555131",
 
-					-- sound/creature/gnomespidertank/
+				},
+
+				-- Mechanical mount footsteps
+				["MuteMechSteps"] = {
+
+					-- Mechanostriders (sound/creature/gnomespidertank/)
 					"gnomespidertankfootstepa.ogg#550507",
 					"gnomespidertankfootstepb.ogg#550514", 
 					"gnomespidertankfootstepc.ogg#550501", 
@@ -729,7 +734,8 @@
 			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -172, false, "If checked, the ready check sound will be muted.")
 
 			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 140, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 140, -92, false, "If checked, mechanostriders will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 140, -92, false, "If checked, mechanostriders will be quieter.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "MechSteps", 140, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
 
 			LeaPlusLC:MakeTx(SoundPanel, "Pets", 264, -72)
 			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 264, -92, false, "If checked, yawns from hunter pet cats will be muted.")
@@ -10622,6 +10628,13 @@
 
 		if event == "ADDON_LOADED" then
 			if arg1 == "Leatrix_Plus" then
+
+				-- Replace old var names with new ones
+				local function UpdateVars(oldvar, newvar)
+					if LeaPlusDB[oldvar] and not LeaPlusDB[newvar] then LeaPlusDB[newvar] = LeaPlusDB[oldvar]; LeaPlusDB[oldvar] = nil end
+				end
+			
+				UpdateVars("MuteStriders", "MuteMechSteps")					-- 1.14.45 (1st June 2022)
 
 				-- Automation
 				LeaPlusLC:LoadVarChk("AutomateQuests", "Off")				-- Automate quests

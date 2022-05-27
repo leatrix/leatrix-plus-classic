@@ -1215,6 +1215,7 @@
 					["0.64:0.67:0.43:0.25:0.42:0.16"] = 705, -- Theramore, Auberdine, Rut'theran Village
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.39:0.40"] = 540, -- Theramore, Talrendis Point, Astranaar, Stonetalon Peak
 					["0.64:0.67:0.40:0.51:0.39:0.40:0.46:0.40"] = 607, -- Theramore, Nijel's Point, Stonetalon Peak, Astranaar
+					["0.64:0.67:0.61:0.40:0.65:0.23:0.55:0.21"] = 536, -- Theramore, Talrendis Point, Everlook, Moonglade
 
 				},
 
