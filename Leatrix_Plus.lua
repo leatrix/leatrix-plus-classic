@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.45.alpha.1 (27th May 2022)
+-- 	Leatrix Plus 1.14.45.alpha.2 (27th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.45.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.45.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -735,7 +735,7 @@
 
 			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 140, -72)
 			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 140, -92, false, "If checked, mechanostriders will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "MechSteps", 140, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "Mechsteps", 140, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
 
 			LeaPlusLC:MakeTx(SoundPanel, "Pets", 264, -72)
 			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 264, -92, false, "If checked, yawns from hunter pet cats will be muted.")
