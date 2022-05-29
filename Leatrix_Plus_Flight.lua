@@ -776,6 +776,7 @@
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.48:0.30"] = 608, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Menethil Harbor, Southshore
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 615, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44"] = 508, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Menethil Harbor
+					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.59:0.52"] = 482, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Thelsamar
 
 					-- Alliance: Refuge Pointe (Arathi Highlands)
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 614, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -1194,6 +1195,7 @@
 					["0.48:0.70:0.64:0.67:0.61:0.40:0.65:0.23:0.55:0.21"] = 693, -- Thalanaar, Theramore, Talrendis Point, Everlook, Moonglade
 					["0.48:0.70:0.31:0.69:0.43:0.25"] = 646, -- Thalanaar, Feathermoon, Auberdine
 					["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25:0.42:0.16"] = 859, -- Thalanaar, Theramore, Nijel's Point, Auberdine, Rut'theran Village
+					["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25"] = 693, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Auberdine
 
 					-- Alliance: Theramore (Dustwallow Marsh)
 					["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan

@@ -1,6 +1,6 @@
-1.14.45.alpha.2 - 27th May 2022
+1.14.45.alpha.3 - 29th May 2022
 - For 'Mute game sounds' ('System'), the 'Mechstriders' setting will no longer mute mechanostrider footstep sounds.  There is a new setting called 'Mechsteps' that will mute footstep sounds for mechanical mounts.
-- Added a flight time.  There are now 1048 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added some flight times.  There are now 1050 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.44 - 25th May 2022
 - Added a new option 'Show ready timer' ('Interface').  If checked, a timer will be shown under the PvP encounter ready frame so that you know how long you have left to click the enter button.
