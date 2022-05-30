@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.45.alpha.3 (29th May 2022)
+-- 	Leatrix Plus 1.14.45.alpha.4 (30th May 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.45.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.45.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -403,6 +403,7 @@
 		LeaPlusLC:LockOption("TipModEnable", "MoveTooltipButton", true)				-- Enhance tooltip
 		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
+		LeaPlusLC:LockOption("EnhanceTrainers", "EnhanceTrainersBtn", true)			-- Enhance trainers
 		LeaPlusLC:LockOption("ShowCooldowns", "CooldownsButton", true)				-- Show cooldowns
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
 		LeaPlusLC:LockOption("ShowWowheadLinks", "ShowWowheadLinksBtn", true)		-- Show Wowhead links
@@ -5465,6 +5466,43 @@
 
 		if LeaPlusLC["EnhanceTrainers"] == "On" then
 
+			-- Create configuration panel
+			local TrainerPanel = LeaPlusLC:CreatePanel("Enhance trainers", "TrainerPanel")
+
+			LeaPlusLC:MakeTx(TrainerPanel, "Settings", 16, -72)
+			LeaPlusLC:MakeCB(TrainerPanel, "ShowTrainAllBtn", "Show train all skills button", 16, -92, false, "If checked, a train all skills button will be shown in the skill trainer frame allowing you to train all available skills instantly.")
+
+			-- Help button hidden
+			TrainerPanel.h:Hide()
+
+			-- Back button handler
+			TrainerPanel.b:SetScript("OnClick", function() 
+				TrainerPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			TrainerPanel.r:SetScript("OnClick", function()
+
+				-- Reset controls
+				LeaPlusLC["ShowTrainAllBtn"] = "On"
+
+				-- Refresh configuration panel
+				TrainerPanel:Hide(); TrainerPanel:Show()
+
+			end)
+
+			-- Show configuration panal when options panel button is clicked
+			LeaPlusCB["EnhanceTrainersBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["ShowTrainAllBtn"] = "On"
+				else
+					TrainerPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
 			-- Set increased height of skill trainer frame and maximum number of skills listed
 			local tall, numTallTrainers = 73, 17
 
@@ -5657,6 +5695,27 @@
 						LeaPlusCB["TrainAllButton"]:GetScript("OnEnter")(LeaPlusCB["TrainAllButton"])
 					end
 				end)
+
+				-- Function to set train all button
+				local function SetTrainAllFunc()
+					if LeaPlusLC["ShowTrainAllBtn"] == "On" then
+						LeaPlusCB["TrainAllButton"]:Show()
+					else
+						LeaPlusCB["TrainAllButton"]:Hide()
+					end
+				end
+
+				-- Run function when option is clicked, reset or preset button is clicked and on startup
+				LeaPlusCB["ShowTrainAllBtn"]:HookScript("OnClick", SetTrainAllFunc)
+				TrainerPanel.r:HookScript("OnClick", SetTrainAllFunc)
+				LeaPlusCB["EnhanceTrainersBtn"]:HookScript("OnClick", function()
+					if IsShiftKeyDown() and IsControlKeyDown() then
+						-- Preset profile
+						LeaPlusLC["ShowTrainAllBtn"] = "On"
+						SetTrainAllFunc()
+					end
+				end)
+				SetTrainAllFunc()
 
 				----------------------------------------------------------------------
 				--	ElvUI fixes
@@ -10740,6 +10799,7 @@
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
 				LeaPlusLC:LoadVarChk("EnhanceTrainers", "Off")				-- Enhance trainers
+				LeaPlusLC:LoadVarChk("ShowTrainAllBtn", "On")				-- Enhance trainers train all button
 
 				LeaPlusLC:LoadVarChk("ShowVolume", "Off")					-- Show volume slider
 				LeaPlusLC:LoadVarChk("AhExtras", "Off")						-- Show auction controls
@@ -10968,6 +11028,7 @@
 			LeaPlusDB["EnhanceQuestLevels"]		= LeaPlusLC["EnhanceQuestLevels"]
 			LeaPlusDB["EnhanceProfessions"]		= LeaPlusLC["EnhanceProfessions"]
 			LeaPlusDB["EnhanceTrainers"]		= LeaPlusLC["EnhanceTrainers"]
+			LeaPlusDB["ShowTrainAllBtn"]		= LeaPlusLC["ShowTrainAllBtn"]
 
 			LeaPlusDB["ShowVolume"] 			= LeaPlusLC["ShowVolume"]
 			LeaPlusDB["AhExtras"]				= LeaPlusLC["AhExtras"]
@@ -12761,6 +12822,7 @@
 				LeaPlusDB["EnhanceQuestLevels"] = "On"			-- Enhance quest log quest levels
 				LeaPlusDB["EnhanceProfessions"] = "On"			-- Enhance professions
 				LeaPlusDB["EnhanceTrainers"] = "On"				-- Enhance trainers
+				LeaPlusDB["ShowTrainAllBtn"] = "On"				-- Show train all button
 
 				LeaPlusDB["ShowVolume"] = "On"					-- Show volume slider
 				LeaPlusDB["AhExtras"] = "On"					-- Show auction controls
@@ -13164,6 +13226,7 @@
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
 	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
+	LeaPlusLC:CfgBtn("EnhanceTrainersBtn", LeaPlusCB["EnhanceTrainers"])
 	LeaPlusLC:CfgBtn("CooldownsButton", LeaPlusCB["ShowCooldowns"])
 	LeaPlusLC:CfgBtn("ModPlayerChain", LeaPlusCB["ShowPlayerChain"])
 	LeaPlusLC:CfgBtn("ShowWowheadLinksBtn", LeaPlusCB["ShowWowheadLinks"])
