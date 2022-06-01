@@ -1,4 +1,4 @@
-1.14.45.alpha.4 - 30th May 2022
+1.14.45 - 1st June 2022
 - For 'Enhance trainers' ('Interface'), you can now disable the train all skills button if you wish using a new setting in the configuration panel.
 - For 'Mute game sounds' ('System'), the 'Mechstriders' setting will no longer mute mechanostrider footstep sounds.  There is a new setting called 'Mechsteps' that will mute footstep sounds for mechanical mounts.
 - Added some flight times.  There are now 1050 flight times stored in Leatrix Plus for Classic Era/SoM.
