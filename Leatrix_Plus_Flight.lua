@@ -898,7 +898,7 @@
 				[1414] = {
 
 					-- Alliance: Astranaar (Ashenvale)
-					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan
+					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Joshua reported 538)
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 511, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67"] = 381, -- Astranaar, Talrendis Point, Ratchet, Theramore
 					["0.46:0.40:0.61:0.40:0.61:0.55"] = 283, -- Astranaar, Talrendis Point, Ratchet

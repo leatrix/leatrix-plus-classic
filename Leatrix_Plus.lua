@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.46.alpha.2 (7th June 2022)
+-- 	Leatrix Plus 1.14.46.alpha.3 (8th June 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.46.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.46.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3138,6 +3138,11 @@
 								mybar:SetDuration(duration)
 								mybar:Start()
 
+								-- Unlock close bar button
+								if LeaPlusCB["CloseFlightBarButton"] then
+									LeaPlusLC:LockItem(LeaPlusCB["CloseFlightBarButton"], false)
+								end
+
 								-- Assign file level scope to the bar so it can be cancelled later
 								LeaPlusLC.FlightProgressBar = mybar
 
@@ -3297,13 +3302,21 @@
 			LeaPlusLC:MakeSL(FlightPanel, "FlightBarWidth", "Drag to set the flight progress bar width.", 40, 460, 10, 356, -152, "%.0f")
 
 			-- Add close bar button
-			local CloseFlightBarButton = LeaPlusLC:CreateButton("CloseFlightBarButton", FlightPanel, "Close Bar", "TOPLEFT", 16, -72, 0, 25, true, "Click to close a currently active flight progress bar.")
+			local CloseFlightBarButton = LeaPlusLC:CreateButton("CloseFlightBarButton", FlightPanel, "Close Bar", "TOPLEFT", 16, -72, 0, 25, true, "Click to close the currently active flight progress bar.")
 			LeaPlusCB["CloseFlightBarButton"]:ClearAllPoints()
 			LeaPlusCB["CloseFlightBarButton"]:SetPoint("LEFT", FlightPanel.h, "RIGHT", 10, 0)
 			LeaPlusCB["CloseFlightBarButton"]:SetScript("OnClick", function()
 				if LeaPlusLC.FlightProgressBar then
 					LeaPlusLC.FlightProgressBar:Stop()
 					LeaPlusLC.FlightProgressBar = nil
+				end
+			end)
+
+			-- Lock close bar button at startup and when flight progress bar stops
+			LeaPlusLC:LockItem(LeaPlusCB["CloseFlightBarButton"], true)
+			candy.RegisterCallback(LeaPlusLC, "LibCandyBar_Stop", function()
+				if LeaPlusCB["CloseFlightBarButton"] then
+					LeaPlusLC:LockItem(LeaPlusCB["CloseFlightBarButton"], true)
 				end
 			end)
 
