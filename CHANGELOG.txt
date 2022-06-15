@@ -1,5 +1,5 @@
-1.14.47.alpha.1 - 15th June 2022
-- The 'Manage frames', 'Manage buffs', 'Manage widget' and 'Manage focus' settings ('Frames') now show a frame alignment grid when moving the frames (there is a button in each configuration panel to toggle the grid).  You can now drag the frames with the left button to position them freely or with the right button to position them using snap-to-grid.
+1.14.47.alpha.2 - 15th June 2022
+- The 'Manage frames', 'Manage buffs' and 'Manage widget' settings ('Frames') now show a frame alignment grid when moving the frames (there is a button in each configuration panel to toggle the grid).  You can now drag the frames with the left button to position them freely or with the right button to position them using snap-to-grid.
 
 1.14.46 - 8th June 2022
 - For 'Show flight times', you can now change the position, scale and width of the flight progress bar using a new configuration panel.  You can also remove the progress bar background and destination text if you wish.  The flight progress bar is now noninteractive so you can click through it as if it isn't there.  If you wish to manually close the flight progress bar, there is a new Close Bar button in the configuration panel.  These new settings give you a lot of customisation options.  For example, if you set the width to the minimum, hide the background and hide the destination, you can have a neat little flight timer in the corner of the screen.
