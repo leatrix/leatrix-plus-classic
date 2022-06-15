@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.46 (8th June 2022)
+-- 	Leatrix Plus 1.14.47.alpha.1 (15th June 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.46"
+	LeaPlusLC["AddonVer"] = "1.14.47.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7427,6 +7427,28 @@
 				BuffFrame:SetPoint(LeaPlusLC["BuffFrameA"], UIParent, LeaPlusLC["BuffFrameR"], LeaPlusLC["BuffFrameX"], LeaPlusLC["BuffFrameY"])
 			end)
 
+			-- Snap-to-grid
+			do
+				local frame, grid = dragframe, 10
+				local w, h = -190, 225
+				local xpos, ypos, scale, uiscale
+				frame:RegisterForDrag("RightButton")
+				frame:HookScript("OnDragStart", function()
+					frame:SetScript("OnUpdate", function()
+						scale, uiscale = frame:GetScale(), UIParent:GetScale()
+						xpos, ypos = GetCursorPosition()
+						xpos = floor((xpos / scale / uiscale) / grid) * grid - w / 2
+						ypos = ceil((ypos / scale / uiscale) / grid) * grid + h / 2
+						BuffFrame:ClearAllPoints()
+						BuffFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", xpos, ypos)
+					end)
+				end)
+				frame:HookScript("OnDragStop", function() 
+					frame:SetScript("OnUpdate", nil)
+					frame:GetScript("OnMouseUp")()
+				end)
+			end
+
 			-- Create configuration panel
 			local BuffPanel = LeaPlusLC:CreatePanel("Manage buffs", "BuffPanel")
 
@@ -7442,8 +7464,24 @@
 				LeaPlusCB["BuffFrameScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["BuffFrameScale"] * 100)
 			end)
 
+			-- Hide frame alignment grid with panel
+			BuffPanel:HookScript("OnHide", function()
+				LeaPlusLC.grid:Hide()
+			end)
+
+			-- Toggle grid button
+			local BuffsToggleGridButton = LeaPlusLC:CreateButton("BuffsToggleGridButton", BuffPanel, "Toggle Grid", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the frame alignment grid.")
+			LeaPlusCB["BuffsToggleGridButton"]:ClearAllPoints()
+			LeaPlusCB["BuffsToggleGridButton"]:SetPoint("LEFT", BuffPanel.h, "RIGHT", 10, 0)
+			LeaPlusCB["BuffsToggleGridButton"]:SetScript("OnClick", function()
+				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
+			end)
+			BuffPanel:HookScript("OnHide", function()
+				if LeaPlusLC.grid then LeaPlusLC.grid:Hide() end
+			end)
+
 			-- Help button tooltip
-			BuffPanel.h.tiptext = L["Drag the frame overlay to position the frame."]
+			BuffPanel.h.tiptext = L["Drag the frame overlay with the left button to position it freely or with the right button to position it using snap-to-grid."]
 
 			-- Back button handler
 			BuffPanel.b:SetScript("OnClick", function()
@@ -7466,6 +7504,9 @@
 				-- Refresh configuration panel
 				BuffPanel:Hide(); BuffPanel:Show()
 				dragframe:Show()
+
+				-- Show frame alignment grid
+				LeaPlusLC.grid:Show()
 
 			end)
 
@@ -7498,6 +7539,9 @@
 					BuffPanel:Show()
 					LeaPlusLC:HideFrames()
 					dragframe:Show()
+
+					-- Show frame alignment grid
+					LeaPlusLC.grid:Show()
 				end
 			end)
 
@@ -7606,8 +7650,24 @@
 				LeaPlusCB["FrameScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["FrameScale"] * 100)
 			end)
 
+			-- Hide frame alignment grid with panel
+			SideFrames:HookScript("OnHide", function()
+				LeaPlusLC.grid:Hide()
+			end)
+
+			-- Toggle grid button
+			local FramesToggleGridButton = LeaPlusLC:CreateButton("FramesToggleGridButton", SideFrames, "Toggle Grid", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the frame alignment grid.")
+			LeaPlusCB["FramesToggleGridButton"]:ClearAllPoints()
+			LeaPlusCB["FramesToggleGridButton"]:SetPoint("LEFT", SideFrames.h, "RIGHT", 10, 0)
+			LeaPlusCB["FramesToggleGridButton"]:SetScript("OnClick", function()
+				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
+			end)
+			SideFrames:HookScript("OnHide", function()
+				if LeaPlusLC.grid then LeaPlusLC.grid:Hide() end
+			end)
+
 			-- Help button tooltip
-			SideFrames.h.tiptext = L["Drag the frame overlays to position the frames.|n|nTo change the scale of a frame, click it to select it then adjust the scale slider.|n|nThis panel will close automatically if you enter combat."]
+			SideFrames.h.tiptext = L["Drag the frame overlays with the left button to position them freely or with the right button to position them using snap-to-grid.|n|nTo change the scale of a frame, click it to select it then adjust the scale slider.|n|nThis panel will close automatically if you enter combat."]
 
 			-- Back button handler
 			SideFrames.b:SetScript("OnClick", function()
@@ -7646,6 +7706,8 @@
 					LeaPlusCB["FrameScale"]:SetValue(LeaPlusDB["Frames"][currentframe]["Scale"])
 					-- Refresh the panel
 					SideFrames:Hide(); SideFrames:Show()
+					-- Show frame alignment grid
+					LeaPlusLC.grid:Show()
 				end
 			end)
 
@@ -7751,6 +7813,30 @@
 				if realframe:GetName() == "PlayerFrame" 					then dragframe.f:SetText(L["Player"]) end
 				if realframe:GetName() == "TargetFrame" 					then dragframe.f:SetText(L["Target"]) end
 				if realframe:GetName() == "MirrorTimer1" 					then dragframe.f:SetText(L["Timer"]) end
+
+				-- Snap-to-grid
+				do
+					local frame, grid = dragframe, 10
+					local w, h = frame:GetWidth(), frame:GetHeight()
+					local xpos, ypos, scale, uiscale
+					frame:RegisterForDrag("RightButton")
+					frame:HookScript("OnDragStart", function()
+						frame:SetScript("OnUpdate", function()
+							scale, uiscale = frame:GetScale(), UIParent:GetScale()
+							xpos, ypos = GetCursorPosition()
+							xpos = floor((xpos / scale / uiscale) / grid) * grid - w / 2
+							ypos = ceil((ypos / scale / uiscale) / grid) * grid + h / 2
+							realframe:ClearAllPoints()
+							realframe:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", xpos, ypos)
+						end)
+					end)
+					frame:HookScript("OnDragStop", function() 
+						frame:SetScript("OnUpdate", nil)
+						frame:GetScript("OnMouseUp")()
+					end)
+				end
+
+				-- Return frame
 				return LeaPlusLC[dragframe]
 
 			end
@@ -7827,6 +7913,9 @@
 
 						-- Set timer bar scale
 						LeaPlusLC["DragMirrorTimer1"]:SetSize(206 * LeaPlusLC["gscale"], 50 * LeaPlusLC["gscale"]);
+
+						-- Show frame alignment grid
+						LeaPlusLC.grid:Show()
 					end
 				end
 			end)
@@ -7904,6 +7993,28 @@
 				topCenterHolder:SetPoint(LeaPlusLC["WidgetA"], UIParent, LeaPlusLC["WidgetR"], LeaPlusLC["WidgetX"], LeaPlusLC["WidgetY"])
 			end)
 
+			-- Snap-to-grid
+			do
+				local frame, grid = dragframe, 10
+				local w, h = 0, 60
+				local xpos, ypos, scale, uiscale
+				frame:RegisterForDrag("RightButton")
+				frame:HookScript("OnDragStart", function()
+					frame:SetScript("OnUpdate", function()
+						scale, uiscale = frame:GetScale(), UIParent:GetScale()
+						xpos, ypos = GetCursorPosition()
+						xpos = floor((xpos / scale / uiscale) / grid) * grid - w / 2
+						ypos = ceil((ypos / scale / uiscale) / grid) * grid + h / 2
+						topCenterHolder:ClearAllPoints()
+						topCenterHolder:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", xpos, ypos)
+					end)
+				end)
+				frame:HookScript("OnDragStop", function() 
+					frame:SetScript("OnUpdate", nil)
+					frame:GetScript("OnMouseUp")()
+				end)
+			end
+
 			-- Create configuration panel
 			local WidgetPanel = LeaPlusLC:CreatePanel("Manage widget", "WidgetPanel")
 
@@ -7933,8 +8044,24 @@
 				LeaPlusCB["WidgetScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["WidgetScale"] * 100)
 			end)
 
+			-- Hide frame alignment grid with panel
+			WidgetPanel:HookScript("OnHide", function()
+				LeaPlusLC.grid:Hide()
+			end)
+
+			-- Toggle grid button
+			local WidgetToggleGridButton = LeaPlusLC:CreateButton("WidgetToggleGridButton", WidgetPanel, "Toggle Grid", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the frame alignment grid.")
+			LeaPlusCB["WidgetToggleGridButton"]:ClearAllPoints()
+			LeaPlusCB["WidgetToggleGridButton"]:SetPoint("LEFT", WidgetPanel.h, "RIGHT", 10, 0)
+			LeaPlusCB["WidgetToggleGridButton"]:SetScript("OnClick", function()
+				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
+			end)
+			WidgetPanel:HookScript("OnHide", function()
+				if LeaPlusLC.grid then LeaPlusLC.grid:Hide() end
+			end)
+
 			-- Help button tooltip
-			WidgetPanel.h.tiptext = L["Drag the frame overlay to position the frame."]
+			WidgetPanel.h.tiptext = L["Drag the frame overlay with the left button to position it freely or with the right button to position it using snap-to-grid."]
 
 			-- Back button handler
 			WidgetPanel.b:SetScript("OnClick", function()
@@ -7957,6 +8084,9 @@
 				-- Refresh configuration panel
 				WidgetPanel:Hide(); WidgetPanel:Show()
 				dragframe:Show()
+
+				-- Show frame alignment grid
+				LeaPlusLC.grid:Show()
 
 			end)
 
@@ -8000,6 +8130,9 @@
 					WidgetPanel:Show()
 					LeaPlusLC:HideFrames()
 					dragframe:Show()
+
+					-- Show frame alignment grid
+					LeaPlusLC.grid:Show()
 				end
 			end)
 
@@ -9798,6 +9931,39 @@
 ----------------------------------------------------------------------
 
 	function LeaPlusLC:RunOnce()
+
+		----------------------------------------------------------------------
+		-- Frame alignment grid
+		----------------------------------------------------------------------
+
+		do
+
+			-- Create frame alignment grid
+			local grid = CreateFrame('FRAME')
+			LeaPlusLC.grid = grid
+			grid:Hide()
+			grid:SetAllPoints(UIParent)
+			local w, h = GetScreenWidth() * UIParent:GetEffectiveScale(), GetScreenHeight() * UIParent:GetEffectiveScale()
+			local ratio = w / h
+			local sqsize = w / 20
+			local wline = floor(sqsize - (sqsize % 2))
+			local hline = floor(sqsize / ratio - ((sqsize / ratio) % 2))
+			-- Plot vertical lines
+			for i = 0, wline do
+				local t = LeaPlusLC.grid:CreateTexture(nil, 'BACKGROUND')
+				if i == wline / 2 then t:SetColorTexture(1, 0, 0, 0.5) else t:SetColorTexture(0, 0, 0, 0.5) end
+				t:SetPoint('TOPLEFT', grid, 'TOPLEFT', i * w / wline - 1, 0)
+				t:SetPoint('BOTTOMRIGHT', grid, 'BOTTOMLEFT', i * w / wline + 1, 0)
+			end
+			-- Plot horizontal lines
+			for i = 0, hline do
+				local t = LeaPlusLC.grid:CreateTexture(nil, 'BACKGROUND')
+				if i == hline / 2 then	t:SetColorTexture(1, 0, 0, 0.5) else t:SetColorTexture(0, 0, 0, 0.5) end
+				t:SetPoint('TOPLEFT', grid, 'TOPLEFT', 0, -i * h / hline + 1)
+				t:SetPoint('BOTTOMRIGHT', grid, 'TOPRIGHT', 0, -i * h / hline - 1)
+			end
+
+		end
 
 		----------------------------------------------------------------------
 		-- Media player
@@ -12227,37 +12393,8 @@
 				end
 				return
 			elseif str == "grid" then
-				-- Create grid for first use
-				if not LeaPlusLC.grid then
-					LeaPlusLC.grid = CreateFrame('FRAME') 
-					LeaPlusLC.grid:Hide()
-					LeaPlusLC.grid:SetAllPoints(UIParent)
-					local w, h = GetScreenWidth() * UIParent:GetEffectiveScale(), GetScreenHeight() * UIParent:GetEffectiveScale()
-					local ratio = w / h
-					local sqsize = w / 20
-					local wline = floor(sqsize - (sqsize % 2))
-					local hline = floor(sqsize / ratio - ((sqsize / ratio) % 2))
-					-- Plot vertical lines
-					for i = 0, wline do
-						local t = LeaPlusLC.grid:CreateTexture(nil, 'BACKGROUND')
-						if i == wline / 2 then t:SetColorTexture(1, 0, 0, 0.5) else t:SetColorTexture(0, 0, 0, 0.5) end
-						t:SetPoint('TOPLEFT', LeaPlusLC.grid, 'TOPLEFT', i * w / wline - 1, 0)
-						t:SetPoint('BOTTOMRIGHT', LeaPlusLC.grid, 'BOTTOMLEFT', i * w / wline + 1, 0)
-					end
-					-- Plot horizontal lines
-					for i = 0, hline do
-						local t = LeaPlusLC.grid:CreateTexture(nil, 'BACKGROUND')
-						if i == hline / 2 then	t:SetColorTexture(1, 0, 0, 0.5) else t:SetColorTexture(0, 0, 0, 0.5) end
-						t:SetPoint('TOPLEFT', LeaPlusLC.grid, 'TOPLEFT', 0, -i * h / hline + 1)
-						t:SetPoint('BOTTOMRIGHT', LeaPlusLC.grid, 'TOPRIGHT', 0, -i * h / hline - 1)
-					end	
-				end
-				-- Show or hide grid
-				if LeaPlusLC.grid:IsShown() then
-					LeaPlusLC.grid:Hide()
-				else
-					LeaPlusLC.grid:Show()
-				end
+				-- Toggle frame alignment grid
+				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
 				return
 			elseif str == "chk" then
 				-- List truncated checkbox labels
