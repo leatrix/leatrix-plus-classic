@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.47 (15th June 2022)
+-- 	Leatrix Plus 1.14.48 (22nd June 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.47"
+	LeaPlusLC["AddonVer"] = "1.14.48"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -53,6 +53,10 @@
 	LpEvt:RegisterEvent("PLAYER_LOGIN")
 	LpEvt:RegisterEvent("PLAYER_ENTERING_WORLD")
 
+	-- Set bindings translations
+	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_TOGGLE = L["Toggle panel"]
+	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_WEBLINK = L["Show web link"]
+
 ----------------------------------------------------------------------
 --	L01: Functions
 ----------------------------------------------------------------------
@@ -78,6 +82,98 @@
 		for k, v in pairs(LeaConfigList) do
 			v:Hide()
 		end
+	end
+
+	-- Show a single line prefilled editbox with copy functionality
+	function LeaPlusLC:ShowSystemEditBox(word, focuschat)
+		if not LeaPlusLC.FactoryEditBox then
+			-- Create frame for first time
+			local eFrame = CreateFrame("FRAME", nil, UIParent)
+			LeaPlusLC.FactoryEditBox = eFrame
+			eFrame:SetSize(700, 110)
+			eFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
+			eFrame:SetFrameStrata("FULLSCREEN_DIALOG")
+			eFrame:SetFrameLevel(5000)
+			eFrame:SetScript("OnMouseDown", function(self, btn)
+				if btn == "RightButton" then
+					eFrame:Hide()
+				end
+			end)
+			-- Add background color
+			eFrame.t = eFrame:CreateTexture(nil, "BACKGROUND")
+			eFrame.t:SetAllPoints()
+			eFrame.t:SetColorTexture(0.05, 0.05, 0.05, 0.9)
+			-- Add copy title
+			eFrame.f = eFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
+			eFrame.f:SetPoint("TOPLEFT", x, y)
+			eFrame.f:SetPoint("TOPLEFT", eFrame, "TOPLEFT", 12, -52)
+			eFrame.f:SetWidth(676)
+			eFrame.f:SetJustifyH("LEFT")
+			eFrame.f:SetWordWrap(false)
+			-- Add copy label
+			eFrame.c = eFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
+			eFrame.c:SetPoint("TOPLEFT", x, y)
+			eFrame.c:SetText(L["Press CTRL/C to copy"])
+			eFrame.c:SetPoint("TOPLEFT", eFrame, "TOPLEFT", 12, -82)
+			-- Add feedback label
+			eFrame.x = eFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
+			eFrame.x:SetPoint("TOPRIGHT", x, y)
+			eFrame.x:SetText(L["feedback@leatrix.com"])
+			eFrame.x:SetPoint("TOPRIGHT", eFrame, "TOPRIGHT", -12, -52)
+			hooksecurefunc(eFrame.f, "SetText", function()
+				eFrame.f:SetWidth(676 - eFrame.x:GetStringWidth() - 26)
+			end)
+			-- Add cancel label
+			eFrame.x = eFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
+			eFrame.x:SetPoint("TOPRIGHT", x, y)
+			eFrame.x:SetText(L["Right-click to cancel"])
+			eFrame.x:SetPoint("TOPRIGHT", eFrame, "TOPRIGHT", -12, -82)
+			-- Create editbox
+			eFrame.b = CreateFrame("EditBox", nil, eFrame, "InputBoxTemplate")
+			eFrame.b:ClearAllPoints()
+			eFrame.b:SetPoint("TOPLEFT", eFrame, "TOPLEFT", 16, -12)
+			eFrame.b:SetSize(672, 24)
+			eFrame.b:SetFontObject("GameFontNormalLarge")
+			eFrame.b:SetTextColor(1.0, 1.0, 1.0, 1)
+			eFrame.b:SetBlinkSpeed(0)
+			eFrame.b:SetHitRectInsets(99, 99, 99, 99)
+			eFrame.b:SetAutoFocus(true) 
+			eFrame.b:SetAltArrowKeyMode(true)
+			-- Editbox texture
+			eFrame.t = CreateFrame("FRAME", nil, eFrame.b, "BackdropTemplate")
+			eFrame.t:SetBackdrop({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = false, tileSize = 16, edgeSize = 16, insets = { left = 5, right = 5, top = 5, bottom = 5 }})
+			eFrame.t:SetPoint("LEFT", -6, 0)
+			eFrame.t:SetWidth(eFrame.b:GetWidth() + 6)
+			eFrame.t:SetHeight(eFrame.b:GetHeight())
+			eFrame.t:SetBackdropColor(1.0, 1.0, 1.0, 0.3)
+			-- Handler
+			eFrame.b:SetScript("OnKeyDown", function(void, key)
+				if key == "C" and IsControlKeyDown() then
+					C_Timer.After(0.1, function()
+						eFrame:Hide()
+						ActionStatus_DisplayMessage(L["Copied to clipboard."], true)
+						if LeaPlusLC.FactoryEditBoxFocusChat then
+							local eBox = ChatEdit_ChooseBoxForSend()
+							ChatEdit_ActivateChat(eBox)
+						end
+					end)
+				end
+			end)
+			-- Prevent changes
+			eFrame.b:SetScript("OnEscapePressed", function() eFrame:Hide() end)
+			eFrame.b:SetScript("OnEnterPressed", eFrame.b.HighlightText)
+			eFrame.b:SetScript("OnMouseDown", eFrame.b.ClearFocus)
+			eFrame.b:SetScript("OnMouseUp", eFrame.b.HighlightText)
+			eFrame.b:SetFocus(true)
+			eFrame.b:HighlightText()
+			eFrame:Show()
+		end
+		if focuschat then LeaPlusLC.FactoryEditBoxFocusChat = true else LeaPlusLC.FactoryEditBoxFocusChat = nil end
+		LeaPlusLC.FactoryEditBox:Show()
+		LeaPlusLC.FactoryEditBox.b:SetText(word)
+		LeaPlusLC.FactoryEditBox.b:HighlightText()
+		LeaPlusLC.FactoryEditBox.b:SetScript("OnChar", function() LeaPlusLC.FactoryEditBox.b:SetFocus(true) LeaPlusLC.FactoryEditBox.b:SetText(word) LeaPlusLC.FactoryEditBox.b:HighlightText() end)
+		LeaPlusLC.FactoryEditBox.b:SetScript("OnKeyUp", function() LeaPlusLC.FactoryEditBox.b:SetFocus(true) LeaPlusLC.FactoryEditBox.b:SetText(word) LeaPlusLC.FactoryEditBox.b:HighlightText() end)
 	end
 
 	-- Load a string variable or set it to default if it's not set to "On" or "Off"
@@ -493,9 +589,6 @@
 		or	(LeaPlusLC["ShowVendorPrice"]		~= LeaPlusDB["ShowVendorPrice"])		-- Show vendor price
 		or	(LeaPlusLC["CombatPlates"]			~= LeaPlusDB["CombatPlates"])			-- Combat plates
 		or	(LeaPlusLC["EasyItemDestroy"]		~= LeaPlusDB["EasyItemDestroy"])		-- Easy item destroy
-
-		-- Settings
-		or	(LeaPlusLC["EnableHotkey"]			~= LeaPlusDB["EnableHotkey"])			-- Enable hotkey
 
 		then
 			-- Enable the reload button
@@ -1128,22 +1221,6 @@
 					end)
 				end
 			end)
-
-		end
-
-		----------------------------------------------------------------------
-		--	Enable hotkey
-		----------------------------------------------------------------------
-
-		if LeaPlusLC["EnableHotkey"] == "On" then
-
-			-- Create global binding function
-			local BindBtn = CreateFrame("Button", "LeaPlusGlobalBinding", LeaPlusGlobalPanel)
-			BindBtn:SetScript("OnClick", function() LeaPlusLC:SlashFunc() end)
-
-			-- Clear all bindings bound to panel and set hotkey
-			ClearOverrideBindings(LeaPlusGlobalPanel)
-			SetOverrideBindingClick(LeaPlusGlobalPanel, true, "CTRL-Z", "LeaPlusGlobalBinding")
 
 		end
 
@@ -11268,8 +11345,6 @@
 
 				-- Settings
 				LeaPlusLC:LoadVarChk("ShowMinimapIcon", "On")				-- Show minimap button
-				LeaPlusLC:LoadVarChk("EnableHotkey", "Off")					-- Enable hotkey
-
 				LeaPlusLC:LoadVarNum("PlusPanelScale", 1, 1, 2)				-- Panel scale
 				LeaPlusLC:LoadVarNum("PlusPanelAlpha", 0, 0, 1)				-- Panel alpha
 
@@ -11506,8 +11581,6 @@
 
 			-- Settings
 			LeaPlusDB["ShowMinimapIcon"] 		= LeaPlusLC["ShowMinimapIcon"]
-			LeaPlusDB["EnableHotkey"] 			= LeaPlusLC["EnableHotkey"]
-
 			LeaPlusDB["PlusPanelScale"] 		= LeaPlusLC["PlusPanelScale"]
 			LeaPlusDB["PlusPanelAlpha"] 		= LeaPlusLC["PlusPanelAlpha"]
 
@@ -11941,7 +12014,7 @@
 	end
 
 	-- Create a standard button (using standard button template)
-	function LeaPlusLC:CreateButton(name, frame, label, anchor, x, y, width, height, reskin, tip)
+	function LeaPlusLC:CreateButton(name, frame, label, anchor, x, y, width, height, reskin, tip, naked)
 		local mbtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
 		LeaPlusCB[name] = mbtn
 		mbtn:SetSize(width, height)
@@ -11969,8 +12042,10 @@
 		if reskin then
 
 			-- Set skinned button textures
-			mbtn:SetNormalTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-			mbtn:GetNormalTexture():SetTexCoord(0.125, 0.25, 0.4375, 0.5)
+			if not naked then
+				mbtn:SetNormalTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
+				mbtn:GetNormalTexture():SetTexCoord(0.125, 0.25, 0.4375, 0.5)
+			end
 			mbtn:SetHighlightTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
 			mbtn:GetHighlightTexture():SetTexCoord(0, 0.125, 0.4375, 0.5)
 
@@ -12169,6 +12244,13 @@
 		CloseB:SetPoint("TOPRIGHT", 0, 0)
 		CloseB:SetScript("OnClick", LeaPlusLC.HideFrames) 
 
+		-- Add web link Button
+		local PageFAlertButton = LeaPlusLC:CreateButton("PageFAlertButton", PageF, "You should keybind web link!", "BOTTOMLEFT", 16, 10, 0, 25, true, "You should set a keybind for the web link feature.  It's very useful.|n|nOpen the key bindings window (accessible from the game menu) and click Leatrix Plus.|n|nSet a keybind for Show web link.|n|nNow when your pointer is over an item, NPC or spell (and more), press your keybind to get a web link.", true)
+		PageFAlertButton:SetPushedTextOffset(0, 0)
+		PageF:HookScript("OnShow", function()
+			if GetBindingKey("LEATRIX_PLUS_GLOBAL_WEBLINK") then PageFAlertButton:Hide() else PageFAlertButton:Show() end
+		end)
+
 		-- Release memory
 		LeaPlusLC.CreateMainPanel = nil
 
@@ -12284,7 +12366,7 @@
 				-- Toggle Zygor addon
 				LeaPlusLC:ZygorToggle()
 				return
-			elseif str == "id" then
+			elseif str == "npcid" then
 				-- Print NPC ID
 				local npcName = UnitName("target")
 				local npcGuid = UnitGUID("target") or nil
@@ -12292,6 +12374,94 @@
 					local void, void, void, void, void, npcID = strsplit("-", npcGuid)
 					if npcID then
 						LeaPlusLC:Print(npcName .. ": |cffffffff" .. npcID)
+					end
+				end
+				return
+			elseif str == "id" then
+				-- Show web link
+				if not LeaPlusLC.WowheadLock then
+					-- Set Wowhead link prefix
+						if GameLocale == "deDE" then LeaPlusLC.WowheadLock = "de.classic.wowhead.com"
+					elseif GameLocale == "esMX" then LeaPlusLC.WowheadLock = "es.classic.wowhead.com"
+					elseif GameLocale == "esES" then LeaPlusLC.WowheadLock = "es.classic.wowhead.com"
+					elseif GameLocale == "frFR" then LeaPlusLC.WowheadLock = "fr.classic.wowhead.com"
+					elseif GameLocale == "itIT" then LeaPlusLC.WowheadLock = "it.classic.wowhead.com"
+					elseif GameLocale == "ptBR" then LeaPlusLC.WowheadLock = "pt.classic.wowhead.com"
+					elseif GameLocale == "ruRU" then LeaPlusLC.WowheadLock = "ru.classic.wowhead.com"
+					elseif GameLocale == "koKR" then LeaPlusLC.WowheadLock = "ko.classic.wowhead.com"
+					elseif GameLocale == "zhCN" then LeaPlusLC.WowheadLock = "cn.classic.wowhead.com"
+					elseif GameLocale == "zhTW" then LeaPlusLC.WowheadLock = "cn.classic.wowhead.com"
+					else							 LeaPlusLC.WowheadLock = "classic.wowhead.com"
+					end
+				end
+				-- Store frame under mouse
+				local mouseFocus = GetMouseFocus()
+				-- ItemRefTooltip or GameTooltip
+				local tooltip
+				if mouseFocus == ItemRefTooltip then tooltip = ItemRefTooltip else tooltip = GameTooltip end
+				-- Process tooltip
+				if tooltip:IsShown() then
+					-- Item
+					local void, itemLink = tooltip:GetItem()
+					if itemLink then
+						local itemID = GetItemInfoFromHyperlink(itemLink)
+						if itemID then
+							LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/item=" .. itemID, false)
+							LeaPlusLC.FactoryEditBox.f:SetText(L["Item"] .. ": " .. itemLink .. " (" .. itemID .. ")")
+							return
+						end
+					end
+					-- Spell
+					local name, spellID = tooltip:GetSpell()
+					if name and spellID then
+						LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
+						LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. name .. " (" .. spellID .. ")")
+						return
+					end
+					-- NPC
+					local npcName = UnitName("mouseover")
+					local npcGuid = UnitGUID("mouseover") or nil
+					if npcName and npcGuid then
+						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
+						if npcID then
+							LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/npc=" .. npcID, false)
+							LeaPlusLC.FactoryEditBox.f:SetText(L["NPC"] .. ": " .. npcName .. " (" .. npcID .. ")")
+							return
+						end
+					end
+					-- Buffs and debuffs
+					for i = 1, BUFF_MAX_DISPLAY do
+						if _G["BuffButton" .. i] and mouseFocus == _G["BuffButton" .. i] then
+							local spellName, void, void, void, void, void, void, void, void, spellID = UnitBuff("player", i)
+							if spellName and spellID then
+								LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
+								LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+							end
+							return
+						end
+					end
+					for i = 1, DEBUFF_MAX_DISPLAY do
+						if _G["DebuffButton" .. i] and mouseFocus == _G["DebuffButton" .. i] then
+							local spellName, void, void, void, void, void, void, void, void, spellID = UnitDebuff("player", i)
+							if spellName and spellID then
+								LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
+								LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+							end
+							return
+						end
+					end
+					-- Unknown tooltip (this must be last)
+					local tipTitle = GameTooltipTextLeft1:GetText()
+					if tipTitle then
+						-- Show unknown link
+						local unitFocus
+						if mouseFocus == WorldFrame then unitFocus = "mouseover" else unitFocus = select(2, GameTooltip:GetUnit()) end
+						if not unitFocus or not UnitIsPlayer(unitFocus) then
+							tipTitle = tipTitle:gsub("|c%x%x%x%x%x%x%x%x", "") -- Remove color tag
+							LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/search?q=" .. tipTitle, false)
+							LeaPlusLC.FactoryEditBox.f:SetText("|cffff0000" .. L["Link will search Wowhead"])
+							return
+						end
 					end
 				end
 				return
@@ -12761,7 +12931,7 @@
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp grid", col1, -150)
 					LeaPlusLC:MakeWD(frame, "Toggle a frame alignment grid.", col2, -150)
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp id", col1, -170)
-					LeaPlusLC:MakeWD(frame, "Show the unit ID of the currently targeted NPC.", col2, -170)
+					LeaPlusLC:MakeWD(frame, "Show a web link for whatever the pointer is over.", col2, -170)
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp zygor", col1, -190)
 					LeaPlusLC:MakeWD(frame, "Toggle the Zygor addon (reloads UI).", col2, -190)
 					LeaPlusLC:MakeWD(frame, color1 .. "/ltp movie <id>", col1, -210)
@@ -13291,9 +13461,6 @@
 				LeaPlusDB["CombatPlates"] = "On"				-- Combat plates
 				LeaPlusDB["EasyItemDestroy"] = "On"				-- Easy item destroy
 
-				-- Settings
-				LeaPlusDB["EnableHotkey"] = "On"				-- Enable hotkey
-
 				-- Function to assign cooldowns
 				local function setIcon(pclass, pspec, sp1, pt1, sp2, pt2, sp3, pt3, sp4, pt4, sp5, pt5)
 					-- Set spell ID
@@ -13680,7 +13847,6 @@
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Addon"						, 146, -72);
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowMinimapIcon"			, "Show minimap button"				, 146, -92,		false,	"If checked, a minimap button will be available.|n|nClick - Toggle options panel.|n|nSHIFT/Left-click - Toggle music.|n|nCTRL/Right-click - Toggle errors (if enabled).|n|nCTRL/SHIFT/Left-click - Toggle Zygor (if installed).|n|nCTRL/SHIFT/Right-click - Toggle windowed mode.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnableHotkey"				, "Enable hotkey"					, 146, -112,	true,	"If checked, you can open Leatrix Plus by pressing CTRL/Z.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Scale", 340, -72);
 	LeaPlusLC:MakeSL(LeaPlusLC[pg], "PlusPanelScale", "Drag to set the scale of the Leatrix Plus panel.", 1, 2, 0.1, 340, -92, "%.1f")

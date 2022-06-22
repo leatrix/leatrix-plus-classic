@@ -1,0 +1,13 @@
+<Bindings>
+
+	<!-- Toggle panel -->
+	<Binding name="LEATRIX_PLUS_GLOBAL_TOGGLE" category = "Leatrix Plus">
+		SlashCmdList["Leatrix_Plus"]()
+	</Binding>
+
+	<!-- Show web link -->
+	<Binding name="LEATRIX_PLUS_GLOBAL_WEBLINK" category = "Leatrix Plus">
+		SlashCmdList["Leatrix_Plus"]("id")
+	</Binding>
+
+</Bindings>

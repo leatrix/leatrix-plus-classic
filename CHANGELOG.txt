@@ -1,3 +1,8 @@
+1.14.48 - 22nd June 2022
+- In the game key bindings menu, you can now set a keybind to show a web link for whatever your pointer is over (as long as it has a tooltip).  For example, if you have an item in your bag and you don't know what it's for, hover your pointer over it so the item tooltip shows up then press your defined hotkey.  A Wowhead link will show in a copy-friendly window.  Press CTRL/C to copy the link then paste it into your browser.
+- In the game key bindings menu, you can now set a keybind to toggle Leatrix Plus.  The 'Enable hotkey' command has been removed.
+- The '/ltp id' command now runs the web link keybind function so if you don't want to set a keybind, you can enter '/ltp id' instead.
+
 1.14.47 - 15th June 2022
 - The 'Manage frames', 'Manage buffs' and 'Manage widget' settings ('Frames') now show a frame alignment grid when moving the frames (there is a button in each configuration panel to toggle the grid).  You can now drag the frames with the left button to position them freely or with the right button to position them using snap-to-grid.
 
