@@ -10,4 +10,9 @@
 		SlashCmdList["Leatrix_Plus"]("id")
 	</Binding>
 
+	<!-- Show web link -->
+	<Binding name="LEATRIX_PLUS_GLOBAL_RARE" category = "Leatrix Plus">
+		SlashCmdList["Leatrix_Plus"]("ra")
+	</Binding>
+
 </Bindings>

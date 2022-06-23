@@ -1,8 +1,8 @@
 1.14.49.alpha.2 - 23rd June 2022
-- Maintenance update.
+- In the game key bindings menu, you can now set a keybind to announce rares in chat.  Target a creature, press your keybind and detals of your target will be shown in the General chat channel.  These details include your target's name, health percentage remaining and map link location.
 
 1.14.48 - 22nd June 2022
-- In the game key bindings menu, you can now set a keybind to show a web link for whatever your pointer is over (as long as it has a tooltip).  For example, if you have an item in your bag and you don't know what it's for, hover your pointer over it so the item tooltip shows up then press your defined hotkey.  A Wowhead link will show in a copy-friendly window.  Press CTRL/C to copy the link then paste it into your browser.
+- In the game key bindings menu, you can now set a keybind to show a web link for whatever your pointer is over (as long as it has a tooltip).  For example, if you have an item in your bag and you don't know what it's for, hover your pointer over it so the item tooltip shows up then press your keybind.  A Wowhead link will show in a copy-friendly window.  Press CTRL/C to copy the link then paste it into your browser.
 - In the game key bindings menu, you can now set a keybind to toggle Leatrix Plus.  The 'Enable hotkey' command has been removed.
 - The '/ltp id' command now runs the web link keybind function so if you don't want to set a keybind, you can enter '/ltp id' instead.
 
