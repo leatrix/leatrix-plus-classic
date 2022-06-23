@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.49.alpha.1 (22nd June 2022)
+-- 	Leatrix Plus 1.14.49.alpha.2 (23rd June 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.49.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.49.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3134,7 +3134,9 @@
 						local timeStart = GetTime()
 						C_Timer.After(5, function()
 							if UnitOnTaxi("player") then
-								flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+								if MainMenuBarVehicleLeaveButton:IsEnabled() then
+									flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+								end
 							else
 								flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
 							end
