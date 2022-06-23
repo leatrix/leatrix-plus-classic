@@ -13199,37 +13199,6 @@
 					--end
 				end)
 				return
-			elseif str == "flight" then
-				-- Show flight time after landing
-				if LeaPlusLC.FlightDebugActivated then
-					LeaPlusLC:Print("Flight tracking is already active.  Reload your UI to stop flight tracking.")
-				else
-					LeaPlusLC.FlightDebugActivated = true
-					LeaPlusLC:Print("Flight tracking activated.  Take a flight.  The time taken will be reported when you land.  Reload your UI to stop flight tracking.")
-					local function GetNodeName(i)
-						return strmatch(TaxiNodeName(i), "[^,]+")
-					end
-					local timeStart, timeEnd, flightFrame = 0, 0, CreateFrame("FRAME")
-					hooksecurefunc("TakeTaxiNode", function(node)
-						timeStart = GetTime()
-						for i = 1, NumTaxiNodes() do
-							local nodeType = TaxiNodeGetType(i)
-							local nodeName = GetNodeName(i)
-							local endName = GetNodeName(node)
-							if nodeType == "CURRENT" and nodeName and endName then
-								LeaPlusLC:Print("Tracking time from " .. nodeName .. " to " .. endName .. ".")
-							end
-						end
-						flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
-					end)
-					flightFrame:SetScript("OnEvent", function()
-						timeEnd = GetTime()
-						local timeTaken = timeEnd - timeStart
-						LeaPlusLC:Print("Time taken: " .. string.format("%0.0f", timeTaken) .. " seconds.")
-						flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
-					end)
-				end
-				return
 			elseif str == "dis" then
 				-- Disband group
 				if not LeaPlusLC:IsInLFGQueue() and not IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
