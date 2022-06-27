@@ -1,4 +1,4 @@
-1.14.49.alpha.3 - 25th June 2022
+1.14.49.alpha.3 - 27th June 2022
 - In the game key bindings menu, you can now set a keybind to announce rares in chat.  Target a creature, press your keybind and detals of your target will be shown in the General chat channel.  These details include your target's name, health percentage remaining and coordinates.
 - Added a flight time.  There are now 1051 flight times stored in Leatrix Plus for Classic Era/SoM.
 
