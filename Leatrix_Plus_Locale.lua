@@ -52,7 +52,7 @@ if GameLocale == "itIT" then
 --@localization(locale = "itIT", format = "lua_additive_table", handle-unlocalized = "ignore")@
 end
 
--- ptBR: Portugese (Brazil)
+-- ptBR: Portuguese (Brazil)
 if GameLocale == "ptBR" then
 --@localization(locale = "ptBR", format = "lua_additive_table", handle-unlocalized = "ignore")@
 end
