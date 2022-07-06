@@ -1,4 +1,4 @@
-1.14.50.alpha.1 - 4th July 2022
+1.14.50 - 6th July 2022
 - Maintenance update.
 
 1.14.49 - 29th June 2022
