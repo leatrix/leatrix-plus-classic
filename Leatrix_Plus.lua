@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.50 (6th July 2022)
+-- 	Leatrix Plus 1.14.51.alpha.1 (8th July 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.50"
+	LeaPlusLC["AddonVer"] = "1.14.51.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -9010,6 +9010,7 @@
 			LeaPlusLC:MakeCB(SideTip, "TipShowOtherRank", "Show guild ranks for other guilds", 16, -112, false, "If checked, guild ranks will be shown for players who are not in your guild.")
 			LeaPlusLC:MakeCB(SideTip, "TipShowTarget", "Show unit targets", 16, -132, false, "If checked, unit targets will be shown.")
 			LeaPlusLC:MakeCB(SideTip, "TipHideInCombat", "Hide tooltips for world units during combat", 16, -152, false, "If checked, tooltips for world units will be hidden during combat.|n|nYou can hold the shift key down to override this setting.")
+			LeaPlusLC:MakeCB(SideTip, "TipNoHealthBar", "Hide the health bar", 16, -172, false, "If checked, the health bar will not be shown.")
 
 			LeaPlusLC:CreateDropDown("TooltipAnchorMenu", "Anchor", SideTip, 146, "TOPLEFT", 356, -115, {L["None"], L["Overlay"], L["Cursor"], L["Cursor Left"], L["Cursor Right"]}, "")
 
@@ -9054,6 +9055,31 @@
 			LeaPlusCB["ListFrameTooltipAnchorMenu"]:HookScript("OnHide", SetAnchorControls)
 			SetAnchorControls()
 
+			---------------------------------------------------------------------------------------------------------
+			-- Hide health bar
+			---------------------------------------------------------------------------------------------------------
+
+			-- Create frame for health bar
+			local tframe = CreateFrame("FRAME")
+			tframe:Hide()
+
+			-- Function to set health bar
+			local function SetHealthBar()
+				if LeaPlusLC["TipNoHealthBar"] == "On" then
+					GameTooltipStatusBar:SetParent(tframe)
+				else
+					GameTooltipStatusBar:SetParent(GameTooltip)
+				end
+			end
+
+			-- Set health bar when option is clicked and on startp
+			LeaPlusCB["TipNoHealthBar"]:HookScript("OnClick", SetHealthBar)
+			SetHealthBar()
+
+			---------------------------------------------------------------------------------------------------------
+			-- Rest of configuration panel
+			---------------------------------------------------------------------------------------------------------
+
 			-- Help button hidden
 			SideTip.h:Hide()
 
@@ -9074,6 +9100,7 @@
 				LeaPlusLC["TipShowOtherRank"] = "Off"
 				LeaPlusLC["TipShowTarget"] = "On"
 				LeaPlusLC["TipHideInCombat"] = "Off"
+				LeaPlusLC["TipNoHealthBar"] = "Off"; SetHealthBar()
 				LeaPlusLC["LeaPlusTipSize"] = 1.00
 				LeaPlusLC["TipOffsetX"] = -13
 				LeaPlusLC["TipOffsetY"] = 94
@@ -9123,6 +9150,7 @@
 					LeaPlusLC["TipShowOtherRank"] = "Off"
 					LeaPlusLC["TipShowTarget"] = "On"
 					LeaPlusLC["TipHideInCombat"] = "Off"
+					LeaPlusLC["TipNoHealthBar"] = "Off"; SetHealthBar()
 					LeaPlusLC["LeaPlusTipSize"] = 1.25
 					LeaPlusLC["TipOffsetX"] = -13
 					LeaPlusLC["TipOffsetY"] = 94
@@ -11241,6 +11269,7 @@
 				LeaPlusLC:LoadVarChk("TipShowOtherRank", "Off")				-- Show guild rank for other guilds
 				LeaPlusLC:LoadVarChk("TipShowTarget", "On")					-- Show target
 				LeaPlusLC:LoadVarChk("TipHideInCombat", "Off")				-- Hide tooltips during combat
+				LeaPlusLC:LoadVarChk("TipNoHealthBar", "Off")				-- Hide health bar
 				LeaPlusLC:LoadVarNum("LeaPlusTipSize", 1.00, 0.50, 2.00)	-- Tooltip scale slider
 				LeaPlusLC:LoadVarNum("TipOffsetX", -13, -5000, 5000)		-- Tooltip X offset
 				LeaPlusLC:LoadVarNum("TipOffsetY", 94, -5000, 5000)			-- Tooltip Y offset
@@ -11477,6 +11506,7 @@
 			LeaPlusDB["TipShowOtherRank"]		= LeaPlusLC["TipShowOtherRank"]
 			LeaPlusDB["TipShowTarget"]			= LeaPlusLC["TipShowTarget"]
 			LeaPlusDB["TipHideInCombat"]		= LeaPlusLC["TipHideInCombat"]
+			LeaPlusDB["TipNoHealthBar"]			= LeaPlusLC["TipNoHealthBar"]
 			LeaPlusDB["LeaPlusTipSize"]			= LeaPlusLC["LeaPlusTipSize"]
 			LeaPlusDB["TipOffsetX"]				= LeaPlusLC["TipOffsetX"]
 			LeaPlusDB["TipOffsetY"]				= LeaPlusLC["TipOffsetY"]

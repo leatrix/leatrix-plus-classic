@@ -1,5 +1,5 @@
-1.14.50 - 6th July 2022
-- Maintenance update.
+1.14.51.alpha.1 - 8th July 2022
+- For 'Enhance tooltip' ('Interface'), there is a new setting to hide the health bar.  It's disabled by default.
 
 1.14.49 - 29th June 2022
 - In the game key bindings menu, you can now set a keybind to announce rares in chat.  Target a creature, press your keybind and detals of your target will be shown in the General chat channel.  These details include your target's name, health percentage remaining and coordinates.
