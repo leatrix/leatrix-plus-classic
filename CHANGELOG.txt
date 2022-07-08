@@ -1,4 +1,4 @@
-1.14.51.alpha.1 - 8th July 2022
+1.14.51.alpha.1 - 9th July 2022
 - For 'Enhance tooltip' ('Interface'), there is a new setting to hide the health bar.  It's disabled by default.
 
 1.14.49 - 29th June 2022
