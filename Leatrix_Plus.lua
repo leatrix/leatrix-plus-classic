@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.51 (13th July 2022)
+-- 	Leatrix Plus 1.14.52.alpha.1 (16th July 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.51"
+	LeaPlusLC["AddonVer"] = "1.14.52.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -9570,54 +9570,6 @@
 			end
 
 			GameTooltip:HookScript("OnTooltipSetUnit", ShowTip)
-
-			----------------------------------------------------------------------
-			--	Fix for ClassicCodex
-			----------------------------------------------------------------------
-
-			-- Fix for ClassicCodex
-			local function FixClassicCodex()
-
-				-- Replace showTooltip function
-				local function showTooltip()
-					local focus = GetMouseFocus()
-					if focus and focus:GetName() ~= "TargetFrame" and not UnitExists("mouseover") then
-						GameTooltip:Hide()
-						return
-					end
-					if focus and focus.title then
-						return
-					end
-					if focus and focus:GetName() and strsub((focus:GetName() or ""), 0, 10) == "QuestTimer" then return end
-					local name = _G["GameTooltipTextLeft1"] and _G["GameTooltipTextLeft1"]:GetText()
-					if name then
-						name = name:gsub("|c%x%x%x%x%x%x%x%x", "")
-						name = name:gsub("|r","")
-						if CodexMap.tooltips[name] then
-							for title, meta in pairs(CodexMap.tooltips[name]) do
-								CodexMap:ShowTooltip(meta, GameTooltip)
-								GameTooltip:Show()
-							end
-						end
-					end
-				end
-
-				_G.showTooltip = showTooltip
-
-			end
-
-			if IsAddOnLoaded("ClassicCodex") then
-				FixClassicCodex()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "ClassicCodex" then
-						FixClassicCodex()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
 
 		end
 

@@ -1,3 +1,6 @@
+1.14.52.alpha.1 - 16th July 2022
+- Removed the compatibility fix for ClassicCodex addon.
+
 1.14.51 - 13th July 2022
 - For 'Enhance tooltip' ('Interface'), there is a new setting to hide the health bar.  It's disabled by default.
 
