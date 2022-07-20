@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.52 (20th July 2022)
+-- 	Leatrix Plus 1.14.53.alpha.1 (20th July 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.52"
+	LeaPlusLC["AddonVer"] = "1.14.53.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -4437,6 +4437,7 @@
 						MinimapBorderTop:Hide()
 						MinimapZoneTextButton:ClearAllPoints()
 						MinimapZoneTextButton:SetPoint("TOP", Minimap, "TOP", 0, 0)
+						MinimapZoneTextButton:SetFrameLevel(100)
 						MinimapToggleButton:Hide()
 					end
 				end
@@ -4481,6 +4482,7 @@
 						TimeManagerClockButton:ClearAllPoints()
 						TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -15, -8)
 						TimeManagerClockButton:SetHitRectInsets(15, 10, 5, 8)
+						TimeManagerClockButton:SetFrameLevel(100)
 						local timeBG = TimeManagerClockButton:CreateTexture(nil, "BACKGROUND")
 						timeBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
 						timeBG:SetPoint("TOPLEFT", 15, -5)
