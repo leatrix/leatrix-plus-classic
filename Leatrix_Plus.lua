@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.53.alpha.1 (20th July 2022)
+-- 	Leatrix Plus 1.14.53.alpha.2 (24th July 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.53.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.53.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3896,6 +3896,8 @@
 				bFrame:Hide()
 				bFrame:SetFrameLevel(8)
 
+				LeaPlusLC.bFrame = bFrame -- Used in LibDBIcon callback
+
 				-- Hide button frame automatically
 				local ButtonFrameTicker
 				bFrame:HookScript("OnShow", function()
@@ -3944,7 +3946,9 @@
 					end
 				end
 
-				-- Hide LibDBIcon icons
+				LeaPlusLC.SetButtonTooltip = SetButtonTooltip -- Used in LibDBIcon callback
+
+				-- Hide existing LibDBIcon icons
 				local buttons = LibDBIconStub:GetButtonList()
 				for i = 1, #buttons do
 					local button = LibDBIconStub:GetMinimapButton(buttons[i])
@@ -3965,27 +3969,8 @@
 					button:HookScript("OnEnter", SetButtonTooltip)
 				end
 
-				LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
-					C_Timer.After(0.1, function()
-						local buttonName = strlower(name)
-						if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
-							if not button.db.hide then
-								button:Hide()
-								button:SetScript("OnShow", function() if not bFrame:IsShown() then button:Hide() end end)
-							end
-							-- Create background texture
-							local bFrameBg = button:CreateTexture(nil, "BACKGROUND")
-							bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-							bFrameBg:SetPoint("CENTER")
-							bFrameBg:SetSize(30, 30)
-							bFrameBg:SetVertexColor(0, 0, 0, 0.5)
-						elseif strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) and LeaPlusLC["SquareMinimap"] == "On" then
-							button:SetScale(0.75)
-						end
-						-- Move GameTooltip to below the minimap in case the button uses it
-						button:HookScript("OnEnter", SetButtonTooltip)
-					end)
-				end)
+				-- Hide new LibDBIcon icons
+				-- LibDBIcon_IconCreated: Done in LibDBIcon callback function
 
 				-- Toggle button frame
 				Minimap:SetScript("OnMouseUp", function(frame, button)
@@ -4148,14 +4133,14 @@
 
 				-- Rescale addon buttons if combine addon buttons is disabled
 				if LeaPlusLC["CombineAddonButtons"] == "Off" then
+					-- Scale existing buttons
 					local buttons = LibDBIconStub:GetButtonList()
 					for i = 1, #buttons do
 						local button = LibDBIconStub:GetMinimapButton(buttons[i])
 						button:SetScale(0.75)
 					end
-					LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
-						button:SetScale(0.75)
-					end)
+					-- Scale new buttons
+					-- LibDBIcon_IconCreated: Done in LiBDBIcon callback function
 				end
 
 				-- Refresh buttons
@@ -4288,12 +4273,7 @@
 							end
 						end
 						-- Hide new buttons
-						LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
-							local buttonName = strlower(name)
-							if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
-								LibDBIconStub:ShowOnEnter(name, true)
-							end
-						end)
+						-- LibDBIcon_IconCreated: Done in LibDBIcon callback function
 					else
 						-- Show existing buttons
 						local buttons = LibDBIconStub:GetButtonList()
@@ -4304,12 +4284,7 @@
 							end
 						end
 						-- Show new buttons
-						LibDBIconStub.RegisterCallback(self, "LibDBIcon_IconCreated", function(void, void, name)
-							local buttonName = strlower(name)
-							if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
-								LibDBIconStub:ShowOnEnter(name, false)
-							end
-						end)
+						-- LibDBIcon_IconCreated: Done in LibDBIcon callback function
 					end
 				end
 
@@ -4621,6 +4596,55 @@
 						LeaPlusLC:HideFrames()
 					end
 				end
+			end)
+
+			-- LibDBIcon callback (searh LibDBIcon_IconCreated to find calls to this)
+			LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
+
+				-- Combine addon buttons: Hide new LibDBIcon icons
+				if LeaPlusLC["CombineAddonButtons"] == "On" then
+					--C_Timer.After(0.1, function() -- Removed for now
+						local buttonName = strlower(name)
+						if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
+							if not button.db.hide then
+								button:Hide()
+								button:SetScript("OnShow", function() if not LeaPlusLC.bFrame:IsShown() then button:Hide() end end)
+							end
+							-- Create background texture
+							local bFrameBg = button:CreateTexture(nil, "BACKGROUND")
+							bFrameBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+							bFrameBg:SetPoint("CENTER")
+							bFrameBg:SetSize(30, 30)
+							bFrameBg:SetVertexColor(0, 0, 0, 0.5)
+						elseif strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) and LeaPlusLC["SquareMinimap"] == "On" then
+							button:SetScale(0.75)
+						end
+						-- Move GameTooltip to below the minimap in case the button uses it
+						button:HookScript("OnEnter", LeaPlusLC.SetButtonTooltip)
+					--end)
+				end
+
+				-- Square minimap: Set scale of new LibDBIcon icons
+				if LeaPlusLC["SquareMinimap"] == "On" and LeaPlusLC["CombineAddonButtons"] == "Off" then
+					button:SetScale(0.75)
+				end
+
+				-- Hide addon buttons: Hide new LibDBIcon icons
+				if LeaPlusLC["CombineAddonButtons"] == "Off" then
+					local buttonName = strlower(name)
+					if LeaPlusLC["HideMiniAddonButtons"] == "On" then
+						-- Hide addon buttons is enabled
+						if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
+							LibDBIconStub:ShowOnEnter(name, true)
+						end
+					else
+						-- Hide addon buttons is disabled
+						if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
+							LibDBIconStub:ShowOnEnter(name, false)
+						end
+					end
+				end
+
 			end)
 
 		end
