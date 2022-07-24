@@ -3548,6 +3548,13 @@
 				end
 			end
 
+			-- Fix for bug in default UI which does not texture tracking button icon on login
+			local icon = GetTrackingTexture()
+			if icon and not MiniMapTrackingIcon:GetTexture() then
+				MiniMapTrackingIcon:SetTexture(icon)
+				MiniMapTrackingFrame:Show()
+			end
+
 			----------------------------------------------------------------------
 			-- Configuration panel
 			----------------------------------------------------------------------
