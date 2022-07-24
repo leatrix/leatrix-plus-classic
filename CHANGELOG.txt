@@ -1,5 +1,5 @@
-1.14.53.alpha.2 - 24th July 2022
-- For 'Enhance minimap', the clock and zone text bar will now be shown on top when using square minimap.  Also made some structural changes to the code.
+1.14.53.alpha.3 - 24th July 2022
+- For 'Enhance minimap', added a new setting to hide the tracking button while the pointer is not over the minimap.  The clock and zone text bar will now be shown on top when using square minimap.  Some structural changes to the code.
 
 1.14.52 - 20th July 2022
 - Removed the compatibility fix for ClassicCodex addon.
