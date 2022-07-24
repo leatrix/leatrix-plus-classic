@@ -4598,7 +4598,7 @@
 				end
 			end)
 
-			-- LibDBIcon callback (searh LibDBIcon_IconCreated to find calls to this)
+			-- LibDBIcon callback (search LibDBIcon_IconCreated to find calls to this)
 			LibDBIconStub.RegisterCallback(miniFrame, "LibDBIcon_IconCreated", function(self, button, name)
 
 				-- Combine addon buttons: Hide new LibDBIcon icons
