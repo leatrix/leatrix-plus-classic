@@ -4083,6 +4083,7 @@
 					MiniMapTrackingFrame:SetScale(0.60)
 					miniFrame.ClearAllPoints(MiniMapTrackingFrame)
 					MiniMapTrackingFrame:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -24, -24) -- SetLookingForGroupUIAvailable
+					MiniMapTrackingFrame:SetFrameLevel(4)
 				end)
 
 				-- Mail button
