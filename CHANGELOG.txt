@@ -1,4 +1,4 @@
-1.14.53.alpha.3 - 24th July 2022
+1.14.53 - 27th July 2022
 - For 'Enhance minimap', added a new setting to hide the tracking button while the pointer is not over the minimap.  The clock, zone text bar and tracking button will now be shown on top when using square minimap.  Some structural changes to the code.  Fixed a minor bug with default UI which causes the tracking button to not show the tracking texture on login.
 
 1.14.52 - 20th July 2022
