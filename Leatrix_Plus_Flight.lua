@@ -321,6 +321,7 @@
 					["0.64:0.23:0.63:0.36:0.56:0.53:0.41:0.47"] = 456, -- Everlook, Valormok, Crossroads, Sun Rock Retreat
 					["0.64:0.23:0.63:0.36:0.45:0.56"] = 392, -- Everlook, Valormok, Thunder Bluff
 					["0.64:0.23:0.63:0.36:0.45:0.56:0.32:0.58"] = 550, -- Everlook, Valormok, Thunder Bluff, Shadowprey Village
+					["0.64:0.23:0.63:0.44:0.55:0.42"] = 393, -- Everlook, Orgrimmar, Splintertree Post
 
 					-- Horde: Freewind Post (Thousand Needles)
 					["0.55:0.73:0.61:0.80"] = 93, -- Freewind Post, Gadgetzan
