@@ -1,5 +1,5 @@
-1.14.54.alpha.1 - 29th July 2022
-- Added a flight time.  There are now 1053 flight times stored in Leatrix Plus for Classic Era/SoM.
+1.14.54 - 3rd August 2022
+- Added flight times.  There are now 1054 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.53 - 27th July 2022
 - For 'Enhance minimap', added a new setting to hide the tracking button while the pointer is not over the minimap.  The clock, zone text bar and tracking button will now be shown on top when using square minimap.  Some structural changes to the code.  Fixed a minor bug with default UI which causes the tracking button to not show the tracking texture on login.
