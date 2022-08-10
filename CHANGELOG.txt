@@ -1,4 +1,4 @@
-1.14.55.alpha.1 - 8th August 2022
+1.14.55 - 10th August 2022
 - If you use 'Automate quests' ('Automation') with a Mac, you can now assign the override key to be the command key if you wish.
 - Added a flight time.  There are now 1055 flight times stored in Leatrix Plus for Classic Era/SoM.
 
