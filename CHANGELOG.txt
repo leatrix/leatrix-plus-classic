@@ -1,3 +1,7 @@
+1.14.56.alpha.1 - 14th August 2022
+- For 'Show flight times' ('Interface'), the flight progress bar will now always hide when you land.  The flight report window will now show if the minimum time difference between the saved flight time and the actual flight time is 10 seconds (up from 5).
+- Added a flight time.  There are now 1056 flight times stored in Leatrix Plus for Classic Era/SoM.
+
 1.14.55 - 10th August 2022
 - If you use 'Automate quests' ('Automation') with a Mac, you can now assign the override key to be the command key if you wish.
 - Added a flight time.  There are now 1055 flight times stored in Leatrix Plus for Classic Era/SoM.

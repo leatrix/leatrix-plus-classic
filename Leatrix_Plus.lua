@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.55 (10th August 2022)
+-- 	Leatrix Plus 1.14.56.alpha.1 (14th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.55"
+	LeaPlusLC["AddonVer"] = "1.14.56.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2942,6 +2942,9 @@
 			-- Load flight data
 			Leatrix_Plus:LoadFlightData()
 
+			-- Minimum time difference (in seconds) to flight data entry before flight report window is shown
+			local timeBuffer = 10
+
 			-- Create editbox
 			local editFrame = CreateFrame("ScrollFrame", nil, UIParent, "InputScrollFrameTemplate")
 
@@ -3105,7 +3108,7 @@
 
 						-- Build route string and debug string
 						local numHops = GetNumRoutes(node)
-						local debugString = '["' .. currentNode
+						local debugString = '\t\t\t\t\t["' .. currentNode
 						local routeString = currentNode
 						for i = 2, numHops + 1 do
 							local hopPosX, hopPosY = TaxiNodePosition(TaxiGetNodeSlot(node, i, true))
@@ -3152,7 +3155,7 @@
 							if destination and data[faction] and data[faction][continent] and data[faction][continent][routeString] then
 								local savedDuration = data[faction][continent][routeString]
 								if savedDuration then
-									if timeTaken > (savedDuration + 5) or timeTaken < (savedDuration - 5) then
+									if timeTaken > (savedDuration + timeBuffer) or timeTaken < (savedDuration - timeBuffer) then
 										local editMsg = introMsg .. flightMsg .. L["This flight's actual time of"] .. " " .. string.format("%0.0f", timeTaken) .. " " .. L["seconds does not match the saved flight time of"] .. " " .. savedDuration .. " " .. L["seconds"] .. "."
 										editBox:SetText(editMsg); editFrame:Show()
 									end
@@ -3165,6 +3168,12 @@
 								editBox:SetText(editMsg); editFrame:Show()
 							end
 							flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+
+							-- Delete the progress bar since we have landed
+							if LeaPlusLC.FlightProgressBar then
+								LeaPlusLC.FlightProgressBar:Stop()
+								LeaPlusLC.FlightProgressBar = nil
+							end
 						end)
 
 						-- Show flight progress bar if flight exists in database

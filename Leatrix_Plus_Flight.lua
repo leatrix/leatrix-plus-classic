@@ -661,6 +661,7 @@
 					["0.51:0.75:0.43:0.67:0.51:0.49"] = 333, -- Darkshire, Stormwind, Ironforge
 					["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 524, -- Darkshire, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
 					["0.51:0.75:0.43:0.67:0.51:0.49:0.59:0.52"] = 392, -- Darkshire, Stormwind, Ironforge, Thelsamar
+					["0.51:0.75:0.43:0.67:0.51:0.49:0.55:0.25"] = 582, -- Darkshire, Stormwind, Ironforge, Aerie Peak
 
 					-- Alliance: Ironforge (Dun Morogh)
 					["0.51:0.49:0.43:0.67:0.43:0.93"] = 440, -- Ironforge, Stormwind, Booty Bay
