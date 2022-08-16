@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.56.alpha.2 (15th August 2022)
+-- 	Leatrix Plus 1.14.56.alpha.3 (16th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.56.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.56.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2943,7 +2943,7 @@
 			Leatrix_Plus:LoadFlightData()
 
 			-- Minimum time difference (in seconds) to flight data entry before flight report window is shown
-			local timeBuffer = 10
+			local timeBuffer = 15
 
 			-- Create editbox
 			local editFrame = CreateFrame("ScrollFrame", nil, UIParent, "InputScrollFrameTemplate")
