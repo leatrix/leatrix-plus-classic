@@ -1,4 +1,4 @@
-1.14.56.alpha.3 - 16th August 2022
+1.14.56 - 17th August 2022
 - For 'Show flight times' ('Interface'), the flight progress bar will now always hide when you land.  The flight report window will now show if the minimum time difference between the saved flight time and the actual flight time is 15 seconds (up from 5).
 - Fixed a minor issue with 'Show cooldowns' ('Interface') which caused buff spell IDs to show in debuff tooltips.
 - Added a flight time.  There are now 1056 flight times stored in Leatrix Plus for Classic Era/SoM.
