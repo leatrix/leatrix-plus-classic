@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.56 (17th August 2022)
+-- 	Leatrix Plus 1.14.57.alpha.1 (18th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -13,13 +13,13 @@
 	_G.LeaPlusDB = _G.LeaPlusDB or {}
 
 	-- Create locals
-	local LeaPlusLC, LeaPlusCB, LeaDropList, LeaConfigList = {}, {}, {}, {}
+	local LeaPlusLC, LeaPlusCB, LeaDropList, LeaConfigList, LeaLockList = {}, {}, {}, {}, {}
 	local ClientVersion = GetBuildInfo()
 	local GameLocale = GetLocale()
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.56"
+	LeaPlusLC["AddonVer"] = "1.14.57.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -495,7 +495,7 @@
 		LeaPlusLC:LockOption("MailFontChange", "MailTextBtn", true)					-- Resize mail text
 		LeaPlusLC:LockOption("QuestFontChange", "QuestTextBtn", true)				-- Resize quest text
 		LeaPlusLC:LockOption("BookFontChange", "BookTextBtn", true)					-- Resize book text
-		LeaPlusLC:LockOption("MinimapMod", "ModMinimapBtn", true)					-- Enhance minimap
+		LeaPlusLC:LockOption("MinimapModder", "ModMinimapBtn", true)				-- Enhance minimap
 		LeaPlusLC:LockOption("TipModEnable", "MoveTooltipButton", true)				-- Enhance tooltip
 		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
@@ -546,7 +546,7 @@
 		or	(LeaPlusLC["BookFontChange"]		~= LeaPlusDB["BookFontChange"])			-- Resize book text
 
 		-- Interface
-		or	(LeaPlusLC["MinimapMod"]			~= LeaPlusDB["MinimapMod"])				-- Enhance minimap
+		or	(LeaPlusLC["MinimapModder"]			~= LeaPlusDB["MinimapModder"])			-- Enhance minimap
 		or	(LeaPlusLC["SquareMinimap"]			~= LeaPlusDB["SquareMinimap"])			-- Square minimap
 		or	(LeaPlusLC["CombineAddonButtons"]	~= LeaPlusDB["CombineAddonButtons"])	-- Combine addon buttons
 		or	(LeaPlusLC["HideMiniTracking"]		~= LeaPlusDB["HideMiniTracking"])		-- Hide tracking button
@@ -3542,7 +3542,7 @@
 		-- Enhance minimap
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["MinimapMod"] == "On" then
+		if LeaPlusLC["MinimapModder"] == "On" then
 
 			local miniFrame = CreateFrame("FRAME")
 			local LibDBIconStub = LibStub("LibDBIcon-1.0")
@@ -10001,69 +10001,6 @@
 		-- Final code for Player
 		----------------------------------------------------------------------
 
-		-- Show option to choose Leatrix Plus or ElvUI for Enhance minimap
-		if LeaPlusLC["MinimapMod"] == "On" then
-
-			local function ElvUIFix()
-
-				local E = unpack(ElvUI)
-				if E and E.private and E.private.general and E.private.general.minimap and E.private.general.minimap.enable then
-
-					C_Timer.After(0.1, function()
-						E:StaticPopup_Hide('INCOMPATIBLE_ADDON')
-						if ElvUIInstallFrame then ElvUIInstallFrame:Hide() end
-					end)
-
-					local noFrame = CreateFrame("Frame", nil, UIParent)
-					noFrame:SetSize(UIParent:GetWidth(), 100)
-					noFrame:SetFrameStrata("FULLSCREEN_DIALOG")
-					noFrame:SetClampedToScreen(true)
-					noFrame:SetClampRectInsets(500, -500, -300, 300)
-					noFrame:EnableMouse(true)
-					noFrame.t = noFrame:CreateTexture(nil, "BACKGROUND")
-					noFrame.t:SetAllPoints()
-					noFrame.t:SetColorTexture(0.05, 0.05, 0.05, 0.9)
-					noFrame:ClearAllPoints()
-					noFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-
-					noFrame.mt = noFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
-					noFrame.mt:SetPoint('TOP', 0, -20)
-					noFrame.mt:SetText(L["Do you want to use Leatrix Plus Enhanced Minimap or ElvUI Minimap?"])
-
-					local EnhanceMinimapElvUIButton1 = LeaPlusLC:CreateButton("EnhanceMinimapElvUIButton1", noFrame, "Leatrix Plus", "TOP", -100, -60, 0, 25, true, "")
-					EnhanceMinimapElvUIButton1:SetScript("OnClick", function()
-						E.private.general.minimap.enable = false
-						EnableAddOn("Leatrix_Plus")
-						ReloadUI()
-					end)
-
-					local EnhanceMinimapElvUIButton2 = LeaPlusLC:CreateButton("EnhanceMinimapElvUIButton2", noFrame, "ElvUI", "TOP", 100, -60, 0, 25, true, "")
-					EnhanceMinimapElvUIButton2:SetScript("OnClick", function()
-						LeaPlusLC["MinimapMod"] = "Off"
-						EnableAddOn("Leatrix_Plus")
-						ReloadUI()
-					end)
-
-				end
-
-			end
-
-			-- Run ElvUI fix when ElvUI has loaded
-			if IsAddOnLoaded("ElvUI") then
-				ElvUIFix()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "ElvUI" then
-						ElvUIFix()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
-
-		end
-
 		-- Show first run message
 		if not LeaPlusDB["FirstRunMessageSeen"] then
 			C_Timer.After(1, function()
@@ -11255,6 +11192,7 @@
 				end
 
 				UpdateVars("MuteStriders", "MuteMechSteps")					-- 1.14.45 (1st June 2022)
+				UpdateVars("MinimapMod", "MinimapModder")					-- 1.14.57 (24th August 2022)
 
 				-- Automation
 				LeaPlusLC:LoadVarChk("AutomateQuests", "Off")				-- Automate quests
@@ -11323,7 +11261,7 @@
 				LeaPlusLC:LoadVarNum("LeaPlusBookFontSize", 15, 10, 36)		-- Book text slider
 
 				-- Interface
-				LeaPlusLC:LoadVarChk("MinimapMod", "Off")					-- Enhance minimap
+				LeaPlusLC:LoadVarChk("MinimapModder", "Off")				-- Enhance minimap
 				LeaPlusLC:LoadVarChk("SquareMinimap", "Off")				-- Square minimap
 				LeaPlusLC:LoadVarChk("ShowWhoPinged", "On")					-- Show who pinged
 				LeaPlusLC:LoadVarChk("CombineAddonButtons", "Off")			-- Combine addon buttons
@@ -11465,6 +11403,78 @@
 				-- Start page
 				LeaPlusLC:LoadVarNum("LeaStartPage", 0, 0, LeaPlusLC["NumberOfPages"])
 
+				-- Disable items that conflict with ElvUI
+				if IsAddOnLoaded("ElvUI") then
+					local E = unpack(ElvUI)
+					if E and E.private then
+
+						-- Function to disable and lock an option and add a note to the tooltip
+						local function LockOption(option, emodule)
+							LeaLockList[option] = LeaPlusLC[option]
+							LeaPlusLC[option] = "Off"
+							LeaPlusDB[option] = "Off"
+							LeaPlusLC:LockItem(LeaPlusCB[option], true)
+							LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. L["Cannot be used with ElvUI"] .. ": " .. L[emodule]
+						end
+
+						-- Chat
+						if E.private.chat.enable then
+							LockOption("UseEasyChatResizing", "Chat") -- Use easy resizing
+							LockOption("NoCombatLogTab", "Chat") -- Hide the combat log
+							LockOption("NoChatButtons", "Chat") -- Hide chat buttons
+							LockOption("UnclampChat", "Chat") -- Unclamp chat frame
+							LockOption("MoreFontSizes", "Chat") --  More font sizes
+							LockOption("NoStickyChat", "Chat") -- Disable sticky chat
+							LockOption("UseArrowKeysInChat", "Chat") -- Use arrow keys in chat
+							LockOption("NoChatFade", "Chat") -- Disable chat fade
+							LockOption("MaxChatHstory", "Chat") -- Increase chat history
+						end
+
+						-- Minimap
+						if E.private.general.minimap.enable then
+							LockOption("MinimapModder", "Minimap") -- Enhance minimap
+						end
+
+						-- UnitFrames
+						if E.private.unitframe.enable then
+							LockOption("ClassColFrames", "UnitFrames") -- Class-colored frames
+							LockOption("ShowPlayerChain", "UnitFrames") -- Show player chain
+							LockOption("NoHitIndicators", "UnitFrames") -- Hide portrait numbers
+							LockOption("ShowRaidToggle", "UnitFrames") -- Show raid button
+							LockOption("ShowDruidPowerBar", "UnitFrames") -- Show druid power bar
+						end
+
+						-- ActionBars
+						if E.private.actionbar.enable then
+							LockOption("NoGryphons", "ActionBars") -- Hide gryphons
+							LockOption("NoClassBar", "ActionBars") -- Hide stance bar
+							LockOption("HideActionButtonText", "ActionBars") -- Hide action button text
+						end
+
+						-- Bags
+						if E.private.bags.enable then
+							LockOption("NoBagAutomation", "Bags") -- Disable bag automation
+							LockOption("ShowBagSearchBox", "Bags") -- Show bag search box
+						end
+
+						-- Tooltip
+						if E.private.tooltip.enable then
+							LockOption("TipModEnable", "Tooltip") -- Enhance tooltip
+						end
+
+						-- Base
+						do
+							LockOption("FrmEnabled", "Base") -- Manage frames (base because of mirror timer bar)
+							LockOption("ManageBuffs", "Base") -- Manage buffs
+							LockOption("ManageWidget", "Base") -- Manage widget
+							LockOption("ShowFreeBagSlots", "Base") -- Show free bag slots
+						end
+
+					end
+
+					EnableAddOn("Leatrix_Plus")
+				end
+
 				-- Run other startup items
 				LeaPlusLC:Live()
 				LeaPlusLC:Isolated()
@@ -11560,7 +11570,7 @@
 			LeaPlusDB["LeaPlusBookFontSize"]	= LeaPlusLC["LeaPlusBookFontSize"]
 
 			-- Interface
-			LeaPlusDB["MinimapMod"]				= LeaPlusLC["MinimapMod"]
+			LeaPlusDB["MinimapModder"]			= LeaPlusLC["MinimapModder"]
 			LeaPlusDB["SquareMinimap"]			= LeaPlusLC["SquareMinimap"]
 			LeaPlusDB["ShowWhoPinged"]			= LeaPlusLC["ShowWhoPinged"]
 			LeaPlusDB["CombineAddonButtons"]	= LeaPlusLC["CombineAddonButtons"]
@@ -11767,8 +11777,8 @@
 		----------------------------------------------------------------------
 
 		-- Enhance minimap restore round minimap if wipe or enhance minimap is toggled off
-		if LeaPlusDB["MinimapMod"] == "On" and LeaPlusDB["SquareMinimap"] == "On" then
-			if wipe or (not wipe and LeaPlusLC["MinimapMod"] == "Off") then
+		if LeaPlusDB["MinimapModder"] == "On" and LeaPlusDB["SquareMinimap"] == "On" then
+			if wipe or (not wipe and LeaPlusLC["MinimapModder"] == "Off") then
 				Minimap:SetMaskTexture([[Interface\CharacterFrame\TempPortraitAlphaMask]])
 			end
 		end
@@ -11805,6 +11815,12 @@
 					LeaPlusDB["AHDuration"] = AuctionFrameAuctions.duration
 				end
 			end
+		end
+
+		-- Set locked options to original values (set before they were locked)
+		for k, v in pairs(LeaLockList) do
+			LeaPlusLC[k] = v
+			LeaPlusDB[k] = v
 		end
 
 	end
@@ -13435,7 +13451,7 @@
 				LeaPlusDB["LeaPlusBookFontSize"] = 22			-- Book font size
 
 				-- Interface
-				LeaPlusDB["MinimapMod"] = "On"					-- Enhance minimap
+				LeaPlusDB["MinimapModder"] = "On"				-- Enhance minimap
 				LeaPlusDB["SquareMinimap"] = "On"				-- Square minimap
 				LeaPlusDB["ShowWhoPinged"] = "On"				-- Show who pinged
 				LeaPlusDB["CombineAddonButtons"] = "Off"		-- Combine addon buttons
@@ -13837,7 +13853,7 @@
 	pg = "Page5";
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Enhancements"				, 	146, -72);
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MinimapMod"				,	"Enhance minimap"				, 	146, -92, 	true,	"If checked, you will be able to customise the minimap.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MinimapModder"				,	"Enhance minimap"				, 	146, -92, 	true,	"If checked, you will be able to customise the minimap.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "TipModEnable"				,	"Enhance tooltip"				,	146, -112, 	true,	"If checked, the tooltip will be color coded and you will be able to modify the tooltip layout and scale.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceDressup"			, 	"Enhance dressup"				,	146, -132, 	true,	"If checked, you will be able to pan (right-button) and zoom (mousewheel) in the character frame, dressup frame and inspect frame.|n|nA toggle stats button will be shown in the character frame.  You can also middle-click the character model to toggle stats.|n|nModel rotation controls will be hidden.  Buttons to toggle gear will be added to the dressup frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceQuestLog"			, 	"Enhance quest log"				,	146, -152, 	true,	"If checked, the quest log frame will be larger and feature a world map button and quest levels.")
@@ -13861,7 +13877,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowWowheadLinks"			, 	"Show Wowhead links"			, 	340, -272, 	true,	"If checked, Wowhead links will be shown above the quest log frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowFlightTimes"			, 	"Show flight times"				, 	340, -292, 	true,	"If checked, flight times will be shown in the flight map and when you take a flight.")
 
-	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapMod"])
+	LeaPlusLC:CfgBtn("ModMinimapBtn", LeaPlusCB["MinimapModder"])
 	LeaPlusLC:CfgBtn("MoveTooltipButton", LeaPlusCB["TipModEnable"])
 	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
