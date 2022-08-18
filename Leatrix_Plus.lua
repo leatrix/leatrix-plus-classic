@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.57.alpha.3 (18th August 2022)
+-- 	Leatrix Plus 1.14.57.alpha.4 (18th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.57.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.57.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -38,7 +38,7 @@
 	end
 
 	-- Check for ElvUI
-	if IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = true end
+	if IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = unpack(ElvUI) end
 
 ----------------------------------------------------------------------
 --	L00: Leatrix Plus
@@ -6118,7 +6118,7 @@
 
 				-- ElvUI fixes
 				if LeaPlusLC.ElvUI then
-					local E = unpack(ElvUI)
+					local E = LeaPlusLC.ElvUI
 					if E.private.skins.blizzard.enable and E.private.skins.blizzard.trainer then
 						regions[2]:Hide()
 						regions[3]:Hide()
@@ -6360,7 +6360,7 @@
 
 				-- ElvUI fixes
 				if LeaPlusLC.ElvUI then
-					local E = unpack(ElvUI)
+					local E = LeaPlusLC.ElvUI
 					if E.private.skins.blizzard.enable and E.private.skins.blizzard.tradeskill then
 						regions[2]:Hide()
 						regions[3]:Hide()
@@ -6552,7 +6552,7 @@
 
 				-- ElvUI fixes
 				if LeaPlusLC.ElvUI then
-					local E = unpack(ElvUI)
+					local E = LeaPlusLC.ElvUI
 					if E.private.skins.blizzard.enable and E.private.skins.blizzard.craft then
 						regions[2]:Hide()
 						regions[3]:Hide()
@@ -6794,8 +6794,7 @@
 
 			-- ElvUI fixes
 			if LeaPlusLC.ElvUI then
-				-- Unpack ElvUI engine
-				local E = unpack(ElvUI)
+				local E = LeaPlusLC.ElvUI
 				if E.private.skins.blizzard.enable and E.private.skins.blizzard.quest then
 					-- Skin map button
 					_G.LeaPlusGlobalMapButton = logMapButton
@@ -11313,7 +11312,7 @@
 
 				-- Disable items that conflict with ElvUI
 				if LeaPlusLC.ElvUI then
-					local E = unpack(ElvUI)
+					local E = LeaPlusLC.ElvUI
 					if E and E.private then
 
 						-- Function to disable and lock an option and add a note to the tooltip
