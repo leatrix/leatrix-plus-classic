@@ -622,6 +622,7 @@
 					["0.43:0.93:0.43:0.67:0.51:0.49:0.70:0.16"] = 770, -- Booty Bay, Stormwind, Ironforge, Light's Hope Chapel
 					["0.43:0.93:0.43:0.67:0.51:0.49:0.51:0.57"] = 496, -- Booty Bay, Stormwind, Ironforge, Thorium Point
 					["0.43:0.93:0.43:0.67:0.56:0.70"] = 319, -- Booty Bay, Stormwind, Lakeshire
+					["0.43:0.93:0.41:0.75:0.56:0.70"] = 312, -- Booty Bay, Sentinel Hill, Lakeshire
 
 					-- Alliance: Chillwind Camp (Western Plaguelands)
 					["0.52:0.22:0.51:0.49:0.43:0.67:0.43:0.93"] = 662, -- Chillwind Camp, Ironforge, Stormwind, Booty Bay

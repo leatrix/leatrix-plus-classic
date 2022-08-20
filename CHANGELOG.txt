@@ -1,6 +1,8 @@
-1.14.57.alpha.5 - 19th August 2022
+1.14.57.alpha.6 - 20th August 2022
+- The 'Hide action button text' option ('Text') is now two options - 'Hide keybind text' and 'Hide macro text'.
 - If you use ElvUI, Leatrix Plus options which are not compatible with specific ElvUI modules will now be disabled and locked while those ElvUI modules are enabled.  The option tooltip will tell you which ElvUI module is causing the Leatrix Plus option to be disabled.  Disabling the relevant ElvUI module will make the Leatrix Plus setting available again.
 - Fixed a minor issue with 'Show Wowhead links' ('Interface') and Questie which sometimes caused the quest link to not be updated.
+- Added a flight time.  There are now 1057 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.56 - 17th August 2022
 - For 'Show flight times' ('Interface'), the flight progress bar will now always hide when you land.  The flight report window will now show if the minimum time difference between the saved flight time and the actual flight time is 15 seconds (up from 5).
