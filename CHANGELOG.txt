@@ -1,4 +1,4 @@
-1.14.57.alpha.8 - 23rd August 2022
+1.14.57 - 24th August 2022
 - The 'Hide action button text' option ('Text') is now two options - 'Hide keybind text' and 'Hide macro text'.
 - For 'Show flight times' ('Interface'), you can now control whether flight report windows are shown using a new setting in the configuration panel.
 - If you use ElvUI, Leatrix Plus options which are not compatible with specific ElvUI modules will now be disabled and locked while those ElvUI modules are enabled.  The option tooltip will tell you which ElvUI module is causing the Leatrix Plus option to be disabled.  Disabling the relevant ElvUI module will make the Leatrix Plus setting available again.
