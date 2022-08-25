@@ -7395,6 +7395,11 @@
 				LeaPlusLC:CreateButton("FindAuctionButton", AuctionsStackSizeMaxButton, "Find Item", "CENTER", 0, 68, 0, 21, false, "")
 				LeaPlusCB["FindAuctionButton"]:SetParent(AuctionFrameAuctions)
 
+				if LeaPlusLC.ElvUI then
+					_G.LeaPlusGlobalFindItemButton = LeaPlusCB["FindAuctionButton"]
+					LeaPlusLC.ElvUI:GetModule("Skins"):HandleButton(_G.LeaPlusGlobalFindItemButton)
+				end
+
 				-- Show find button when the auctions tab is shown
 				AuctionFrameAuctions:HookScript("OnShow", function()
 					LeaPlusCB["FindAuctionButton"]:SetEnabled(GetAuctionSellItemInfo() and true or false)
