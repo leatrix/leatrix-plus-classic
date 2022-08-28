@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.58.alpha.5 (28th August 2022)
+-- 	Leatrix Plus 1.14.58.alpha.6 (28th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.58.alpha.5"
+	LeaPlusLC["AddonVer"] = "1.14.58.alpha.6"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -11415,9 +11415,6 @@
 
 						-- UnitFrames
 						if E.private.unitframe.enable then
-							LockOption("ClassColFrames", "UnitFrames") -- Class-colored frames
-							LockOption("ShowPlayerChain", "UnitFrames") -- Show player chain
-							LockOption("NoHitIndicators", "UnitFrames") -- Hide portrait numbers
 							LockOption("ShowRaidToggle", "UnitFrames") -- Show raid button
 							LockOption("ShowDruidPowerBar", "UnitFrames") -- Show druid power bar
 						end
@@ -11442,10 +11439,25 @@
 							LockOption("TipModEnable", "Tooltip") -- Enhance tooltip
 						end
 
+						-- Buffs: Disabled Blizzard
+						if E.private.auras.disableBlizzard then
+							LockOption("ManageBuffs", "Buffs (Disabled Blizzard)") -- Manage buffs
+						end
+
+						-- UnitFrames: Disabled Blizzard: Player
+						if E.private.unitframe.disabledBlizzardFrames.player then
+							LockOption("ShowPlayerChain", "UnitFrames (Disabled Blizzard Frames Player)") -- Show player chain
+							LockOption("NoHitIndicators", "UnitFrames (Disabled Blizzard Frames Player)") -- Hide portrait numbers
+						end
+
+						-- UnitFrames: Disabled Blizzard: Player and Target
+						if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target then
+							LockOption("ClassColFrames", "UnitFrames (Disabled Blizzard Frames Player and Target)") -- Class-colored frames
+						end
+
 						-- Base
 						do
 							LockOption("FrmEnabled", "Base") -- Manage frames (base because of mirror timer bar)
-							LockOption("ManageBuffs", "Base") -- Manage buffs
 							LockOption("ManageWidget", "Base") -- Manage widget
 						end
 
