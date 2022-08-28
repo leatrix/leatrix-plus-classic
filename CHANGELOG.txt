@@ -1,5 +1,6 @@
-1.14.58.alpha.3 - 26th August 2022
+1.14.58.alpha.4 - 28th August 2022
 - For 'Enhance quest log' ('Interface'), quest levels are now shown in the quest details pane in addition to the quest list.
+- Tweaked the ElvUI compatibility checks.
 
 1.14.57 - 24th August 2022
 - The 'Hide action button text' option ('Text') is now two options - 'Hide keybind text' and 'Hide macro text'.
