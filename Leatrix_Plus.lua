@@ -11452,7 +11452,7 @@
 
 						-- UnitFrames: Disabled Blizzard: Player and Target
 						if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target then
-							LockOption("ClassColFrames", "UnitFrames (Disabled Blizzard Frames Player or Target)") -- Class-colored frames
+							LockOption("ClassColFrames", "UnitFrames (Disabled Blizzard Frames Player and Target)") -- Class-colored frames
 						end
 
 						-- Base
