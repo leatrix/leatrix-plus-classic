@@ -1,4 +1,4 @@
-1.14.58.alpha.6 - 28th August 2022
+1.14.58.alpha.7 - 29th August 2022
 - For 'Enhance quest log' ('Interface'), quest levels are now shown in the quest details pane in addition to the quest list.
 - Tweaks to ElvUI locks.
 

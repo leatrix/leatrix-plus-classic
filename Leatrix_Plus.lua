@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.58.alpha.6 (28th August 2022)
+-- 	Leatrix Plus 1.14.58.alpha.7 (29th August 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.58.alpha.6"
+	LeaPlusLC["AddonVer"] = "1.14.58.alpha.7"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -11452,12 +11452,16 @@
 
 						-- UnitFrames: Disabled Blizzard: Player and Target
 						if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target then
+							LockOption("FrmEnabled", "UnitFrames (Disabled Blizzard Frames Player and Target)") -- Manage frames
+						end
+
+						-- UnitFrames: Disabled Blizzard: Player and Target
+						if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target then
 							LockOption("ClassColFrames", "UnitFrames (Disabled Blizzard Frames Player and Target)") -- Class-colored frames
 						end
 
 						-- Base
 						do
-							LockOption("FrmEnabled", "Base") -- Manage frames (base because of mirror timer bar)
 							LockOption("ManageWidget", "Base") -- Manage widget
 						end
 
