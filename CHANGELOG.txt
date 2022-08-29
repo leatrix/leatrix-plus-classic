@@ -1,5 +1,6 @@
-1.14.58.alpha.7 - 29th August 2022
+1.14.58.alpha.8 - 29th August 2022
 - For 'Enhance quest log' ('Interface'), quest levels are now shown in the quest details pane in addition to the quest list.
+- Added a new option called 'Manage timer' ('Frames').  The 'Manage frames' option no longer includes the timer bar.
 - Tweaks to ElvUI locks.
 
 1.14.57 - 24th August 2022
