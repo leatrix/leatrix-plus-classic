@@ -1,4 +1,5 @@
-1.14.58.alpha.9 - 29th August 2022
+1.14.58.alpha.10 - 30th August 2022
+- Added a new option 'Manage durability' ('Frames').  If enabled, you can move and scale the armored man durability frame.
 - For 'Enhance quest log' ('Interface'), quest levels are now shown in the quest details pane in addition to the quest list.
 - For 'Enhance minimap' ('Interface'), added a new setting that will allow you to adjust the minimap cluster scale without it affecting the minimap scale.
 - Added a new option called 'Manage timer' ('Frames').  The 'Manage frames' option no longer includes the timer bar.
