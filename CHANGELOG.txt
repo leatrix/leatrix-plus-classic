@@ -1,3 +1,6 @@
+1.14.59.alpha.1 - 31st August 2022
+- For 'Enhance quest log' ('Interface'), there is a new setting that lets you choose whether the quest log should be larger or not.
+
 1.14.58 - 31st August 2022
 - Added a new option 'Manage durability' ('Frames').  If enabled, you can move and scale the armored man durability frame.
 - Added a new option called 'Manage timer' ('Frames').  The 'Manage frames' option no longer includes the timer bar.
