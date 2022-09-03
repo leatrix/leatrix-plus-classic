@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.59.alpha.2 (3rd September 2022)
+-- 	Leatrix Plus 1.14.59.alpha.3 (3rd September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.59.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.59.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7188,8 +7188,16 @@
 				if LeaPlusLC["EnhanceQuestLevels"] == "On" then
 					local quest = GetQuestLogSelection()
 					if quest then
-						local title, level = GetQuestLogTitle(quest)
+						local title, level, suggestedGroup = GetQuestLogTitle(quest)
 						if title and level then
+							if suggestedGroup then
+								if suggestedGroup == LFG_TYPE_DUNGEON then level = level .. "D"
+								elseif suggestedGroup == RAID then level = level ..  "R"
+								elseif suggestedGroup == ELITE then level = level ..  "+"
+								elseif suggestedGroup == GROUP then level = level ..  "+"
+								elseif suggestedGroup == PVP then level = level ..  "P"
+								end
+							end
 							QuestLogQuestTitle:SetText("[" .. level .. "] " .. title)
 						end
 					end
@@ -7211,10 +7219,11 @@
 						if title and level and not isHeader and LeaPlusLC["EnhanceQuestLevels"] == "On" then
 							-- Add level tag if its not a header
 							local levelSuffix = ""
-							if suggestedGroup then
+							if suggestedGroup and LeaPlusLC["EnhanceQuestDifficulty"] == "On" then
 								if suggestedGroup == LFG_TYPE_DUNGEON then levelSuffix = "D"
 								elseif suggestedGroup == RAID then levelSuffix = "R"
 								elseif suggestedGroup == ELITE then levelSuffix = "+"
+								elseif suggestedGroup == PVP then levelSuffix = "P"
 								end
 							end
 							local questTextFormatted = string.format("  [%d" .. L[levelSuffix] .. "] %s", level, title)
@@ -7242,7 +7251,16 @@
 
 			LeaPlusLC:MakeTx(EnhanceQuestPanel, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestTaller", "Larger quest log frame", 16, -92, true, "If checked, the quest log frame will be larger.")
-			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestLevels", "Show quest levels", 16, -112, false, "If checked, quest levels will be shown.")
+
+			LeaPlusLC:MakeTx(EnhanceQuestPanel, "Levels", 16, -132)
+			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestLevels", "Show quest levels", 16, -152, false, "If checked, quest levels will be shown.")
+			LeaPlusLC:MakeCB(EnhanceQuestPanel, "EnhanceQuestDifficulty", "Show quest difficulty in quest log list", 16, -172, false, "If checked, the quest difficulty will be shown next to the quest level in the quest log list.|n|nThis will indicate whether the quest requires a group (+), dungeon (D), raid (R) or PvP (P).|n|nThe quest difficulty will always be shown in the quest log detail pane regardless of this setting.")
+
+			-- Disable Show quest difficulty option if Show quest levels is disabled
+			LeaPlusCB["EnhanceQuestLevels"]:HookScript("OnClick", function()
+				LeaPlusLC:LockOption("EnhanceQuestLevels", "EnhanceQuestDifficulty", false)
+			end)
+			LeaPlusLC:LockOption("EnhanceQuestLevels", "EnhanceQuestDifficulty", false)
 
 			-- Help button hidden
 			EnhanceQuestPanel.h:Hide()
@@ -7259,6 +7277,7 @@
 
 				-- Reset checkboxes
 				LeaPlusLC["EnhanceQuestLevels"] = "On"
+				LeaPlusLC["EnhanceQuestDifficulty"] = "On"
 
 				-- Refresh panel
 				EnhanceQuestPanel:Hide(); EnhanceQuestPanel:Show()
@@ -7270,6 +7289,7 @@
 				if IsShiftKeyDown() and IsControlKeyDown() then
 					-- Preset profile
 					LeaPlusLC["EnhanceQuestLevels"] = "On"
+					LeaPlusLC["EnhanceQuestDifficulty"] = "On"
 				else
 					EnhanceQuestPanel:Show()
 					LeaPlusLC:HideFrames()
@@ -11655,6 +11675,7 @@
 				LeaPlusLC:LoadVarChk("EnhanceQuestLog", "Off")				-- Enhance quest log
 				LeaPlusLC:LoadVarChk("EnhanceQuestTaller", "On")			-- Enhance quest log taller
 				LeaPlusLC:LoadVarChk("EnhanceQuestLevels", "On")			-- Enhance quest log quest levels
+				LeaPlusLC:LoadVarChk("EnhanceQuestDifficulty", "On")		-- Enhance quest log quest difficulty
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
 				LeaPlusLC:LoadVarChk("EnhanceTrainers", "Off")				-- Enhance trainers
 				LeaPlusLC:LoadVarChk("ShowTrainAllBtn", "On")				-- Enhance trainers train all button
@@ -12006,6 +12027,7 @@
 			LeaPlusDB["EnhanceQuestLog"]		= LeaPlusLC["EnhanceQuestLog"]
 			LeaPlusDB["EnhanceQuestTaller"]		= LeaPlusLC["EnhanceQuestTaller"]
 			LeaPlusDB["EnhanceQuestLevels"]		= LeaPlusLC["EnhanceQuestLevels"]
+			LeaPlusDB["EnhanceQuestDifficulty"]	= LeaPlusLC["EnhanceQuestDifficulty"]
 			LeaPlusDB["EnhanceProfessions"]		= LeaPlusLC["EnhanceProfessions"]
 			LeaPlusDB["EnhanceTrainers"]		= LeaPlusLC["EnhanceTrainers"]
 			LeaPlusDB["ShowTrainAllBtn"]		= LeaPlusLC["ShowTrainAllBtn"]
@@ -13894,6 +13916,7 @@
 				LeaPlusDB["EnhanceQuestLog"] = "On"				-- Enhance quest log
 				LeaPlusDB["EnhanceQuestTaller"] = "On"			-- Enhance quest log taller
 				LeaPlusDB["EnhanceQuestLevels"] = "On"			-- Enhance quest log quest levels
+				LeaPlusDB["EnhanceQuestDifficulty"] = "On"		-- Enhance quest log quest difficulty
 				LeaPlusDB["EnhanceProfessions"] = "On"			-- Enhance professions
 				LeaPlusDB["EnhanceTrainers"] = "On"				-- Enhance trainers
 				LeaPlusDB["ShowTrainAllBtn"] = "On"				-- Show train all button
