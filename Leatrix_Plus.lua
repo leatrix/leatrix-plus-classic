@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.59.alpha.1 (31st August 2022)
+-- 	Leatrix Plus 1.14.59.alpha.2 (3rd September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.59.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.59.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7183,7 +7183,20 @@
 
 			end
 
-			-- Show quest levels
+			-- Show quest level in quest log detail frame (but not in quest accept or turn-in frame)
+			hooksecurefunc("QuestLog_UpdateQuestDetails", function()
+				if LeaPlusLC["EnhanceQuestLevels"] == "On" then
+					local quest = GetQuestLogSelection()
+					if quest then
+						local title, level = GetQuestLogTitle(quest)
+						if title and level then
+							QuestLogQuestTitle:SetText("[" .. level .. "] " .. title)
+						end
+					end
+				end
+			end)
+
+			-- Show quest levels in quest log
 			hooksecurefunc("QuestLog_Update", function()
 				local numEntries, numQuests = GetNumQuestLogEntries()
 				if numEntries == 0 then return end

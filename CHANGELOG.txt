@@ -1,5 +1,5 @@
-1.14.59.alpha.1 - 31st August 2022
-- For 'Enhance quest log' ('Interface'), there is a new setting that lets you choose whether the quest log should be larger or not.
+1.14.59.alpha.2 - 3rd September 2022
+- For 'Enhance quest log' ('Interface'), there is a new setting that lets you choose whether the quest log should be larger or not.  Quest levels will now be shown in the quest detail pane once again for quests that are in your quest log.
 
 1.14.58 - 31st August 2022
 - Added a new option 'Manage durability' ('Frames').  If enabled, you can move and scale the armored man durability frame.
