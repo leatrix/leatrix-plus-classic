@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.59.alpha.3 (3rd September 2022)
+-- 	Leatrix Plus 1.14.59.alpha.4 (3rd September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.59.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.59.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7223,6 +7223,7 @@
 								if suggestedGroup == LFG_TYPE_DUNGEON then levelSuffix = "D"
 								elseif suggestedGroup == RAID then levelSuffix = "R"
 								elseif suggestedGroup == ELITE then levelSuffix = "+"
+								elseif suggestedGroup == GROUP then levelSuffix = "+"
 								elseif suggestedGroup == PVP then levelSuffix = "P"
 								end
 							end

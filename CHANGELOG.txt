@@ -1,4 +1,4 @@
-1.14.59.alpha.3 - 3rd September 2022
+1.14.59.alpha.4 - 3rd September 2022
 - For 'Enhance quest log' ('Interface'), there is a new setting that lets you choose whether the quest log should be larger or not.  Quest levels and difficulty will now be shown in the quest detail pane once again for quests that are in your quest log.  There is a new setting to show quest difficulty in the quest log list too.
 
 1.14.58 - 31st August 2022
