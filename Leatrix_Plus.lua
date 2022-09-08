@@ -11739,8 +11739,8 @@
 				LeaPlusLC:LoadVarChk("TipShowRank", "On")					-- Show guild rank for your own guild
 				LeaPlusLC:LoadVarChk("TipShowOtherRank", "Off")				-- Show guild rank for other guilds
 				LeaPlusLC:LoadVarChk("TipShowTarget", "On")					-- Show target
-				LeaPlusLC:LoadVarChk("TipHideInCombat", "On")				-- Hide tooltips during combat
-				LeaPlusLC:LoadVarChk("TipHideShiftOverride", "Off")			-- Hide tooltips shift override
+				LeaPlusLC:LoadVarChk("TipHideInCombat", "Off")				-- Hide tooltips during combat
+				LeaPlusLC:LoadVarChk("TipHideShiftOverride", "On")			-- Hide tooltips shift override
 				LeaPlusLC:LoadVarChk("TipNoHealthBar", "Off")				-- Hide health bar
 				LeaPlusLC:LoadVarNum("LeaPlusTipSize", 1.00, 0.50, 2.00)	-- Tooltip scale slider
 				LeaPlusLC:LoadVarNum("TipOffsetX", -13, -5000, 5000)		-- Tooltip X offset
