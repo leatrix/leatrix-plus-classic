@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.59 (7th September 2022)
+-- 	Leatrix Plus 1.14.60.alpha.1 (8th September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.59"
+	LeaPlusLC["AddonVer"] = "1.14.60.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -9478,6 +9478,9 @@
 
 			-- Create locale specific level string
 			LT["LevelLocale"] = strtrim(strtrim(string.gsub(TOOLTIP_UNIT_LEVEL, "%%s", "")))
+			if GameLocale == "ruRU" then
+				LT["LevelLocale"] = "-ro уровня"
+			end
 
 			-- Tooltip
 			LT["ColorBlind"] = GetCVar("colorblindMode")
@@ -9906,29 +9909,61 @@
 
 				if LT["TipIsPlayer"] then
 
-					-- Show level
-					if LT["Reaction"] < 5 then
-						if LT["UnitLevel"] == -1 then
-							LT["InfoText"] = ("|cffff3333" .. ttLevel .. " ??|cffffffff")
-						else
-							LT["LevelColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
-							LT["LevelColor"] = string.format('%02x%02x%02x', LT["LevelColor"].r * 255, LT["LevelColor"].g * 255, LT["LevelColor"].b * 255)
-							LT["InfoText"] = ("|cff" .. LT["LevelColor"] .. LT["LevelLocale"] .. " " .. LT["UnitLevel"] .. "|cffffffff")
+					if GameLocale == "ruRU" then
+
+						LT["InfoText"] = ""
+
+						-- Show race
+						if LT["PlayerRace"] then
+							LT["InfoText"] = LT["InfoText"] .. LT["PlayerRace"] .. ","
 						end
+
+						-- Show class
+						LT["InfoText"] = LT["InfoText"] .. " " .. LT["LpTipClassColor"] .. LT["Class"] .. "|r " or LT["InfoText"] .. "|r "
+
+						-- Show level
+						if LT["Reaction"] < 5 then
+							if LT["UnitLevel"] == -1 then
+								LT["InfoText"] = LT["InfoText"] .. ("|cffff3333" .. "??-ro" .. " " .. ttLevel .. "|cffffffff")
+							else
+								LT["LevelColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
+								LT["LevelColor"] = string.format('%02x%02x%02x', LT["LevelColor"].r * 255, LT["LevelColor"].g * 255, LT["LevelColor"].b * 255)
+								LT["InfoText"] = LT["InfoText"] .. ("|cff" .. LT["LevelColor"] .. LT["UnitLevel"] .. LT["LevelLocale"] .. "|cffffffff")
+							end
+						else
+							LT["InfoText"] = LT["InfoText"] .. LT["UnitLevel"] .. LT["LevelLocale"]
+						end
+
+						-- Show information line
+						_G["GameTooltipTextLeft" .. LT["InfoLine"]]:SetText(LT["InfoText"] .. "|cffffffff|r")
+
 					else
-						LT["InfoText"] = LT["LevelLocale"] .. " " .. LT["UnitLevel"]
+
+						-- Show level
+						if LT["Reaction"] < 5 then
+							if LT["UnitLevel"] == -1 then
+								LT["InfoText"] = ("|cffff3333" .. ttLevel .. " ??|cffffffff")
+							else
+								LT["LevelColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
+								LT["LevelColor"] = string.format('%02x%02x%02x', LT["LevelColor"].r * 255, LT["LevelColor"].g * 255, LT["LevelColor"].b * 255)
+								LT["InfoText"] = ("|cff" .. LT["LevelColor"] .. LT["LevelLocale"] .. " " .. LT["UnitLevel"] .. "|cffffffff")
+							end
+						else
+							LT["InfoText"] = LT["LevelLocale"] .. " " .. LT["UnitLevel"]
+						end
+
+						-- Show race
+						if LT["PlayerRace"] then
+							LT["InfoText"] = LT["InfoText"] .. " " .. LT["PlayerRace"]
+						end
+
+						-- Show class
+						LT["InfoText"] = LT["InfoText"] .. " " .. LT["LpTipClassColor"] .. LT["Class"] or LT["InfoText"]
+
+						-- Show information line
+						_G["GameTooltipTextLeft" .. LT["InfoLine"]]:SetText(LT["InfoText"] .. "|cffffffff|r")
+
 					end
-
-					-- Show race
-					if LT["PlayerRace"] then
-						LT["InfoText"] = LT["InfoText"] .. " " .. LT["PlayerRace"]
-					end
-
-					-- Show class
-					LT["InfoText"] = LT["InfoText"] .. " " .. LT["LpTipClassColor"] .. LT["Class"] or LT["InfoText"]
-
-					-- Show information line
-					_G["GameTooltipTextLeft" .. LT["InfoLine"]]:SetText(LT["InfoText"] .. "|cffffffff|r")
 
 				end
 
@@ -9969,21 +10004,46 @@
 					-- Show level line
 					if LT["MobInfoLine"] > 1 then
 
-						-- Level ?? mob
-						if LT["UnitLevel"] == -1 then
-							LT["InfoText"] = "|cffff3333" .. ttLevel .. " ??|cffffffff "
+						if GameLocale == "ruRU" then
 
-						-- Mobs within level range
+							LT["InfoText"] = ""
+
+							-- Show creature type and classification
+							LT["CreatureType"] = UnitCreatureType(LT["Unit"])
+							if (LT["CreatureType"]) and not (LT["CreatureType"] == "Not specified") then
+								LT["InfoText"] = LT["InfoText"] .. "|cffffffff" .. LT["CreatureType"] .. "|cffffffff "
+							end
+
+							-- Level ?? mob
+							if LT["UnitLevel"] == -1 then
+								LT["InfoText"] = LT["InfoText"] .. "|cffff3333" .. "??-ro " .. ttLevel .. "|cffffffff "
+
+							-- Mobs within level range
+							else
+								LT["MobColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
+								LT["MobColor"] = string.format('%02x%02x%02x', LT["MobColor"].r * 255, LT["MobColor"].g * 255, LT["MobColor"].b * 255)
+								LT["InfoText"] = LT["InfoText"] .. "|cff" .. LT["MobColor"] .. LT["UnitLevel"] .. LT["LevelLocale"] .. "|cffffffff "
+							end
+
 						else
-							LT["MobColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
-							LT["MobColor"] = string.format('%02x%02x%02x', LT["MobColor"].r * 255, LT["MobColor"].g * 255, LT["MobColor"].b * 255)
-							LT["InfoText"] = "|cff" .. LT["MobColor"] .. LT["LevelLocale"] .. " " .. LT["UnitLevel"] .. "|cffffffff "
-						end
 
-						-- Show creature type and classification
-						LT["CreatureType"] = UnitCreatureType(LT["Unit"])
-						if (LT["CreatureType"]) and not (LT["CreatureType"] == "Not specified") then
-							LT["InfoText"] = LT["InfoText"] .. "|cffffffff" .. LT["CreatureType"] .. "|cffffffff "
+							-- Level ?? mob
+							if LT["UnitLevel"] == -1 then
+								LT["InfoText"] = "|cffff3333" .. ttLevel .. " ??|cffffffff "
+
+							-- Mobs within level range
+							else
+								LT["MobColor"] = GetCreatureDifficultyColor(LT["UnitLevel"])
+								LT["MobColor"] = string.format('%02x%02x%02x', LT["MobColor"].r * 255, LT["MobColor"].g * 255, LT["MobColor"].b * 255)
+								LT["InfoText"] = "|cff" .. LT["MobColor"] .. LT["LevelLocale"] .. " " .. LT["UnitLevel"] .. "|cffffffff "
+							end
+
+							-- Show creature type and classification
+							LT["CreatureType"] = UnitCreatureType(LT["Unit"])
+							if (LT["CreatureType"]) and not (LT["CreatureType"] == "Not specified") then
+								LT["InfoText"] = LT["InfoText"] .. "|cffffffff" .. LT["CreatureType"] .. "|cffffffff "
+							end
+
 						end
 
 						-- Rare, elite and boss mobs
