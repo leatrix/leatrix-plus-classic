@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.60.alpha.3 (11th September 2022)
+-- 	Leatrix Plus 1.14.60.alpha.4 (11th September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.60.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.60.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5138,6 +5138,14 @@
 			LeaPlusLC:MakeTx(ChatFilterPanel, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockDrunkenSpam", "Block drunken spam", 16, -92, false, "If checked, drunken messages will be blocked unless they apply to your character.|n|nThis applies to the system channel.")
 			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockDuelSpam", "Block duel spam", 16, -112, false, "If checked, duel victory and retreat messages will be blocked unless your character took part in the duel.|n|nThis applies to the system channel.")
+
+			-- Lock block drunken spam option for zhTW
+			if GameLocale == "zhTW" then
+				LeaPlusLC:LockItem(LeaPlusCB["BlockDrunkenSpam"], true)
+				LeaPlusLC["BlockDrunkenSpam"] = "Off"
+				LeaPlusDB["BlockDrunkenSpam"] = "Off"
+				LeaPlusCB["BlockDrunkenSpam"].tiptext = LeaPlusCB["BlockDrunkenSpam"].tiptext .. "|n|n|cff00AAFF" .. L["Cannot use this with your locale."]
+			end
 
 			-- Help button hidden
 			ChatFilterPanel.h:Hide()
