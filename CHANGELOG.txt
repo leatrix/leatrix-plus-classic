@@ -1,6 +1,6 @@
-1.14.60.alpha.1 - 8th September 2022
-- Updated locale.
-- For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.
+1.14.60.alpha.3 - 11th September 2022
+- For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.  Also some locale updates.
+- For 'Show flight times' ('Interface'), the flight progress bar will no longer show if you are in combat when you attempt to take a flight.  A few seconds into the flight, there is an additional check to make sure you are actually on the taxi.  If you are not, the flight progress bar will be hidden.
 
 1.14.59 - 7th September 2022
 - For 'Enhance quest log' ('Interface'), there is a new setting that lets you choose whether the quest log should be larger or not.  Quest levels and difficulty will now be shown in the quest detail pane once again for quests that are in your quest log.  There is a new setting to show quest difficulty in the quest log list too.

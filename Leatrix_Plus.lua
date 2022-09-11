@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.60.alpha.2 (8th September 2022)
+-- 	Leatrix Plus 1.14.60.alpha.3 (11th September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.60.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.60.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3426,6 +3426,7 @@
 
 			-- Show progress bar when flight is taken
 			hooksecurefunc("TakeTaxiNode", function(node)
+				if UnitAffectingCombat("player") then return end
 				if editFrame:IsShown() then editFrame:Hide() end
 				for i = 1, NumTaxiNodes() do
 					local nodeType = TaxiNodeGetType(i)
@@ -3479,11 +3480,15 @@
 						local timeStart = GetTime()
 						C_Timer.After(5, function()
 							if UnitOnTaxi("player") then
-								if MainMenuBarVehicleLeaveButton:IsEnabled() then
-									flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
-								end
+								-- Player is on a taxi so register when taxi lands
+								flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
 							else
+								-- Player is not on a taxi so delete the flight progress bar
 								flightFrame:UnregisterEvent("PLAYER_CONTROL_GAINED")
+								if LeaPlusLC.FlightProgressBar then
+									LeaPlusLC.FlightProgressBar:Stop()
+									LeaPlusLC.FlightProgressBar = nil
+								end
 							end
 						end)
 						flightFrame:SetScript("OnEvent", function()
