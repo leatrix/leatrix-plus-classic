@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.60 (14th September 2022)
+-- 	Leatrix Plus 1.14.61.alpha.1 (18th September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.60"
+	LeaPlusLC["AddonVer"] = "1.14.61.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3478,7 +3478,7 @@
 
 						-- Handle flight time not correct or flight does not exist in database
 						local timeStart = GetTime()
-						C_Timer.After(5, function()
+						C_Timer.After(1, function()
 							if UnitOnTaxi("player") then
 								-- Player is on a taxi so register when taxi lands
 								flightFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
