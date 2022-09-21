@@ -1,4 +1,4 @@
-1.14.62.alpha.1 - 22nd September 2022
+1.14.62.alpha.2 - 22nd September 2022
 - Added a new option 'Restore chat messages' ('Chat').  If enabled, you can reload your UI without losing your recent chat messages.
 
 1.14.60 - 14th September 2022

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.62.alpha.1 (22nd September 2022)
+-- 	Leatrix Plus 1.14.62.alpha.2 (22nd September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.62.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.62.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -12049,6 +12049,7 @@
 							LockOption("UseArrowKeysInChat", "Chat") -- Use arrow keys in chat
 							LockOption("NoChatFade", "Chat") -- Disable chat fade
 							LockOption("MaxChatHstory", "Chat") -- Increase chat history
+							LockOption("RestoreChatMessages", "Chat") -- Restore chat messages
 						end
 
 						-- Minimap
