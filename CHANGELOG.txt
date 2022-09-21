@@ -1,5 +1,5 @@
-1.14.61 - 21st September 2022
-- Maintenance update.
+1.14.62.alpha.1 - 22nd September 2022
+- Added a new option 'Restore chat messages' ('Chat').  If enabled, you can reload your UI without losing your recent chat messages.
 
 1.14.60 - 14th September 2022
 - For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.  Also some locale updates.

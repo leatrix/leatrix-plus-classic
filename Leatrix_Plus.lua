@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.61 (21st September 2022)
+-- 	Leatrix Plus 1.14.62.alpha.1 (22nd September 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.61"
+	LeaPlusLC["AddonVer"] = "1.14.62.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -539,6 +539,7 @@
 		or	(LeaPlusLC["RecentChatWindow"]		~= LeaPlusDB["RecentChatWindow"])		-- Recent chat window
 		or	(LeaPlusLC["MaxChatHstory"]			~= LeaPlusDB["MaxChatHstory"])			-- Increase chat history
 		or	(LeaPlusLC["FilterChatMessages"]	~= LeaPlusDB["FilterChatMessages"])		-- Filter chat messages
+		or	(LeaPlusLC["RestoreChatMessages"]	~= LeaPlusDB["RestoreChatMessages"])	-- Restore chat messages
 
 		-- Text
 		or	(LeaPlusLC["HideErrorMessages"]		~= LeaPlusDB["HideErrorMessages"])		-- Hide error messages
@@ -2841,6 +2842,134 @@
 ----------------------------------------------------------------------
 
 	function LeaPlusLC:Player()
+
+		----------------------------------------------------------------------
+		-- Restore chat messages
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["RestoreChatMessages"] == "On" then
+
+			local historyFrame = CreateFrame("FRAME")
+			historyFrame:RegisterEvent("PLAYER_LOGIN")
+			historyFrame:RegisterEvent("PLAYER_LOGOUT")
+
+			local FCF_IsChatWindowIndexActive = FCF_IsChatWindowIndexActive
+			local GetMessageInfo = GetMessageInfo
+			local GetNumMessages = GetNumMessages
+
+			-- Use function from Dragonflight
+			local function FCF_IsChatWindowIndexActive(chatWindowIndex)
+				local shown = select(7, FCF_GetChatWindowInfo(chatWindowIndex))
+				if shown then
+					return true
+				end
+				local chatFrame = _G["ChatFrame" .. chatWindowIndex]
+				return (chatFrame and chatFrame.isDocked)
+			end
+
+			-- Save chat messages on logout
+			historyFrame:SetScript("OnEvent", function(self, event)
+				if event == "PLAYER_LOGOUT" then
+					local name, realm = UnitFullName("player")
+					LeaPlusDB["ChatHistoryName"] = name .. "-" .. realm
+					LeaPlusDB["ChatHistoryTime"] = GetServerTime()
+					for i = 1, 50 do
+						if i ~= 2 and _G["ChatFrame" .. i] then
+							if FCF_IsChatWindowIndexActive(i) then
+								LeaPlusDB["ChatHistory" .. i] = {}
+								local chtfrm = _G["ChatFrame" .. i]
+								local NumMsg = chtfrm:GetNumMessages()
+								local StartMsg = 1
+								if NumMsg > 128 then StartMsg = NumMsg - 127 end
+								for iMsg = StartMsg, NumMsg do
+									local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
+									if chatMessage then
+										if r and g and b then
+											local colorCode = RGBToColorCode(r, g, b)
+											chatMessage = colorCode .. chatMessage
+										end
+										tinsert(LeaPlusDB["ChatHistory" .. i], chatMessage)
+									end
+								end
+							end
+						end
+					end
+				end
+			end)
+
+			-- Restore chat messages on login
+			local name, realm = UnitFullName("player")
+			if LeaPlusDB["ChatHistoryName"] and LeaPlusDB["ChatHistoryTime"] then
+				local timeDiff = GetServerTime() - LeaPlusDB["ChatHistoryTime"]
+				if LeaPlusDB["ChatHistoryName"] == name .. "-" .. realm and timeDiff and timeDiff < 10 then -- reload must be done within 15 seconds
+
+					-- Store chat messages from current session and clear chat
+					for i = 1, 50 do
+						if i ~= 2 and _G["ChatFrame" .. i] and FCF_IsChatWindowIndexActive(i) then
+							LeaPlusDB["ChatTemp" .. i] = {}
+							local chtfrm = _G["ChatFrame" .. i]
+							local NumMsg = chtfrm:GetNumMessages()
+							for iMsg = 1, NumMsg do
+								local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
+								if chatMessage then
+									if r and g and b then
+										local colorCode = RGBToColorCode(r, g, b)
+										chatMessage = colorCode .. chatMessage
+									end
+									tinsert(LeaPlusDB["ChatTemp" .. i], chatMessage)
+								end
+							end
+							chtfrm:Clear()
+						end
+					end
+
+					-- Restore chat messages from previous session
+					for i = 1, 50 do
+						if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatHistory" .. i] and FCF_IsChatWindowIndexActive(i) then
+							LeaPlusDB["ChatHistory" .. i .. "Count"] = 0
+							-- Add previous session messages to chat
+							for k = 1, #LeaPlusDB["ChatHistory" .. i] do
+								if LeaPlusDB["ChatHistory" .. i][k] ~= string.match(LeaPlusDB["ChatHistory" .. i][k], "|cffffd800" .. L["Restored"] .. " " .. ".*" .. " " .. L["message"] .. ".*.|r") then
+									_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatHistory" .. i][k])
+									LeaPlusDB["ChatHistory" .. i .. "Count"] = LeaPlusDB["ChatHistory" .. i .. "Count"] + 1
+								end
+							end
+							-- Show how many messages were restored
+							if LeaPlusDB["ChatHistory" .. i .. "Count"] == 1 then
+								_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["message from previous session"] .. ".|r")
+							else
+								_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["messages from previous session"] .. ".|r")
+							end
+						else
+							-- No messages to restore
+							LeaPlusDB["ChatHistory" .. i] = nil
+						end
+					end
+
+					-- Restore chat messages from this session
+					for i = 1, 50 do
+						if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatTemp" .. i] and FCF_IsChatWindowIndexActive(i) then
+							for k = 1, #LeaPlusDB["ChatTemp" .. i] do
+								_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatTemp" .. i][k])
+							end
+						end
+					end
+
+				end
+			end
+
+		else
+
+			-- Option is disabled so clear any messages from saved variables
+			LeaPlusDB["ChatHistoryName"] = nil
+			LeaPlusDB["ChatHistoryTime"] = nil
+			for i = 1, 50 do
+				LeaPlusDB["ChatHistory" .. i] = nil
+				LeaPlusDB["ChatTemp" .. i] = nil
+				LeaPlusDB["ChatHistory" .. i .. "Count"] = nil
+			end
+
+		end
 
 		----------------------------------------------------------------------
 		-- Manage durability
@@ -11711,6 +11840,7 @@
 				LeaPlusLC:LoadVarChk("FilterChatMessages", "Off")			-- Filter chat messages
 				LeaPlusLC:LoadVarChk("BlockDrunkenSpam", "Off")				-- Block drunken spam
 				LeaPlusLC:LoadVarChk("BlockDuelSpam", "Off")				-- Block duel spam
+				LeaPlusLC:LoadVarChk("RestoreChatMessages", "Off")			-- Restore chat messages
 
 				-- Text
 				LeaPlusLC:LoadVarChk("HideErrorMessages", "Off")			-- Hide error messages
@@ -12063,6 +12193,7 @@
 			LeaPlusDB["FilterChatMessages"]		= LeaPlusLC["FilterChatMessages"]
 			LeaPlusDB["BlockDrunkenSpam"]		= LeaPlusLC["BlockDrunkenSpam"]
 			LeaPlusDB["BlockDuelSpam"]			= LeaPlusLC["BlockDuelSpam"]
+			LeaPlusDB["RestoreChatMessages"]	= LeaPlusLC["RestoreChatMessages"]
 
 			-- Text
 			LeaPlusDB["HideErrorMessages"]		= LeaPlusLC["HideErrorMessages"]
@@ -13969,6 +14100,7 @@
 				LeaPlusDB["FilterChatMessages"] = "On"			-- Filter chat messages
 				LeaPlusDB["BlockDrunkenSpam"] = "On"			-- Block drunken spam
 				LeaPlusDB["BlockDuelSpam"] = "On"				-- Block duel spam
+				LeaPlusDB["RestoreChatMessages"] = "On"			-- Restore chat messages
 
 				-- Text
 				LeaPlusDB["HideErrorMessages"] = "On"			-- Hide error messages
@@ -14367,6 +14499,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "RecentChatWindow"			,	"Recent chat window"			, 	340, -192, 	true,	"If checked, you can hold down the control key and click a chat tab to view recent chat in a copy-friendly window.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MaxChatHstory"				,	"Increase chat history"			, 	340, -212, 	true,	"If checked, your chat history will increase to 4096 lines.  If unchecked, the default will be used (128 lines).|n|nEnabling this option may prevent some chat text from showing during login.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FilterChatMessages"		, 	"Filter chat messages"			,	340, -232, 	true,	"If checked, you can block drunken spam and duel spam.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "RestoreChatMessages"		, 	"Restore chat messages"			,	340, -252, 	true,	"If checked, recent chat will be restored when you reload your interface.")
 
 	LeaPlusLC:CfgBtn("FilterChatMessagesBtn", LeaPlusCB["FilterChatMessages"])
 
