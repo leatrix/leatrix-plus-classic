@@ -1,5 +1,6 @@
-1.14.62.alpha.2 - 22nd September 2022
+1.14.62.alpha.3 - 25th September 2022
 - Added a new option 'Restore chat messages' ('Chat').  If enabled, you can reload your UI without losing your recent chat messages.
+- Added a flight time.  There are now 1058 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.60 - 14th September 2022
 - For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.  Also some locale updates.

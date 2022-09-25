@@ -722,6 +722,7 @@
 					["0.70:0.16:0.52:0.22:0.48:0.30"] = 227, -- Light's Hope Chapel, Chillwind Camp, Southshore
 					["0.70:0.16:0.52:0.22:0.48:0.30:0.49:0.44"] = 334, -- Light's Hope Chapel, Chillwind Camp, Southshore, Menethil Harbor
 					["0.70:0.16:0.51:0.49:0.43:0.67:0.41:0.75"] = 604, -- Light's Hope Chapel, Ironforge, Stormwind, Sentinel Hill
+					["0.70:0.16:0.55:0.25:0.57:0.32:0.59:0.52"] = 402, -- Light's Hope Chapel, Aerie Peak, Refuge Pointe, Thelsamar
 
 					-- Alliance: Menethil Harbor (Wetlands)
 					["0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 490, -- Menethil Harbor, Ironforge, Stormwind, Booty Bay
