@@ -1,3 +1,6 @@
+1.14.63.alpha.1 - 2nd October 2022
+- For 'Show flight times', you can now set the flight progress bar background to fill instead of drain.
+
 1.14.62 - 28th September 2022
 - Added a new option 'Restore chat messages' ('Chat').  If enabled, you can reload your UI without losing your recent chat messages.
 - Added a new option 'Block shared quests' ('Social').  If enabled, shared quests will be automatically declined unless the player sharing the quest is a friend.
