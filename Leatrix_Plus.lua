@@ -12965,7 +12965,7 @@
 		LeaPlusCB["ListFrame"..ddname] = ddlist
 		ddlist:SetPoint("TOP",0,-42)
 		ddlist:SetWidth(frame:GetWidth())
-		ddlist:SetHeight((#items * 17) + 17 + 17)
+		ddlist:SetHeight((#items * 16) + 16 + 16)
 		ddlist:SetFrameStrata("FULLSCREEN_DIALOG")
 		ddlist:SetFrameLevel(12)
 		ddlist:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = false, tileSize = 0, edgeSize = 32, insets = { left = 4, right = 4, top = 4, bottom = 4 }});
@@ -12985,9 +12985,9 @@
 			local dditem = CreateFrame("Button", nil, LeaPlusCB["ListFrame"..ddname])
 			LeaPlusCB["Drop"..ddname..k] = dditem;
 			dditem:Show();
-			dditem:SetWidth(ddlist:GetWidth()-22)
-			dditem:SetHeight(20)
-			dditem:SetPoint("TOPLEFT", 12, -k*16)
+			dditem:SetWidth(ddlist:GetWidth() - 22)
+			dditem:SetHeight(16)
+			dditem:SetPoint("TOPLEFT", 12, -k * 16)
 
 			dditem.f = dditem:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight')
 			dditem.f:SetPoint('LEFT', 16, 0)
