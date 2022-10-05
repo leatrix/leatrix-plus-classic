@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.63 (5th October 2022)
+-- 	Leatrix Plus 1.14.64.alpha.1 (5th October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.63"
+	LeaPlusLC["AddonVer"] = "1.14.64.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -14129,9 +14129,10 @@
 				LeaPlusLC["Page"..LeaPlusLC["LeaStartPage"]]:Show()
 				return
 			elseif str == "gossinfo" then
+				-- Print gossip frame information
 				if GossipFrame:IsShown() then
-					local npcName = UnitName("mouseover")
-					local npcGuid = UnitGUID("mouseover") or nil
+					local npcName = UnitName("target")
+					local npcGuid = UnitGUID("target") or nil
 					if npcName and npcGuid then
 						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
 						if npcID then
@@ -14151,7 +14152,9 @@
 						LeaPlusLC:Print("First option: |cffffffff" .. GossipTitleButton1:GetText())
 					end
 					-- LeaPlusLC:Print("Gossip text: |cffffffff" .. GetGossipText())
-					SelectGossipOption(1)
+					if not IsShiftKeyDown() then
+						SelectGossipOption(1)
+					end
 				else
 					LeaPlusLC:Print("Gossip frame not open.")
 				end
