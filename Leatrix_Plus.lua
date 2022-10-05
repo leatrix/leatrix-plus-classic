@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.63.alpha.1 (2nd October 2022)
+-- 	Leatrix Plus 1.14.63 (5th October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.63.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.63"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -14127,6 +14127,34 @@
 					LeaPlusLC["PageF"]:Show()
 				end
 				LeaPlusLC["Page"..LeaPlusLC["LeaStartPage"]]:Show()
+				return
+			elseif str == "gossinfo" then
+				if GossipFrame:IsShown() then
+					local npcName = UnitName("mouseover")
+					local npcGuid = UnitGUID("mouseover") or nil
+					if npcName and npcGuid then
+						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
+						if npcID then
+							LeaPlusLC:Print(npcName .. ": |cffffffff" .. npcID)
+						end
+					end
+					LeaPlusLC:Print("Available quests: |cffffffff" .. GetNumGossipAvailableQuests())
+					LeaPlusLC:Print("Active quests: |cffffffff" .. GetNumGossipActiveQuests())
+					LeaPlusLC:Print("Gossip count: |cffffffff" .. GetNumGossipOptions())
+					if GetGossipOptions() then
+						local void, gossipType = GetGossipOptions()
+						LeaPlusLC:Print("Gossip type: |cffffffff" .. gossipType)
+					else
+						LeaPlusLC:Print("Gossip type: |cffffffff" .. "Nil")
+					end
+					if GossipTitleButton1 and GossipTitleButton1:GetText() then
+						LeaPlusLC:Print("First option: |cffffffff" .. GossipTitleButton1:GetText())
+					end
+					-- LeaPlusLC:Print("Gossip text: |cffffffff" .. GetGossipText())
+					SelectGossipOption(1)
+				else
+					LeaPlusLC:Print("Gossip frame not open.")
+				end
 				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
