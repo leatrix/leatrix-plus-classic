@@ -1,6 +1,7 @@
-1.14.64.alpha.2 - 5th October 2022
+1.14.64.alpha.3 - 10th October 2022
 - For 'Show minimap icon', some of the modified clicks have changed.  Read the option tooltip for more details.
 - The minimap button control-alt-click to toggle maximised windowed mode now runs much faster.
+- Removed references to instance chat.
 
 1.14.63 - 5th October 2022
 - For 'Show flight times', you can now set the flight progress bar background to fill instead of drain.
