@@ -855,19 +855,19 @@
 			LeaPlusLC:MakeCB(SoundPanel, "MuteChimes", "Chimes", 16, -152, false, "If checked, clock hourly chimes will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -172, false, "If checked, the ready check sound will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 140, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 140, -92, false, "If checked, mechanostriders will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "Mechsteps", 140, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
+			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 150, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 150, -92, false, "If checked, mechanostriders will be quieter.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "Mechsteps", 150, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Pets", 264, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 264, -92, false, "If checked, yawns from hunter pet cats will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteScreech", "Screech", 264, -112, false, "If checked, Screech will be muted.|n|nThis is a spell used by some flying pets.")
+			LeaPlusLC:MakeTx(SoundPanel, "Pets", 284, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteYawns", "Yawns", 284, -92, false, "If checked, yawns from hunter pet cats will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteScreech", "Screech", 284, -112, false, "If checked, Screech will be muted.|n|nThis is a spell used by some flying pets.")
 
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(muteTable) do
-				LeaPlusCB[k].f:SetWidth(80)
-				if LeaPlusCB[k].f:GetStringWidth() > 80 then
-					LeaPlusCB[k]:SetHitRectInsets(0, -70, 0, 0)
+				LeaPlusCB[k].f:SetWidth(90)
+				if LeaPlusCB[k].f:GetStringWidth() > 90 then
+					LeaPlusCB[k]:SetHitRectInsets(0, -80, 0, 0)
 				else
 					LeaPlusCB[k]:SetHitRectInsets(0, -LeaPlusCB[k].f:GetStringWidth() + 4, 0, 0)
 				end
