@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.64 (12th October 2022)
+-- 	Leatrix Plus 1.14.65.alpha.1 (13th October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.64"
+	LeaPlusLC["AddonVer"] = "1.14.65.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -12544,14 +12544,6 @@
 				if AuctionFrameAuctions.duration then
 					LeaPlusDB["AHDuration"] = AuctionFrameAuctions.duration
 				end
-			end
-		end
-
-		-- Set locked options to original values (set before they were locked)
-		if LeaPlusLC.ElvUI then
-			for k, v in pairs(LeaLockList) do
-				LeaPlusLC[k] = v
-				LeaPlusDB[k] = v
 			end
 		end
 
