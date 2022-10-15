@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.65.alpha.1 (13th October 2022)
+-- 	Leatrix Plus 1.14.65.alpha.2 (15th October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.65.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.65.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3558,7 +3558,7 @@
 			editBox:SetScript("OnKeyDown", function() end)
 
 			-- Load library
-			if not LibStub("LibCandyBar", true) then
+			if not LibStub("LibCandyBar-3.0", true) then
 				Leatrix_Plus:LeaPlusCandyBar()
 			end
 

@@ -1,5 +1,5 @@
-1.14.65.alpha.1 - 13th October 2022
-- Maintenance update.
+1.14.65.alpha.2 - 15th October 2022
+- Fixed minor issue with LibCandyBar.
 
 1.14.64 - 12th October 2022
 - For 'Show minimap icon', some of the modified clicks have changed.  Read the option tooltip for more details.
