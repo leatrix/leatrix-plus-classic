@@ -1,4 +1,5 @@
-1.14.65.alpha.2 - 15th October 2022
+1.14.65.alpha.3 - 16th October 2022
+- For 'Show flight times', you can now have the remaining time spoken to you using text to speech.  The time will be announced once a minute and at 30 seconds, 20 seconds and 10 seconds.  This setting is enabled by default.
 - Fixed minor issue with LibCandyBar.
 
 1.14.64 - 12th October 2022
