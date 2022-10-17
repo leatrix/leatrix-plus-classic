@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.65.alpha.3 (16th October 2022)
+-- 	Leatrix Plus 1.14.65.alpha.4 (17th October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.65.alpha.3"
+	LeaPlusLC["AddonVer"] = "1.14.65.alpha.4"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3722,23 +3722,23 @@
 
 								if LeaPlusLC["FlightBarSpeech"] == "On" then
 									C_Timer.After(1, function()
-										C_VoiceChat.SpeakText(0, L["Flight commenced."], destination, speed, 100)
+										C_VoiceChat.SpeakText(0, L["Flight commenced."], destination, speed, GetCVar("Sound_MasterVolume") * 100)
 									end)
 									mybar:AddUpdateFunction(function(bar)
 										mt = bar.remaining
-											if mt > 600 and mt < 601 and not Seconds600 then Seconds600 = true; C_VoiceChat.SpeakText(0, L["Ten minutes"], destination, speed, 100)
-										elseif mt > 540 and mt < 541 and not Seconds540 then Seconds540 = true; C_VoiceChat.SpeakText(0, L["Nine minutes"], destination, speed, 100)
-										elseif mt > 480 and mt < 481 and not Seconds480 then Seconds480 = true; C_VoiceChat.SpeakText(0, L["Eight minutes"], destination, speed, 100)
-										elseif mt > 420 and mt < 421 and not Seconds420 then Seconds420 = true; C_VoiceChat.SpeakText(0, L["Seven minutes"], destination, speed, 100)
-										elseif mt > 360 and mt < 361 and not Seconds360 then Seconds360 = true; C_VoiceChat.SpeakText(0, L["Six minutes"], destination, speed, 100)
-										elseif mt > 300 and mt < 301 and not Seconds300 then Seconds300 = true; C_VoiceChat.SpeakText(0, L["Five minutes"], destination, speed, 100)
-										elseif mt > 240 and mt < 241 and not Seconds240 then Seconds240 = true; C_VoiceChat.SpeakText(0, L["Four minutes"], destination, speed, 100)
-										elseif mt > 180 and mt < 181 and not Seconds180 then Seconds180 = true; C_VoiceChat.SpeakText(0, L["Three minutes"], destination, speed, 100)
-										elseif mt > 120 and mt < 121 and not Seconds120 then Seconds120 = true; C_VoiceChat.SpeakText(0, L["Two minutes"], destination, speed, 100)
-										elseif mt > 060 and mt < 061 and not Seconds060 then Seconds060 = true; C_VoiceChat.SpeakText(0, L["One minute"], destination, speed, 100)
-										elseif mt > 030 and mt < 031 and not Seconds030 then Seconds030 = true; C_VoiceChat.SpeakText(0, L["Thirty seconds"], destination, speed, 100)
-										elseif mt > 020 and mt < 021 and not Seconds020 then Seconds020 = true; C_VoiceChat.SpeakText(0, L["Twenty seconds"], destination, speed, 100)
-										elseif mt > 010 and mt < 011 and not Seconds010 then Seconds010 = true; C_VoiceChat.SpeakText(0, L["Ten seconds"], destination, speed, 100)
+											if mt > 600 and mt < 601 and not Seconds600 then Seconds600 = true; C_VoiceChat.SpeakText(0, L["Ten minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 540 and mt < 541 and not Seconds540 then Seconds540 = true; C_VoiceChat.SpeakText(0, L["Nine minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 480 and mt < 481 and not Seconds480 then Seconds480 = true; C_VoiceChat.SpeakText(0, L["Eight minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 420 and mt < 421 and not Seconds420 then Seconds420 = true; C_VoiceChat.SpeakText(0, L["Seven minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 360 and mt < 361 and not Seconds360 then Seconds360 = true; C_VoiceChat.SpeakText(0, L["Six minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 300 and mt < 301 and not Seconds300 then Seconds300 = true; C_VoiceChat.SpeakText(0, L["Five minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 240 and mt < 241 and not Seconds240 then Seconds240 = true; C_VoiceChat.SpeakText(0, L["Four minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 180 and mt < 181 and not Seconds180 then Seconds180 = true; C_VoiceChat.SpeakText(0, L["Three minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 120 and mt < 121 and not Seconds120 then Seconds120 = true; C_VoiceChat.SpeakText(0, L["Two minutes"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 060 and mt < 061 and not Seconds060 then Seconds060 = true; C_VoiceChat.SpeakText(0, L["One minute"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 030 and mt < 031 and not Seconds030 then Seconds030 = true; C_VoiceChat.SpeakText(0, L["Thirty seconds"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 020 and mt < 021 and not Seconds020 then Seconds020 = true; C_VoiceChat.SpeakText(0, L["Twenty seconds"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
+										elseif mt > 010 and mt < 011 and not Seconds010 then Seconds010 = true; C_VoiceChat.SpeakText(0, L["Ten seconds"], destination, speed, GetCVar("Sound_MasterVolume") * 100)
 										end
 									end)
 								end
@@ -4074,7 +4074,7 @@
 				LeaPlusLC["FlightBarBackground"] = "On"
 				LeaPlusLC["FlightBarDestination"] = "On"
 				LeaPlusLC["FlightBarFillBar"] = "Off"; SetProgressBarFillMode()
-				LeaPlusLC["FlightBarSpeech"] = "On"
+				LeaPlusLC["FlightBarSpeech"] = "Off"
 				LeaPlusLC["FlightBarContribute"] = "On"
 				-- Reset live progress bar
 				if LeaPlusLC.FlightProgressBar then
@@ -12030,7 +12030,7 @@
 				LeaPlusLC:LoadVarChk("FlightBarBackground", "On")			-- Show flight times bar background
 				LeaPlusLC:LoadVarChk("FlightBarDestination", "On")			-- Show flight times bar destination
 				LeaPlusLC:LoadVarChk("FlightBarFillBar", "Off")				-- Show flight times bar fill mode
-				LeaPlusLC:LoadVarChk("FlightBarSpeech", "On")				-- Show flight times bar speech
+				LeaPlusLC:LoadVarChk("FlightBarSpeech", "Off")				-- Show flight times bar speech
 
 				LeaPlusLC:LoadVarChk("FlightBarContribute", "On")			-- Show flight times contribute
 				LeaPlusLC:LoadVarAnc("FlightBarA", "TOP")					-- Show flight times anchor
