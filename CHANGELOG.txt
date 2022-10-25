@@ -1,11 +1,12 @@
 1.14.66.alpha.1 - 23rd October 2022
 - For 'Sell junk automatically' ('Automation'), white items entered in the exclusions editbox will be sold automatically.  Junk items entered in the editbox will not be sold automatically (as before).
 - If you use 'Show flight times' ('Interface') with ElvUI, the flight progress bar will now use ElvUI style.
+- Added a flight time.
 
 1.14.65 - 21st October 2022
 - For 'Show flight times', you can now have the remaining time spoken to you using text to speech.  The time will be announced once a minute and at 30 seconds, 20 seconds and 10 seconds.  This setting is disabled by default.
 - Fixed a minor issue with LibCandyBar.
-- Having ElvUI installed will no longer uncheck conficting option checkboxes.  Conflicting option checkboxes will still be locked but they won't be unchecked.  So if a conflicting option checkbox was checked before installing ElvUI or before enabling a conflicting ElvUI module, it will still be checked after disabling ElvUI or disabling the conflicting ElvUI module.
+- Having ElvUI installed will no longer uncheck conflicting option checkboxes.  Conflicting option checkboxes will still be locked but they won't be unchecked.  So if a conflicting option checkbox was checked before installing ElvUI or before enabling a conflicting ElvUI module, it will still be checked after disabling ElvUI or disabling the conflicting ElvUI module.
 
 1.14.64 - 12th October 2022
 - For 'Show minimap icon', some of the modified clicks have changed.  Read the option tooltip for more details.
