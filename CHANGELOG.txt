@@ -1,3 +1,6 @@
+1.14.67.alpha.1 - 31st October 2022
+- Added a flight time.
+
 1.14.66 - 26th October 2022
 - For 'Sell junk automatically' ('Automation'), white items entered in the exclusions editbox will be sold automatically.  Junk items entered in the editbox will not be sold automatically (as before).
 - If you use 'Show flight times' ('Interface') with ElvUI, the flight progress bar will now use ElvUI style.
