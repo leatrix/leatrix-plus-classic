@@ -1,4 +1,4 @@
-1.14.67.alpha.1 - 31st October 2022
+1.14.67 - 2nd November 2022
 - Added a flight time.
 
 1.14.66 - 26th October 2022
