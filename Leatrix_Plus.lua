@@ -567,6 +567,7 @@
 		or	(LeaPlusLC["NoStickyChat"]			~= LeaPlusDB["NoStickyChat"])			-- Disable sticky chat
 		or	(LeaPlusLC["UseArrowKeysInChat"]	~= LeaPlusDB["UseArrowKeysInChat"])		-- Use arrow keys in chat
 		or	(LeaPlusLC["NoChatFade"]			~= LeaPlusDB["NoChatFade"])				-- Disable chat fade
+		or	(LeaPlusLC["ClassColorsInChat"]		~= LeaPlusDB["ClassColorsInChat"])		-- Use class colors in chat
 		or	(LeaPlusLC["RecentChatWindow"]		~= LeaPlusDB["RecentChatWindow"])		-- Recent chat window
 		or	(LeaPlusLC["MaxChatHstory"]			~= LeaPlusDB["MaxChatHstory"])			-- Increase chat history
 		or	(LeaPlusLC["FilterChatMessages"]	~= LeaPlusDB["FilterChatMessages"])		-- Filter chat messages
@@ -7804,20 +7805,9 @@
 		--	Use class colors in chat
 		----------------------------------------------------------------------
 
-		do
+		if LeaPlusLC["ClassColorsInChat"] == "On" and not LeaLockList["ClassColorsInChat"] then
 
-			-- Function to set class colors
-			local function SetClassCol()
-				if LeaPlusLC["ClassColorsInChat"] == "On" then
-					SetCVar("chatClassColorOverride", "0")
-				else
-					SetCVar("chatClassColorOverride", "1")
-				end
-			end
-
-			-- Set class colors on startup and when option is clicked (if enabled)
-			LeaPlusCB["ClassColorsInChat"]:HookScript("OnClick", SetClassCol)
-			if LeaPlusLC["ClassColorsInChat"] == "On" then SetClassCol() end
+			SetCVar("chatClassColorOverride", "0")
 
 		end
 
@@ -12652,6 +12642,13 @@
 		-- Restore default values for options that require reloads
 		----------------------------------------------------------------------
 
+		-- Use class colors in chat
+		if LeaPlusDB["ClassColorsInChat"] == "On" and not LeaLockList["ClassColorsInChat"] then
+			if wipe or (not wipe and LeaPlusLC["ClassColorsInChat"] == "Off") then
+				SetCVar("chatClassColorOverride", "1")
+			end
+		end
+
 		-- Enhance minimap restore round minimap if wipe or enhance minimap is toggled off
 		if LeaPlusDB["MinimapModder"] == "On" and LeaPlusDB["SquareMinimap"] == "On" and not LeaLockList["MinimapModder"] then
 			if wipe or (not wipe and LeaPlusLC["MinimapModder"] == "Off") then
@@ -14738,7 +14735,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "UseArrowKeysInChat"		, 	"Use arrow keys in chat"		, 	340, -112, 	true,	"If checked, you can press the arrow keys to move the insertion point left and right in the chat frame.|n|nIf unchecked, the arrow keys will use the default keybind setting.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoChatFade"				, 	"Disable chat fade"				, 	340, -132, 	true,	"If checked, chat text will not fade out after a time period.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "UnivGroupColor"			,	"Universal group color"			,	340, -152,	false,	"If checked, raid chat will be colored blue (to match the default party chat color).")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColorsInChat"			,	"Use class colors in chat"		,	340, -172,	false,	"If checked, class colors will be used in the chat frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColorsInChat"			,	"Use class colors in chat"		,	340, -172,	true,	"If checked, class colors will be used in the chat frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "RecentChatWindow"			,	"Recent chat window"			, 	340, -192, 	true,	"If checked, you can hold down the control key and click a chat tab to view recent chat in a copy-friendly window.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MaxChatHstory"				,	"Increase chat history"			, 	340, -212, 	true,	"If checked, your chat history will increase to 4096 lines.  If unchecked, the default will be used (128 lines).|n|nEnabling this option may prevent some chat text from showing during login.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FilterChatMessages"		, 	"Filter chat messages"			,	340, -232, 	true,	"If checked, you can block drunken spam and duel spam.")
