@@ -1,4 +1,4 @@
-1.14.68.alpha.3 - 6th November 2022
+1.14.68 - 9th November 2022
 - If you use the Glass addon, some chat settings will now be locked out of Leatrix Plus in order to ensure that the addon loads correctly.
 - Toggling the 'Use class colors in chat' ('Chat') option now requires a UI reload.
 - For addon authors, the enhanced minimap combined button frame now has a global reference of LeaPlusGlobalMinimapCombinedButtonFrame.
