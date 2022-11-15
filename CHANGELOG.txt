@@ -1,3 +1,6 @@
+1.14.69 - 15th November 2022
+- Updated LibDBIcon, LibChatAnims and LibCandyBar.
+
 1.14.68 - 9th November 2022
 - If you use the Glass addon, some chat settings will now be locked out of Leatrix Plus in order to ensure that the addon loads correctly.
 - Toggling the 'Use class colors in chat' ('Chat') option now requires a UI reload.
