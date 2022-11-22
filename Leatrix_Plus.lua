@@ -1940,9 +1940,6 @@
 				end
 			end)
 
-			-- Editbox tooltip
-			local tipPrefix = L["Enter junk item IDs separated by commas."] .. "|n" .. L["Item IDs can be found in item toolips."] .. "|n" .. L["These items will not be sold."]
-
 			-- Function to make tooltip string
 			local function MakeTooltipString()
 
