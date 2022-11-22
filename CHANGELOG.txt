@@ -1,3 +1,6 @@
+1.14.70 - 22nd November 2022
+- Added flight times.
+
 1.14.69 - 15th November 2022
 - Updated LibDBIcon, LibChatAnims and LibCandyBar.
 
