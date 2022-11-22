@@ -1,5 +1,6 @@
-1.14.71.alpha.1 - 22nd November 2022
+1.14.71 - 22nd November 2022
 - Updated 'Sell junk automatically' ('Automation') internal code.
+- Fixed a rare and situational Lua error with 'Restore chat messages' ('Chat').
 
 1.14.70 - 22nd November 2022
 - Added flight times.
