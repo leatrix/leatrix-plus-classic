@@ -1,3 +1,6 @@
+1.14.72.alpha.1 - 28th November 2022
+- For 'Enhance minimap' ('Interface'), the 'Combine addon buttons' setting now supports the Armory addon.
+
 1.14.71 - 22nd November 2022
 - Updated 'Sell junk automatically' ('Automation') internal code.
 - Fixed a rare and situational Lua error with 'Restore chat messages' ('Chat').

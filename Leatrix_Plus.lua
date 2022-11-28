@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.71 (22nd November 2022)
+-- 	Leatrix Plus 1.14.72.alpha.1 (28th November 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.71"
+	LeaPlusLC["AddonVer"] = "1.14.72.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -4710,6 +4710,7 @@
 								local buttonName = strlower(buttons[i])
 								if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
 									local button = LibDBIconStub:GetMinimapButton(buttons[i])
+									if buttonName == "armory" then button.db.hide = false end -- Armory addon sets hidden to true
 									if not button.db.hide then
 										button:SetParent(bFrame)
 										button:ClearAllPoints()
