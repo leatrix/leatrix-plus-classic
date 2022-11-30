@@ -1,4 +1,4 @@
-1.14.72.alpha.2 - 29th November 2022
+1.14.72.alpha.3 - 29th November 2022
 - For 'Enhance minimap' ('Interface'), the 'Combine addon buttons' setting now supports the Armory addon.
 - Added a flight time.
 
