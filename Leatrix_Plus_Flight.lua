@@ -398,7 +398,7 @@
 					["0.54:0.21:0.46:0.30:0.56:0.53:0.53:0.61"] = 443, -- Moonglade, Bloodvenom Post, Crossroads, Camp Taurajo
 					["0.54:0.21:0.46:0.30:0.56:0.53:0.61:0.55"] = 404, -- Moonglade, Bloodvenom Post, Crossroads, Ratchet
 					["0.54:0.21:0.46:0.30:0.56:0.53"] = 353, -- Moonglade, Bloodvenom Post, Crossroads
-					["0.54:0.21:0.64:0.23:0.63:0.36:0.63:0.44"] = 370, -- Moonglade, Everlook, Valormok, Orgrimmar
+					["0.54:0.21:0.64:0.23:0.63:0.36:0.63:0.44"] = 370, -- Moonglade, Everlook, Valormok, Orgrimmar (Cory Grabenstein reported 396)
 					["0.54:0.21:0.64:0.23:0.63:0.36:0.55:0.42"] = 369, -- Moonglade, Everlook, Valormok, Splintertree Post
 					["0.54:0.21:0.64:0.23:0.63:0.36"] = 275, -- Moonglade, Everlook, Valormok
 					["0.54:0.21:0.64:0.23"] = 142, -- Moonglade, Everlook
