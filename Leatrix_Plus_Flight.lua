@@ -801,6 +801,7 @@
 					["0.57:0.32:0.48:0.30:0.52:0.22:0.70:0.16"] = 304, -- Refuge Pointe, Southshore, Chillwind Camp, Light's Hope Chapel
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67"] = 384, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.51:0.75"] = 486, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Darkshire
+					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.56:0.70"] = 483, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Lakeshire
 
 					-- Alliance: Sentinel Hill (Westfall)
 					["0.41:0.75:0.43:0.93"] = 185, -- Sentinel Hill, Booty Bay
