@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.76 (2nd January 2023)
+-- 	Leatrix Plus 1.14.77 (4th January 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.76"
+	LeaPlusLC["AddonVer"] = "1.14.77"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
