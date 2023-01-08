@@ -1029,6 +1029,7 @@
 					["0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25"] = 763, -- Gadgetzan, Theramore, Nijel's Point, Auberdine
 					["0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 1043, -- Gadgetzan, Theramore, Nijel's Point, Auberdine, Moonglade, Everlook
 					["0.60:0.81:0.50:0.76:0.42:0.79:0.31:0.69"] = 362, -- Gadgetzan, Marshal's Refuge, Cenarion Hold, Feathermoon
+					["0.60:0.81:0.64:0.67:0.43:0.25:0.46:0.40"] = 944, -- Gadgetzan, Theramore, Auberdine, Astranaar
 
 					-- Alliance: Marshal's Refuge (Un'Goro Crater)
 					["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
