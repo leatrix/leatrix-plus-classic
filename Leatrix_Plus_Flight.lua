@@ -1088,6 +1088,7 @@
 					["0.40:0.51:0.43:0.25:0.55:0.21"] = 434, -- Nijel's Point, Auberdine, Moonglade
 					["0.40:0.51:0.31:0.69:0.42:0.79:0.50:0.76"] = 471, -- Nijel's Point, Feathermoon, Cenarion Hold, Marshal's Refuge
 					["0.40:0.51:0.31:0.69:0.42:0.79"] = 388, -- Nijel's Point, Feathermoon, Cenarion Hold
+					["0.40:0.51:0.64:0.67:0.48:0.70"] = 471, -- Nijel's Point, Theramore, Thalanaar
 
 					-- Alliance: Ratchet (The Barrens)
 					["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan

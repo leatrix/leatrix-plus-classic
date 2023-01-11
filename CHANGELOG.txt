@@ -1,3 +1,6 @@
+1.14.79 - 11th January 2023
+- Added flight times.
+
 1.14.78 - 8th January 2023
 - Added a new option called 'Mute custom sounds' ('System').  You can enter sound file IDs (separated by comma) along with a brief note describing each ID in the configuration panel editbox.  After that, click the Mute button and you will never hear the sounds again.  For example, entering 'DevAura 569679, RetAura 568744' will mute both aura sounds.  Read the help button tooltip for more details.
 - For 'Show train all button' ('Interface'), the train all button now has a global name of LeaPlusGlobalTrainAllButton.
@@ -7,11 +10,11 @@
 - Updated flight times.
 
 1.14.75 - 24th December 2022
-- Added a flight time.
+- Added flight times.
 
 1.14.72 - 30th November 2022
 - For 'Enhance minimap' ('Interface'), the 'Combine addon buttons' setting now supports the Armory addon.
-- Added a flight time.
+- Added flight times.
 
 1.14.71 - 22nd November 2022
 - Updated 'Sell junk automatically' ('Automation') internal code.
@@ -29,12 +32,12 @@
 - For addon authors, the enhanced minimap combined button frame now has a global reference of LeaPlusGlobalMinimapCombinedButtonFrame.
 
 1.14.67 - 2nd November 2022
-- Added a flight time.
+- Added flight times.
 
 1.14.66 - 26th October 2022
 - For 'Sell junk automatically' ('Automation'), white items entered in the exclusions editbox will be sold automatically.  Junk items entered in the editbox will not be sold automatically (as before).
 - If you use 'Show flight times' ('Interface') with ElvUI, the flight progress bar will now use ElvUI style.
-- Added a flight time.
+- Added flight times.
 
 1.14.65 - 21st October 2022
 - For 'Show flight times', you can now have the remaining time spoken to you using text to speech.  The time will be announced once a minute and at 30 seconds, 20 seconds and 10 seconds.  This setting is disabled by default.
@@ -52,7 +55,7 @@
 1.14.62 - 28th September 2022
 - Added a new option 'Restore chat messages' ('Chat').  If enabled, you can reload your UI without losing your recent chat messages.
 - Added a new option 'Block shared quests' ('Social').  If enabled, shared quests will be automatically declined unless the player sharing the quest is a friend.
-- Added a flight time.  There are now 1058 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1058 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.60 - 14th September 2022
 - For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.  Also some locale updates.
@@ -72,16 +75,16 @@
 - For 'Show flight times' ('Interface'), you can now control whether flight report windows are shown using a new setting in the configuration panel.
 - If you use ElvUI, Leatrix Plus options which are not compatible with specific ElvUI modules will now be disabled and locked while those ElvUI modules are enabled.  The option tooltip will tell you which ElvUI module is causing the Leatrix Plus option to be disabled.  Disabling the relevant ElvUI module will make the Leatrix Plus setting available again.
 - Fixed a minor issue with 'Show Wowhead links' ('Interface') and Questie which sometimes caused the quest link to not be updated.
-- Added a flight time.  There are now 1057 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1057 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.56 - 17th August 2022
 - For 'Show flight times' ('Interface'), the flight progress bar will now always hide when you land.  The flight report window will now show if the minimum time difference between the saved flight time and the actual flight time is 15 seconds (up from 5).
 - Fixed a minor issue with 'Show cooldowns' ('Interface') which caused buff spell IDs to show in debuff tooltips.
-- Added a flight time.  There are now 1056 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1056 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.55 - 10th August 2022
 - If you use 'Automate quests' ('Automation') with a Mac, you can now assign the override key to be the command key if you wish.
-- Added a flight time.  There are now 1055 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1055 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.54 - 3rd August 2022
 - Added flight times.  There are now 1054 flight times stored in Leatrix Plus for Classic Era/SoM.
@@ -97,7 +100,7 @@
 
 1.14.49 - 29th June 2022
 - In the game key bindings menu, you can now set a keybind to announce rares in chat.  Target a creature, press your keybind and detals of your target will be shown in the General chat channel.  These details include your target's name, health percentage remaining and coordinates.
-- Added a flight time.  There are now 1052 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1052 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.48 - 22nd June 2022
 - In the game key bindings menu, you can now set a keybind to show a web link for whatever your pointer is over (as long as it has a tooltip).  For example, if you have an item in your bag and you don't know what it's for, hover your pointer over it so the item tooltip shows up then press your keybind.  A Wowhead link will show in a copy-friendly window.  Press CTRL/C to copy the link then paste it into your browser.
@@ -117,14 +120,14 @@
 
 1.14.44 - 25th May 2022
 - Added a new option 'Show ready timer' ('Interface').  If checked, a timer will be shown under the PvP encounter ready frame so that you know how long you have left to click the enter button.
-- Added a flight time.  There are now 1047 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1047 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.43 - 18th May 2022
 - For 'Enhance quest log' ('Interface'), the quest log is now taller.
 - For 'Enhance professions' ('Interface'), the professions frame is now taller.
 - For 'Enhance trainers' ('Interface'), the skill trainer frame is now taller.  Also fixed a cosmetic bug with the position of the beast training cost column.
 - If you are using ElvUI, 'Show Wowhead links' ('Interface') will now place links inside the quest log frame rather than above it.
-- Added a flight time.  There are now 1046 flight times stored in Leatrix Plus for Classic Era/SoM.
+- Added flight times.  There are now 1046 flight times stored in Leatrix Plus for Classic Era/SoM.
 
 1.14.42 - 12th May 2022
 - For 'Sell junk automatically' ('Automation'), you can now exclude specific junk items from being sold.  There is an exclusion list in the configuration panel where you can enter your own item IDs (separated by commas).  Item IDs will be shown in item tooltips while the configuration panel is showing.
