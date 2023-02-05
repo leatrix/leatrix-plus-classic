@@ -1,4 +1,5 @@
-1.14.82.alpha.1 - 30th January 2023
+1.14.82.alpha.2 - 5th February 2023
+- For 'Recent chat window' ('Chat'), fixed an issue which caused texture atlases to break dragging and selecting messages.
 - Updated LibDBIcon.
 - Added flight times.
 
