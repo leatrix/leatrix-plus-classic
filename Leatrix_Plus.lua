@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.82 (8th February 2023)
+-- 	Leatrix Plus 1.14.83 (19th February 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.82"
+	LeaPlusLC["AddonVer"] = "1.14.83"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -3858,9 +3858,7 @@
 			editBox:SetScript("OnKeyDown", function() end)
 
 			-- Load library
-			if not LibStub("LibCandyBar-3.0", true) then
-				Leatrix_Plus:LeaPlusCandyBar()
-			end
+			Leatrix_Plus:LeaPlusCandyBar()
 
 			-- Variables
 			local data = Leatrix_Plus["FlightData"]
@@ -5685,10 +5683,8 @@
 
 		if LeaPlusLC["FilterChatMessages"] == "On" then
 
-			-- Enable LibChatAnims only if needed
-			if not LibStub("LibChatAnims", true) then
-				Leatrix_Plus:LeaPlusLCA()
-			end
+			-- Load LibChatAnims
+			Leatrix_Plus:LeaPlusLCA()
 
 			-- Create configuration panel
 			local ChatFilterPanel = LeaPlusLC:CreatePanel("Filter chat messages", "ChatFilterPanel")
@@ -14234,10 +14230,8 @@
 			elseif str == "camp" then
 				-- Camp
 				if not LeaPlusLC.NoCampFrame then
-					-- First time initialisation
-					if not LibStub("LibChatAnims", true) then
-						Leatrix_Plus:LeaPlusLCA()
-					end
+					-- Load LibChatAnims
+					Leatrix_Plus:LeaPlusLCA()
 					-- Chat filter
 					function LeaPlusLC.CampFilterFunc(self, event, msg)
 						if msg:match(_G["MARKED_AFK_MESSAGE"]:gsub("%%s", "%s-"))
