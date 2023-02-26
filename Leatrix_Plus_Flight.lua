@@ -45,6 +45,7 @@
 					["0.56:0.61:0.55:0.57:0.62:0.31:0.49:0.27"] = 477, -- Flame Crest, Kargath, Hammerfall, Tarren Mill
 					["0.56:0.61:0.55:0.57:0.44:0.19"] = 597, -- Flame Crest, Kargath, Undercity
 					["0.56:0.61:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 576, -- Flame Crest, Kargath, Hammerfall, Tarren Mill, The Sepulcher
+					["0.56:0.61:0.55:0.57:0.45:0.84:0.43:0.93"] = 492, -- Flame Crest, Kargath, Grom'gol, Booty Bay
 
 					-- Horde: Grom'gol (Stranglethorn Vale)
 					["0.45:0.84:0.43:0.93"] = 81, -- Grom'gol, Booty Bay
@@ -242,6 +243,7 @@
 					["0.44:0.69:0.32:0.58:0.41:0.47"] = 400, -- Camp Mojache, Shadowprey Village, Sun Rock Retreat
 					["0.44:0.69:0.45:0.56"] = 259, -- Camp Mojache, Thunder Bluff
 					["0.44:0.69:0.32:0.58"] = 201, -- Camp Mojache, Shadowprey Village
+					["0.44:0.69:0.56:0.53:0.57:0.64"] = 427, -- Camp Mojache, Crossroads, Brackenwall Village
 
 					-- Horde: Camp Taurajo (The Barrens)
 					["0.53:0.61:0.55:0.73:0.61:0.80"] = 218, -- Camp Taurajo, Freewind Post, Gadgetzan
@@ -1079,7 +1081,7 @@
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
 					["0.40:0.51:0.64:0.67"] = 308, -- Nijel's Point, Theramore
-					["0.40:0.51:0.31:0.69:0.48:0.70"] = 472, -- Nijel's Point, Feathermoon, Thalanaar
+					["0.40:0.51:0.31:0.69:0.48:0.70"] = 472, -- Nijel's Point, Feathermoon, Thalanaar (Filip Olsson reported 387)
 					["0.40:0.51:0.31:0.69"] = 232, -- Nijel's Point, Feathermoon
 					["0.40:0.51:0.64:0.67:0.61:0.55"] = 422, -- Nijel's Point, Theramore, Ratchet
 					["0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40"] = 421, -- Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point
@@ -1243,6 +1245,7 @@
 					["0.64:0.67:0.61:0.40:0.65:0.23:0.55:0.21"] = 536, -- Theramore, Talrendis Point, Everlook, Moonglade
 					["0.64:0.67:0.60:0.81:0.42:0.79"] = 354, -- Theramore, Gadgetzan, Cenarion Hold
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 792, -- Theramore, Nijel's Point, Auberdine, Astranaar
+					["0.64:0.67:0.43:0.25:0.39:0.40"] = 802, -- Theramore, Auberdine, Stonetalon Peak
 
 				},
 
