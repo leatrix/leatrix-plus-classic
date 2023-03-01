@@ -1221,6 +1221,7 @@
 					["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25"] = 693, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Auberdine
 					["0.48:0.70:0.64:0.67:0.43:0.25:0.46:0.40"] = 955, -- Thalanaar, Theramore, Auberdine, Astranaar
 					["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 777, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
+					["0.48:0.70:0.64:0.67:0.40:0.51:0.39:0.40"] = 613, -- Thalanaar, Theramore, Nijel's Point, Stonetalon Peak
 
 					-- Alliance: Theramore (Dustwallow Marsh)
 					["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
