@@ -59,6 +59,7 @@
 					["0.45:0.84:0.55:0.57:0.62:0.31:0.49:0.27"] = 704, -- Grom'gol, Kargath, Hammerfall, Tarren Mill
 					["0.45:0.84:0.55:0.57:0.44:0.19"] = 823, -- Grom'gol, Kargath, Undercity
 					["0.45:0.84:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 802, -- Grom'gol, Kargath, Hammerfall, Tarren Mill, The Sepulcher
+					["0.45:0.84:0.55:0.57:0.44:0.19:0.49:0.27"] = 890, -- Grom'gol, Kargath, Undercity, Tarren Mill
 
 					-- Horde: Hammerfall (Arathi Highlands)
 					["0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 651, -- Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -1077,6 +1078,7 @@
 					["0.55:0.21:0.43:0.25:0.61:0.40"] = 441, -- Moonglade, Auberdine, Talrendis Point
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 837, -- Moonglade, Auberdine, Talrendis Point, Ratchet, Theramore, Thalanaar
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55"] = 576, -- Moonglade, Auberdine, Talrendis Point, Ratchet
+					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67"] = 740, -- Moonglade, Auberdine, Nijel's Point, Theramore
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
