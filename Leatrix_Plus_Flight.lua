@@ -991,6 +991,7 @@
 					["0.65:0.23:0.53:0.26:0.43:0.25:0.42:0.16"] = 376, -- Everlook, Talonbranch Glade, Auberdine, Rut'theran Village
 					["0.65:0.23:0.55:0.21:0.43:0.25:0.46:0.40"] = 438, -- Everlook, Moonglade, Auberdine, Astranaar
 					["0.65:0.23:0.53:0.26:0.43:0.25:0.46:0.40"] = 468, -- Everlook, Talonbranch Glade, Auberdine, Astranaar
+					["0.65:0.23:0.53:0.26:0.43:0.25"] = 293, -- Everlook, Talonbranch Glade, Auberdine
 
 					-- Alliance: Feathermoon (Feralas)
 					["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan
