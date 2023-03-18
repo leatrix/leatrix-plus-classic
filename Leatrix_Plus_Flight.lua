@@ -913,7 +913,7 @@
 				[1414] = {
 
 					-- Alliance: Astranaar (Ashenvale)
-					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Joshua reported 538)
+					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Justin Case and Joshua reported 538)
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 511, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67"] = 381, -- Astranaar, Talrendis Point, Ratchet, Theramore
 					["0.46:0.40:0.61:0.40:0.61:0.55"] = 283, -- Astranaar, Talrendis Point, Ratchet
@@ -954,6 +954,7 @@
 					["0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 755, -- Auberdine, Nijel's Point, Theramore, Gadgetzan
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 696, -- Auberdine, Talrendis Point, Ratchet, Theramore, Thalanaar
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 793, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
+					["0.43:0.25:0.64:0.67:0.61:0.55"] = 784, -- Auberdine, Theramore, Ratchet
 
 					-- Alliance: Cenarion Hold (Silithus)
 					["0.42:0.79:0.60:0.81"] = 189, -- Cenarion Hold, Gadgetzan
