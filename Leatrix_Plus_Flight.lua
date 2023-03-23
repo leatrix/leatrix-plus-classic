@@ -1084,11 +1084,12 @@
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 837, -- Moonglade, Auberdine, Talrendis Point, Ratchet, Theramore, Thalanaar
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55"] = 576, -- Moonglade, Auberdine, Talrendis Point, Ratchet
 					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67"] = 740, -- Moonglade, Auberdine, Nijel's Point, Theramore
+					["0.55:0.21:0.53:0.26:0.61:0.40"] = 330, -- Moonglade, Talonbranch Glade, Talrendis Point
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
 					["0.40:0.51:0.64:0.67"] = 308, -- Nijel's Point, Theramore
-					["0.40:0.51:0.31:0.69:0.48:0.70"] = 472, -- Nijel's Point, Feathermoon, Thalanaar (Filip Olsson reported 387)
+					["0.40:0.51:0.31:0.69:0.48:0.70"] = 387, -- Nijel's Point, Feathermoon, Thalanaar (was 472, changed to 387 by Max and Filip Olsson)
 					["0.40:0.51:0.31:0.69"] = 232, -- Nijel's Point, Feathermoon
 					["0.40:0.51:0.64:0.67:0.61:0.55"] = 422, -- Nijel's Point, Theramore, Ratchet
 					["0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40"] = 421, -- Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point
@@ -1230,6 +1231,7 @@
 					["0.48:0.70:0.64:0.67:0.43:0.25:0.46:0.40"] = 955, -- Thalanaar, Theramore, Auberdine, Astranaar
 					["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 777, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.48:0.70:0.64:0.67:0.40:0.51:0.39:0.40"] = 613, -- Thalanaar, Theramore, Nijel's Point, Stonetalon Peak
+					["0.48:0.70:0.64:0.67:0.43:0.25:0.39:0.40"] = 961, -- Thalanaar, Theramore, Auberdine, Stonetalon Peak
 
 					-- Alliance: Theramore (Dustwallow Marsh)
 					["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
