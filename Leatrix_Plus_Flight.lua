@@ -708,6 +708,7 @@
 					["0.56:0.70:0.43:0.67:0.51:0.49:0.59:0.52"] = 416, -- Lakeshire, Stormwind, Ironforge, Thelsamar
 					["0.56:0.70:0.43:0.67:0.51:0.49"] = 358, -- Lakeshire, Stormwind, Ironforge
 					["0.56:0.70:0.43:0.67:0.51:0.49:0.49:0.44"] = 442, -- Lakeshire, Stormwind, Ironforge, Menethil Harbor
+					["0.56:0.70:0.41:0.75:0.43:0.93"] = 317, -- Lakeshire, Sentinel Hill, Booty Bay
 
 					-- Alliance: Light's Hope Chapel (Eastern Plaguelands)
 					["0.70:0.16:0.51:0.49:0.43:0.67:0.43:0.93"] = 771, -- Light's Hope Chapel, Ironforge, Stormwind, Booty Bay
@@ -1105,6 +1106,7 @@
 					["0.40:0.51:0.31:0.69:0.42:0.79"] = 388, -- Nijel's Point, Feathermoon, Cenarion Hold
 					["0.40:0.51:0.64:0.67:0.48:0.70"] = 471, -- Nijel's Point, Theramore, Thalanaar
 					["0.40:0.51:0.43:0.25:0.61:0.40:0.61:0.55"] = 717, -- Nijel's Point, Auberdine, Talrendis Point, Ratchet
+					["0.40:0.51:0.43:0.25:0.46:0.40"] = 458, -- Nijel's Point, Auberdine, Astranaar
 
 					-- Alliance: Ratchet (The Barrens)
 					["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan
