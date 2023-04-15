@@ -224,6 +224,7 @@
 					["0.46:0.30:0.56:0.53:0.41:0.47"] = 390, -- Bloodvenom Post, Crossroads, Sun Rock Retreat
 					["0.46:0.30:0.56:0.53:0.45:0.56"] = 423, -- Bloodvenom Post, Crossroads, Thunder Bluff
 					["0.46:0.30:0.56:0.53:0.41:0.47:0.32:0.58"] = 533, -- Bloodvenom Post, Crossroads, Sun Rock Retreat, Shadowprey Village
+					["0.46:0.30:0.63:0.44:0.55:0.42"] = 348, -- Bloodvenom Post, Orgrimmar, Splintertree Post
 
 					-- Horde: Camp Mojache (Feralas)
 					["0.44:0.69:0.61:0.80"] = 201, -- Camp Mojache, Gadgetzan
@@ -645,6 +646,7 @@
 					["0.52:0.22:0.55:0.25"] = 66, -- Chillwind Camp, Aerie Peak
 					["0.52:0.22:0.70:0.16"] = 147, -- Chillwind Camp, Light's Hope Chapel
 					["0.52:0.22:0.51:0.49:0.43:0.67:0.56:0.70"] = 530, -- Chillwind Camp, Ironforge, Stormwind, Lakeshire
+					["0.52:0.22:0.48:0.30:0.57:0.32"] = 157, -- Chillwind Camp, Southshore, Refuge Pointe
 
 					-- Alliance: Darkshire (Duskwood)
 					["0.51:0.75:0.43:0.93"] = 171, -- Darkshire, Booty Bay
@@ -709,6 +711,7 @@
 					["0.56:0.70:0.43:0.67:0.51:0.49"] = 358, -- Lakeshire, Stormwind, Ironforge
 					["0.56:0.70:0.43:0.67:0.51:0.49:0.49:0.44"] = 442, -- Lakeshire, Stormwind, Ironforge, Menethil Harbor
 					["0.56:0.70:0.41:0.75:0.43:0.93"] = 317, -- Lakeshire, Sentinel Hill, Booty Bay
+					["0.56:0.70:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 549, -- Lakeshire, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
 
 					-- Alliance: Light's Hope Chapel (Eastern Plaguelands)
 					["0.70:0.16:0.51:0.49:0.43:0.67:0.43:0.93"] = 771, -- Light's Hope Chapel, Ironforge, Stormwind, Booty Bay
@@ -789,6 +792,7 @@
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44"] = 508, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Menethil Harbor
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.59:0.52"] = 482, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Thelsamar
 					["0.61:0.78:0.51:0.75:0.43:0.67:0.51:0.49:0.51:0.57"] = 456, -- Nethergarde Keep, Darkshire, Stormwind, Ironforge, Thorium Point
+					["0.61:0.78:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 570, -- Nethergarde Keep, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Southshore
 
 					-- Alliance: Refuge Pointe (Arathi Highlands)
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 614, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -914,7 +918,7 @@
 				[1414] = {
 
 					-- Alliance: Astranaar (Ashenvale)
-					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Justin Case and Joshua reported 538)
+					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Andrew Hawk, Justin Case and Joshua reported 538)
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 511, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67"] = 381, -- Astranaar, Talrendis Point, Ratchet, Theramore
 					["0.46:0.40:0.61:0.40:0.61:0.55"] = 283, -- Astranaar, Talrendis Point, Ratchet
@@ -934,6 +938,7 @@
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.64:0.67:0.61:0.55"] = 701, -- Astranaar, Stonetalon Peak, Nijel's Point, Theramore, Ratchet
 					["0.46:0.40:0.43:0.25:0.64:0.67:0.48:0.70"] = 982, -- Astranaar, Auberdine, Theramore, Thalanaar
 					["0.46:0.40:0.61:0.40:0.64:0.67"] = 390, -- Astranaar, Talrendis Point, Theramore
+					["0.46:0.40:0.43:0.25:0.64:0.67"] = 823, -- Astranaar, Auberdine, Theramore
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1064,6 +1069,7 @@
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 876, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 1055, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 					["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25"] = 726, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine
+					["0.50:0.76:0.60:0.81:0.64:0.67:0.43:0.25:0.42:0.16"] = 956, -- Marshal's Refuge, Gadgetzan, Theramore, Auberdine, Rut'theran Village
 
 					-- Alliance: Moonglade (Moonglade)
 					["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
@@ -1130,6 +1136,8 @@
 					["0.61:0.55:0.64:0.67:0.43:0.25"] = 725, -- Ratchet, Theramore, Auberdine
 					["0.61:0.55:0.64:0.67:0.43:0.25:0.42:0.16"] = 809, -- Ratchet, Theramore, Auberdine, Rut'theran Village
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.42:0.16"] = 805, -- Ratchet, Theramore, Nijel's Point, Auberdine, Rut'theran Village
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 1001, -- Ratchet, Theramore, Nijel's Point, Auberdine, Moonglade, Everlook
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 896, -- Ratchet, Theramore, Nijel's Point, Auberdine, Astranaar
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1176,6 +1184,7 @@
 					["0.39:0.40:0.40:0.51:0.31:0.69:0.42:0.79"] = 515, -- Stonetalon Peak, Nijel's Point, Feathermoon, Cenarion Hold
 					["0.39:0.40:0.43:0.25:0.64:0.67:0.61:0.55"] = 961, -- Stonetalon Peak, Auberdine, Theramore, Ratchet
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.48:0.70"] = 597, -- Stonetalon Peak, Nijel's Point, Theramore, Thalanaar
+					["0.39:0.40:0.43:0.25:0.64:0.67"] = 853, -- Stonetalon Peak, Auberdine, Theramore
 
 					-- Alliance: Talonbranch Glade (Felwood)
 					["0.53:0.26:0.55:0.21"] = 68, -- Talonbranch Glade, Moonglade
