@@ -327,6 +327,7 @@
 					["0.64:0.23:0.63:0.36:0.45:0.56"] = 392, -- Everlook, Valormok, Thunder Bluff
 					["0.64:0.23:0.63:0.36:0.45:0.56:0.32:0.58"] = 550, -- Everlook, Valormok, Thunder Bluff, Shadowprey Village
 					["0.64:0.23:0.63:0.44:0.55:0.42"] = 393, -- Everlook, Orgrimmar, Splintertree Post
+					["0.64:0.23:0.63:0.44:0.56:0.53:0.61:0.55"] = 466, -- Everlook, Orgrimmar, Crossroads, Ratchet
 
 					-- Horde: Freewind Post (Thousand Needles)
 					["0.55:0.73:0.61:0.80"] = 93, -- Freewind Post, Gadgetzan
@@ -458,7 +459,7 @@
 
 					-- Horde: Shadowprey Village (Desolace)
 					["0.32:0.58:0.44:0.69:0.55:0.73:0.61:0.80"] = 395, -- Shadowprey Village, Camp Mojache, Freewind Post, Gadgetzan
-					["0.32:0.58:0.44:0.69:0.55:0.73"] = 382, -- Shadowprey Village, Camp Mojache, Freewind Post
+					["0.32:0.58:0.44:0.69:0.55:0.73"] = 382, -- Shadowprey Village, Camp Mojache, Freewind Post (Samuel Peters reported 303)
 					["0.32:0.58:0.44:0.69:0.42:0.79:0.50:0.76"] = 417, -- Shadowprey Village, Camp Mojache, Cenarion Hold, Marshal's Refuge
 					["0.32:0.58:0.44:0.69:0.42:0.79"] = 326, -- Shadowprey Village, Camp Mojache, Cenarion Hold
 					["0.32:0.58:0.44:0.69"] = 196, -- Shadowprey Village, Camp Mojache
@@ -918,7 +919,7 @@
 				[1414] = {
 
 					-- Alliance: Astranaar (Ashenvale)
-					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Andrew Hawk, Justin Case and Joshua reported 538)
+					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 538, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan (Was 744, changed to 538 by natsuhiboshi, Andrew Hawk, Justin Case and Joshua)
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 511, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 					["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67"] = 381, -- Astranaar, Talrendis Point, Ratchet, Theramore
 					["0.46:0.40:0.61:0.40:0.61:0.55"] = 283, -- Astranaar, Talrendis Point, Ratchet
@@ -1167,6 +1168,7 @@
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.65:0.23"] = 563, -- Rut'theran Village, Auberdine, Talrendis Point, Everlook
 					["0.42:0.16:0.43:0.25:0.40:0.51:0.64:0.67:0.61:0.55"] = 798, -- Rut'theran Village, Auberdine, Nijel's Point, Theramore, Ratchet
 					["0.42:0.16:0.43:0.25:0.64:0.67:0.48:0.70"] = 920, -- Rut'theran Village, Auberdine, Theramore, Thalanaar
+					["0.42:0.16:0.43:0.25:0.64:0.67:0.60:0.81"] = 913, -- Rut'theran Village, Auberdine, Theramore, Gadgetzan
 
 					-- Alliance: Stonetalon Peak (Stonetalon Mountains)
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81"] = 591, -- Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan
