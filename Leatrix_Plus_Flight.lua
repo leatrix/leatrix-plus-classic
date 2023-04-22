@@ -165,6 +165,7 @@
 					["0.51:0.57:0.55:0.57:0.62:0.31:0.49:0.27"] = 447, -- Thorium Point, Kargath, Hammerfall, Tarren Mill
 					["0.51:0.57:0.55:0.57:0.44:0.19"] = 566, -- Thorium Point, Kargath, Undercity
 					["0.51:0.57:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 545, -- Thorium Point, Kargath, Hammerfall, Tarren Mill, The Sepulcher
+					["0.51:0.57:0.55:0.57:0.61:0.75"] = 351, -- Thorium Point, Kargath, Stonard
 
 					-- Horde: Undercity (Tirisfal Glades)
 					["0.44:0.19:0.55:0.57:0.45:0.84:0.43:0.93"] = 880, -- Undercity, Kargath, Grom'gol, Booty Bay
@@ -246,6 +247,8 @@
 					["0.44:0.69:0.45:0.56"] = 259, -- Camp Mojache, Thunder Bluff
 					["0.44:0.69:0.32:0.58"] = 201, -- Camp Mojache, Shadowprey Village
 					["0.44:0.69:0.56:0.53:0.57:0.64"] = 427, -- Camp Mojache, Crossroads, Brackenwall Village
+					["0.44:0.69:0.56:0.53:0.41:0.47"] = 414, -- Camp Mojache, Crossroads, Sun Rock Retreat
+					["0.44:0.69:0.55:0.73:0.61:0.80:0.50:0.76"] = 307, -- Camp Mojache, Freewind Post, Gadgetzan, Marshal's Refuge
 
 					-- Horde: Camp Taurajo (The Barrens)
 					["0.53:0.61:0.55:0.73:0.61:0.80"] = 218, -- Camp Taurajo, Freewind Post, Gadgetzan
@@ -648,6 +651,7 @@
 					["0.52:0.22:0.70:0.16"] = 147, -- Chillwind Camp, Light's Hope Chapel
 					["0.52:0.22:0.51:0.49:0.43:0.67:0.56:0.70"] = 530, -- Chillwind Camp, Ironforge, Stormwind, Lakeshire
 					["0.52:0.22:0.48:0.30:0.57:0.32"] = 157, -- Chillwind Camp, Southshore, Refuge Pointe
+					["0.52:0.22:0.51:0.49:0.49:0.44:0.57:0.32"] = 460, -- Chillwind Camp, Ironforge, Menethil Harbor, Refuge Pointe
 
 					-- Alliance: Darkshire (Duskwood)
 					["0.51:0.75:0.43:0.93"] = 171, -- Darkshire, Booty Bay
@@ -1257,7 +1261,7 @@
 					["0.64:0.67:0.61:0.40"] = 235, -- Theramore, Talrendis Point
 					["0.64:0.67:0.61:0.40:0.46:0.40"] = 387, -- Theramore, Talrendis Point, Astranaar
 					["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point
-					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak
+					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Martin Sodoma reported 454)
 					["0.64:0.67:0.43:0.25"] = 620, -- Theramore, Auberdine
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.64:0.67:0.43:0.25:0.46:0.40"] = 796, -- Theramore, Auberdine, Astranaar
