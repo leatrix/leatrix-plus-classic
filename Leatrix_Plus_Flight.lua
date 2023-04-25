@@ -652,6 +652,7 @@
 					["0.52:0.22:0.51:0.49:0.43:0.67:0.56:0.70"] = 530, -- Chillwind Camp, Ironforge, Stormwind, Lakeshire
 					["0.52:0.22:0.48:0.30:0.57:0.32"] = 157, -- Chillwind Camp, Southshore, Refuge Pointe
 					["0.52:0.22:0.51:0.49:0.49:0.44:0.57:0.32"] = 460, -- Chillwind Camp, Ironforge, Menethil Harbor, Refuge Pointe
+					["0.52:0.22:0.51:0.49:0.43:0.67:0.51:0.75"] = 534, -- Chillwind Camp, Ironforge, Stormwind, Darkshire
 
 					-- Alliance: Darkshire (Duskwood)
 					["0.51:0.75:0.43:0.93"] = 171, -- Darkshire, Booty Bay
