@@ -582,6 +582,7 @@
 					["0.41:0.37:0.56:0.53:0.41:0.47"] = 378, -- Zoram'gar Outpost, Crossroads, Sun Rock Retreat
 					["0.41:0.37:0.56:0.53:0.45:0.56"] = 410, -- Zoram'gar Outpost, Crossroads, Thunder Bluff
 					["0.41:0.37:0.56:0.53:0.41:0.47:0.32:0.58"] = 520, -- Zoram'gar Outpost, Crossroads, Sun Rock Retreat, Shadowprey Village
+					["0.41:0.37:0.56:0.53:0.63:0.44"] = 370, -- Zoram'gar Outpost, Crossroads, Orgrimmar
 
 				},
 
@@ -653,6 +654,7 @@
 					["0.52:0.22:0.48:0.30:0.57:0.32"] = 157, -- Chillwind Camp, Southshore, Refuge Pointe
 					["0.52:0.22:0.51:0.49:0.49:0.44:0.57:0.32"] = 460, -- Chillwind Camp, Ironforge, Menethil Harbor, Refuge Pointe
 					["0.52:0.22:0.51:0.49:0.43:0.67:0.51:0.75"] = 534, -- Chillwind Camp, Ironforge, Stormwind, Darkshire
+					["0.52:0.22:0.55:0.25:0.57:0.32:0.59:0.52"] = 309, -- Chillwind Camp, Aerie Peak, Refuge Pointe, Thelsamar
 
 					-- Alliance: Darkshire (Duskwood)
 					["0.51:0.75:0.43:0.93"] = 171, -- Darkshire, Booty Bay
@@ -1099,6 +1101,7 @@
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55"] = 576, -- Moonglade, Auberdine, Talrendis Point, Ratchet
 					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67"] = 740, -- Moonglade, Auberdine, Nijel's Point, Theramore
 					["0.55:0.21:0.53:0.26:0.61:0.40"] = 330, -- Moonglade, Talonbranch Glade, Talrendis Point
+					["0.55:0.21:0.43:0.25:0.64:0.67:0.61:0.55"] = 925, -- Moonglade, Auberdine, Theramore, Ratchet
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -1192,6 +1195,7 @@
 					["0.39:0.40:0.43:0.25:0.64:0.67:0.61:0.55"] = 961, -- Stonetalon Peak, Auberdine, Theramore, Ratchet
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.48:0.70"] = 597, -- Stonetalon Peak, Nijel's Point, Theramore, Thalanaar
 					["0.39:0.40:0.43:0.25:0.64:0.67"] = 853, -- Stonetalon Peak, Auberdine, Theramore
+					["0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76"] = 695, -- Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge
 
 					-- Alliance: Talonbranch Glade (Felwood)
 					["0.53:0.26:0.55:0.21"] = 68, -- Talonbranch Glade, Moonglade
@@ -1251,6 +1255,7 @@
 					["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 777, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.48:0.70:0.64:0.67:0.40:0.51:0.39:0.40"] = 613, -- Thalanaar, Theramore, Nijel's Point, Stonetalon Peak
 					["0.48:0.70:0.64:0.67:0.43:0.25:0.39:0.40"] = 961, -- Thalanaar, Theramore, Auberdine, Stonetalon Peak
+					["0.48:0.70:0.64:0.67:0.43:0.25:0.42:0.16"] = 864, -- Thalanaar, Theramore, Auberdine, Rut'theran Village
 
 					-- Alliance: Theramore (Dustwallow Marsh)
 					["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan

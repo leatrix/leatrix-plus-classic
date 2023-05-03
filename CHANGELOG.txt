@@ -1,3 +1,7 @@
+1.14.108 - 3rd May 2023
+- For 'Easy item destroy' ('System'), fixed an issue which caused a Lua error when clicking outside of the destroy confirmation.
+- Added flight times.
+
 1.14.107 - 25th April 2023
 - Added flight times.
 
