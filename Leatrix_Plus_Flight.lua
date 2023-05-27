@@ -809,7 +809,7 @@
 					-- Alliance: Refuge Pointe (Arathi Highlands)
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 614, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Booty Bay
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.61:0.78"] = 547, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Nethergarde Keep
-					["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 485, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire
+					["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 485, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (Juan Francisco reported 433)
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 374, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65"] = 346, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil
 					["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.41:0.75"] = 448, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Sentinel Hill
@@ -955,6 +955,7 @@
 					["0.46:0.40:0.61:0.40:0.64:0.67"] = 390, -- Astranaar, Talrendis Point, Theramore
 					["0.46:0.40:0.43:0.25:0.64:0.67"] = 823, -- Astranaar, Auberdine, Theramore
 					["0.46:0.40:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 903, -- Astranaar, Auberdine, Nijel's Point, Theramore, Gadgetzan
+					["0.46:0.40:0.43:0.25:0.31:0.69"] = 620, -- Astranaar, Auberdine, Feathermoon
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1120,6 +1121,7 @@
 					["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67"] = 674, -- Moonglade, Auberdine, Talrendis Point, Ratchet, Theramore
 					["0.55:0.21:0.43:0.25:0.64:0.67"] = 817, -- Moonglade, Auberdine, Theramore
 					["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55"] = 464, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet
+					["0.55:0.21:0.43:0.25:0.64:0.67:0.60:0.81"] = 970, -- Moonglade, Auberdine, Theramore, Gadgetzan
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
