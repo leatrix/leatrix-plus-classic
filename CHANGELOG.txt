@@ -1,3 +1,6 @@
+1.14.112 - 4th June 2023
+- Added flight times.
+
 1.14.111 - 27th May 2023
 - For 'Sell junk automatically' ('Automation'), Leatrix Plus will stop attempting to sell items if your character is at the gold cap.
 - Added flight times.

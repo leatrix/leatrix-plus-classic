@@ -299,7 +299,7 @@
 					["0.56:0.53:0.57:0.64"] = 162, -- Crossroads, Brackenwall Village
 					["0.56:0.53:0.53:0.61"] = 90, -- Crossroads, Camp Taurajo
 					["0.56:0.53:0.61:0.55"] = 52, -- Crossroads, Ratchet
-					["0.56:0.53:0.63:0.44"] = 142, -- Crossroads, Orgrimmar
+					["0.56:0.53:0.63:0.44"] = 142, -- Crossroads, Orgrimmar (Vasily Zaglyada reported 161)
 					["0.56:0.53:0.55:0.42"] = 162, -- Crossroads, Splintertree Post
 					["0.56:0.53:0.63:0.36"] = 168, -- Crossroads, Valormok
 					["0.56:0.53:0.63:0.36:0.64:0.23"] = 297, -- Crossroads, Valormok, Everlook
@@ -961,6 +961,7 @@
 					["0.46:0.40:0.43:0.25:0.64:0.67"] = 823, -- Astranaar, Auberdine, Theramore
 					["0.46:0.40:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 903, -- Astranaar, Auberdine, Nijel's Point, Theramore, Gadgetzan
 					["0.46:0.40:0.43:0.25:0.31:0.69"] = 620, -- Astranaar, Auberdine, Feathermoon
+					["0.46:0.40:0.43:0.25:0.55:0.21:0.65:0.23"] = 429, -- Astranaar, Auberdine, Moonglade, Everlook
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -985,6 +986,7 @@
 					["0.43:0.25:0.64:0.67:0.61:0.55"] = 784, -- Auberdine, Theramore, Ratchet
 					["0.43:0.25:0.64:0.67:0.48:0.70"] = 834, -- Auberdine, Theramore, Thalanaar
 					["0.43:0.25:0.40:0.51:0.64:0.67:0.48:0.70"] = 761, -- Auberdine, Nijel's Point, Theramore, Thalanaar
+					["0.43:0.25:0.40:0.51:0.64:0.67:0.61:0.55"] = 713, -- Auberdine, Nijel's Point, Theramore, Ratchet
 
 					-- Alliance: Cenarion Hold (Silithus)
 					["0.42:0.79:0.60:0.81"] = 189, -- Cenarion Hold, Gadgetzan
@@ -1076,6 +1078,7 @@
 					["0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 952, -- Gadgetzan, Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 					["0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.39:0.40"] = 693, -- Gadgetzan, Theramore, Talrendis Point, Astranaar, Stonetalon Peak
 					["0.60:0.81:0.64:0.67:0.43:0.25"] = 768, -- Gadgetzan, Theramore, Auberdine
+					["0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 938, -- Gadgetzan, Theramore, Nijel's Point, Auberdine, Astranaar
 
 					-- Alliance: Marshal's Refuge (Un'Goro Crater)
 					["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
