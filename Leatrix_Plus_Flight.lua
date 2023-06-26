@@ -789,6 +789,7 @@
 					["0.58:0.65:0.51:0.57:0.51:0.49:0.52:0.22"] = 435, -- Morgan's Vigil, Thorium Point, Ironforge, Chillwind Camp
 					["0.58:0.65:0.51:0.57:0.51:0.49:0.70:0.16"] = 491, -- Morgan's Vigil, Thorium Point, Ironforge, Light's Hope Chapel
 					["0.58:0.65:0.43:0.67:0.51:0.49:0.59:0.52"] = 455, -- Morgan's Vigil, Stormwind, Ironforge, Thelsamar
+					["0.58:0.65:0.43:0.67:0.51:0.49"] = 397, -- Morgan's Vigil, Stormwind, Ironforge
 
 					-- Alliance: Nethergarde Keep (Blasted Lands)
 					["0.61:0.78:0.51:0.75:0.43:0.93"] = 260, -- Nethergarde Keep, Darkshire, Booty Bay
@@ -967,6 +968,7 @@
 					["0.46:0.40:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 903, -- Astranaar, Auberdine, Nijel's Point, Theramore, Gadgetzan
 					["0.46:0.40:0.43:0.25:0.31:0.69"] = 620, -- Astranaar, Auberdine, Feathermoon
 					["0.46:0.40:0.43:0.25:0.55:0.21:0.65:0.23"] = 429, -- Astranaar, Auberdine, Moonglade, Everlook
+					["0.46:0.40:0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81"] = 744, -- Astranaar, Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1033,6 +1035,7 @@
 					["0.65:0.23:0.53:0.26:0.43:0.25:0.46:0.40"] = 468, -- Everlook, Talonbranch Glade, Auberdine, Astranaar
 					["0.65:0.23:0.53:0.26:0.43:0.25"] = 293, -- Everlook, Talonbranch Glade, Auberdine
 					["0.65:0.23:0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 1017, -- Everlook, Moonglade, Auberdine, Nijel's Point, Theramore, Gadgetzan
+					["0.65:0.23:0.61:0.40:0.64:0.67"] = 416, -- Everlook, Talrendis Point, Theramore
 
 					-- Alliance: Feathermoon (Feralas)
 					["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan
@@ -1186,6 +1189,8 @@
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 896, -- Ratchet, Theramore, Nijel's Point, Auberdine, Astranaar
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.31:0.69"] = 671, -- Ratchet, Theramore, Die Nijelspitze, Feathermoon
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.39:0.40"] = 558, -- Ratchet, Theramore, Nijel's Point, Stonetalon Peak
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25"] = 721, -- Ratchet, Theramore, Nijel's Point, Auberdine
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 910, -- Ratchet, Theramore, Nijel's Point, Auberdine, Talonbranch Glade 
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
