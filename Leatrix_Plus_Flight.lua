@@ -468,7 +468,7 @@
 
 					-- Horde: Shadowprey Village (Desolace)
 					["0.32:0.58:0.44:0.69:0.55:0.73:0.61:0.80"] = 395, -- Shadowprey Village, Camp Mojache, Freewind Post, Gadgetzan
-					["0.32:0.58:0.44:0.69:0.55:0.73"] = 382, -- Shadowprey Village, Camp Mojache, Freewind Post (Jas A, Martin Kaminský, Samuel Peters reported 303)
+					["0.32:0.58:0.44:0.69:0.55:0.73"] = 303, -- Shadowprey Village, Camp Mojache, Freewind Post (was 382 but Heikki Juntunen, Jas A, Martin Kaminský, Samuel Peters reported 303)
 					["0.32:0.58:0.44:0.69:0.42:0.79:0.50:0.76"] = 417, -- Shadowprey Village, Camp Mojache, Cenarion Hold, Marshal's Refuge
 					["0.32:0.58:0.44:0.69:0.42:0.79"] = 326, -- Shadowprey Village, Camp Mojache, Cenarion Hold
 					["0.32:0.58:0.44:0.69"] = 196, -- Shadowprey Village, Camp Mojache
@@ -550,6 +550,7 @@
 					["0.45:0.56:0.56:0.53:0.41:0.37"] = 389, -- Thunder Bluff, Crossroads, Zoram'gar Outpost
 					["0.45:0.56:0.41:0.47"] = 182, -- Thunder Bluff, Sun Rock Retreat
 					["0.45:0.56:0.32:0.58"] = 159, -- Thunder Bluff, Shadowprey Village
+					["0.45:0.56:0.56:0.53:0.46:0.30:0.54:0.21"] = 534, -- Thunder Bluff, Crossroads, Bloodvenom Post, Moonglade
 
 					-- Horde: Valormok (Azshara)
 					["0.63:0.36:0.56:0.53:0.55:0.73:0.61:0.80"] = 449, -- Valormok, Crossroads, Freewind Post, Gadgetzan
@@ -752,6 +753,7 @@
 					["0.70:0.16:0.52:0.22:0.48:0.30:0.49:0.44"] = 334, -- Light's Hope Chapel, Chillwind Camp, Southshore, Menethil Harbor
 					["0.70:0.16:0.51:0.49:0.43:0.67:0.41:0.75"] = 604, -- Light's Hope Chapel, Ironforge, Stormwind, Sentinel Hill
 					["0.70:0.16:0.55:0.25:0.57:0.32:0.59:0.52"] = 402, -- Light's Hope Chapel, Aerie Peak, Refuge Pointe, Thelsamar
+					["0.70:0.16:0.51:0.49:0.43:0.67:0.56:0.70"] = 639, -- Light's Hope Chapel, Ironforge, Stormwind, Lakeshire
 
 					-- Alliance: Menethil Harbor (Wetlands)
 					["0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 490, -- Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -1190,7 +1192,7 @@
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.31:0.69"] = 671, -- Ratchet, Theramore, Die Nijelspitze, Feathermoon
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.39:0.40"] = 558, -- Ratchet, Theramore, Nijel's Point, Stonetalon Peak
 					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25"] = 721, -- Ratchet, Theramore, Nijel's Point, Auberdine
-					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 910, -- Ratchet, Theramore, Nijel's Point, Auberdine, Talonbranch Glade 
+					["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 910, -- Ratchet, Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 
 					-- Alliance: Rut'theran Village (Teldrassil)
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1247,7 +1249,7 @@
 					-- Alliance: Talonbranch Glade (Felwood)
 					["0.53:0.26:0.55:0.21"] = 68, -- Talonbranch Glade, Moonglade
 					["0.53:0.26:0.65:0.23"] = 121, -- Talonbranch Glade, Everlook
-					["0.53:0.26:0.43:0.25"] = 188, -- Talonbranch Glade, Auberdine
+					["0.53:0.26:0.43:0.25"] = 188, -- Talonbranch Glade, Auberdine (Entrofex reported 273)
 					["0.53:0.26:0.43:0.25:0.42:0.16"] = 272, -- Talonbranch Glade, Auberdine, Rut'theran Village
 					["0.53:0.26:0.61:0.40"] = 283, -- Talonbranch Glade, Talrendis Point
 					["0.53:0.26:0.43:0.25:0.46:0.40"] = 364, -- Talonbranch Glade, Auberdine, Astranaar
@@ -1333,6 +1335,7 @@
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26:0.65:0.23"] = 907, -- Theramore, Nijel's Point, Auberdine, Talonbranch Glade, Everlook
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 806, -- Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 					["0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 897, -- Theramore, Nijel's Point, Auberdine, Moonglade, Everlook
+					["0.64:0.67:0.40:0.51:0.31:0.69"] = 566, -- Theramore, Combe de Nijel, Feathermoon
 
 				},
 

@@ -1,4 +1,4 @@
-1.14.114.alpha.1 - 21st June 2023
+1.14.114 - 28th June 2023
 - Updated LibDBIcon.
 - Added flight times.
 
