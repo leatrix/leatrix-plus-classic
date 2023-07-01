@@ -334,6 +334,8 @@
 					["0.64:0.23:0.63:0.36:0.45:0.56:0.32:0.58"] = 550, -- Everlook, Valormok, Thunder Bluff, Shadowprey Village
 					["0.64:0.23:0.63:0.44:0.55:0.42"] = 393, -- Everlook, Orgrimmar, Splintertree Post
 					["0.64:0.23:0.63:0.44:0.56:0.53:0.61:0.55"] = 466, -- Everlook, Orgrimmar, Crossroads, Ratchet
+					["0.64:0.23:0.63:0.44:0.56:0.53:0.44:0.69"] = 666, -- Everlook, Orgrimmar, Crossroads, Camp Mojache
+					["0.64:0.23:0.63:0.44:0.55:0.42:0.41:0.37"] = 553, -- Everlook, Orgrimmar, Splintertree Post, Zoram'gar Outpost
 
 					-- Horde: Freewind Post (Thousand Needles)
 					["0.55:0.73:0.61:0.80"] = 93, -- Freewind Post, Gadgetzan
