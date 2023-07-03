@@ -168,6 +168,7 @@
 					["0.51:0.57:0.55:0.57:0.44:0.19"] = 566, -- Thorium Point, Kargath, Undercity
 					["0.51:0.57:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 545, -- Thorium Point, Kargath, Hammerfall, Tarren Mill, The Sepulcher
 					["0.51:0.57:0.55:0.57:0.61:0.75"] = 351, -- Thorium Point, Kargath, Stonard
+					["0.51:0.57:0.55:0.57:0.44:0.19:0.70:0.16"] = 755, -- Thorium Point, Kargath, Undercity, Light's Hope Chapel
 
 					-- Horde: Undercity (Tirisfal Glades)
 					["0.44:0.19:0.55:0.57:0.45:0.84:0.43:0.93"] = 880, -- Undercity, Kargath, Grom'gol, Booty Bay
