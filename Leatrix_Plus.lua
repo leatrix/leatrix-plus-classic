@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.115.alpha.1 (28th June 2023)
+-- 	Leatrix Plus 1.14.115.alpha.2 (28th June 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.115.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.115.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -34,6 +34,10 @@
 				print(L["LEATRIX PLUS: WRONG VERSION INSTALLED!"])
 			end)
 			return
+		end
+
+		if gametocversion and gametocversion == 11404 then
+			LeaPlusLC.NewPatch = true
 		end
 	end
 
@@ -1214,81 +1218,87 @@
 		-- Automate gossip (no reload required)
 		----------------------------------------------------------------------
 
-		do
+		if LeaPlusLC.NewPatch then
 
-			-- Function to skip gossip
-			local function SkipGossip()
-				if IsShiftKeyDown() then return end
-				local void, gossipType = GetGossipOptions()
-				if gossipType then
-					-- Completely automate gossip
-					if gossipType == "banker"
-					or gossipType == "taxi"
-					or gossipType == "trainer"
-					or gossipType == "vendor"
-					or gossipType == "battlemaster"
-					or gossipType == "arenamaster"
-					then
-						SelectGossipOption(1)
-					end
-					-- Automate gossip with ALT key
-					if IsAltKeyDown() then
-						if gossipType == "gossip"
+		else
+
+			do
+
+				-- Function to skip gossip
+				local function SkipGossip()
+					if IsShiftKeyDown() then return end
+					local void, gossipType = GetGossipOptions()
+					if gossipType then
+						-- Completely automate gossip
+						if gossipType == "banker"
+						or gossipType == "taxi"
+						or gossipType == "trainer"
+						or gossipType == "vendor"
+						or gossipType == "battlemaster"
+						or gossipType == "arenamaster"
 						then
 							SelectGossipOption(1)
 						end
-					end
-				end
-			end
-
-			-- Create gossip event frame
-			local gossipFrame = CreateFrame("FRAME")
-
-			-- Function to setup events
-			local function SetupEvents()
-				if LeaPlusLC["AutomateGossip"] == "On" then
-					gossipFrame:RegisterEvent("GOSSIP_SHOW")
-				else
-					gossipFrame:UnregisterEvent("GOSSIP_SHOW")
-				end
-			end
-
-			-- Setup events when option is clicked and on startup (if option is enabled)
-			LeaPlusCB["AutomateGossip"]:HookScript("OnClick", SetupEvents)
-			if LeaPlusLC["AutomateGossip"] == "On" then SetupEvents() end
-
-			-- Event handler
-			gossipFrame:SetScript("OnEvent", function()
-				-- Special treatment for specific NPCs
-				local npcGuid = UnitGUID("target") or nil
-				if npcGuid then
-					local void, void, void, void, void, npcID = strsplit("-", npcGuid)
-					if npcID then
-						if npcID == "9999999999" -- Reserved for future use
-						then
-							SkipGossip()
-							return
+						-- Automate gossip with ALT key
+						if IsAltKeyDown() then
+							if gossipType == "gossip"
+							then
+								SelectGossipOption(1)
+							end
 						end
 					end
 				end
 
-				-- Process gossip
-				if GetNumGossipOptions() == 1 and GetNumGossipAvailableQuests() == 0 and GetNumGossipActiveQuests() == 0 then
-					SkipGossip()
-				end
-			end)
+				-- Create gossip event frame
+				local gossipFrame = CreateFrame("FRAME")
 
-			-- Show battleground name in battfield frame labels
-			hooksecurefunc(BattlefieldFrame, "Show", function()
-				if LeaPlusLC["AutomateGossip"] == "On" then
-					C_Timer.After(0.01, function()
-						local localizedName = GetBattlegroundInfo()
-						if localizedName then
-							BattlefieldFrameFrameLabel:SetText(localizedName)
-						end
-					end)
+				-- Function to setup events
+				local function SetupEvents()
+					if LeaPlusLC["AutomateGossip"] == "On" then
+						gossipFrame:RegisterEvent("GOSSIP_SHOW")
+					else
+						gossipFrame:UnregisterEvent("GOSSIP_SHOW")
+					end
 				end
-			end)
+
+				-- Setup events when option is clicked and on startup (if option is enabled)
+				LeaPlusCB["AutomateGossip"]:HookScript("OnClick", SetupEvents)
+				if LeaPlusLC["AutomateGossip"] == "On" then SetupEvents() end
+
+				-- Event handler
+				gossipFrame:SetScript("OnEvent", function()
+					-- Special treatment for specific NPCs
+					local npcGuid = UnitGUID("target") or nil
+					if npcGuid then
+						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
+						if npcID then
+							if npcID == "9999999999" -- Reserved for future use
+							then
+								SkipGossip()
+								return
+							end
+						end
+					end
+
+					-- Process gossip
+					if GetNumGossipOptions() == 1 and GetNumGossipAvailableQuests() == 0 and GetNumGossipActiveQuests() == 0 then
+						SkipGossip()
+					end
+				end)
+
+				-- Show battleground name in battfield frame labels
+				hooksecurefunc(BattlefieldFrame, "Show", function()
+					if LeaPlusLC["AutomateGossip"] == "On" then
+						C_Timer.After(0.01, function()
+							local localizedName = GetBattlegroundInfo()
+							if localizedName then
+								BattlefieldFrameFrameLabel:SetText(localizedName)
+							end
+						end)
+					end
+				end)
+
+			end
 
 		end
 
@@ -1792,19 +1802,39 @@
 						else
 							-- Select gossip completed quests
 							if LeaPlusLC["AutoQuestCompleted"] == "On" then
-								for i = 1, GetNumGossipActiveQuests() do
-									local title, level, isTrivial, isComplete, isLegendary, isIgnored = select(i * 6 - 5, GetGossipActiveQuests())
-									if title and isComplete then
-										return SelectGossipActiveQuest(i)
+								if LeaPlusLC.NewPatch then
+									local gossipQuests = C_GossipInfo.GetActiveQuests()
+									for titleIndex, questInfo in ipairs(gossipQuests) do
+										if questInfo.title and questInfo.isComplete then
+											if questInfo.questID then
+												return C_GossipInfo.SelectActiveQuest(questInfo.questID)
+											end
+										end
+									end
+								else
+									for i = 1, GetNumGossipActiveQuests() do
+										local title, level, isTrivial, isComplete, isLegendary, isIgnored = select(i * 6 - 5, GetGossipActiveQuests())
+										if title and isComplete then
+											return SelectGossipActiveQuest(i)
+										end
 									end
 								end
 							end
 							-- Select gossip available quests
 							if LeaPlusLC["AutoQuestAvailable"] == "On" then
-								for i = 1, GetNumGossipAvailableQuests() do
-									local title, level, isTrivial, isDaily, isRepeatable, isLegendary, isIgnored = select(i * 7 - 6, GetGossipAvailableQuests())
-									if title and DoesQuestHaveRequirementsMet(title) then
-										return SelectGossipAvailableQuest(i)
+								if LeaPlusLC.NewPatch then
+									local GossipQuests = C_GossipInfo.GetAvailableQuests()
+									for titleIndex, questInfo in ipairs(GossipQuests) do
+										if questInfo.questID and DoesQuestHaveRequirementsMet(questInfo.questID) then
+											return C_GossipInfo.SelectAvailableQuest(questInfo.questID)
+										end
+									end
+								else
+									for i = 1, GetNumGossipAvailableQuests() do
+										local title, level, isTrivial, isDaily, isRepeatable, isLegendary, isIgnored = select(i * 7 - 6, GetGossipAvailableQuests())
+										if title and DoesQuestHaveRequirementsMet(title) then
+											return SelectGossipAvailableQuest(i)
+										end
 									end
 								end
 							end
@@ -2102,44 +2132,90 @@
 				local SoldCount, Rarity, ItemPrice = 0, 0, 0
 				local CurrentItemLink, void
 
-				-- Traverse bags and sell grey items
-				for BagID = 0, 4 do
-					for BagSlot = 1, GetContainerNumSlots(BagID) do
-						CurrentItemLink = GetContainerItemLink(BagID, BagSlot)
-						if CurrentItemLink then
-							void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
-							-- Don't sell whitelisted items
-							local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
-							if itemID and whiteList[itemID] then
-								if Rarity == 0 then
-									-- Junk item to keep
-									Rarity = 3
-									ItemPrice = 0
-								elseif Rarity == 1 then
-									-- White item to sell
-									Rarity = 0
-								end
-							end
-							-- Continue
-							local void, itemCount = GetContainerItemInfo(BagID, BagSlot)
-							if Rarity == 0 and ItemPrice ~= 0 then
-								SoldCount = SoldCount + 1
-								if MerchantFrame:IsShown() then
-									-- If merchant frame is open, vendor the item
-									UseContainerItem(BagID, BagSlot)
-									-- Perform actions on first iteration
-									if SellJunkTicker._remainingIterations == IterationCount then
-										-- Calculate total price
-										totalPrice = totalPrice + (ItemPrice * itemCount)
+				if LeaPlusLC.NewPatch then
+
+					-- Traverse bags and sell grey items
+					for BagID = 0, 4 do
+						for BagSlot = 1, C_Container.GetContainerNumSlots(BagID) do
+							CurrentItemLink = C_Container.GetContainerItemLink(BagID, BagSlot)
+							if CurrentItemLink then
+								void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
+								-- Don't sell whitelisted items
+								local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
+								if itemID and whiteList[itemID] then
+									if Rarity == 0 then
+										-- Junk item to keep
+										Rarity = 3
+										ItemPrice = 0
+									elseif Rarity == 1 then
+										-- White item to sell
+										Rarity = 0
 									end
-								else
-									-- If merchant frame is not open, stop selling
-									StopSelling()
-									return
+								end
+								-- Continue
+								local void, itemCount = C_Container.GetContainerItemInfo(BagID, BagSlot)
+								if Rarity == 0 and ItemPrice ~= 0 then
+									SoldCount = SoldCount + 1
+									if MerchantFrame:IsShown() then
+										-- If merchant frame is open, vendor the item
+										C_Container.UseContainerItem(BagID, BagSlot)
+										-- Perform actions on first iteration
+										if SellJunkTicker._remainingIterations == IterationCount then
+											-- Calculate total price
+											totalPrice = totalPrice + (ItemPrice * itemCount)
+										end
+									else
+										-- If merchant frame is not open, stop selling
+										StopSelling()
+										return
+									end
 								end
 							end
 						end
 					end
+
+				else
+
+					-- Traverse bags and sell grey items
+					for BagID = 0, 4 do
+						for BagSlot = 1, GetContainerNumSlots(BagID) do
+							CurrentItemLink = GetContainerItemLink(BagID, BagSlot)
+							if CurrentItemLink then
+								void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
+								-- Don't sell whitelisted items
+								local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
+								if itemID and whiteList[itemID] then
+									if Rarity == 0 then
+										-- Junk item to keep
+										Rarity = 3
+										ItemPrice = 0
+									elseif Rarity == 1 then
+										-- White item to sell
+										Rarity = 0
+									end
+								end
+								-- Continue
+								local void, itemCount = GetContainerItemInfo(BagID, BagSlot)
+								if Rarity == 0 and ItemPrice ~= 0 then
+									SoldCount = SoldCount + 1
+									if MerchantFrame:IsShown() then
+										-- If merchant frame is open, vendor the item
+										UseContainerItem(BagID, BagSlot)
+										-- Perform actions on first iteration
+										if SellJunkTicker._remainingIterations == IterationCount then
+											-- Calculate total price
+											totalPrice = totalPrice + (ItemPrice * itemCount)
+										end
+									else
+										-- If merchant frame is not open, stop selling
+										StopSelling()
+										return
+									end
+								end
+							end
+						end
+					end
+
 				end
 
 				-- Stop selling if no items were sold for this iteration or iteration limit was reached
@@ -2533,9 +2609,17 @@
 
 			-- Function to update the font size
 			local function QuestSizeUpdate()
-				QuestTitleFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 3, nil)
-				QuestFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 1, nil)
-				QuestFontNormalSmall:SetFont(QuestFontNormalSmall:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"], nil)
+				if LeaPlusLC.NewPatch then
+					local a, b, c = QuestFont:GetFont()
+					QuestTitleFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 3, c)
+					QuestFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 1, c)
+					local d, e, f = QuestFontNormalSmall:GetFont()
+					QuestFontNormalSmall:SetFont(d, LeaPlusLC["LeaPlusQuestFontSize"], f)
+				else
+					QuestTitleFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 3, nil)
+					QuestFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 1, nil)
+					QuestFontNormalSmall:SetFont(QuestFontNormalSmall:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"], nil)
+				end
 			end
 
 			-- Set text size when slider changes and on startup
@@ -2591,14 +2675,16 @@
 
 			-- Function to set the text size
 			local function MailSizeUpdate()
-				local MailFont = QuestFont:GetFont();
-				OpenMailBodyText:SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
-				if MailEditBox then
-					-- Patch 1.14.3
-					MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
+				local MailFont, void, flags = QuestFont:GetFont()
+				if LeaPlusLC.NewPatch then
+					OpenMailBodyText:SetFont("h1", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+					OpenMailBodyText:SetFont("h2", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+					OpenMailBodyText:SetFont("h3", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+					OpenMailBodyText:SetFont("p", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+					MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
 				else
-					-- Patch 1.14.2
-					SendMailBodyEditBox:SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
+					OpenMailBodyText:SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
+					MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
 				end
 			end
 
@@ -2654,8 +2740,13 @@
 
 			-- Function to set the text size
 			local function BookSizeUpdate()
-				local BookFont = QuestFont:GetFont()
-				ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"])
+				if LeaPlusLC.NewPatch then
+					local BookFont, void, flags = QuestFont:GetFont()
+					ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"], flags)
+				else
+					local BookFont = QuestFont:GetFont()
+					ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"])
+				end
 			end
 
 			-- Set text size after changing slider and on startup
@@ -3830,7 +3921,12 @@
 			editBox:SetTextInsets(4, 4, 4, 4)
 			editBox:SetWidth(editFrame:GetWidth() - 30)
 			editBox:SetSecurityDisablePaste()
-			editBox:SetFont(_G["ChatFrame1"]:GetFont(), 16)
+			if LeaPlusLC.NewPatch then
+				editBox:SetFont(_G["ChatFrame1"]:GetFont())
+				editBox:SetMaxLetters(0)
+			else
+				editBox:SetFont(_G["ChatFrame1"]:GetFont(), 16)
+			end
 
 			local introMsg = L["Leatrix Plus needs to be updated with the flight details.  Press CTRL/C to copy the flight details below then paste them into an email to flight@leatrix.com.  When your report is received, Leatrix Plus will be updated and you will never see this window again for this flight."] .. "|n|n"
 			local startHighlight = string.len(introMsg)
@@ -9339,46 +9435,120 @@
 
 			-- Function to highlight chat tabs and click to scroll to bottom
 			local function HighlightTabs(chtfrm)
-				-- Set position of bottom button
-				_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetTexture("Interface/BUTTONS/GRADBLUE.png")
-				_G[chtfrm .. "ButtonFrameBottomButton"]:ClearAllPoints()
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetPoint("BOTTOM",_G[chtfrm .. "Tab"],0,-6)
-				_G[chtfrm .. "ButtonFrameBottomButton"]:Show()
-				_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetAlpha(0.5)
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetWidth(_G[chtfrm .. "Tab"]:GetWidth()-10)
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetHeight(24)
 
-				-- Resize bottom button according to tab size
-				_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
-					for j = 1, 50 do
-						-- Resize bottom button to tab width
-						if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
-							_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
+				if LeaPlusLC.NewPatch then
+
+					-- Hide bottom button
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetSize(0.1, 0.1) -- Positions it away
+
+					-- Remove click from the bottom button
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
+
+					-- Remove textures
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetDisabledTexture("")
+
+					-- Resize bottom button according to tab size
+					_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
+						for j = 1, 50 do
+							-- Resize bottom button to tab width
+							if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
+								_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
+							end
 						end
-					end
-					-- If combat log is hidden, resize it's bottom button
-					if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
-						if _G["ChatFrame2ButtonFrameBottomButton"] then
-							-- Resize combat log bottom button
-							_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
+						-- If combat log is hidden, resize it's bottom button
+						if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
+							if _G["ChatFrame2ButtonFrameBottomButton"] then
+								-- Resize combat log bottom button
+								_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
+							end
 						end
-					end
-				end)
+					end)
 
-				-- Remove click from the bottom button
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
+					-- Remove click from the bottom button
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
 
-				-- Remove textures
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
-				_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
+					-- Remove textures
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
 
-				-- Always scroll to bottom when clicking a tab
-				_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
-					if arg1 == "LeftButton" then
-						_G[chtfrm]:ScrollToBottom();
-					end
-				end)
+					-- Always scroll to bottom when clicking a tab
+					_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
+						if arg1 == "LeftButton" then
+							_G[chtfrm]:ScrollToBottom();
+						end
+					end)
+
+					-- Create new bottom button under tab
+					_G[chtfrm .. "Tab"].newglow = _G[chtfrm .. "Tab"]:CreateTexture(nil, "BACKGROUND")
+					_G[chtfrm .. "Tab"].newglow:ClearAllPoints()
+					_G[chtfrm .. "Tab"].newglow:SetPoint("BOTTOMLEFT", _G[chtfrm .. "Tab"], "BOTTOMLEFT", 0, 0)
+					_G[chtfrm .. "Tab"].newglow:SetTexture("Interface\\ChatFrame\\ChatFrameTab-NewMessage")
+					_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
+					_G[chtfrm .. "Tab"].newglow:SetVertexColor(0.6, 0.6, 1, 1)
+					_G[chtfrm .. "Tab"].newglow:Hide()
+
+					-- Show new bottom button when old one glows
+					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnShow", function(self,arg1)
+						_G[chtfrm .. "Tab"].newglow:Show()
+					end)
+
+					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnHide", function(self,arg1)
+						_G[chtfrm .. "Tab"].newglow:Hide()
+					end)
+
+					-- Match new bottom button size to tab
+					_G[chtfrm .. "Tab"]:HookScript("OnSizeChanged", function()
+						_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
+					end)
+
+				else
+
+					-- Set position of bottom button
+					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetTexture("Interface/BUTTONS/GRADBLUE.png")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:ClearAllPoints()
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPoint("BOTTOM",_G[chtfrm .. "Tab"],0,-6)
+					_G[chtfrm .. "ButtonFrameBottomButton"]:Show()
+					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetAlpha(0.5)
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetWidth(_G[chtfrm .. "Tab"]:GetWidth()-10)
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHeight(24)
+
+					-- Resize bottom button according to tab size
+					_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
+						for j = 1, 50 do
+							-- Resize bottom button to tab width
+							if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
+								_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
+							end
+						end
+						-- If combat log is hidden, resize it's bottom button
+						if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
+							if _G["ChatFrame2ButtonFrameBottomButton"] then
+								-- Resize combat log bottom button
+								_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
+							end
+						end
+					end)
+
+					-- Remove click from the bottom button
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
+
+					-- Remove textures
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
+					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
+
+					-- Always scroll to bottom when clicking a tab
+					_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
+						if arg1 == "LeftButton" then
+							_G[chtfrm]:ScrollToBottom();
+						end
+					end)
+
+				end
 
 			end
 
@@ -9481,8 +9651,12 @@
 
 			-- Drag to resize
 			editFrame:SetResizable(true)
-			editFrame:SetMinResize(600, 170)
-			editFrame:SetMaxResize(600, 560)
+			if LeaPlusLC.NewPatch then
+				editFrame:SetResizeBounds(600, 170, 600, 560)
+			else
+				editFrame:SetMinResize(600, 170)
+				editFrame:SetMaxResize(600, 560)
+			end
 
 			titleFrame:HookScript("OnMouseDown", function(self, btn)
 				if btn == "LeftButton" then
@@ -9602,7 +9776,11 @@
 				end
 				titleFrame.m:SetText(L["Messages"] .. ": " .. totalMsgCount)
 				editFrame:SetVerticalScroll(0)
-				C_Timer.After(0.1, function() editFrame.ScrollBar.ScrollDownButton:Click() end)
+				if LeaPlusLC.NewPatch then
+					editFrame.ScrollBar:ScrollToEnd()
+				else
+					C_Timer.After(0.1, function() editFrame.ScrollBar.ScrollDownButton:Click() end)
+				end
 				editFrame:Show()
 				editBox:ClearFocus()
 			end
@@ -10249,7 +10427,13 @@
 
 			-- Hide health bar
 			if LeaPlusLC["TipNoHealthBar"] == "On" then
-				GameTooltipStatusBar:SetStatusBarTexture("")
+				if LeaPlusLC.NewPatch then
+					local tipHide = GameTooltip.Hide
+					GameTooltipStatusBar:HookScript("OnShow", tipHide)
+					GameTooltipStatusBar:Hide()
+				else
+					GameTooltipStatusBar:SetStatusBarTexture("")
+				end
 			end
 
 			---------------------------------------------------------------------------------------------------------
