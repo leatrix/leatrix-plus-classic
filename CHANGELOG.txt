@@ -1,5 +1,6 @@
-1.14.115.alpha.2 - 1st July 2023
+1.14.115.alpha.3 - 1st July 2023
 - Preliminary code update for game version 1.14.4 (hardcore realms).
+- The 'Block duels' option ('Social') now includes 'Duel to the death'.
 - Added flight times.
 
 1.14.114 - 28th June 2023

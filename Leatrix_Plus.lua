@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.115.alpha.2 (28th June 2023)
+-- 	Leatrix Plus 1.14.115.alpha.3 (28th June 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.115.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.14.115.alpha.3"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -674,9 +674,15 @@
 		----------------------------------------------------------------------
 
 		if LeaPlusLC["NoDuelRequests"] == "On" then
-			LpEvt:RegisterEvent("DUEL_REQUESTED");
+			LpEvt:RegisterEvent("DUEL_REQUESTED")
+			if LeaPlusLC.NewPatch then
+				LpEvt:RegisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
+			end
 		else
-			LpEvt:UnregisterEvent("DUEL_REQUESTED");
+			LpEvt:UnregisterEvent("DUEL_REQUESTED")
+			if LeaPlusLC.NewPatch then
+				LpEvt:UnregisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
+			end
 		end
 
 		----------------------------------------------------------------------
@@ -12260,8 +12266,14 @@
 		----------------------------------------------------------------------
 
 		if event == "DUEL_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
-			CancelDuel();
-			StaticPopup_Hide("DUEL_REQUESTED");
+			CancelDuel()
+			StaticPopup_Hide("DUEL_REQUESTED")
+			return
+		end
+
+		if LeaPlusLC.NewPatch and event == "DUEL_TO_THE_DEATH_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
+			CancelDuel()
+			StaticPopup_Hide("DUEL_TO_THE_DEATH_REQUESTED")
 			return
 		end
 
