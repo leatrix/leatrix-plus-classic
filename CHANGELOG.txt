@@ -1,4 +1,4 @@
-1.14.115.alpha.5 - 1st July 2023
+1.14.115 - 5th July 2023
 - PTR (1.14.4): Preliminary code update for game version 1.14.4 (hardcore realms).
 - PTR (1.14.4): The 'Block duels' option ('Social') now includes 'Duel to the death'.
 - Added flight times.

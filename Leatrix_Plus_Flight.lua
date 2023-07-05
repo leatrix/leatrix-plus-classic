@@ -919,6 +919,7 @@
 					["0.59:0.52:0.49:0.44:0.48:0.30"] = 254, -- Thelsamar, Menethil Harbor, Southshore
 					["0.59:0.52:0.57:0.32:0.55:0.25:0.70:0.16"] = 397, -- Thelsamar, Refuge Pointe, Aerie Peak, Light's Hope Chapel
 					["0.59:0.52:0.57:0.32:0.48:0.30:0.52:0.22"] = 328, -- Thelsamar, Refuge Pointe, Southshore, Chillwind Camp
+					["0.59:0.52:0.51:0.49:0.51:0.57:0.58:0.65"] = 239, -- Thelsamar, Ironforge, Thorium Point, Morgan's Vigil
 
 					-- Alliance: Thorium Point (Searing Gorge)
 					["0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75:0.43:0.93"] = 350, -- Thorium Point, Morgan's Vigil, Lakeshire, Darkshire, Booty Bay
