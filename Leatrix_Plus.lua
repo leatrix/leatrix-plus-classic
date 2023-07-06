@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.115 (5th July 2023)
+-- 	Leatrix Plus 1.14.116.alpha.1 (6th July 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.115"
+	LeaPlusLC["AddonVer"] = "1.14.116.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2690,6 +2690,14 @@
 		----------------------------------------------------------------------
 
 		if LeaPlusLC["QuestFontChange"] == "On" then
+
+			-- Set gossip frame scroll box layout (fix for game patch 1.14.4)
+			if LeaPlusLC.NewPatch then
+				GossipFrame.GreetingPanel.ScrollBox:SetHeight(320)
+				GossipFrame.GreetingPanel.ScrollBar:ClearAllPoints()
+				GossipFrame.GreetingPanel.ScrollBar:SetPoint("TOPLEFT", GossipFrame.GreetingPanel.ScrollBox, "TOPRIGHT", 4, 9)
+				GossipFrame.GreetingPanel.ScrollBar:SetPoint("BOTTOMLEFT", GossipFrame.GreetingPanel.ScrollBox, "BOTTOMRIGHT", 4, -14)
+			end
 
 			-- Create configuration panel
 			local QuestTextPanel = LeaPlusLC:CreatePanel("Resize quest text", "QuestTextPanel")
