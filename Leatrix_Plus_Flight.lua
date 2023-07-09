@@ -61,6 +61,7 @@
 					["0.45:0.84:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 802, -- Grom'gol, Kargath, Hammerfall, Tarren Mill, The Sepulcher
 					["0.45:0.84:0.55:0.57:0.44:0.19:0.49:0.27"] = 890, -- Grom'gol, Kargath, Undercity, Tarren Mill
 					["0.45:0.84:0.55:0.57:0.56:0.61"] = 413, -- Grom'gol, Kargath, Flame Crest
+					["0.45:0.84:0.55:0.57:0.44:0.19:0.70:0.16"] = 1012, -- Grom'gol, Kargath, Undercity, Light's Hope Chapel
 
 					-- Horde: Hammerfall (Arathi Highlands)
 					["0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 651, -- Hammerfall, Kargath, Grom'gol, Booty Bay
