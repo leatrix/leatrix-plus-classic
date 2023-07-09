@@ -1,5 +1,6 @@
 1.14.116.alpha.1 - 6th July 2023
 - PTR (1.14.4): Updated 'Resisze quest text' ('Text').
+- Added flight times.
 
 1.14.115 - 5th July 2023
 - PTR (1.14.4): Preliminary code update for game version 1.14.4 (hardcore realms).
