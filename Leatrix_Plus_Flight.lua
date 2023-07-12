@@ -294,6 +294,7 @@
 					["0.42:0.79:0.44:0.69:0.56:0.53:0.41:0.37"] = 625, -- Cenarion Hold, Camp Mojache, Crossroads, Zoram'gar Outpost
 					["0.42:0.79:0.44:0.69:0.32:0.58:0.41:0.47"] = 529, -- Cenarion Hold, Camp Mojache, Shadowprey Village, Sun Rock Retreat
 					["0.42:0.79:0.44:0.69:0.32:0.58"] = 330, -- Cenarion Hold, Camp Mojache, Shadowprey Village
+					["0.42:0.79:0.50:0.76:0.61:0.80:0.63:0.44"] = 555, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Orgrimmar
 
 					-- Horde: Crossroads (The Barrens)
 					["0.56:0.53:0.61:0.80"] = 303, -- Crossroads, Gadgetzan
