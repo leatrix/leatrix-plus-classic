@@ -1,3 +1,6 @@
+1.14.117.alpha.1 - 12th July 2023
+- Added flight times.
+
 1.14.116 - 12th July 2023
 - Fixed an issue with 'Block shared quests' ('Social') which caused a few quests to be incorrectly declined.
 - The 'Resize mail text', 'Resize quest text' and 'Resize book text' options ('Text') now have a maximum font size of 30 (reduced from 36).
