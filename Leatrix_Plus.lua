@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.117.alpha.1 (12th July 2023)
+-- 	Leatrix Plus 1.14.117 (18th July 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.117.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.117"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1863,8 +1863,8 @@
 
 				if event == "GOSSIP_SHOW" or event == "QUEST_GREETING" then
 
-					-- Select quests
-					if UnitExists("npc") or QuestFrameGreetingPanel:IsShown() or GossipFrameGreetingPanel:IsShown() then
+					-- Select quests (remove GossipFrameGreetingPanel in LeaPlusLC.NewPatch)
+					if UnitExists("npc") or QuestFrameGreetingPanel:IsShown() or GossipFrameGreetingPanel and GossipFrameGreetingPanel:IsShown() then
 
 						-- Don't select quests for blocked NPCs
 						if isNpcBlocked("Select") then return end

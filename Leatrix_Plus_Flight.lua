@@ -1057,6 +1057,7 @@
 					["0.65:0.23:0.53:0.26:0.43:0.25"] = 293, -- Everlook, Talonbranch Glade, Auberdine
 					["0.65:0.23:0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 1017, -- Everlook, Moonglade, Auberdine, Nijel's Point, Theramore, Gadgetzan
 					["0.65:0.23:0.61:0.40:0.64:0.67"] = 416, -- Everlook, Talrendis Point, Theramore
+					["0.65:0.23:0.53:0.26:0.43:0.25:0.64:0.67"] = 967, -- Everlook, Talonbranch Glade, Auberdine, Theramore
 
 					-- Alliance: Feathermoon (Feralas)
 					["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan
@@ -1343,7 +1344,7 @@
 					["0.64:0.67:0.61:0.40"] = 235, -- Theramore, Talrendis Point
 					["0.64:0.67:0.61:0.40:0.46:0.40"] = 387, -- Theramore, Talrendis Point, Astranaar
 					["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point
-					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Martin Sodoma reported 454)
+					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Scott Wilson, Martin Sodoma reported 454)
 					["0.64:0.67:0.43:0.25"] = 620, -- Theramore, Auberdine
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.64:0.67:0.43:0.25:0.46:0.40"] = 796, -- Theramore, Auberdine, Astranaar

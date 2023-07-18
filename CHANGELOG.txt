@@ -1,4 +1,5 @@
-1.14.117.alpha.1 - 12th July 2023
+1.14.117 - 18th July 2023
+- PTR (1.14.4): Fixed situational Lua error with 'Automate quests' ('Automation').
 - Added flight times.
 
 1.14.116 - 12th July 2023
