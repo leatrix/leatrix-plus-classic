@@ -1,3 +1,7 @@
+1.14.118.alpha.1 - 18th July 2023
+- For 'Sell junk automatically' ('Automation'), increased the exclusion list limit to 2000 characters (was 600).
+- Added flight times.
+
 1.14.117 - 18th July 2023
 - PTR (1.14.4): Fixed situational Lua error with 'Automate quests' ('Automation').
 - Added flight times.

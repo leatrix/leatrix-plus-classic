@@ -685,7 +685,7 @@
 					["0.51:0.75:0.56:0.70:0.58:0.65"] = 120, -- Darkshire, Lakeshire, Morgan's Vigil
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57"] = 212, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 391, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar
-					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 333, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge (Raul Feresteanu suggested 295)
+					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 333, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge (Daniel Gralow, Raul Feresteanu suggested 295)
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 487, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe (was 524, changed to 487 by Christopher Bywaletz)
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 481, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Southshore
@@ -1166,6 +1166,7 @@
 					["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55"] = 464, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet
 					["0.55:0.21:0.43:0.25:0.64:0.67:0.60:0.81"] = 970, -- Moonglade, Auberdine, Theramore, Gadgetzan
 					["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67"] = 562, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet, Theramore
+					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.48:0.70"] = 903, -- Moonglade, Auberdine, Nijel's Point, Theramore, Thalanaar
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -1188,6 +1189,7 @@
 					["0.40:0.51:0.43:0.25:0.46:0.40"] = 458, -- Nijel's Point, Auberdine, Astranaar
 					["0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76"] = 568, -- Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge
 					["0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55"] = 555, -- Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point, Ratchet
+					["0.40:0.51:0.64:0.67:0.61:0.40"] = 541, -- Nijel's Point, Theramore, Talrendis Point
 
 					-- Alliance: Ratchet (The Barrens)
 					["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan
