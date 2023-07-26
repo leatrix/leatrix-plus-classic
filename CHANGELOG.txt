@@ -1,4 +1,4 @@
-1.14.118.alpha.1 - 18th July 2023
+1.14.118 - 26th July 2023
 - For 'Sell junk automatically' ('Automation'), increased the exclusion list limit to 2000 characters (was 600).
 - Added flight times.
 

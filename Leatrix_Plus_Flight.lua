@@ -88,6 +88,7 @@
 					["0.55:0.57:0.62:0.31:0.49:0.27"] = 379, -- Kargath, Hammerfall, Tarren Mill
 					["0.55:0.57:0.44:0.19"] = 497, -- Kargath, Undercity
 					["0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 477, -- Kargath, Hammerfall, Tarren Mill, The Sepulcher
+					["0.55:0.57:0.44:0.19:0.49:0.27"] = 565, -- Kargath, Undercity, Tarren Mill
 
 					-- Horde: Light's Hope Chapel (Eastern Plaguelands)
 					["0.70:0.16:0.67:0.30:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 884, -- Light's Hope Chapel, Revantusk Village, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -103,6 +104,7 @@
 					["0.70:0.16:0.44:0.19:0.38:0.24"] = 294, -- Light's Hope Chapel, Undercity, The Sepulcher
 					["0.70:0.16:0.44:0.19:0.55:0.57:0.45:0.84"] = 985, -- Light's Hope Chapel, Undercity, Kargath, Grom'gol
 					["0.70:0.16:0.44:0.19:0.49:0.27:0.62:0.31"] = 443, -- Light's Hope Chapel, Undercity, Tarren Mill, Hammerfall
+					["0.70:0.16:0.44:0.19:0.55:0.57"] = 673, -- Light's Hope Chapel, Undercity, Kargath
 
 					-- Horde: Revantusk Village (The Hinterlands)
 					["0.67:0.30:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 743, -- Revantusk Village, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -297,6 +299,7 @@
 					["0.42:0.79:0.44:0.69:0.32:0.58"] = 330, -- Cenarion Hold, Camp Mojache, Shadowprey Village
 					["0.42:0.79:0.50:0.76:0.61:0.80:0.63:0.44"] = 555, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Orgrimmar
 					["0.42:0.79:0.61:0.80:0.63:0.44"] = 591, -- Cenarion Hold, Gadgetzan, Orgrimmar
+					["0.42:0.79:0.50:0.76:0.61:0.80:0.55:0.73"] = 292, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Freewind Post
 
 					-- Horde: Crossroads (The Barrens)
 					["0.56:0.53:0.61:0.80"] = 303, -- Crossroads, Gadgetzan
@@ -685,8 +688,8 @@
 					["0.51:0.75:0.56:0.70:0.58:0.65"] = 120, -- Darkshire, Lakeshire, Morgan's Vigil
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57"] = 212, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 391, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar
-					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 333, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge (Daniel Gralow, Raul Feresteanu suggested 295)
-					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor
+					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 333, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge (Daniel Gralow, Raul Feresteanu reported 295)
+					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor (Ifa reported 380)
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 487, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe (was 524, changed to 487 by Christopher Bywaletz)
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 481, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Southshore
 					["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 582, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak
@@ -1252,6 +1255,7 @@
 					["0.42:0.16:0.43:0.25:0.64:0.67:0.60:0.81"] = 913, -- Rut'theran Village, Auberdine, Theramore, Gadgetzan
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.64:0.67:0.60:0.81"] = 782, -- Rut'theran Village, Auberdine, Talrendis Point, Theramore, Gadgetzan
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 972, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
+					["0.42:0.16:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 883, -- Rut'theran, Auberdine, Feathermoon, Thalanaar, Gadgetzan
 
 					-- Alliance: Stonetalon Peak (Stonetalon Mountains)
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81"] = 591, -- Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan
