@@ -455,6 +455,7 @@
 					["0.63:0.44:0.45:0.56:0.32:0.58"] = 385, -- Orgrimmar, Thunder Bluff, Shadowprey Village
 					["0.63:0.44:0.46:0.30:0.54:0.21"] = 373, -- Orgrimmar, Bloodvenom Post, Moonglade
 					["0.63:0.44:0.56:0.53:0.41:0.37"] = 341, -- Orgrimmar, Crossroads, Zoram'gar Outpost
+					["0.63:0.44:0.56:0.53:0.61:0.80:0.50:0.76"] = 521, -- Orgrimmar, Crossroads, Gadgetzan, Marshal's Refuge
 
 					-- Horde: Ratchet (The Barrens)
 					["0.61:0.55:0.56:0.53:0.55:0.73:0.61:0.80"] = 345, -- Ratchet, Crossroads, Freewind Post, Gadgetzan
@@ -604,6 +605,7 @@
 					["0.41:0.37:0.56:0.53:0.45:0.56"] = 410, -- Zoram'gar Outpost, Crossroads, Thunder Bluff
 					["0.41:0.37:0.56:0.53:0.41:0.47:0.32:0.58"] = 520, -- Zoram'gar Outpost, Crossroads, Sun Rock Retreat, Shadowprey Village
 					["0.41:0.37:0.56:0.53:0.63:0.44"] = 370, -- Zoram'gar Outpost, Crossroads, Orgrimmar
+					["0.41:0.37:0.56:0.53:0.46:0.30:0.54:0.21"] = 602, -- Zoram'gar Outpost, Crossroads, Bloodvenom Post, Moonglade
 
 				},
 
@@ -1036,6 +1038,7 @@
 					["0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21"] = 793, -- Cenarion Hold, Feathermoon, Auberdine, Moonglade
 					["0.42:0.79:0.31:0.69:0.43:0.25"] = 643, -- Cenarion Hold, Feathermoon, Auberdine
 					["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40"] = 729, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Astranaar
+					["0.42:0.79:0.60:0.81:0.48:0.70"] = 366, -- Cenarion Hold, Gadgetzan, Thalanaar
 
 					-- Alliance: Everlook (Winterspring)
 					["0.65:0.23:0.55:0.21"] = 122, -- Everlook, Moonglade
@@ -1170,6 +1173,7 @@
 					["0.55:0.21:0.43:0.25:0.64:0.67:0.60:0.81"] = 970, -- Moonglade, Auberdine, Theramore, Gadgetzan
 					["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67"] = 562, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet, Theramore
 					["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.48:0.70"] = 903, -- Moonglade, Auberdine, Nijel's Point, Theramore, Thalanaar
+					["0.55:0.21:0.43:0.25:0.31:0.69:0.48:0.70"] = 769, -- Moonglade, Auberdine, Feathermoon, Thalanaar
 
 					-- Alliance: Nijel's Pointe (Desolace)
 					["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -1350,7 +1354,7 @@
 					["0.64:0.67:0.61:0.40"] = 235, -- Theramore, Talrendis Point
 					["0.64:0.67:0.61:0.40:0.46:0.40"] = 387, -- Theramore, Talrendis Point, Astranaar
 					["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point
-					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Scott Wilson, Martin Sodoma reported 454)
+					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Scott Wilson, Martin Sodoma, Othman Arnaout reported 454)
 					["0.64:0.67:0.43:0.25"] = 620, -- Theramore, Auberdine
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.64:0.67:0.43:0.25:0.46:0.40"] = 796, -- Theramore, Auberdine, Astranaar
