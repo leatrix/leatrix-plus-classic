@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.122.alpha.1 (18th August 2023)
+-- 	Leatrix Plus 1.14.122 (23rd August 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.122.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.122"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -35,8 +35,8 @@
 			end)
 			return
 		end
-
 		if gametocversion and gametocversion == 11404 then
+			-- Used for upcoming game patch
 			LeaPlusLC.NewPatch = true
 		end
 	end
@@ -675,14 +675,10 @@
 
 		if LeaPlusLC["NoDuelRequests"] == "On" then
 			LpEvt:RegisterEvent("DUEL_REQUESTED")
-			if LeaPlusLC.NewPatch then
-				LpEvt:RegisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
-			end
+			LpEvt:RegisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
 		else
 			LpEvt:UnregisterEvent("DUEL_REQUESTED")
-			if LeaPlusLC.NewPatch then
-				LpEvt:UnregisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
-			end
+			LpEvt:UnregisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
 		end
 
 		----------------------------------------------------------------------
@@ -1224,171 +1220,87 @@
 		-- Automate gossip (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC.NewPatch then
+		do
 
-			do
-
-				-- Function to skip gossip
-				local function SkipGossip(skipAltKeyRequirement)
-					if not skipAltKeyRequirement and not IsAltKeyDown() then return end
-					local gossipInfoTable = C_GossipInfo.GetOptions()
-					if gossipInfoTable and #gossipInfoTable == 1 and C_GossipInfo.GetNumAvailableQuests() == 0 and C_GossipInfo.GetNumActiveQuests() == 0 and gossipInfoTable[1] and gossipInfoTable[1].gossipOptionID then
-						C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
-					end
+			-- Function to skip gossip
+			local function SkipGossip(skipAltKeyRequirement)
+				if not skipAltKeyRequirement and not IsAltKeyDown() then return end
+				local gossipInfoTable = C_GossipInfo.GetOptions()
+				if gossipInfoTable and #gossipInfoTable == 1 and C_GossipInfo.GetNumAvailableQuests() == 0 and C_GossipInfo.GetNumActiveQuests() == 0 and gossipInfoTable[1] and gossipInfoTable[1].gossipOptionID then
+					C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
 				end
-
-				-- Create gossip event frame
-				local gossipFrame = CreateFrame("FRAME")
-
-				-- Function to setup events
-				local function SetupEvents()
-					if LeaPlusLC["AutomateGossip"] == "On" then
-						gossipFrame:RegisterEvent("GOSSIP_SHOW")
-					else
-						gossipFrame:UnregisterEvent("GOSSIP_SHOW")
-					end
-				end
-
-				-- Setup events when option is clicked and on startup (if option is enabled)
-				LeaPlusCB["AutomateGossip"]:HookScript("OnClick", SetupEvents)
-				if LeaPlusLC["AutomateGossip"] == "On" then SetupEvents() end
-
-				-- Create tables for specific NPC IDs (these are automatically selected with no alt key requirement)
-				local npcTable = {
-
-					-- Stable masters (https://www.wowhead.com/classic/npcs?filter=27%3B1%3B0)
-					10060, 10063, 9984, 11119, 9985, 11104, 10062, 10085, 9978, 10051, 9988, 10054, 9989, 9981, 10056, 13616, 14741, 10045, 10052, 10047, 10055, 9986, 15722, 6749, 10061, 15131, 9979, 13617, 11105, 10053, 9983, 9982, 10050, 9980, 11117, 10046, 10059, 16094, 10058, 9987, 10048, 9977, 10057, 10049, 11069, 9976,
-
-					-- Banker (https://www.wowhead.com/classic/npcs?filter=19;1;0)
-					8356, 2456, 4549, 7799, 4209, 4155, 8123, 3318, 3309, 2455, 2625, 2457, 3320, 2461, 2460, 4208, 8124, 5099, 8119, 8357, 3496, 2459, 4550, 2996, 13917, 2458, 5060,
-
-					-- Flightmaster (https://www.wowhead.com/classic/npcs?filter=21;1;0)
-					10583, 352, 8019, 3838, 10897, 3615, 3310, 2299, 12578, 4312, 4267, 1571, 1572, 12616, 16227, 2409, 3841, 2432, 2861, 12740, 12636, 4321, 11900, 1573, 2859, 11138, 11901, 6706, 6726, 8610, 11899, 1387, 931, 12596, 3305, 8609, 2858, 8018, 4407, 15177, 12577, 2995, 523, 4319, 7823, 10378, 2851, 2835, 2226, 4317, 7824, 12617, 2941, 4551, 13177, 11139, 6026, 8020, 2389, 4314, 15178,
-
-					-- Trainer (https://www.wowhead.com/classic/npcs?filter=28;1;0)
-					11073, 11865, 2836, 7948, 5482, 11867, 11052, 11097, 8736, 5159, 11072, 4160, 11869, 11870, 7406, 1386, 8126, 2327, 3399, 11098, 1346, 5513, 11868, 11557, 2704, 6287, 4165, 4732, 5567, 11866, 5174, 2399, 11074, 5518, 7944, 4611, 6707, 3373, 6291, 3412, 3352, 12042, 7088, 7870, 4211, 1218, 1292, 4212, 4258, 6306, 4752, 1317, 7311, 9584, 928, 5497, 11017, 4217, 5938, 2485, 5150, 5958, 4210, 4204, 13084, 3494, 4576, 4773, 3026, 3354, 3007, 2489, 4156, 1470, 6286, 2627, 1231, 4578, 4753, 7868, 5499, 2834, 2818, 5144, 2329, 7866, 1430, 4772, 3067, 4591, 3690, 2798, 3355, 4254, 6018, 8738, 5479, 918, 5137, 5564, 4163, 7869, 1103, 5566, 7867, 3347, 4568, 3009, 3032, 3181, 5164, 5517, 1215, 4146, 13417, 7871, 3033, 914, 5493, 3064, 3363, 1701, 5480, 2492, 5491, 6292, 8144, 1300, 3601, 3602, 6289, 3401, 5511, 5957, 4218, 14740, 913, 5943, 4606, 5885, 908, 4586, 6295, 1632, 7954, 5127, 3154, 1651, 3357, 1226, 3607, 3001, 5515, 11031, 6297, 5941, 4616, 1382, 377, 1681, 3404, 3175, 10089, 5880, 6387, 2837, 11177, 2391, 8306, 4552, 11037, 5506, 5498, 3345, 1411, 5177, 5392, 3344, 514, 10993, 328, 8308, 3596, 5153, 2879, 3332, 7089, 11096, 3171, 11068, 11178, 3087, 3039, 3173, 3523, 1355, 5157, 11406, 5504, 5939, 1385, 3365, 13283, 8128, 3706, 5171, 10088, 4598, 3594, 3327, 11146, 3605, 1700, 5484, 6094, 2132, 1699, 5165, 12030, 3184, 3066, 5496, 895, 5516, 7953, 8140, 927, 3136, 5161, 3599, 1241, 4215, 1232, 7232, 986, 1234, 3170, 917, 3964, 3062, 3044, 3169, 1703, 3967, 460, 4595, 3172, 4609, 2367, 3174, 6288, 4138, 5501, 3063, 3597, 944, 5759, 11401, 4213, 2857, 6290, 2131, 3603, 957, 4584, 3324, 376, 915, 3484, 3013, 3031, 3041, 11029, 4588, 1702, 3963, 6299, 461, 4205, 11081, 4219, 7087, 3036, 3325, 11397, 3030, 3011, 5172, 5489, 10086, 5145, 3328, 3549, 5502, 4089, 1383, 912, 10266, 11046, 3047, 4087, 4573, 3290, 3353, 3179, 4596, 1473, 3306, 3137, 3185, 5146, 3688, 7230, 916, 2326, 11065, 812, 5149, 2129, 459, 4214, 3620, 2124, 198, 1228, 5884, 3604, 4614, 11071, 11025, 2878, 8146, 3595, 3048, 5695, 3065, 5173, 3593, 2856, 4090, 10090, 7946, 4582, 3069, 11083, 5883, 2114, 4607, 5612, 1229, 4091, 3028, 2998, 3600, 8153, 5116, 10276, 3403, 2855, 6014, 4900, 4605, 5148, 837, 8141, 5115, 3046, 10277, 11066, 4566, 3038, 5492, 7231, 1901, 5113, 3703, 911, 12032, 12025, 4159, 543, 375, 3157, 3004, 3606, 2390, 4608, 5167, 3557, 4563, 3707, 1404, 3598, 2130, 906, 4583, 11041, 4567, 5117, 3155, 3042, 3034, 3407, 11026, 11050, 3326, 3698, 4898, 926, 925, 2128, 4593, 3545, 5690, 3153, 9465, 8142, 988, 12961, 3061, 1680, 2126, 3156, 5143, 3478, 5147, 11051, 5784, 3406, 7949, 4594, 3965, 223, 2119, 10930, 1676, 3622, 4193, 3059, 3043, 11047, 11070, 3045, 5166, 2127, 5500, 5505, 11048, 1246, 3408, 4320, 7315, 3060, 1466, 11028, 5811, 4092, 4564, 3704, 11067, 11049, 11042, 11084, 5141, 3040, 5495, 1683, 5994, 3624, 5114, 5142, 2123, 2122, 7312, 11044, 3555, 331, 3008, 985, 987, 5882, 4565, 1458, 10278, 3049,
-
-					-- Vendor (https://www.wowhead.com/classic/npcs?filter=29;1;0)
-					2805, 13476, 3955, 12919, 844, 2664, 2685, 8125, 8137, 1312, 8139, 3323, 66, 12944, 12022, 1448, 1257, 2626, 12033, 7947, 11189, 2480, 340, 14921, 10667, 4561, 1243, 4229, 4169, 4897, 5494, 14754, 1285, 7775, 222, 12245, 3410, 12246, 9499, 16015, 14846, 1286, 5940, 5110, 3369, 11278, 8145, 4173, 5132, 5175, 4877, 1307, 1441, 734, 4890, 11536, 2810, 3313, 2679, 5519, 4230, 11557, 5594, 3482, 1351, 11188, 14624, 1321, 3614, 4453, 4165, 12942, 7852, 1303, 3556, 8361, 13699, 15419, 13698, 1297, 12943, 2670, 1465, 3335, 5942, 7564, 2832, 6777, 5754, 4730, 2482, 5817, 4585, 5816, 2381, 11056, 3539, 5133, 3027, 3334, 3490, 14753, 3362, 10857, 11185, 5101, 2118, 10856, 12941, 3348, 5162, 7976, 3537, 3881, 13219, 4085, 3935, 3562, 2821, 3534, 3658, 1148, 3413, 4086, 4878, 15174, 2848, 2803, 4217, 16376, 2687, 3133, 15179, 4610, 7978, 10618, 2622, 2682, 1298, 4574, 4879, 9087, 1302, 3015, 2699, 3342, 4083, 4305, 8666, 13217, 15293, 11057, 4981, 225, 8679, 1460, 3409, 2481, 11187, 7854, 4226, 9636, 1313, 3319, 4182, 3495, 3164, 6576, 12043, 12959, 6779, 3954, 4590, 3529, 1275, 1287, 1323, 12799, 9544, 2672, 1304, 3956, 167, 3960, 14322, 5188, 1289, 6548, 12805, 1261, 1146, 5128, 1319, 3180, 4891, 3322, 5120, 6301, 2483, 3497, 7955, 10118, 8160, 3314, 1291, 483, 384, 14637, 4220, 14437, 6929, 8157, 3361, 3489, 2393, 8307, 3368, 2698, 4307, 894, 8364, 3488, 4170, 3134, 15127, 2397, 1325, 8118, 1694, 3081, 1347, 5160, 3018, 1247, 3550, 2684, 3366, 1669, 4232, 6735, 4225, 8665, 11038, 4569, 4575, 8122, 1691, 15471, 1299, 15176, 12957, 12777, 6746, 1149, 1309, 7952, 2816, 3498, 2383, 277, 13216, 11555, 9179, 6730, 3561, 1682, 3017, 2688, 12384, 1250, 5483, 5111, 2380, 491, 3499, 5193, 15126, 3541, 5178, 4617, 3168, 5565, 14740, 8305, 5411, 11874, 4592, 3333, 4562, 6568, 4604, 7683, 989, 8158, 3685, 4241, 4265, 4782, 3492, 3546, 12782, 5151, 1318, 2843, 2819, 8131, 5123, 4555, 11116, 1454, 5158, 4203, 6740, 12792, 14847, 12958, 13218, 8161, 3542, 5783, 1684, 5122, 4731, 4884, 4894, 7744, 5757, 3135, 1459, 14450, 1326, 5124, 2806, 12021, 233, 3367, 3493, 3962, 4589, 3025, 2683, 2663, 4235, 3682, 12956, 6367, 5100, 3186, 5815, 1671, 2394, 2357, 3543, 3029, 4194, 777, 4602, 2839, 6738, 1456, 8362, 3958, 8178, 3317, 14522, 1668, 151, 1453, 6731, 6807, 5814, 3346, 3005, 8878, 4556, 1348, 11106, 4200, 3548, 4175, 3554, 4896, 8934, 7940, 2812, 4256, 10216, 3316, 295, 8150, 4553, 5821, 5520, 1263, 3608, 14480, 3481, 3097, 958, 14481, 4184, 843, 8401, 6382, 1301, 2840, 2084, 829, 2846, 3162, 2697, 3578, 3091, 960, 3536, 5049, 5107, 4571, 3684, 1685, 3405, 1673, 3364, 2838, 3577, 14860, 1692, 5155, 4892, 8403, 8678, 12783, 11184, 8359, 14301, 3019, 4167, 9501, 6747, 6791, 7772, 2401, 3360, 5848, 5753, 3044, 3479, 7879, 14581, 14371, 10369, 11287, 4236, 1463, 3095, 4886, 6930, 1471, 1237, 4557, 1322, 5108, 12796, 3609, 5812, 3074, 5611, 1687, 1238, 5103, 5170, 7737, 2388, 3683, 15898, 4888, 13018, 5510, 983, 3592, 3350, 274, 9548, 4216, 2668, 15197, 190, 10293, 7942, 14337, 2908, 4885, 1147, 11118, 5698, 2997, 15175, 3351, 4186, 4177, 6495, 1457, 3518, 1469, 8129, 1316, 3096, 4587, 12097, 3589, 227, 5819, 226, 5109, 8681, 2849, 4597, 3187, 3953, 1214, 4172, 4234, 3951, 11183, 9549, 3611, 5106, 12960, 54, 4180, 5503, 8360, 981, 3934, 8931, 12023, 2814, 3012, 8177, 1695, 2669, 12096, 3178, 12027, 5169, 4899, 4228, 1294, 4191, 5163, 956, 836, 12795, 4223, 4181, 8176, 3165, 3000, 11703, 1273, 8508, 10361, 5138, 14964, 1324, 3088, 7714, 7733, 3610, 4231, 3359, 3970, 4577, 12026, 9553, 2136, 3530, 1198, 3356, 5189, 4560, 3400, 3572, 5173, 228, 2116, 5125, 1310, 2845, 3090, 1333, 6928, 12196, 6741, 5688, 4876, 3072, 13435, 5748, 4883, 1295, 5758, 3587, 3330, 4603, 1645, 17598, 10380, 7945, 1320, 8363, 1350, 4889, 15864, 896, 15011, 2842, 12962, 3485, 9552, 3552, 2046, 5152, 1450, 2365, 6028, 5102, 3020, 5569, 4601, 5820, 3085, 12807, 1452, 12045, 7943, 4187, 6736, 3700, 3483, 16256, 954, 4615, 5749, 3937, 1339, 3076, 3321, 9555, 14739, 2364, 3014, 13420, 15354, 4581, 1407, 9551, 3023, 14844, 3779, 3500, 1650, 9676, 3163, 2808, 4222, 11137, 8404, 465, 12793, 4255, 152, 4266, 1462, 3003, 4043, 14963, 4600, 1362, 3291, 980, 1104, 3486, 3477, 1464, 6272, 11103, 6790, 13430, 790, 5121, 6027, 3621, 14961, 3533, 15315, 3625, 15199, 4185, 9099, 984, 3079, 10364, 1349, 1315, 4240, 6328, 12019, 14962, 1314, 3158, 2140, 6300, 6567, 1213, 3358, 2117, 5119, 2265, 2264, 12776, 2352, 6727, 7731, 9356, 2847, 5512, 793, 3021, 3331, 15353, 13418, 1697, 1381, 5870, 5139, 3159, 12028, 4257, 4558, 791, 12781, 5190, 1670, 3480, 2134, 11182, 3312, 1308, 3532, 4599, 3553, 5508, 5135, 4570, 4221, 4554, 4559, 4195, 3177, 3349, 4189, 13433, 2135, 2113, 2366, 5514, 5570, 4084, 4164, 6091, 3411, 15006, 5140, 2137, 1328, 3969, 3298, 3705, 13436, 5112, 3933, 8152, 8358, 3160, 4188, 6739, 6734, 6737, 1686, 3491, 3590, 15012, 2115, 258, 3487, 372, 5509, 3078, 3329, 74, 4190, 5871, 8143, 13434, 12031, 3961, 7941, 3613, 3531, 959, 1461, 13429, 7485, 12029, 8398, 5126, 14738, 3551, 3528, 1474, 3161, 955, 12785, 3089, 14737, 12794, 3053, 3092, 3016, 15124, 2999, 6298, 982, 4259, 4954, 1678, 6376, 8116, 3882, 3952, 6496, 3075, 3166, 6373, 1296, 1698, 3591, 5750, 2820, 3343, 3093, 5886, 3547, 3948, 16458, 1305, 3544, 8121, 3884, 1311, 5134, 3588, 3002, 3689, 12784, 5129, 1672, 4580, 2303, 5156, 3010, 3073, 12024, 3883, 3959, 5154, 945, 3138, 13432, 5191, 3612, 3022, 4192, 3315, 4875, 8117, 3167, 5944, 2225, 10379, 4893, 5620, 1240, 3522, 6374, 4168, 4775, 4082, 3086, 3708, 3540, 3080, 2844, 78, 6574, 789, 15125, 14731, 11186, 3077, 4171, 4233, 4183, 1249, 10367, 14845, 1690, 13431, 1341, 8159,
-
-					-- Battlemaster (https://www.wowhead.com/classic/npcs?filter=20;1;0)
-					14981, 907, 14982, 7427, 12197, 5118, 347, 15007, 7410, 3890, 15106, 10360, 14990, 15006, 15008, 15102, 2302, 857, 2804, 14991, 15103, 15105, 14942, 12198,
-
-				}
-
-				-- Event handler
-				gossipFrame:SetScript("OnEvent", function()
-					-- Special treatment for specific NPCs
-					local npcGuid = UnitGUID("target") or nil
-					if npcGuid and not IsShiftKeyDown() then
-						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
-						if npcID then
-							-- Skip gossip with no alt key requirement
-							if npcID == "999999999"	-- Reserved for future use
-							or tContains(npcTable, tonumber(npcID))
-							then
-								SkipGossip(true) 	-- true means skip alt key requirement
-								return
-							end
-						end
-					end
-					-- Process gossip
-					SkipGossip()
-				end)
-
-				-- Show battleground name in battfield frame labels
-				hooksecurefunc(BattlefieldFrame, "Show", function()
-					if LeaPlusLC["AutomateGossip"] == "On" then
-						C_Timer.After(0.01, function()
-							local localizedName = GetBattlegroundInfo()
-							if localizedName then
-								BattlefieldFrameFrameLabel:SetText(localizedName)
-							end
-						end)
-					end
-				end)
-
 			end
 
-		else
+			-- Create gossip event frame
+			local gossipFrame = CreateFrame("FRAME")
 
-			do
+			-- Function to setup events
+			local function SetupEvents()
+				if LeaPlusLC["AutomateGossip"] == "On" then
+					gossipFrame:RegisterEvent("GOSSIP_SHOW")
+				else
+					gossipFrame:UnregisterEvent("GOSSIP_SHOW")
+				end
+			end
 
-				-- Function to skip gossip
-				local function SkipGossip()
-					if IsShiftKeyDown() then return end
-					local void, gossipType = GetGossipOptions()
-					if gossipType then
-						-- Completely automate gossip
-						if gossipType == "banker"
-						or gossipType == "taxi"
-						or gossipType == "trainer"
-						or gossipType == "vendor"
-						or gossipType == "battlemaster"
-						or gossipType == "arenamaster"
+			-- Setup events when option is clicked and on startup (if option is enabled)
+			LeaPlusCB["AutomateGossip"]:HookScript("OnClick", SetupEvents)
+			if LeaPlusLC["AutomateGossip"] == "On" then SetupEvents() end
+
+			-- Create tables for specific NPC IDs (these are automatically selected with no alt key requirement)
+			local npcTable = {
+
+				-- Stable masters (https://www.wowhead.com/classic/npcs?filter=27%3B1%3B0)
+				10060, 10063, 9984, 11119, 9985, 11104, 10062, 10085, 9978, 10051, 9988, 10054, 9989, 9981, 10056, 13616, 14741, 10045, 10052, 10047, 10055, 9986, 15722, 6749, 10061, 15131, 9979, 13617, 11105, 10053, 9983, 9982, 10050, 9980, 11117, 10046, 10059, 16094, 10058, 9987, 10048, 9977, 10057, 10049, 11069, 9976,
+
+				-- Banker (https://www.wowhead.com/classic/npcs?filter=19;1;0)
+				8356, 2456, 4549, 7799, 4209, 4155, 8123, 3318, 3309, 2455, 2625, 2457, 3320, 2461, 2460, 4208, 8124, 5099, 8119, 8357, 3496, 2459, 4550, 2996, 13917, 2458, 5060,
+
+				-- Flightmaster (https://www.wowhead.com/classic/npcs?filter=21;1;0)
+				10583, 352, 8019, 3838, 10897, 3615, 3310, 2299, 12578, 4312, 4267, 1571, 1572, 12616, 16227, 2409, 3841, 2432, 2861, 12740, 12636, 4321, 11900, 1573, 2859, 11138, 11901, 6706, 6726, 8610, 11899, 1387, 931, 12596, 3305, 8609, 2858, 8018, 4407, 15177, 12577, 2995, 523, 4319, 7823, 10378, 2851, 2835, 2226, 4317, 7824, 12617, 2941, 4551, 13177, 11139, 6026, 8020, 2389, 4314, 15178,
+
+				-- Trainer (https://www.wowhead.com/classic/npcs?filter=28;1;0)
+				11073, 11865, 2836, 7948, 5482, 11867, 11052, 11097, 8736, 5159, 11072, 4160, 11869, 11870, 7406, 1386, 8126, 2327, 3399, 11098, 1346, 5513, 11868, 11557, 2704, 6287, 4165, 4732, 5567, 11866, 5174, 2399, 11074, 5518, 7944, 4611, 6707, 3373, 6291, 3412, 3352, 12042, 7088, 7870, 4211, 1218, 1292, 4212, 4258, 6306, 4752, 1317, 7311, 9584, 928, 5497, 11017, 4217, 5938, 2485, 5150, 5958, 4210, 4204, 13084, 3494, 4576, 4773, 3026, 3354, 3007, 2489, 4156, 1470, 6286, 2627, 1231, 4578, 4753, 7868, 5499, 2834, 2818, 5144, 2329, 7866, 1430, 4772, 3067, 4591, 3690, 2798, 3355, 4254, 6018, 8738, 5479, 918, 5137, 5564, 4163, 7869, 1103, 5566, 7867, 3347, 4568, 3009, 3032, 3181, 5164, 5517, 1215, 4146, 13417, 7871, 3033, 914, 5493, 3064, 3363, 1701, 5480, 2492, 5491, 6292, 8144, 1300, 3601, 3602, 6289, 3401, 5511, 5957, 4218, 14740, 913, 5943, 4606, 5885, 908, 4586, 6295, 1632, 7954, 5127, 3154, 1651, 3357, 1226, 3607, 3001, 5515, 11031, 6297, 5941, 4616, 1382, 377, 1681, 3404, 3175, 10089, 5880, 6387, 2837, 11177, 2391, 8306, 4552, 11037, 5506, 5498, 3345, 1411, 5177, 5392, 3344, 514, 10993, 328, 8308, 3596, 5153, 2879, 3332, 7089, 11096, 3171, 11068, 11178, 3087, 3039, 3173, 3523, 1355, 5157, 11406, 5504, 5939, 1385, 3365, 13283, 8128, 3706, 5171, 10088, 4598, 3594, 3327, 11146, 3605, 1700, 5484, 6094, 2132, 1699, 5165, 12030, 3184, 3066, 5496, 895, 5516, 7953, 8140, 927, 3136, 5161, 3599, 1241, 4215, 1232, 7232, 986, 1234, 3170, 917, 3964, 3062, 3044, 3169, 1703, 3967, 460, 4595, 3172, 4609, 2367, 3174, 6288, 4138, 5501, 3063, 3597, 944, 5759, 11401, 4213, 2857, 6290, 2131, 3603, 957, 4584, 3324, 376, 915, 3484, 3013, 3031, 3041, 11029, 4588, 1702, 3963, 6299, 461, 4205, 11081, 4219, 7087, 3036, 3325, 11397, 3030, 3011, 5172, 5489, 10086, 5145, 3328, 3549, 5502, 4089, 1383, 912, 10266, 11046, 3047, 4087, 4573, 3290, 3353, 3179, 4596, 1473, 3306, 3137, 3185, 5146, 3688, 7230, 916, 2326, 11065, 812, 5149, 2129, 459, 4214, 3620, 2124, 198, 1228, 5884, 3604, 4614, 11071, 11025, 2878, 8146, 3595, 3048, 5695, 3065, 5173, 3593, 2856, 4090, 10090, 7946, 4582, 3069, 11083, 5883, 2114, 4607, 5612, 1229, 4091, 3028, 2998, 3600, 8153, 5116, 10276, 3403, 2855, 6014, 4900, 4605, 5148, 837, 8141, 5115, 3046, 10277, 11066, 4566, 3038, 5492, 7231, 1901, 5113, 3703, 911, 12032, 12025, 4159, 543, 375, 3157, 3004, 3606, 2390, 4608, 5167, 3557, 4563, 3707, 1404, 3598, 2130, 906, 4583, 11041, 4567, 5117, 3155, 3042, 3034, 3407, 11026, 11050, 3326, 3698, 4898, 926, 925, 2128, 4593, 3545, 5690, 3153, 9465, 8142, 988, 12961, 3061, 1680, 2126, 3156, 5143, 3478, 5147, 11051, 5784, 3406, 7949, 4594, 3965, 223, 2119, 10930, 1676, 3622, 4193, 3059, 3043, 11047, 11070, 3045, 5166, 2127, 5500, 5505, 11048, 1246, 3408, 4320, 7315, 3060, 1466, 11028, 5811, 4092, 4564, 3704, 11067, 11049, 11042, 11084, 5141, 3040, 5495, 1683, 5994, 3624, 5114, 5142, 2123, 2122, 7312, 11044, 3555, 331, 3008, 985, 987, 5882, 4565, 1458, 10278, 3049,
+
+				-- Vendor (https://www.wowhead.com/classic/npcs?filter=29;1;0)
+				2805, 13476, 3955, 12919, 844, 2664, 2685, 8125, 8137, 1312, 8139, 3323, 66, 12944, 12022, 1448, 1257, 2626, 12033, 7947, 11189, 2480, 340, 14921, 10667, 4561, 1243, 4229, 4169, 4897, 5494, 14754, 1285, 7775, 222, 12245, 3410, 12246, 9499, 16015, 14846, 1286, 5940, 5110, 3369, 11278, 8145, 4173, 5132, 5175, 4877, 1307, 1441, 734, 4890, 11536, 2810, 3313, 2679, 5519, 4230, 11557, 5594, 3482, 1351, 11188, 14624, 1321, 3614, 4453, 4165, 12942, 7852, 1303, 3556, 8361, 13699, 15419, 13698, 1297, 12943, 2670, 1465, 3335, 5942, 7564, 2832, 6777, 5754, 4730, 2482, 5817, 4585, 5816, 2381, 11056, 3539, 5133, 3027, 3334, 3490, 14753, 3362, 10857, 11185, 5101, 2118, 10856, 12941, 3348, 5162, 7976, 3537, 3881, 13219, 4085, 3935, 3562, 2821, 3534, 3658, 1148, 3413, 4086, 4878, 15174, 2848, 2803, 4217, 16376, 2687, 3133, 15179, 4610, 7978, 10618, 2622, 2682, 1298, 4574, 4879, 9087, 1302, 3015, 2699, 3342, 4083, 4305, 8666, 13217, 15293, 11057, 4981, 225, 8679, 1460, 3409, 2481, 11187, 7854, 4226, 9636, 1313, 3319, 4182, 3495, 3164, 6576, 12043, 12959, 6779, 3954, 4590, 3529, 1275, 1287, 1323, 12799, 9544, 2672, 1304, 3956, 167, 3960, 14322, 5188, 1289, 6548, 12805, 1261, 1146, 5128, 1319, 3180, 4891, 3322, 5120, 6301, 2483, 3497, 7955, 10118, 8160, 3314, 1291, 483, 384, 14637, 4220, 14437, 6929, 8157, 3361, 3489, 2393, 8307, 3368, 2698, 4307, 894, 8364, 3488, 4170, 3134, 15127, 2397, 1325, 8118, 1694, 3081, 1347, 5160, 3018, 1247, 3550, 2684, 3366, 1669, 4232, 6735, 4225, 8665, 11038, 4569, 4575, 8122, 1691, 15471, 1299, 15176, 12957, 12777, 6746, 1149, 1309, 7952, 2816, 3498, 2383, 277, 13216, 11555, 9179, 6730, 3561, 1682, 3017, 2688, 12384, 1250, 5483, 5111, 2380, 491, 3499, 5193, 15126, 3541, 5178, 4617, 3168, 5565, 14740, 8305, 5411, 11874, 4592, 3333, 4562, 6568, 4604, 7683, 989, 8158, 3685, 4241, 4265, 4782, 3492, 3546, 12782, 5151, 1318, 2843, 2819, 8131, 5123, 4555, 11116, 1454, 5158, 4203, 6740, 12792, 14847, 12958, 13218, 8161, 3542, 5783, 1684, 5122, 4731, 4884, 4894, 7744, 5757, 3135, 1459, 14450, 1326, 5124, 2806, 12021, 233, 3367, 3493, 3962, 4589, 3025, 2683, 2663, 4235, 3682, 12956, 6367, 5100, 3186, 5815, 1671, 2394, 2357, 3543, 3029, 4194, 777, 4602, 2839, 6738, 1456, 8362, 3958, 8178, 3317, 14522, 1668, 151, 1453, 6731, 6807, 5814, 3346, 3005, 8878, 4556, 1348, 11106, 4200, 3548, 4175, 3554, 4896, 8934, 7940, 2812, 4256, 10216, 3316, 295, 8150, 4553, 5821, 5520, 1263, 3608, 14480, 3481, 3097, 958, 14481, 4184, 843, 8401, 6382, 1301, 2840, 2084, 829, 2846, 3162, 2697, 3578, 3091, 960, 3536, 5049, 5107, 4571, 3684, 1685, 3405, 1673, 3364, 2838, 3577, 14860, 1692, 5155, 4892, 8403, 8678, 12783, 11184, 8359, 14301, 3019, 4167, 9501, 6747, 6791, 7772, 2401, 3360, 5848, 5753, 3044, 3479, 7879, 14581, 14371, 10369, 11287, 4236, 1463, 3095, 4886, 6930, 1471, 1237, 4557, 1322, 5108, 12796, 3609, 5812, 3074, 5611, 1687, 1238, 5103, 5170, 7737, 2388, 3683, 15898, 4888, 13018, 5510, 983, 3592, 3350, 274, 9548, 4216, 2668, 15197, 190, 10293, 7942, 14337, 2908, 4885, 1147, 11118, 5698, 2997, 15175, 3351, 4186, 4177, 6495, 1457, 3518, 1469, 8129, 1316, 3096, 4587, 12097, 3589, 227, 5819, 226, 5109, 8681, 2849, 4597, 3187, 3953, 1214, 4172, 4234, 3951, 11183, 9549, 3611, 5106, 12960, 54, 4180, 5503, 8360, 981, 3934, 8931, 12023, 2814, 3012, 8177, 1695, 2669, 12096, 3178, 12027, 5169, 4899, 4228, 1294, 4191, 5163, 956, 836, 12795, 4223, 4181, 8176, 3165, 3000, 11703, 1273, 8508, 10361, 5138, 14964, 1324, 3088, 7714, 7733, 3610, 4231, 3359, 3970, 4577, 12026, 9553, 2136, 3530, 1198, 3356, 5189, 4560, 3400, 3572, 5173, 228, 2116, 5125, 1310, 2845, 3090, 1333, 6928, 12196, 6741, 5688, 4876, 3072, 13435, 5748, 4883, 1295, 5758, 3587, 3330, 4603, 1645, 17598, 10380, 7945, 1320, 8363, 1350, 4889, 15864, 896, 15011, 2842, 12962, 3485, 9552, 3552, 2046, 5152, 1450, 2365, 6028, 5102, 3020, 5569, 4601, 5820, 3085, 12807, 1452, 12045, 7943, 4187, 6736, 3700, 3483, 16256, 954, 4615, 5749, 3937, 1339, 3076, 3321, 9555, 14739, 2364, 3014, 13420, 15354, 4581, 1407, 9551, 3023, 14844, 3779, 3500, 1650, 9676, 3163, 2808, 4222, 11137, 8404, 465, 12793, 4255, 152, 4266, 1462, 3003, 4043, 14963, 4600, 1362, 3291, 980, 1104, 3486, 3477, 1464, 6272, 11103, 6790, 13430, 790, 5121, 6027, 3621, 14961, 3533, 15315, 3625, 15199, 4185, 9099, 984, 3079, 10364, 1349, 1315, 4240, 6328, 12019, 14962, 1314, 3158, 2140, 6300, 6567, 1213, 3358, 2117, 5119, 2265, 2264, 12776, 2352, 6727, 7731, 9356, 2847, 5512, 793, 3021, 3331, 15353, 13418, 1697, 1381, 5870, 5139, 3159, 12028, 4257, 4558, 791, 12781, 5190, 1670, 3480, 2134, 11182, 3312, 1308, 3532, 4599, 3553, 5508, 5135, 4570, 4221, 4554, 4559, 4195, 3177, 3349, 4189, 13433, 2135, 2113, 2366, 5514, 5570, 4084, 4164, 6091, 3411, 15006, 5140, 2137, 1328, 3969, 3298, 3705, 13436, 5112, 3933, 8152, 8358, 3160, 4188, 6739, 6734, 6737, 1686, 3491, 3590, 15012, 2115, 258, 3487, 372, 5509, 3078, 3329, 74, 4190, 5871, 8143, 13434, 12031, 3961, 7941, 3613, 3531, 959, 1461, 13429, 7485, 12029, 8398, 5126, 14738, 3551, 3528, 1474, 3161, 955, 12785, 3089, 14737, 12794, 3053, 3092, 3016, 15124, 2999, 6298, 982, 4259, 4954, 1678, 6376, 8116, 3882, 3952, 6496, 3075, 3166, 6373, 1296, 1698, 3591, 5750, 2820, 3343, 3093, 5886, 3547, 3948, 16458, 1305, 3544, 8121, 3884, 1311, 5134, 3588, 3002, 3689, 12784, 5129, 1672, 4580, 2303, 5156, 3010, 3073, 12024, 3883, 3959, 5154, 945, 3138, 13432, 5191, 3612, 3022, 4192, 3315, 4875, 8117, 3167, 5944, 2225, 10379, 4893, 5620, 1240, 3522, 6374, 4168, 4775, 4082, 3086, 3708, 3540, 3080, 2844, 78, 6574, 789, 15125, 14731, 11186, 3077, 4171, 4233, 4183, 1249, 10367, 14845, 1690, 13431, 1341, 8159,
+
+				-- Battlemaster (https://www.wowhead.com/classic/npcs?filter=20;1;0)
+				14981, 907, 14982, 7427, 12197, 5118, 347, 15007, 7410, 3890, 15106, 10360, 14990, 15006, 15008, 15102, 2302, 857, 2804, 14991, 15103, 15105, 14942, 12198,
+
+			}
+
+			-- Event handler
+			gossipFrame:SetScript("OnEvent", function()
+				-- Special treatment for specific NPCs
+				local npcGuid = UnitGUID("target") or nil
+				if npcGuid and not IsShiftKeyDown() then
+					local void, void, void, void, void, npcID = strsplit("-", npcGuid)
+					if npcID then
+						-- Skip gossip with no alt key requirement
+						if npcID == "999999999"	-- Reserved for future use
+						or tContains(npcTable, tonumber(npcID))
 						then
-							SelectGossipOption(1)
-						end
-						-- Automate gossip with ALT key
-						if IsAltKeyDown() then
-							if gossipType == "gossip"
-							then
-								SelectGossipOption(1)
-							end
+							SkipGossip(true) 	-- true means skip alt key requirement
+							return
 						end
 					end
 				end
+				-- Process gossip
+				SkipGossip()
+			end)
 
-				-- Create gossip event frame
-				local gossipFrame = CreateFrame("FRAME")
-
-				-- Function to setup events
-				local function SetupEvents()
-					if LeaPlusLC["AutomateGossip"] == "On" then
-						gossipFrame:RegisterEvent("GOSSIP_SHOW")
-					else
-						gossipFrame:UnregisterEvent("GOSSIP_SHOW")
-					end
-				end
-
-				-- Setup events when option is clicked and on startup (if option is enabled)
-				LeaPlusCB["AutomateGossip"]:HookScript("OnClick", SetupEvents)
-				if LeaPlusLC["AutomateGossip"] == "On" then SetupEvents() end
-
-				-- Event handler
-				gossipFrame:SetScript("OnEvent", function()
-					-- Special treatment for specific NPCs
-					local npcGuid = UnitGUID("target") or nil
-					if npcGuid then
-						local void, void, void, void, void, npcID = strsplit("-", npcGuid)
-						if npcID then
-							if npcID == "9999999999" -- Reserved for future use
-							then
-								SkipGossip()
-								return
-							end
+			-- Show battleground name in battfield frame labels
+			hooksecurefunc(BattlefieldFrame, "Show", function()
+				if LeaPlusLC["AutomateGossip"] == "On" then
+					C_Timer.After(0.01, function()
+						local localizedName = GetBattlegroundInfo()
+						if localizedName then
+							BattlefieldFrameFrameLabel:SetText(localizedName)
 						end
-					end
-
-					-- Process gossip
-					if GetNumGossipOptions() == 1 and GetNumGossipAvailableQuests() == 0 and GetNumGossipActiveQuests() == 0 then
-						SkipGossip()
-					end
-				end)
-
-				-- Show battleground name in battfield frame labels
-				hooksecurefunc(BattlefieldFrame, "Show", function()
-					if LeaPlusLC["AutomateGossip"] == "On" then
-						C_Timer.After(0.01, function()
-							local localizedName = GetBattlegroundInfo()
-							if localizedName then
-								BattlefieldFrameFrameLabel:SetText(localizedName)
-							end
-						end)
-					end
-				end)
-
-			end
+					end)
+				end
+			end)
 
 		end
 
@@ -1863,8 +1775,8 @@
 
 				if event == "GOSSIP_SHOW" or event == "QUEST_GREETING" then
 
-					-- Select quests (remove GossipFrameGreetingPanel in LeaPlusLC.NewPatch)
-					if UnitExists("npc") or QuestFrameGreetingPanel:IsShown() or GossipFrameGreetingPanel and GossipFrameGreetingPanel:IsShown() then
+					-- Select quests
+					if UnitExists("npc") or QuestFrameGreetingPanel:IsShown() then
 
 						-- Don't select quests for blocked NPCs
 						if isNpcBlocked("Select") then return end
@@ -1892,39 +1804,21 @@
 						else
 							-- Select gossip completed quests
 							if LeaPlusLC["AutoQuestCompleted"] == "On" then
-								if LeaPlusLC.NewPatch then
-									local gossipQuests = C_GossipInfo.GetActiveQuests()
-									for titleIndex, questInfo in ipairs(gossipQuests) do
-										if questInfo.title and questInfo.isComplete then
-											if questInfo.questID then
-												return C_GossipInfo.SelectActiveQuest(questInfo.questID)
-											end
-										end
-									end
-								else
-									for i = 1, GetNumGossipActiveQuests() do
-										local title, level, isTrivial, isComplete, isLegendary, isIgnored = select(i * 6 - 5, GetGossipActiveQuests())
-										if title and isComplete then
-											return SelectGossipActiveQuest(i)
+								local gossipQuests = C_GossipInfo.GetActiveQuests()
+								for titleIndex, questInfo in ipairs(gossipQuests) do
+									if questInfo.title and questInfo.isComplete then
+										if questInfo.questID then
+											return C_GossipInfo.SelectActiveQuest(questInfo.questID)
 										end
 									end
 								end
 							end
 							-- Select gossip available quests
 							if LeaPlusLC["AutoQuestAvailable"] == "On" then
-								if LeaPlusLC.NewPatch then
-									local GossipQuests = C_GossipInfo.GetAvailableQuests()
-									for titleIndex, questInfo in ipairs(GossipQuests) do
-										if questInfo.questID and DoesQuestHaveRequirementsMet(questInfo.questID) then
-											return C_GossipInfo.SelectAvailableQuest(questInfo.questID)
-										end
-									end
-								else
-									for i = 1, GetNumGossipAvailableQuests() do
-										local title, level, isTrivial, isDaily, isRepeatable, isLegendary, isIgnored = select(i * 7 - 6, GetGossipAvailableQuests())
-										if title and DoesQuestHaveRequirementsMet(title) then
-											return SelectGossipAvailableQuest(i)
-										end
+								local GossipQuests = C_GossipInfo.GetAvailableQuests()
+								for titleIndex, questInfo in ipairs(GossipQuests) do
+									if questInfo.questID and DoesQuestHaveRequirementsMet(questInfo.questID) then
+										return C_GossipInfo.SelectAvailableQuest(questInfo.questID)
 									end
 								end
 							end
@@ -2222,90 +2116,44 @@
 				local SoldCount, Rarity, ItemPrice = 0, 0, 0
 				local CurrentItemLink, void
 
-				if LeaPlusLC.NewPatch then
-
-					-- Traverse bags and sell grey items
-					for BagID = 0, 4 do
-						for BagSlot = 1, C_Container.GetContainerNumSlots(BagID) do
-							CurrentItemLink = C_Container.GetContainerItemLink(BagID, BagSlot)
-							if CurrentItemLink then
-								void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
-								-- Don't sell whitelisted items
-								local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
-								if itemID and whiteList[itemID] then
-									if Rarity == 0 then
-										-- Junk item to keep
-										Rarity = 3
-										ItemPrice = 0
-									elseif Rarity == 1 then
-										-- White item to sell
-										Rarity = 0
-									end
+				-- Traverse bags and sell grey items
+				for BagID = 0, 4 do
+					for BagSlot = 1, C_Container.GetContainerNumSlots(BagID) do
+						CurrentItemLink = C_Container.GetContainerItemLink(BagID, BagSlot)
+						if CurrentItemLink then
+							void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
+							-- Don't sell whitelisted items
+							local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
+							if itemID and whiteList[itemID] then
+								if Rarity == 0 then
+									-- Junk item to keep
+									Rarity = 3
+									ItemPrice = 0
+								elseif Rarity == 1 then
+									-- White item to sell
+									Rarity = 0
 								end
-								-- Continue
-								local void, itemCount = C_Container.GetContainerItemInfo(BagID, BagSlot)
-								if Rarity == 0 and ItemPrice ~= 0 then
-									SoldCount = SoldCount + 1
-									if MerchantFrame:IsShown() then
-										-- If merchant frame is open, vendor the item
-										C_Container.UseContainerItem(BagID, BagSlot)
-										-- Perform actions on first iteration
-										if SellJunkTicker._remainingIterations == IterationCount then
-											-- Calculate total price
-											totalPrice = totalPrice + (ItemPrice * itemCount)
-										end
-									else
-										-- If merchant frame is not open, stop selling
-										StopSelling()
-										return
+							end
+							-- Continue
+							local void, itemCount = C_Container.GetContainerItemInfo(BagID, BagSlot)
+							if Rarity == 0 and ItemPrice ~= 0 then
+								SoldCount = SoldCount + 1
+								if MerchantFrame:IsShown() then
+									-- If merchant frame is open, vendor the item
+									C_Container.UseContainerItem(BagID, BagSlot)
+									-- Perform actions on first iteration
+									if SellJunkTicker._remainingIterations == IterationCount then
+										-- Calculate total price
+										totalPrice = totalPrice + (ItemPrice * itemCount)
 									end
+								else
+									-- If merchant frame is not open, stop selling
+									StopSelling()
+									return
 								end
 							end
 						end
 					end
-
-				else
-
-					-- Traverse bags and sell grey items
-					for BagID = 0, 4 do
-						for BagSlot = 1, GetContainerNumSlots(BagID) do
-							CurrentItemLink = GetContainerItemLink(BagID, BagSlot)
-							if CurrentItemLink then
-								void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
-								-- Don't sell whitelisted items
-								local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
-								if itemID and whiteList[itemID] then
-									if Rarity == 0 then
-										-- Junk item to keep
-										Rarity = 3
-										ItemPrice = 0
-									elseif Rarity == 1 then
-										-- White item to sell
-										Rarity = 0
-									end
-								end
-								-- Continue
-								local void, itemCount = GetContainerItemInfo(BagID, BagSlot)
-								if Rarity == 0 and ItemPrice ~= 0 then
-									SoldCount = SoldCount + 1
-									if MerchantFrame:IsShown() then
-										-- If merchant frame is open, vendor the item
-										UseContainerItem(BagID, BagSlot)
-										-- Perform actions on first iteration
-										if SellJunkTicker._remainingIterations == IterationCount then
-											-- Calculate total price
-											totalPrice = totalPrice + (ItemPrice * itemCount)
-										end
-									else
-										-- If merchant frame is not open, stop selling
-										StopSelling()
-										return
-									end
-								end
-							end
-						end
-					end
-
 				end
 
 				-- Stop selling if no items were sold for this iteration or iteration limit was reached
@@ -2691,13 +2539,11 @@
 
 		if LeaPlusLC["QuestFontChange"] == "On" then
 
-			-- Set gossip frame scroll box layout (fix for game patch 1.14.4)
-			if LeaPlusLC.NewPatch then
-				GossipFrame.GreetingPanel.ScrollBox:SetHeight(320)
-				GossipFrame.GreetingPanel.ScrollBar:ClearAllPoints()
-				GossipFrame.GreetingPanel.ScrollBar:SetPoint("TOPLEFT", GossipFrame.GreetingPanel.ScrollBox, "TOPRIGHT", 4, 9)
-				GossipFrame.GreetingPanel.ScrollBar:SetPoint("BOTTOMLEFT", GossipFrame.GreetingPanel.ScrollBox, "BOTTOMRIGHT", 4, -14)
-			end
+			-- Set gossip frame scroll box layout
+			GossipFrame.GreetingPanel.ScrollBox:SetHeight(320)
+			GossipFrame.GreetingPanel.ScrollBar:ClearAllPoints()
+			GossipFrame.GreetingPanel.ScrollBar:SetPoint("TOPLEFT", GossipFrame.GreetingPanel.ScrollBox, "TOPRIGHT", 4, 9)
+			GossipFrame.GreetingPanel.ScrollBar:SetPoint("BOTTOMLEFT", GossipFrame.GreetingPanel.ScrollBox, "BOTTOMRIGHT", 4, -14)
 
 			-- Create configuration panel
 			local QuestTextPanel = LeaPlusLC:CreatePanel("Resize quest text", "QuestTextPanel")
@@ -2707,17 +2553,11 @@
 
 			-- Function to update the font size
 			local function QuestSizeUpdate()
-				if LeaPlusLC.NewPatch then
-					local a, b, c = QuestFont:GetFont()
-					QuestTitleFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 3, c)
-					QuestFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 1, c)
-					local d, e, f = QuestFontNormalSmall:GetFont()
-					QuestFontNormalSmall:SetFont(d, LeaPlusLC["LeaPlusQuestFontSize"], f)
-				else
-					QuestTitleFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 3, nil)
-					QuestFont:SetFont(QuestFont:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"] + 1, nil)
-					QuestFontNormalSmall:SetFont(QuestFontNormalSmall:GetFont(), LeaPlusLC["LeaPlusQuestFontSize"], nil)
-				end
+				local a, b, c = QuestFont:GetFont()
+				QuestTitleFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 3, c)
+				QuestFont:SetFont(a, LeaPlusLC["LeaPlusQuestFontSize"] + 1, c)
+				local d, e, f = QuestFontNormalSmall:GetFont()
+				QuestFontNormalSmall:SetFont(d, LeaPlusLC["LeaPlusQuestFontSize"], f)
 			end
 
 			-- Set text size when slider changes and on startup
@@ -2774,16 +2614,11 @@
 			-- Function to set the text size
 			local function MailSizeUpdate()
 				local MailFont, void, flags = QuestFont:GetFont()
-				if LeaPlusLC.NewPatch then
-					OpenMailBodyText:SetFont("h1", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
-					OpenMailBodyText:SetFont("h2", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
-					OpenMailBodyText:SetFont("h3", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
-					OpenMailBodyText:SetFont("p", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
-					MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
-				else
-					OpenMailBodyText:SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
-					MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"])
-				end
+				OpenMailBodyText:SetFont("h1", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+				OpenMailBodyText:SetFont("h2", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+				OpenMailBodyText:SetFont("h3", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+				OpenMailBodyText:SetFont("p", MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
+				MailEditBox:GetEditBox():SetFont(MailFont, LeaPlusLC["LeaPlusMailFontSize"], flags)
 			end
 
 			-- Set text size after changing slider and on startup
@@ -2838,13 +2673,8 @@
 
 			-- Function to set the text size
 			local function BookSizeUpdate()
-				if LeaPlusLC.NewPatch then
-					local BookFont, void, flags = QuestFont:GetFont()
-					ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"], flags)
-				else
-					local BookFont = QuestFont:GetFont()
-					ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"])
-				end
+				local BookFont, void, flags = QuestFont:GetFont()
+				ItemTextFontNormal:SetFont(BookFont, LeaPlusLC["LeaPlusBookFontSize"], flags)
 			end
 
 			-- Set text size after changing slider and on startup
@@ -4019,12 +3849,8 @@
 			editBox:SetTextInsets(4, 4, 4, 4)
 			editBox:SetWidth(editFrame:GetWidth() - 30)
 			editBox:SetSecurityDisablePaste()
-			if LeaPlusLC.NewPatch then
-				editBox:SetFont(_G["ChatFrame1"]:GetFont())
-				editBox:SetMaxLetters(0)
-			else
-				editBox:SetFont(_G["ChatFrame1"]:GetFont(), 16)
-			end
+			editBox:SetFont(_G["ChatFrame1"]:GetFont())
+			editBox:SetMaxLetters(0)
 
 			local introMsg = L["Leatrix Plus needs to be updated with the flight details.  Press CTRL/C to copy the flight details below then paste them into an email to flight@leatrix.com.  When your report is received, Leatrix Plus will be updated and you will never see this window again for this flight."] .. "|n|n"
 			local startHighlight = string.len(introMsg)
@@ -9532,119 +9358,72 @@
 			-- Function to highlight chat tabs and click to scroll to bottom
 			local function HighlightTabs(chtfrm)
 
-				if LeaPlusLC.NewPatch then
+				-- Hide bottom button
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetSize(0.1, 0.1) -- Positions it away
 
-					-- Hide bottom button
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetSize(0.1, 0.1) -- Positions it away
+				-- Remove click from the bottom button
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
 
-					-- Remove click from the bottom button
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
+				-- Remove textures
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetDisabledTexture("")
 
-					-- Remove textures
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetDisabledTexture("")
-
-					-- Resize bottom button according to tab size
-					_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
-						for j = 1, 50 do
-							-- Resize bottom button to tab width
-							if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
-								_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
-							end
+				-- Resize bottom button according to tab size
+				_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
+					for j = 1, 50 do
+						-- Resize bottom button to tab width
+						if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
+							_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
 						end
-						-- If combat log is hidden, resize it's bottom button
-						if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
-							if _G["ChatFrame2ButtonFrameBottomButton"] then
-								-- Resize combat log bottom button
-								_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
-							end
+					end
+					-- If combat log is hidden, resize it's bottom button
+					if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
+						if _G["ChatFrame2ButtonFrameBottomButton"] then
+							-- Resize combat log bottom button
+							_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
 						end
-					end)
+					end
+				end)
 
-					-- Remove click from the bottom button
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
+				-- Remove click from the bottom button
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
 
-					-- Remove textures
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
+				-- Remove textures
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
+				_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
 
-					-- Always scroll to bottom when clicking a tab
-					_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
-						if arg1 == "LeftButton" then
-							_G[chtfrm]:ScrollToBottom();
-						end
-					end)
+				-- Always scroll to bottom when clicking a tab
+				_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
+					if arg1 == "LeftButton" then
+						_G[chtfrm]:ScrollToBottom();
+					end
+				end)
 
-					-- Create new bottom button under tab
-					_G[chtfrm .. "Tab"].newglow = _G[chtfrm .. "Tab"]:CreateTexture(nil, "BACKGROUND")
-					_G[chtfrm .. "Tab"].newglow:ClearAllPoints()
-					_G[chtfrm .. "Tab"].newglow:SetPoint("BOTTOMLEFT", _G[chtfrm .. "Tab"], "BOTTOMLEFT", 0, 0)
-					_G[chtfrm .. "Tab"].newglow:SetTexture("Interface\\ChatFrame\\ChatFrameTab-NewMessage")
-					_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
-					_G[chtfrm .. "Tab"].newglow:SetVertexColor(0.6, 0.6, 1, 1)
+				-- Create new bottom button under tab
+				_G[chtfrm .. "Tab"].newglow = _G[chtfrm .. "Tab"]:CreateTexture(nil, "BACKGROUND")
+				_G[chtfrm .. "Tab"].newglow:ClearAllPoints()
+				_G[chtfrm .. "Tab"].newglow:SetPoint("BOTTOMLEFT", _G[chtfrm .. "Tab"], "BOTTOMLEFT", 0, 0)
+				_G[chtfrm .. "Tab"].newglow:SetTexture("Interface\\ChatFrame\\ChatFrameTab-NewMessage")
+				_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
+				_G[chtfrm .. "Tab"].newglow:SetVertexColor(0.6, 0.6, 1, 1)
+				_G[chtfrm .. "Tab"].newglow:Hide()
+
+				-- Show new bottom button when old one glows
+				_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnShow", function(self,arg1)
+					_G[chtfrm .. "Tab"].newglow:Show()
+				end)
+
+				_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnHide", function(self,arg1)
 					_G[chtfrm .. "Tab"].newglow:Hide()
+				end)
 
-					-- Show new bottom button when old one glows
-					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnShow", function(self,arg1)
-						_G[chtfrm .. "Tab"].newglow:Show()
-					end)
-
-					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:HookScript("OnHide", function(self,arg1)
-						_G[chtfrm .. "Tab"].newglow:Hide()
-					end)
-
-					-- Match new bottom button size to tab
-					_G[chtfrm .. "Tab"]:HookScript("OnSizeChanged", function()
-						_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
-					end)
-
-				else
-
-					-- Set position of bottom button
-					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetTexture("Interface/BUTTONS/GRADBLUE.png")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:ClearAllPoints()
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPoint("BOTTOM",_G[chtfrm .. "Tab"],0,-6)
-					_G[chtfrm .. "ButtonFrameBottomButton"]:Show()
-					_G[chtfrm .. "ButtonFrameBottomButtonFlash"]:SetAlpha(0.5)
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetWidth(_G[chtfrm .. "Tab"]:GetWidth()-10)
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHeight(24)
-
-					-- Resize bottom button according to tab size
-					_G[chtfrm .. "Tab"]:SetScript("OnSizeChanged", function()
-						for j = 1, 50 do
-							-- Resize bottom button to tab width
-							if _G["ChatFrame" .. j .. "ButtonFrameBottomButton"] then
-								_G["ChatFrame" .. j .. "ButtonFrameBottomButton"]:SetWidth(_G["ChatFrame" .. j .. "Tab"]:GetWidth()-10)
-							end
-						end
-						-- If combat log is hidden, resize it's bottom button
-						if LeaPlusLC["NoCombatLogTab"] == "On" and not LeaLockList["NoCombatLogTab"] then
-							if _G["ChatFrame2ButtonFrameBottomButton"] then
-								-- Resize combat log bottom button
-								_G["ChatFrame2ButtonFrameBottomButton"]:SetWidth(0.1);
-							end
-						end
-					end)
-
-					-- Remove click from the bottom button
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetScript("OnClick", nil)
-
-					-- Remove textures
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetNormalTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetHighlightTexture("")
-					_G[chtfrm .. "ButtonFrameBottomButton"]:SetPushedTexture("")
-
-					-- Always scroll to bottom when clicking a tab
-					_G[chtfrm .. "Tab"]:HookScript("OnClick", function(self,arg1)
-						if arg1 == "LeftButton" then
-							_G[chtfrm]:ScrollToBottom();
-						end
-					end)
-
-				end
+				-- Match new bottom button size to tab
+				_G[chtfrm .. "Tab"]:HookScript("OnSizeChanged", function()
+					_G[chtfrm .. "Tab"].newglow:SetWidth(_G[chtfrm .. "Tab"]:GetWidth())
+				end)
 
 			end
 
@@ -9747,12 +9526,7 @@
 
 			-- Drag to resize
 			editFrame:SetResizable(true)
-			if LeaPlusLC.NewPatch then
-				editFrame:SetResizeBounds(600, 170, 600, 560)
-			else
-				editFrame:SetMinResize(600, 170)
-				editFrame:SetMaxResize(600, 560)
-			end
+			editFrame:SetResizeBounds(600, 170, 600, 560)
 
 			titleFrame:HookScript("OnMouseDown", function(self, btn)
 				if btn == "LeftButton" then
@@ -9872,11 +9646,7 @@
 				end
 				titleFrame.m:SetText(L["Messages"] .. ": " .. totalMsgCount)
 				editFrame:SetVerticalScroll(0)
-				if LeaPlusLC.NewPatch then
-					editFrame.ScrollBar:ScrollToEnd()
-				else
-					C_Timer.After(0.1, function() editFrame.ScrollBar.ScrollDownButton:Click() end)
-				end
+				editFrame.ScrollBar:ScrollToEnd()
 				editFrame:Show()
 				editBox:ClearFocus()
 			end
@@ -10523,13 +10293,9 @@
 
 			-- Hide health bar
 			if LeaPlusLC["TipNoHealthBar"] == "On" then
-				if LeaPlusLC.NewPatch then
-					local tipHide = GameTooltip.Hide
-					GameTooltipStatusBar:HookScript("OnShow", tipHide)
-					GameTooltipStatusBar:Hide()
-				else
-					GameTooltipStatusBar:SetStatusBarTexture("")
-				end
+				local tipHide = GameTooltip.Hide
+				GameTooltipStatusBar:HookScript("OnShow", tipHide)
+				GameTooltipStatusBar:Hide()
 			end
 
 			---------------------------------------------------------------------------------------------------------
@@ -12361,7 +12127,7 @@
 			return
 		end
 
-		if LeaPlusLC.NewPatch and event == "DUEL_TO_THE_DEATH_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
+		if event == "DUEL_TO_THE_DEATH_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
 			CancelDuel()
 			StaticPopup_Hide("DUEL_TO_THE_DEATH_REQUESTED")
 			return
