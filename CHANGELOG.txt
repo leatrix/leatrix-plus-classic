@@ -1,3 +1,6 @@
+1.14.123 - 23rd August 2023
+- Fixed 'Use class colors in chat' ('Chat').
+
 1.14.122 - 23rd August 2023
 - Updated for game version 1.14.4.
 - Added flight times.

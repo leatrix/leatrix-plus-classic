@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.122 (23rd August 2023)
+-- 	Leatrix Plus 1.14.123 (23rd August 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.122"
+	LeaPlusLC["AddonVer"] = "1.14.123"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -8058,6 +8058,14 @@
 
 			SetCVar("chatClassColorOverride", "0")
 
+			for void, v in ipairs({"SAY", "EMOTE", "YELL", "GUILD", "OFFICER", "WHISPER", "PARTY", "PARTY_LEADER", "RAID", "RAID_LEADER", "RAID_WARNING", "INSTANCE_CHAT", "INSTANCE_CHAT_LEADER"}) do
+				SetChatColorNameByClass(v, true)
+			end
+
+			for i = 1, 50 do
+				SetChatColorNameByClass("CHANNEL" .. i, true)
+			end
+
 		end
 
 		----------------------------------------------------------------------
@@ -12918,9 +12926,6 @@
 			ChangeChatColor("RAID", 1, 0.50, 0)
 			ChangeChatColor("RAID_LEADER", 1, 0.28, 0.04)
 
-			-- Use class colors in chat (LeaPlusLC["ClassColorsInChat"])
-			SetCVar("chatClassColorOverride", "1")
-
 			-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
 			for k, v in pairs(LeaPlusLC["muteTable"]) do
 				for i, e in pairs(v) do
@@ -12939,6 +12944,12 @@
 		if LeaPlusDB["ClassColorsInChat"] == "On" and not LeaLockList["ClassColorsInChat"] then
 			if wipe or (not wipe and LeaPlusLC["ClassColorsInChat"] == "Off") then
 				SetCVar("chatClassColorOverride", "1")
+				for void, v in ipairs({"SAY", "EMOTE", "YELL", "GUILD", "OFFICER", "WHISPER", "PARTY", "PARTY_LEADER", "RAID", "RAID_LEADER", "RAID_WARNING", "INSTANCE_CHAT", "INSTANCE_CHAT_LEADER"}) do
+					SetChatColorNameByClass(v, false)
+				end
+				for i = 1, 50 do
+					SetChatColorNameByClass("CHANNEL" .. i, false)
+				end
 			end
 		end
 
