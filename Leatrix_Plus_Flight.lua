@@ -459,6 +459,7 @@
 					["0.63:0.44:0.56:0.53:0.41:0.37"] = 341, -- Orgrimmar, Crossroads, Zoram'gar Outpost
 					["0.63:0.44:0.56:0.53:0.61:0.80:0.50:0.76"] = 521, -- Orgrimmar, Crossroads, Gadgetzan, Marshal's Refuge
 					["0.63:0.44:0.45:0.56:0.53:0.61"] = 312, -- Orgrimmar, Thunder Bluff, Camp Taurajo
+					["0.63:0.44:0.56:0.53:0.41:0.47:0.32:0.58"] = 403, -- Orgrimmar, Crossroads, Sun Rock Retreat, Shadowprey Village
 
 					-- Horde: Ratchet (The Barrens)
 					["0.61:0.55:0.56:0.53:0.55:0.73:0.61:0.80"] = 345, -- Ratchet, Crossroads, Freewind Post, Gadgetzan
@@ -505,6 +506,7 @@
 					["0.32:0.58:0.45:0.56:0.63:0.44:0.64:0.23"] = 705, -- Shadowprey Village, Thunder Bluff, Orgrimmar, Everlook
 					["0.32:0.58:0.41:0.47:0.56:0.53:0.63:0.44"] = 490, -- Shadowprey Village, Sun Rock Retreat, Crossroads, Orgrimmar
 					["0.32:0.58:0.41:0.47:0.56:0.53:0.53:0.61"] = 439, -- Shadowprey Village, Sun Rock Retreat, Crossroads, Camp Taurajo
+					["0.32:0.58:0.41:0.47:0.56:0.53"] = 349, -- Shadowprey Village, Sun Rock Retreat, Crossroads
 
 					-- Horde: Splintertree Post (Ashenvale)
 					["0.55:0.42:0.56:0.53:0.55:0.73:0.61:0.80"] = 436, -- Splintertree Post, Crossroads, Freewind Post, Gadgetzan
@@ -1129,6 +1131,7 @@
 					["0.60:0.81:0.64:0.67:0.43:0.25"] = 768, -- Gadgetzan, Theramore, Auberdine
 					["0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 938, -- Gadgetzan, Theramore, Nijel's Point, Auberdine, Astranaar
 					["0.60:0.81:0.64:0.67:0.43:0.25:0.53:0.26:0.65:0.23"] = 1059, -- Gadgetzan, Theramore, Auberdine, Talonbranch Glade, Everlook
+					["0.60:0.81:0.64:0.67:0.61:0.40:0.43:0.25"] = 690, -- Gadgetzan, Theramore, Talrendis Point, Auberdine
 
 					-- Alliance: Marshal's Refuge (Un'Goro Crater)
 					["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan

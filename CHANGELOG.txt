@@ -1,3 +1,6 @@
+1.14.124.alpha.1 - 23rd August 2023
+- Added flight times.
+
 1.14.123 - 23rd August 2023
 - Fixed 'Use class colors in chat' ('Chat').
 
