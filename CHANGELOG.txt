@@ -1,3 +1,6 @@
+1.14.126 - 5th September 2023
+- Added flight times.
+
 1.14.125 - 31st August 2023
 - Fixed an issue with 'Sell junk automatically' ('Automation') which caused the vendor summary to not be shown.
 

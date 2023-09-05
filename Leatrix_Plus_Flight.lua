@@ -75,6 +75,7 @@
 					["0.62:0.31:0.49:0.27"] = 117, -- Hammerfall, Tarren Mill
 					["0.62:0.31:0.44:0.19"] = 259, -- Hammerfall, Undercity
 					["0.62:0.31:0.49:0.27:0.38:0.24"] = 215, -- Hammerfall, Tarren Mill, The Sepulcher
+					["0.62:0.31:0.49:0.27:0.44:0.19:0.70:0.16"] = 441, -- Hammerfall, Tarren Mill, Undercity, Light's Hope Chapel
 
 					-- Horde: Kargath (Badlands)
 					["0.55:0.57:0.43:0.93"] = 417, -- Kargath, Booty Bay
@@ -1006,6 +1007,7 @@
 					["0.46:0.40:0.43:0.25:0.40:0.51:0.64:0.67:0.61:0.55"] = 861, -- Astranaar, Auberdine, Die Nijelspitze, Theramore, Ratchet
 					["0.46:0.40:0.39:0.40:0.40:0.51:0.64:0.67"] = 587, -- Astranaar, Stonetalon Peak, Nijel's Point, Theramore
 					["0.46:0.40:0.43:0.25:0.40:0.51:0.64:0.67"] = 746, -- Astranaar, Auberdine, Nijel's Point, Theramore
+					["0.46:0.40:0.39:0.40:0.40:0.51:0.64:0.67:0.48:0.70"] = 750, -- Astranaar, Stonetalon Peak, Nijel's Point, Theramore, Thalanaar
 
 					-- Alliance: Auberdine (Darkshore)
 					["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -1159,6 +1161,7 @@
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25"] = 792, -- Marshal's Refuge, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine
 					["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51"] = 584, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point
 					["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.53:0.26"] = 915, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Talonbranch Glade
+					["0.50:0.76:0.42:0.79:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 758, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar
 
 					-- Alliance: Moonglade (Moonglade)
 					["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
@@ -1279,6 +1282,7 @@
 					["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 972, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 					["0.42:0.16:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 883, -- Rut'theran, Auberdine, Feathermoon, Thalanaar, Gadgetzan
 					["0.42:0.16:0.43:0.25:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 1111, -- Rut'theran Village, Auberdine, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
+					["0.42:0.16:0.43:0.25:0.61:0.40:0.64:0.67"] = 625, -- Rut'theran Village, Auberdine, Talrendis Point, Theramore
 
 					-- Alliance: Stonetalon Peak (Stonetalon Mountains)
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81"] = 591, -- Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan
@@ -1299,6 +1303,7 @@
 					["0.39:0.40:0.43:0.25:0.64:0.67"] = 853, -- Stonetalon Peak, Auberdine, Theramore
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76"] = 695, -- Stonetalon Peak, Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge
 					["0.39:0.40:0.40:0.51:0.64:0.67:0.61:0.55"] = 549, -- Stonetalon Peak, Nijel's Point, Theramore, Ratchet
+					["0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 698, -- Stonetalon Peak, Astranaar, Talrendis Point, Ratchet, Theramore, Thalanaar
 
 					-- Alliance: Talonbranch Glade (Felwood)
 					["0.53:0.26:0.55:0.21"] = 68, -- Talonbranch Glade, Moonglade
@@ -1374,7 +1379,7 @@
 					["0.64:0.67:0.61:0.40"] = 235, -- Theramore, Talrendis Point
 					["0.64:0.67:0.61:0.40:0.46:0.40"] = 387, -- Theramore, Talrendis Point, Astranaar
 					["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point
-					["0.64:0.67:0.40:0.51:0.39:0.40"] = 801, -- Theramore, Nijel's Point, Stonetalon Peak (Scott Wilson, Martin Sodoma, Othman Arnaout reported 454)
+					["0.64:0.67:0.40:0.51:0.39:0.40"] = 454, -- Theramore, Nijel's Point, Stonetalon Peak (Was 801 but Nikolas Beckel, Scott Wilson, Martin Sodoma, Othman Arnaout reported 454)
 					["0.64:0.67:0.43:0.25"] = 620, -- Theramore, Auberdine
 					["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 					["0.64:0.67:0.43:0.25:0.46:0.40"] = 796, -- Theramore, Auberdine, Astranaar
