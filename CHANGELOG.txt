@@ -1,3 +1,6 @@
+1.14.128 - 20th September 2023
+- Added flight times.
+
 1.14.127 - 14th September 2023
 - Fixed an issue with 'Enhance minimap' ('Interface') which caused the area under the minimap to be unclickable if you have moved the minimap.
 - Added flight times.
