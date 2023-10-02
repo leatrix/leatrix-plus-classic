@@ -1,3 +1,6 @@
+1.14.130.alpha.1 - 27th September 2023
+- Added flight times.
+
 1.14.129 - 27th September 2023
 - For 'Enhance minimap', removed the 'Hide the world map button' option since it's no longer used.
 - Updated flight data structure, replaced SoM references with Hardcore and reduced memory usage for 'Show flight times' ('Interface').

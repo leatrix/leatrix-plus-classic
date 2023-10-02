@@ -190,6 +190,7 @@
 				["0.44:0.19:0.70:0.16"] = 261, -- Undercity, Light's Hope Chapel
 				["0.44:0.19:0.49:0.27"] = 141, -- Undercity, Tarren Mill
 				["0.44:0.19:0.38:0.24"] = 106, -- Undercity, The Sepulcher
+				["0.44:0.19:0.55:0.57:0.43:0.93"] = 904, -- Undercity, Kargath, Booty Bay
 
 			},
 
@@ -348,6 +349,7 @@
 				["0.64:0.23:0.63:0.44:0.56:0.53:0.61:0.55"] = 466, -- Everlook, Orgrimmar, Crossroads, Ratchet
 				["0.64:0.23:0.63:0.44:0.56:0.53:0.44:0.69"] = 666, -- Everlook, Orgrimmar, Crossroads, Camp Mojache
 				["0.64:0.23:0.63:0.44:0.55:0.42:0.41:0.37"] = 553, -- Everlook, Orgrimmar, Splintertree Post, Zoram'gar Outpost
+				["0.64:0.23:0.63:0.44:0.56:0.53:0.55:0.73:0.61:0.80"] = 691, -- Everlook, Orgrimmar, Crossroads, Freewind Post, Gadgetzan
 
 				-- Horde: Freewind Post (Thousand Needles)
 				["0.55:0.73:0.61:0.80"] = 93, -- Freewind Post, Gadgetzan
@@ -465,6 +467,7 @@
 				["0.63:0.44:0.56:0.53:0.41:0.47:0.32:0.58"] = 403, -- Orgrimmar, Crossroads, Sun Rock Retreat, Shadowprey Village
 				["0.63:0.44:0.45:0.56:0.44:0.69"] = 478, -- Orgrimmar, Thunder Bluff, Camp Mojache
 				["0.63:0.44:0.56:0.53:0.44:0.69:0.32:0.58"] = 563, -- Orgrimmar, Crossroads, Camp Mojache, Shadowprey Village
+				["0.63:0.44:0.56:0.53:0.55:0.73:0.61:0.80:0.50:0.76:0.42:0.79"] = 594, -- Orgrimmar, Crossroads, Freewind Post, Gadgetzan, Marshal's Refuge, Cenarion Hold
 
 				-- Horde: Ratchet (The Barrens)
 				["0.61:0.55:0.56:0.53:0.55:0.73:0.61:0.80"] = 345, -- Ratchet, Crossroads, Freewind Post, Gadgetzan
