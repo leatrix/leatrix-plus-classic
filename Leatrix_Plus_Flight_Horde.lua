@@ -393,6 +393,7 @@
 				["0.61:0.80:0.45:0.56"] = 304, -- Gadgetzan, Thunder Bluff
 				["0.61:0.80:0.44:0.69:0.32:0.58"] = 400, -- Gadgetzan, Camp Mojache, Shadowprey Village
 				["0.61:0.80:0.45:0.56:0.32:0.58"] = 463, -- Gadgetzan, Thunder Bluff, Shadowprey Village
+				["0.61:0.80:0.45:0.56:0.53:0.61"] = 392, -- Gadgetzan, Thunder Bluff, Camp Taurajo
 
 				-- Horde: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.61:0.80"] = 113, -- Marshal's Refuge, Gadgetzan

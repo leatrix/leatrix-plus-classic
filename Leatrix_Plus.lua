@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.130.alpha.1 (27th September 2023)
+-- 	Leatrix Plus 1.14.130 (4th October 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.130.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.14.130"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1705,7 +1705,7 @@
 						if isNpcBlocked("Accept") then return end
 						-- Accept quest
 						AcceptQuest()
-						HideUIPanel(QuestFrame)
+						-- HideUIPanel(QuestFrame)
 					end
 				end
 
