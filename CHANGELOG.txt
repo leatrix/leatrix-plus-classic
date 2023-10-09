@@ -1,3 +1,6 @@
+1.14.131.alpha.1 - 4th October 2023
+- Added flight times.
+
 1.14.130 - 4th October 2023
 - Fixed a potential issue with 'Automate quests' ('Automation') which may have occasionally shown a Lua error when accepting a quest.
 - Added flight times.
