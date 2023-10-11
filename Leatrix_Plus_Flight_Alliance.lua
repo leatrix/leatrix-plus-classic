@@ -285,7 +285,7 @@
 
 				-- Alliance: Southshore (Hillsbrad Foothills)
 				["0.48:0.30:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 597, -- Southshore, Menethil Harbor, Ironforge, Stormwind, Booty Bay
-				["0.48:0.30:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 468, -- Southshore, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (Timur Garipov reported 415)
+				["0.48:0.30:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 415, -- Southshore, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (Was 468 but changed to 415 by Erik Berg Marklund, :D and Timur Garipov)
 				["0.48:0.30:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 357, -- Southshore, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 				["0.48:0.30:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65"] = 329, -- Southshore, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil
 				["0.48:0.30:0.49:0.44:0.51:0.49:0.43:0.67"] = 367, -- Southshore, Menethil Harbor, Ironforge, Stormwind (Mats reported 386)
@@ -565,6 +565,7 @@
 				["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51"] = 584, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.53:0.26"] = 915, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Talonbranch Glade
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 758, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar
+				["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 833, -- Refuge des Marshal, Gadgetzan, Theramore, Halte de Talrendis, Clairière de Griffebranche, Reflet-de-Lune, Reflet-de-Lune
 
 				-- Alliance: Moonglade (Moonglade)
 				["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon

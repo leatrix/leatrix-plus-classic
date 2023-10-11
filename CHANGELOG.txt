@@ -1,4 +1,4 @@
-1.14.131.alpha.1 - 4th October 2023
+1.14.131 - 11th October 2023
 - Added flight times.
 
 1.14.130 - 4th October 2023
