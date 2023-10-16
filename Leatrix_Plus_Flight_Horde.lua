@@ -394,6 +394,7 @@
 				["0.61:0.80:0.44:0.69:0.32:0.58"] = 400, -- Gadgetzan, Camp Mojache, Shadowprey Village
 				["0.61:0.80:0.45:0.56:0.32:0.58"] = 463, -- Gadgetzan, Thunder Bluff, Shadowprey Village
 				["0.61:0.80:0.45:0.56:0.53:0.61"] = 392, -- Gadgetzan, Thunder Bluff, Camp Taurajo
+				["0.61:0.80:0.63:0.44:0.64:0.23"] = 670, -- Gadgetzan, Orgrimmar, Everlook
 
 				-- Horde: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.61:0.80"] = 113, -- Marshal's Refuge, Gadgetzan
@@ -489,6 +490,7 @@
 				["0.61:0.55:0.56:0.53:0.41:0.47"] = 218, -- Ratchet, Crossroads, Sun Rock Retreat
 				["0.61:0.55:0.56:0.53:0.45:0.56"] = 250, -- Ratchet, Crossroads, Thunder Bluff
 				["0.61:0.55:0.56:0.53:0.41:0.47:0.32:0.58"] = 360, -- Ratchet, Crossroads, Sun Rock Retreat, Shadowprey Village
+				["0.61:0.55:0.56:0.53:0.61:0.80"] = 372, -- Ratchet, Crossroads, Gadgetzan
 
 				-- Horde: Shadowprey Village (Desolace)
 				["0.32:0.58:0.44:0.69:0.55:0.73:0.61:0.80"] = 395, -- Shadowprey Village, Camp Mojache, Freewind Post, Gadgetzan

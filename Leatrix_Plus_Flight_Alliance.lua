@@ -40,7 +40,7 @@
 				-- Alliance: Booty Bay (Stranglethorn Vale)
 				["0.43:0.93:0.41:0.75"] = 181, -- Booty Bay, Sentinel Hill
 				["0.43:0.93:0.51:0.75"] = 175, -- Booty Bay, Darkshire
-				["0.43:0.93:0.51:0.75:0.61:0.78"] = 266, -- Booty Bay, Darkshire, Nethergarde Keep
+				["0.43:0.93:0.51:0.75:0.61:0.78"] = 266, -- Booty Bay, Darkshire, Nethergarde Keep (Peter mcninch reported 313)
 				["0.43:0.93:0.51:0.75:0.56:0.70"] = 230, -- Booty Bay, Darkshire, Lakeshire
 				["0.43:0.93:0.51:0.75:0.56:0.70:0.58:0.65"] = 291, -- Booty Bay, Darkshire, Lakeshire, Morgan's Vigil
 				["0.43:0.93:0.43:0.67"] = 220, -- Booty Bay, Stormwind (Scuba Steve reported 259)
@@ -86,12 +86,12 @@
 				["0.51:0.75:0.41:0.75"] = 93, -- Darkshire, Sentinel Hill (Erik S. reported 108, Martin V reported 114)
 				["0.51:0.75:0.43:0.67"] = 88, -- Darkshire, Stormwind
 				["0.51:0.75:0.61:0.78"] = 97, -- Darkshire, Nethergarde Keep
-				["0.51:0.75:0.56:0.70"] = 60, -- Darkshire, Lakeshire
+				["0.51:0.75:0.56:0.70"] = 60, -- Darkshire, Lakeshire (Jackie Rollberg reported 78)
 				["0.51:0.75:0.56:0.70:0.58:0.65"] = 120, -- Darkshire, Lakeshire, Morgan's Vigil
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57"] = 212, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 391, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 295, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge (was 333, changed to 295 by jonathan Liljegard, Daniel Gralow, Raul Feresteanu, Tim reported)
-				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 417, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor (Byron Stewart, Ifa reported 380)
+				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 380, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor (was 417, changed to 380 by Dennis Hultin Thuresson, Byron Stewart and Ifa)
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 487, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe (was 524, changed to 487 by Christopher Bywaletz)
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 481, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Southshore
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 582, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak (Tibow, Christopher Jones reported 545)
@@ -134,7 +134,7 @@
 				["0.56:0.70:0.43:0.67"] = 113, -- Lakeshire, Stormwind (Laurent Girardot reported 131, CoiK _ reported 133, Manuel Frank Griesel reported 139, Darren Long reported 147)
 				["0.56:0.70:0.58:0.65"] = 61, -- Lakeshire, Morgan's Vigil
 				["0.56:0.70:0.58:0.65:0.51:0.57"] = 153, -- Lakeshire, Morgan's Vigil, Thorium Point
-				["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 415, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar (Sebastian Sagrelius, Triston Harvey reported 295)
+				["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.59:0.52"] = 295, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Thelsamar (was 415, changed to 295 by Landoro, Sebastian Sagrelius and Triston Harvey)
 				["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49"] = 237, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge
 				["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 441, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor (Jonathan Paradis, Sandy Oliver reported 321)
 				["0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 428, -- Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe
@@ -246,7 +246,7 @@
 				-- Alliance: Refuge Pointe (Arathi Highlands)
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 614, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Booty Bay
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.61:0.78"] = 547, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Nethergarde Keep
-				["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 485, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (Tim, Juan Francisco reported 433)
+				["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 433, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (was 485, changed to 433 by Kevin Williams, Tim and Juan Francisco)
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 374, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.51:0.57:0.58:0.65"] = 346, -- Refuge Pointe, Menethil Harbor, Ironforge, Thorium Point, Morgan's Vigil
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.41:0.75"] = 448, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Sentinel Hill
@@ -264,6 +264,7 @@
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.56:0.70"] = 483, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Lakeshire
 				["0.57:0.32:0.48:0.30:0.52:0.22"] = 166, -- Refuge Pointe, Southshore, Chillwind Camp
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.52:0.22"] = 469, -- Refuge Pointe, Menethil Harbor, Ironforge, Chillwind Camp
+				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.58:0.65"] = 528, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Morgan's Vigil
 
 				-- Alliance: Sentinel Hill (Westfall)
 				["0.41:0.75:0.43:0.93"] = 185, -- Sentinel Hill, Booty Bay
@@ -480,6 +481,7 @@
 				["0.65:0.23:0.53:0.26:0.43:0.25:0.40:0.51:0.64:0.67"] = 890, -- Everlook, Talonbranch Glade, Auberdine, Nijel's Point, Theramore
 				["0.65:0.23:0.55:0.21:0.43:0.25:0.64:0.67:0.48:0.70"] = 1097, -- Everlook, Moonglade, Auberdine, Theramore, Thalanaar
 				["0.65:0.23:0.55:0.21:0.43:0.25:0.31:0.69:0.42:0.79"] = 892, -- Everlook, Moonglade, Auberdine, Feathermoon, Cenarion Hold
+				["0.65:0.23:0.53:0.26:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81"] = 1046, -- Everlook, Talonbranch Glade, Auberdine, Nijel's Point, Theramore, Gadgetzan
 
 				-- Alliance: Feathermoon (Feralas)
 				["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan (Microburst reported 354)
@@ -750,6 +752,7 @@
 				["0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 397, -- Talrendis Point, Ratchet, Theramore, Thalanaar
 				["0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70:0.31:0.69"] = 574, -- Talrendis Point, Ratchet, Theramore, Thalanaar, Feathermoon
 				["0.61:0.40:0.64:0.67:0.60:0.81"] = 398, -- Talrendis Point, Theramore, Gadgetzan
+				["0.61:0.40:0.46:0.40:0.43:0.25:0.55:0.21"] = 451, -- Talrendis Point, Astranaar, Auberdine, Moonglade
 
 				-- Alliance: Thalanaar (Feralas)
 				["0.48:0.70:0.60:0.81"] = 171, -- Thalanaar, Gadgetzan
