@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.132.alpha.1 (11th October 2023)
+-- 	Leatrix Plus 1.14.132.alpha.1 (17th October 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -4513,6 +4513,9 @@
 
 			-- Disable mouse on invisible minimap cluster
 			MinimapCluster:EnableMouse(false)
+
+			-- Ensure consolidated buffs frame is not over minimap or buttons
+			ConsolidatedBuffs:SetFrameStrata("LOW") -- Same as BuffFrame
 
 			----------------------------------------------------------------------
 			-- Configuration panel
