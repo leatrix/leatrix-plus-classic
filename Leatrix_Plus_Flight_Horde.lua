@@ -90,6 +90,7 @@
 				["0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 477, -- Kargath, Hammerfall, Tarren Mill, The Sepulcher
 				["0.55:0.57:0.44:0.19:0.49:0.27"] = 565, -- Kargath, Undercity, Tarren Mill
 				["0.55:0.57:0.44:0.19:0.70:0.16"] = 686, -- Kargath, Undercity, Light's Hope Chapel
+				["0.55:0.57:0.44:0.19:0.38:0.24"] = 532, -- Kargath, Undercity, The Sepulcher
 
 				-- Horde: Light's Hope Chapel (Eastern Plaguelands)
 				["0.70:0.16:0.67:0.30:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 884, -- Light's Hope Chapel, Revantusk Village, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -148,6 +149,7 @@
 				["0.49:0.27:0.44:0.19"] = 139, -- Tarren Mill, Undercity
 				["0.49:0.27:0.38:0.24"] = 99, -- Tarren Mill, The Sepulcher
 				["0.49:0.27:0.62:0.31:0.55:0.57:0.43:0.93"] = 792, -- Tarren Mill, Hammerfall, Kargath, Booty Bay
+				["0.49:0.27:0.44:0.19:0.70:0.16"] = 325, -- Tarrens Mühle, Undercity, Kapelle des hoffnungsvollen Lichts
 
 				-- Horde: The Sepulcher (Silverpine Forest)
 				["0.38:0.24:0.49:0.27:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 863, -- The Sepulcher, Tarren Mill, Hammerfall, Kargath, Grom'gol, Booty Bay
