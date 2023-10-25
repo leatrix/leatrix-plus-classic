@@ -1,4 +1,4 @@
-1.14.132.alpha.1 - 17th October 2023
+1.14.133 - 25th October 2023
 - For 'Enhance minimap' ('Interface'), fixed an issue with the consolidated buffs frame layering.
 - Added flight times.
 
