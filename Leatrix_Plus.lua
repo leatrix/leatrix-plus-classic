@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.14.133 (25th October 2023)
+-- 	Leatrix Plus 1.14.134.alpha.1 (26th October 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.14.133"
+	LeaPlusLC["AddonVer"] = "1.14.134.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -44,6 +44,10 @@
 	-- Check for addons
 	if IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = unpack(ElvUI) end
 	if IsAddOnLoaded("Glass") then LeaPlusLC.Glass = true end
+	if IsAddOnLoaded("CharacterStatsClassic") then LeaPlusLC.CharacterStatsClassic = true end
+	if IsAddOnLoaded("ClassicProfessionFilter") then LeaPlusLC.ClassicProfessionFilter = true end
+	if IsAddOnLoaded("TitanClassic") then LeaPlusLC.TitanClassic = true end
+	if IsAddOnLoaded("totalRP3") then LeaPlusLC.totalRP3 = true end
 
 ----------------------------------------------------------------------
 --	L00: Leatrix Plus
@@ -6122,7 +6126,7 @@
 					-- Default layout
 					LeaPlusCB["ShowHelm"].f:SetText(L["Helm"])
 					LeaPlusCB["ShowHelm"]:ClearAllPoints()
-					if IsAddOnLoaded("CharacterStatsClassic") then
+					if LeaPlusLC.CharacterStatsClassic then
 						LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 65, -258)
 					else
 						LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 65, -270)
@@ -6133,7 +6137,7 @@
 
 					LeaPlusCB["ShowCloak"].f:SetText(L["Cloak"])
 					LeaPlusCB["ShowCloak"]:ClearAllPoints()
-					if IsAddOnLoaded("CharacterStatsClassic") then
+					if LeaPlusLC.CharacterStatsClassic then
 						LeaPlusCB["ShowCloak"]:SetPoint("TOPLEFT", 275, -258)
 					else
 						LeaPlusCB["ShowCloak"]:SetPoint("TOPLEFT", 275, -270)
@@ -6665,18 +6669,6 @@
 				if LeaPlusLC["HideDressupStats"] == "On" then LeaPlusLC["HideDressupStats"] = "Off" else LeaPlusLC["HideDressupStats"] = "On" end
 				ToggleStats()
 			end)
-
-			-- Delay setting stats if CharacterStatsClassic is installed but hasn't loaded yet
-			if not CSC_HideStatsPanel and select(2, GetAddOnInfo("CharacterStatsClassic")) then
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "CharacterStatsClassic" then
-						ToggleStats()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
 
 			----------------------------------------------------------------------
 			-- Enable zooming and panning
@@ -7376,7 +7368,7 @@
 				end
 
 				-- Classic Profession Filter addon fixes
-				if IsAddOnLoaded("ClassicProfessionFilter") and TradeSkillFrame.SearchBox and TradeSkillFrame.HaveMats and TradeSkillFrame.HaveMats.text then
+				if LeaPlusLC.ClassicProfessionFilter and TradeSkillFrame.SearchBox and TradeSkillFrame.HaveMats and TradeSkillFrame.HaveMats.text then
 					TradeSkillFrame.SearchBox:ClearAllPoints()
 					TradeSkillFrame.SearchBox:SetPoint("LEFT", TradeSkillRankFrame, "RIGHT", 20, -10)
 
@@ -7574,7 +7566,7 @@
 				end)
 
 				-- Classic Profession Filter addon fixes
-				if IsAddOnLoaded("ClassicProfessionFilter") and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text and CraftFrame.SearchMats and CraftFrame.SearchMats.text then
+				if LeaPlusLC.ClassicProfessionFilter and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text and CraftFrame.SearchMats and CraftFrame.SearchMats.text then
 					CraftFrame.SearchBox:ClearAllPoints()
 					CraftFrame.SearchBox:SetPoint("LEFT", CraftRankFrame, "RIGHT", 20, -10)
 
@@ -9270,12 +9262,10 @@
 					UIWidgetTopCenterContainerFrame:SetScale(LeaPlusLC["WidgetScale"])
 				else
 					-- Show Titan Panel screen adjust warning if Titan Panel is installed with screen adjust enabled
-					if select(2, GetAddOnInfo("TitanClassic")) then
-						if IsAddOnLoaded("TitanClassic") then
-							if TitanPanelSetVar and TitanPanelGetVar then
-								if not TitanPanelGetVar("ScreenAdjust") then
-									titanFrame:Show()
-								end
+					if LeaPlusLC.TitanClassic then
+						if TitanPanelSetVar and TitanPanelGetVar then
+							if not TitanPanelGetVar("ScreenAdjust") then
+								titanFrame:Show()
 							end
 						end
 					end
@@ -10345,34 +10335,18 @@
 			---------------------------------------------------------------------------------------------------------
 
 			-- Total RP 3
-			local function TotalRP3Func()
-				if TRP3_MainTooltip and TRP3_CharacterTooltip then
+			if LeaPlusLC.totalRP3 and TRP3_MainTooltip and TRP3_CharacterTooltip then
 
-					-- Function to set tooltip scale
-					local function SetTotalRP3TipScale()
-						TRP3_MainTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
-						TRP3_CharacterTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
-					end
-
-					-- Set tooltip scale when slider changes and on startup
-					LeaPlusCB["LeaPlusTipSize"]:HookScript("OnValueChanged", SetTotalRP3TipScale)
-					SetTotalRP3TipScale()
-
+				-- Function to set tooltip scale
+				local function SetTotalRP3TipScale()
+					TRP3_MainTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
+					TRP3_CharacterTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
 				end
-			end
 
-			-- Run function when Total RP 3 addon has loaded
-			if IsAddOnLoaded("totalRP3") then
-				TotalRP3Func()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "totalRP3" then
-						TotalRP3Func()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
+				-- Set tooltip scale when slider changes and on startup
+				LeaPlusCB["LeaPlusTipSize"]:HookScript("OnValueChanged", SetTotalRP3TipScale)
+				SetTotalRP3TipScale()
+
 			end
 
 			---------------------------------------------------------------------------------------------------------
