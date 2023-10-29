@@ -94,7 +94,7 @@
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44"] = 380, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor (was 417, changed to 380 by Dennis Hultin Thuresson, Byron Stewart and Ifa)
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.57:0.32"] = 487, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Refuge Pointe (was 524, changed to 487 by Christopher Bywaletz)
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.49:0.44:0.48:0.30"] = 481, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Menethil Harbor, Southshore
-				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 582, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak (Tibow, Christopher Jones reported 545)
+				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.55:0.25"] = 545, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Aerie Peak (Was 582, changed to 545 by Eric Van Note, Tibow, Christopher Jones)
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.52:0.22"] = 543, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Chillwind Camp
 				["0.51:0.75:0.56:0.70:0.58:0.65:0.51:0.57:0.51:0.49:0.70:0.16"] = 600, -- Darkshire, Lakeshire, Morgan's Vigil, Thorium Point, Ironforge, Light's Hope Chapel
 				["0.51:0.75:0.43:0.67:0.51:0.49:0.49:0.44:0.48:0.30"] = 518, -- Darkshire, Stormwind, Ironforge, Menethil Harbor, Southshore
@@ -606,6 +606,7 @@
 				["0.55:0.21:0.43:0.25:0.64:0.67:0.48:0.70"] = 976, -- Moonglade, Auberdine, Theramore, Thalanaar
 				["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 822, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
 				["0.55:0.21:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76"] = 935, -- Moonglade, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge
+				["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 718, -- Moonglade, Talonbranch Glade, Talrendis Point, Ratchet, Theramore, Gadgetzan
 
 				-- Alliance: Nijel's Pointe (Desolace)
 				["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
