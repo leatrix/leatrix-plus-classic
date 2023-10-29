@@ -1,5 +1,6 @@
 1.14.134.alpha.1 - 26th October 2023
-- Updates.
+- For 'Enhance tooltip' ('Interface'), the scale slider now applies to LibDBIcon and Dungeon Finder eye icon tooltips.
+- General code updates.
 
 1.14.133 - 25th October 2023
 - For 'Enhance minimap' ('Interface'), fixed an issue with the consolidated buffs frame layering.
