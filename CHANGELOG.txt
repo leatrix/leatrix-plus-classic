@@ -1,4 +1,4 @@
-1.14.134.alpha.1 - 26th October 2023
+1.14.134 - 1st November 2023
 - For 'Enhance tooltip' ('Interface'), the scale slider now applies to LibDBIcon tooltips.
 - General code updates.
 - Added flight times.

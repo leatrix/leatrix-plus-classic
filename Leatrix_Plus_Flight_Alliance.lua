@@ -334,7 +334,7 @@
 				["0.59:0.52:0.51:0.49:0.43:0.67"] = 279, -- Thelsamar, Ironforge, Stormwind
 				["0.59:0.52:0.51:0.49:0.43:0.67:0.41:0.75"] = 342, -- Thelsamar, Ironforge, Stormwind, Sentinel Hill
 				["0.59:0.52:0.51:0.49:0.51:0.57"] = 152, -- Thelsamar, Ironforge, Thorium Point
-				["0.59:0.52:0.51:0.49"] = 109, -- Thelsamar, Ironforge
+				["0.59:0.52:0.51:0.49"] = 109, -- Thelsamar, Ironforge (Jesper Lindh reported 140)
 				["0.59:0.52:0.49:0.44"] = 153, -- Thelsamar, Menethil Harbor
 				["0.59:0.52:0.57:0.32"] = 164, -- Thelsamar, Refuge Pointe
 				["0.59:0.52:0.57:0.32:0.48:0.30"] = 250, -- Thelsamar, Refuge Pointe, Southshore
