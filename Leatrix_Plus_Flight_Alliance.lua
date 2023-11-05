@@ -314,7 +314,7 @@
 				["0.43:0.67:0.56:0.70"] = 113, -- Stormwind, Lakeshire
 				["0.43:0.67:0.58:0.65"] = 157, -- Stormwind, Morgan's Vigil
 				["0.43:0.67:0.58:0.65:0.51:0.57"] = 247, -- Stormwind, Morgan's Vigil, Thorium Point
-				["0.43:0.67:0.51:0.49:0.59:0.52"] = 317, -- Stormwind, Ironforge, Thelsamar
+				["0.43:0.67:0.51:0.49:0.59:0.52"] = 317, -- Stormwind, Ironforge, Thelsamar (Andrei O. reported 333)
 				["0.43:0.67:0.51:0.49"] = 259, -- Stormwind, Ironforge
 				["0.43:0.67:0.51:0.49:0.49:0.44"] = 343, -- Stormwind, Ironforge, Menethil Harbor
 				["0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 450, -- Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
@@ -816,6 +816,7 @@
 				["0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 806, -- Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 				["0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 897, -- Theramore, Nijel's Point, Auberdine, Moonglade, Everlook
 				["0.64:0.67:0.40:0.51:0.31:0.69"] = 566, -- Theramore, Combe de Nijel, Feathermoon
+				["0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 576, -- Theramore, Talrendis Point, Talonbranch Glade, Moonglade
 
 			},
 
