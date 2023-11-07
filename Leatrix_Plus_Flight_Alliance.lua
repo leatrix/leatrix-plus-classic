@@ -21,7 +21,7 @@
 				-- Alliance: Aerie Peak (The Hinterlands)
 				["0.55:0.25:0.51:0.49:0.43:0.67:0.43:0.93"] = 658, -- Aerie Peak, Ironforge, Stormwind, Booty Bay
 				["0.55:0.25:0.51:0.49:0.43:0.67:0.61:0.78"] = 591, -- Aerie Peak, Ironforge, Stormwind, Nethergarde Keep
-				["0.55:0.25:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 531, -- Aerie Peak, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire
+				["0.55:0.25:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 531, -- Aerie Peak, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire (Matt Jeanneret reported 477)
 				["0.55:0.25:0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 419, -- Aerie Peak, Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 				["0.55:0.25:0.51:0.49:0.51:0.57:0.58:0.65"] = 390, -- Aerie Peak, Ironforge, Thorium Point, Morgan's Vigil
 				["0.55:0.25:0.51:0.49:0.43:0.67"] = 429, -- Aerie Peak, Ironforge, Stormwind
@@ -112,7 +112,7 @@
 				["0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 260, -- Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire
 				["0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 201, -- Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 				["0.51:0.49:0.51:0.57:0.58:0.65"] = 173, -- Ironforge, Thorium Point, Morgan's Vigil
-				["0.51:0.49:0.43:0.67"] = 210, -- Ironforge, Stormwind (Nenad Zahitovic reported 232)
+				["0.51:0.49:0.43:0.67"] = 210, -- Ironforge, Stormwind (Lome Alagos reported 225, Nenad Zahitovic reported 232)
 				["0.51:0.49:0.43:0.67:0.41:0.75"] = 274, -- Ironforge, Stormwind, Sentinel Hill
 				["0.51:0.49:0.51:0.57"] = 87, -- Ironforge, Thorium Point
 				["0.51:0.49:0.59:0.52"] = 101, -- Ironforge, Thelsamar (max nelson reported 116 for Heroic)
@@ -791,7 +791,7 @@
 				-- Alliance: Theramore (Dustwallow Marsh)
 				["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
 				["0.64:0.67:0.60:0.81:0.50:0.76"] = 261, -- Theramore, Gadgetzan, Marshal's Refuge
-				["0.64:0.67:0.48:0.70"] = 162, -- Theramore, Thalanaar
+				["0.64:0.67:0.48:0.70"] = 162, -- Theramore, Thalanaar (Le Mage reported 181)
 				["0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 354, -- Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 				["0.64:0.67:0.48:0.70:0.31:0.69"] = 341, -- Theramore, Thalanaar, Feathermoon
 				["0.64:0.67:0.61:0.55"] = 115, -- Theramore, Ratchet
