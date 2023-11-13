@@ -1,5 +1,6 @@
-1.14.136.alpha.1 - 8th November 2023
+1.14.136.alpha.2 - 8th November 2023
 - Code updates.
+- For 'Enhance trainers' ('Interface'), fixed an issue which caused trainer frames to show alongside gossip frames.
 - Added flight times.
 
 1.14.135 - 8th November 2023
