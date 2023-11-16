@@ -1,3 +1,6 @@
+1.15.01.alpha.1 - 15th November 2023
+- Code updates.
+
 1.15.00 - 15th November 2023
 - Preliminary update for game version 1.15.0.
 - For 'Enhance trainers' ('Interface'), fixed an issue which caused trainer frames to show alongside gossip frames.
