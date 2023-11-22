@@ -665,6 +665,7 @@
 				["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26"] = 910, -- Ratchet, Theramore, Nijel's Point, Auberdine, Talonbranch Glade
 				["0.61:0.55:0.64:0.67:0.60:0.81:0.42:0.79"] = 459, -- Ratchet, Theramore, Gadgetzan, Cenarion Hold
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51"] = 563, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point
+				["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.53:0.26:0.65:0.23"] = 1012, -- Ratchet, Theramore, Nijel's Point, Auberdine, Talonbranch Glade, Everlook
 
 				-- Alliance: Rut'theran Village (Teldrassil)
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -821,6 +822,7 @@
 				["0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 897, -- Theramore, Nijel's Point, Auberdine, Moonglade, Everlook
 				["0.64:0.67:0.40:0.51:0.31:0.69"] = 566, -- Theramore, Combe de Nijel, Feathermoon
 				["0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 576, -- Theramore, Talrendis Point, Talonbranch Glade, Moonglade
+				["0.64:0.67:0.43:0.25:0.53:0.26:0.65:0.23"] = 911, -- Theramore, Auberdine, Talonbranch Glade, Everlook
 
 			},
 
