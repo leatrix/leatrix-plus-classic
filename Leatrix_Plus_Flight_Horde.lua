@@ -1,4 +1,4 @@
-﻿
+
 	----------------------------------------------------------------------
 	-- Leatrix Plus Flight Horde
 	----------------------------------------------------------------------
@@ -30,6 +30,7 @@
 				["0.43:0.93:0.55:0.57:0.62:0.31:0.49:0.27"] = 783, -- Booty Bay, Kargath, Hammerfall, Tarren Mill
 				["0.43:0.93:0.55:0.57:0.44:0.19"] = 903, -- Booty Bay, Kargath, Undercity
 				["0.43:0.93:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 882, -- Booty Bay, Kargath, Hammerfall, Tarren Mill, The Sepulcher
+				["0.43:0.93:0.55:0.57:0.44:0.19:0.49:0.27"] = 970, -- Booty Bay, Kargath, Undercity, Tarren Mill
 
 				-- Horde: Flame Crest (Burning Steppes)
 				["0.56:0.61:0.61:0.75:0.43:0.93"] = 472, -- Flame Crest, Stonard, Booty Bay
@@ -75,6 +76,7 @@
 				["0.62:0.31:0.44:0.19"] = 259, -- Hammerfall, Undercity
 				["0.62:0.31:0.49:0.27:0.38:0.24"] = 215, -- Hammerfall, Tarren Mill, The Sepulcher
 				["0.62:0.31:0.49:0.27:0.44:0.19:0.70:0.16"] = 441, -- Hammerfall, Tarren Mill, Undercity, Light's Hope Chapel
+				["0.62:0.31:0.44:0.19:0.38:0.24"] = 290, -- Hammerfall, Undercity, The Sepulcher
 
 				-- Horde: Kargath (Badlands)
 				["0.55:0.57:0.43:0.93"] = 417, -- Kargath, Booty Bay
@@ -135,6 +137,8 @@
 				["0.61:0.75:0.55:0.57:0.44:0.19"] = 782, -- Stonard, Kargath, Undercity
 				["0.61:0.75:0.55:0.57:0.62:0.31:0.49:0.27:0.38:0.24"] = 761, -- Stonard, Kargath, Hammerfall, Tarren Mill, The Sepulcher
 				["0.61:0.75:0.55:0.57:0.51:0.57"] = 341, -- Stonard, Kargath, Thoriumspitze
+				["0.61:0.75:0.55:0.57:0.44:0.19:0.38:0.24"] = 817, -- Stonard, Kargath, Undercity, The Sepulcher
+				["0.61:0.75:0.55:0.57:0.44:0.19:0.49:0.27"] = 849, -- Stonard, Kargath, Undercity, Tarren Mill
 
 				-- Horde: Tarren Mill (Hillsbrad Foothills)
 				["0.49:0.27:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 768, -- Tarren Mill, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -150,6 +154,7 @@
 				["0.49:0.27:0.38:0.24"] = 99, -- Tarren Mill, The Sepulcher
 				["0.49:0.27:0.62:0.31:0.55:0.57:0.43:0.93"] = 792, -- Tarren Mill, Hammerfall, Kargath, Booty Bay
 				["0.49:0.27:0.44:0.19:0.70:0.16"] = 325, -- Tarrens Mühle, Undercity, Kapelle des hoffnungsvollen Lichts
+				["0.49:0.27:0.44:0.19:0.55:0.57:0.45:0.84"] = 862, -- Tarren Mill, Undercity, Kargath, Grom'gol
 
 				-- Horde: The Sepulcher (Silverpine Forest)
 				["0.38:0.24:0.49:0.27:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 863, -- The Sepulcher, Tarren Mill, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -162,7 +167,7 @@
 				["0.38:0.24:0.49:0.27:0.67:0.30"] = 289, -- The Sepulcher, Tarren Mill, Revantusk Village
 				["0.38:0.24:0.44:0.19:0.70:0.16"] = 299, -- The Sepulcher, Undercity, Light's Hope Chapel
 				["0.38:0.24:0.49:0.27"] = 95, -- The Sepulcher, Tarren Mill
-				["0.38:0.24:0.44:0.19"] = 112, -- The Sepulcher, Undercity
+				["0.38:0.24:0.44:0.19"] = 112, -- The Sepulcher, Undercity (Drew Spreitzer reported 202)
 
 				-- Horde: Thorium Point (Searing Gorge)
 				["0.51:0.57:0.55:0.57:0.45:0.84:0.43:0.93"] = 462, -- Thorium Point, Kargath, Grom'gol, Booty Bay
@@ -264,6 +269,7 @@
 				["0.44:0.69:0.56:0.53:0.41:0.47"] = 414, -- Camp Mojache, Crossroads, Sun Rock Retreat
 				["0.44:0.69:0.55:0.73:0.61:0.80:0.50:0.76"] = 307, -- Camp Mojache, Freewind Post, Gadgetzan, Marshal's Refuge
 				["0.44:0.69:0.56:0.53:0.46:0.30:0.64:0.23"] = 661, -- Camp Mojache, Crossroads, Bloodvenom Post, Everlook
+				["0.44:0.69:0.45:0.56:0.53:0.61"] = 346, -- Camp Mojache, Thunder Bluff, Camp Taurajo
 
 				-- Horde: Camp Taurajo (The Barrens)
 				["0.53:0.61:0.55:0.73:0.61:0.80"] = 218, -- Camp Taurajo, Freewind Post, Gadgetzan
@@ -307,6 +313,7 @@
 				["0.42:0.79:0.50:0.76:0.61:0.80:0.63:0.44"] = 555, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Orgrimmar
 				["0.42:0.79:0.61:0.80:0.63:0.44"] = 591, -- Cenarion Hold, Gadgetzan, Orgrimmar
 				["0.42:0.79:0.50:0.76:0.61:0.80:0.55:0.73"] = 292, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Freewind Post
+				["0.42:0.79:0.61:0.80:0.55:0.73"] = 328, -- Cenarion Hold, Gadgetzan, Freewind Post
 
 				-- Horde: Crossroads (The Barrens)
 				["0.56:0.53:0.61:0.80"] = 303, -- Crossroads, Gadgetzan
@@ -444,6 +451,8 @@
 				["0.54:0.21:0.46:0.30:0.63:0.36"] = 346, -- Moonglade, Bloodvenom Post, Valormok
 				["0.54:0.21:0.46:0.30:0.56:0.53:0.45:0.56"] = 535, -- Moonglade, Bloodvenom Post, Crossroads, Thunder Bluff
 				["0.54:0.21:0.46:0.30:0.63:0.44:0.55:0.42"] = 460, -- Moonglade, Bloodvenom Post, Orgrimmar, Splintertree Post
+				["0.54:0.21:0.46:0.30:0.56:0.53:0.41:0.37"] = 583, -- Moonglade, Bloodvenom Post, Crossroads, Zoram'gar Outpost
+				["0.54:0.21:0.46:0.30:0.63:0.36:0.55:0.42"] = 438, -- Moonglade, Bloodvenom Post, Valormok, Splintertree Post
 
 				-- Horde: Orgrimmar (Durotar)
 				["0.63:0.44:0.61:0.80"] = 417, -- Orgrimmar, Gadgetzan (Pavel Pavlov reported 436)
@@ -560,7 +569,8 @@
 				["0.41:0.47:0.56:0.53:0.46:0.30"] = 403, -- Sun Rock Retreat, Crossroads, Bloodvenom Post
 				["0.41:0.47:0.56:0.53:0.41:0.37"] = 380, -- Sun Rock Retreat, Crossroads, Zoram'gar Outpost
 				["0.41:0.47:0.32:0.58"] = 143, -- Sun Rock Retreat, Shadowprey Village
-				["0.41:0.47:0.45:0.56"] = 175, -- Sun Rock Retreat, Thunder Bluff (Marcin N reported 200)
+				["0.41:0.47:0.45:0.56"] = 175, -- Sun Rock Retreat, Thunder Bluff (Chad Mohammad LMSW reported 195) (Marcin N reported 200)
+				["0.41:0.47:0.56:0.53:0.44:0.69"] = 401, -- Sun Rock Retreat, Crossroads, Camp Mojache
 
 				-- Horde: Thunder Bluff (Mulgore)
 				["0.45:0.56:0.61:0.80"] = 290, -- Thunder Bluff, Gadgetzan
@@ -584,6 +594,7 @@
 				["0.45:0.56:0.56:0.53:0.46:0.30:0.54:0.21"] = 534, -- Thunder Bluff, Crossroads, Bloodvenom Post, Moonglade
 				["0.45:0.56:0.63:0.44:0.64:0.23"] = 527, -- Thunder Bluff, Orgrimmar, Everlook
 				["0.45:0.56:0.61:0.80:0.50:0.76:0.42:0.79"] = 498, -- Thunder Bluff, Gadgetzan, Marshal's Refuge, Cenarion Hold
+				["0.45:0.56:0.56:0.53:0.55:0.42"] = 321, -- Thunder Bluff, Crossroads, Splintertree Post
 
 				-- Horde: Valormok (Azshara)
 				["0.63:0.36:0.56:0.53:0.55:0.73:0.61:0.80"] = 449, -- Valormok, Crossroads, Freewind Post, Gadgetzan
