@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.12.alpha.7 (10th January 2024)
+-- 	Leatrix Plus 1.15.12.alpha.8 (10th January 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.12.alpha.7"
+	LeaPlusLC["AddonVer"] = "1.15.12.alpha.8"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -42,12 +42,12 @@
 	end
 
 	-- Check for addons
-	if IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = unpack(ElvUI) end
-	if IsAddOnLoaded("Glass") then LeaPlusLC.Glass = true end
-	if IsAddOnLoaded("CharacterStatsClassic") then LeaPlusLC.CharacterStatsClassic = true end
-	if IsAddOnLoaded("ClassicProfessionFilter") then LeaPlusLC.ClassicProfessionFilter = true end
-	if IsAddOnLoaded("TitanClassic") then LeaPlusLC.TitanClassic = true end
-	if IsAddOnLoaded("totalRP3") then LeaPlusLC.totalRP3 = true end
+	if C_AddOns.IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = unpack(ElvUI) end
+	if C_AddOns.IsAddOnLoaded("Glass") then LeaPlusLC.Glass = true end
+	if C_AddOns.IsAddOnLoaded("CharacterStatsClassic") then LeaPlusLC.CharacterStatsClassic = true end
+	if C_AddOns.IsAddOnLoaded("ClassicProfessionFilter") then LeaPlusLC.ClassicProfessionFilter = true end
+	if C_AddOns.IsAddOnLoaded("TitanClassic") then LeaPlusLC.TitanClassic = true end
+	if C_AddOns.IsAddOnLoaded("totalRP3") then LeaPlusLC.totalRP3 = true end
 
 ----------------------------------------------------------------------
 --	L00: Leatrix Plus
@@ -338,16 +338,16 @@
 
 	-- Toggle Zygor addon
 	function LeaPlusLC:ZygorToggle()
-		if select(2, GetAddOnInfo("ZygorGuidesViewerClassic")) then
-			if not IsAddOnLoaded("ZygorGuidesViewerClassic") then
+		if select(2, C_AddOns.GetAddOnInfo("ZygorGuidesViewerClassic")) then
+			if not C_AddOns.IsAddOnLoaded("ZygorGuidesViewerClassic") then
 				if LeaPlusLC:PlayerInCombat() then
 					return
 				else
-					EnableAddOn("ZygorGuidesViewerClassic")
+					C_AddOns.EnableAddOn("ZygorGuidesViewerClassic")
 					ReloadUI()
 				end
 			else
-				DisableAddOn("ZygorGuidesViewerClassic")
+				C_AddOns.DisableAddOn("ZygorGuidesViewerClassic")
 				ReloadUI()
 			end
 		else
@@ -4683,10 +4683,10 @@
 				-- Function to make tooltip string with list of addons
 				local function MakeAddonString()
 					local msg = ""
-					local numAddons = GetNumAddOns()
+					local numAddons = C_AddOns.GetNumAddOns()
 					for i = 1, numAddons do
-						if IsAddOnLoaded(i) then
-							local name = GetAddOnInfo(i)
+						if C_AddOns.IsAddOnLoaded(i) then
+							local name = C_AddOns.GetAddOnInfo(i)
 							if name and _G["LibDBIcon10_" .. name] then -- Only list LibDBIcon buttons
 								msg = msg .. name .. ", "
 							end
@@ -5403,7 +5403,7 @@
 
 			-- Function to show or hide the clock
 			local function SetMiniClock(firstRun)
-				if IsAddOnLoaded("Blizzard_TimeManager") then
+				if C_AddOns.IsAddOnLoaded("Blizzard_TimeManager") then
 					if LeaPlusLC["SquareMinimap"] == "On" and firstRun == true then
 						local regions = {TimeManagerClockButton:GetRegions()}
 						regions[1]:Hide()
@@ -5426,7 +5426,7 @@
 			end
 
 			-- Run function when Blizzard addon is loaded
-			if IsAddOnLoaded("Blizzard_TimeManager") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_TimeManager") then
 				SetMiniClock(true)
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -6758,7 +6758,7 @@
 
 			end
 
-			if IsAddOnLoaded("Blizzard_InspectUI") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_InspectUI") then
 				DoInspectSystemFunc()
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -7134,7 +7134,7 @@
 			end
 
 			-- Run function when Trainer UI has loaded
-			if IsAddOnLoaded("Blizzard_TrainerUI") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_TrainerUI") then
 				TrainerFunc()
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -7402,7 +7402,7 @@
 			end
 
 			-- Run function when TradeSkill UI has loaded
-			if IsAddOnLoaded("Blizzard_TradeSkillUI") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_TradeSkillUI") then
 				TradeSkillFunc("TradeSkill")
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -7600,7 +7600,7 @@
 			end
 
 			-- Run function when Craft UI has loaded
-			if IsAddOnLoaded("Blizzard_CraftUI") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_CraftUI") then
 				CraftFunc()
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -8449,7 +8449,7 @@
 			end
 
 			-- Run function when Blizzard addon is loaded
-			if IsAddOnLoaded("Blizzard_AuctionUI") then
+			if C_AddOns.IsAddOnLoaded("Blizzard_AuctionUI") then
 				AuctionFunc()
 			else
 				local waitFrame = CreateFrame("FRAME")
@@ -12559,7 +12559,7 @@
 
 						end
 
-						EnableAddOn("Leatrix_Plus")
+						C_AddOns.EnableAddOn("Leatrix_Plus")
 					end
 
 				end
