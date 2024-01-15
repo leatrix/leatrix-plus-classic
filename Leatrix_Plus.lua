@@ -1970,7 +1970,6 @@
 			eb.Text:SetMaxLetters(2000)
 			eb.Text:SetFontObject(GameFontNormalLarge)
 			eb.Text:SetAutoFocus(false)
-			eb.Text:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
 			eb.scroll:SetScrollChild(eb.Text)
 
 			-- Set focus on the editbox text when clicking the editbox
@@ -3058,7 +3057,6 @@
 			eb.Text:SetMaxLetters(2000)
 			eb.Text:SetFontObject(GameFontNormalLarge)
 			eb.Text:SetAutoFocus(false)
-			eb.Text:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
 			eb.scroll:SetScrollChild(eb.Text)
 
 			-- Set focus on the editbox text when clicking the editbox
@@ -4625,7 +4623,6 @@
 				eb.Text:SetMaxLetters(1200)
 				eb.Text:SetFontObject(GameFontNormalLarge)
 				eb.Text:SetAutoFocus(false)
-				eb.Text:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
 				eb.scroll:SetScrollChild(eb.Text)
 
 				-- Set focus on the editbox text when clicking the editbox
@@ -9573,18 +9570,6 @@
 			-- Disable text changes while still allowing editing controls to work
 			editBox:EnableKeyboard(false)
 			editBox:SetScript("OnKeyDown", function() end)
-
-			--- Clear highlighted text if escape key is pressed
-			editBox:HookScript("OnEscapePressed", function()
-				editBox:HighlightText(0, 0)
-				editBox:ClearFocus()
-			end)
-
-			-- Clear highlighted text and clear focus if enter key is pressed
-			editBox:SetScript("OnEnterPressed", function()
-				editBox:HighlightText(0, 0)
-				editBox:ClearFocus()
-			end)
 
 			-- Populate recent chat frame with chat messages
 			local function ShowChatbox(chtfrm)
