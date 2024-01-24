@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.13.alpha.2 (17th January 2024)
+-- 	Leatrix Plus 1.15.13 (24th January 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.13.alpha.2"
+	LeaPlusLC["AddonVer"] = "1.15.13"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7940,6 +7940,7 @@
 						if classID and classID == 11 then count = 1 end -- Fix for quiver/ammo pouch so ammo is not included
 						if sellPrice == 4000 and ilink and string.find(ilink, "item:210781:") then
 							-- LeaPlusLC.NewPatch: Bug with Phoenix Bindings (real price is 24 silver 81 copper, but game returns 40 silver)
+							-- GameTooltip:SetHyperlink("item:210781")
 							SetTooltipMoney(tooltip, 2481 * count, "STATIC", SELL_PRICE .. ":")
 						else
 							-- Everything else get game price

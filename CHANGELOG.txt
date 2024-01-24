@@ -1,6 +1,7 @@
-1.15.13.alpha.2 - 17th January 2024
+1.15.13 - 24th January 2024
 - For 'Show vendor price' ('System'), if the game reports that the price of 'Phoenix Bindings' is 40 silver, Leatrix Plus will show the correct price of 24 silver 81 copper.
 - Fixed ScrollFrameTemplate editbox widths.
+- Added flight times.
 
 1.15.12 - 17th January 2024
 - For 'Enhance minimap' ('Interface'), the minimum minimap scale is now 50% (was 100%).
