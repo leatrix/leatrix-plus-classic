@@ -1,4 +1,4 @@
-1.15.13.alpha.1
+1.15.14 - 31st January 2024
 - For 'Automate quests' ('Automation'), quests from supply officers (for supply shipments) will no longer be automated.
 - Added flight times.
 
