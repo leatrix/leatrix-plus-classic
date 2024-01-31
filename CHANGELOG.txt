@@ -1,3 +1,7 @@
+1.15.13.alpha.1
+- For 'Automate quests' ('Automation'), quests from supply officers (for supply shipments) will no longer be automated.
+- Added flight times.
+
 1.15.13 - 24th January 2024
 - For 'Show vendor price' ('System'), if the game reports that the price of 'Phoenix Bindings' is 40 silver, Leatrix Plus will show the correct price of 24 silver 81 copper.
 - Fixed ScrollFrameTemplate editbox widths.

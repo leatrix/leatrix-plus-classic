@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.13 (24th January 2024)
+-- 	Leatrix Plus 1.15.13.alpha.1 (24th January 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.13"
+	LeaPlusLC["AddonVer"] = "1.15.13.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1427,6 +1427,13 @@
 						or npcID == "3430" 	-- Mangletooth (Blood Shard quests, Barrens)
 						or npcID == "14828" -- Gelvas Grimegate (Darkmoon Faire Ticket Redemption, Elwynn Forest and Mulgore)
 						or npcID == "14921" -- Rin'wosho the Trader (Zul'Gurub Isle, Stranglethorn Vale)
+						-- Ignore supply officers
+						or npcID == "213077" -- Elaine Compton <Supply Officer> (Stormwind)
+						or npcID == "214099" -- Tamelyn Aldridge <Supply Officer> (Ironforge)
+						or npcID == "214101" -- Marcy Baker <Supply Officer> (Darnassus)
+						or npcID == "214070" -- Jornah <Supply Officer> (Orgrimmar)
+						or npcID == "214096" -- Dokimi <Supply Officer> (Thunder Bluff)
+						or npcID == "214098" -- Gishah <Supply Officer> (Undercity)
 						then
 							return true
 						end
