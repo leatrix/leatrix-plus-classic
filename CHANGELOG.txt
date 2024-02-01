@@ -1,3 +1,6 @@
+1.15.16.alpha.1 - 1st February 2023
+- For 'Enhance minimap' ('Interface'), added support for AllTheThings custom minimap button.
+
 1.15.15 - 1st February 2024
 - Updated translations.
 
