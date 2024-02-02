@@ -1,4 +1,4 @@
-1.15.16.alpha.4 - 2nd February 2023
+1.15.16.alpha.5 - 2nd February 2023
 - For 'Enhance minimap' ('Interface'), added support for a few addons that still use custom minimap buttons (AllTheThings, Altoholic, LFG Bulletin Board, WIM).
 
 1.15.15 - 1st February 2024
