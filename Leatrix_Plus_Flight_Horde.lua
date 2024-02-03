@@ -487,6 +487,7 @@
 				["0.63:0.44:0.45:0.56:0.44:0.69"] = 478, -- Orgrimmar, Thunder Bluff, Camp Mojache
 				["0.63:0.44:0.56:0.53:0.44:0.69:0.32:0.58"] = 563, -- Orgrimmar, Crossroads, Camp Mojache, Shadowprey Village
 				["0.63:0.44:0.56:0.53:0.55:0.73:0.61:0.80:0.50:0.76:0.42:0.79"] = 594, -- Orgrimmar, Crossroads, Freewind Post, Gadgetzan, Marshal's Refuge, Cenarion Hold
+				["0.63:0.44:0.45:0.56:0.44:0.69:0.42:0.79"] = 607, -- Orgrimmar, Thunder Bluff, Camp Mojache, Cenarion Hold
 
 				-- Horde: Ratchet (The Barrens)
 				["0.61:0.55:0.56:0.53:0.55:0.73:0.61:0.80"] = 345, -- Ratchet, Crossroads, Freewind Post, Gadgetzan

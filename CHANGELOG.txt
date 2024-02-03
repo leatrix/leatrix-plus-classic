@@ -1,6 +1,7 @@
 1.15.16.alpha.9 - 3rd February 2023
-- The 'Enhance minimap' ('Interface') option is now able to display custom buttons correctly.  Report any addon buttons that do not display correctly to feedback@leatrix.com and they will be fixed in the next update.
+- The 'Enhance minimap' ('Interface') option is now able to display custom buttons correctly (for the few addons that still cling to them).  If you have an addon that only offers a custom minimap button, you can email feedback@leatrix.com with the addon name so that Leatrix Plus can be made aware of it and show it correctly.
 - For 'Automate quests' ('Automation'), quests from Valadar Starsong and Fariel Starsong (Moonglade) will no longer be automated.
+- Added flight times.
 
 1.15.15 - 1st February 2024
 - Updated translations.
