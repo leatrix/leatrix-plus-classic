@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.16.alpha.7 (3rd February 2024)
+-- 	Leatrix Plus 1.15.16.alpha.8 (3rd February 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.16.alpha.7"
+	LeaPlusLC["AddonVer"] = "1.15.16.alpha.8"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5191,7 +5191,11 @@
 								tip:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 0, -6)
 							end
 						else
-							tip:SetPoint("TOPRIGHT", myButton, "BOTTOMRIGHT", 0, 0)
+							if MinimapCluster and MinimapCluster:GetLeft() < GetScreenWidth() / 2 then
+								tip:SetPoint("TOPLEFT", myButton, "BOTTOMLEFT", 0, -6)
+							else
+								tip:SetPoint("TOPRIGHT", myButton, "BOTTOMRIGHT", 0, -6)
+							end
 						end
 					end
 
