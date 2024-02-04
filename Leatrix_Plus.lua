@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.16 (3rd February 2024)
+-- 	Leatrix Plus 1.15.17.alpha.1 (3rd February 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.16"
+	LeaPlusLC["AddonVer"] = "1.15.17.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5193,10 +5193,10 @@
 								tip:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 0, -6)
 							end
 						else
-							if MinimapCluster and MinimapCluster:GetLeft() < GetScreenWidth() / 2 then
-								tip:SetPoint("TOPLEFT", myButton, "BOTTOMLEFT", 0, -6)
-							else
+							if Minimap:GetCenter() * Minimap:GetEffectiveScale() > (GetScreenWidth() * UIParent:GetEffectiveScale() / 2) then
 								tip:SetPoint("TOPRIGHT", myButton, "BOTTOMRIGHT", 0, -6)
+							else
+								tip:SetPoint("TOPLEFT", myButton, "BOTTOMLEFT", 0, -6)
 							end
 						end
 					end
@@ -5330,7 +5330,7 @@
 				end
 
 				-- Run the function a few times on startup
-				C_Timer.NewTicker(2, MakeButtons, 3)
+				C_Timer.NewTicker(2, MakeButtons, 8)
 				C_Timer.After(0.1, MakeButtons)
 
 			end

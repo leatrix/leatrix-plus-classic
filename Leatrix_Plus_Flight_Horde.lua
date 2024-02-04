@@ -292,7 +292,7 @@
 				["0.53:0.61:0.56:0.53:0.41:0.47"] = 229, -- Camp Taurajo, Crossroads, Sun Rock Retreat
 				["0.53:0.61:0.45:0.56"] = 114, -- Camp Taurajo, Thunder Bluff
 				["0.53:0.61:0.45:0.56:0.32:0.58"] = 273, -- Camp Taurajo, Thunder Bluff, Shadowprey Village
-				["0.53:0.61:0.45:0.56:0.63:0.44"] = 321, -- Camp Taurajo, Thunder Bluff, Orgrimmar 
+				["0.53:0.61:0.45:0.56:0.63:0.44"] = 321, -- Camp Taurajo, Thunder Bluff, Orgrimmar
 
 				-- Horde: Cenarion Hold (Silithus)
 				["0.42:0.79:0.61:0.80"] = 241, -- Cenarion Hold, Gadgetzan
@@ -318,6 +318,7 @@
 				["0.42:0.79:0.50:0.76:0.61:0.80:0.55:0.73"] = 292, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Freewind Post
 				["0.42:0.79:0.61:0.80:0.55:0.73"] = 328, -- Cenarion Hold, Gadgetzan, Freewind Post
 				["0.42:0.79:0.44:0.69:0.56:0.53:0.41:0.47"] = 544, -- Cenarion Hold, Camp Mojache, Crossroads, Sun Rock Retreat
+				["0.42:0.79:0.50:0.76:0.61:0.80:0.45:0.56"] = 509, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Thunder Bluff
 
 				-- Horde: Crossroads (The Barrens)
 				["0.56:0.53:0.61:0.80"] = 303, -- Crossroads, Gadgetzan
