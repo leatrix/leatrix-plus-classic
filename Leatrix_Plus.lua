@@ -5265,9 +5265,10 @@
 							_G[name]:GetScript("OnLeave")()
 							GameTooltip:Hide()
 						end)
-					elseif name == "TomCats-MinimapButton"
-						or name == "LibDBIcon10_MethodRaidTools"
-						or name == "Lib_GPI_Minimap_LFGBulletinBoard"
+					elseif name == "TomCats-MinimapButton"				-- TomCat's Tours
+						or name == "LibDBIcon10_MethodRaidTools"		-- Method Raid Tools
+						or name == "Lib_GPI_Minimap_LFGBulletinBoard"	-- LFG Bulletin Board
+						or name == "wlMinimapButton"					-- Wowhead Looter (part of Wowhead client)
 						then
 						local myButton = LibStub("LibDBIcon-1.0"):GetMinimapButton("LeaPlusCustomIcon_" .. name)
 						myButton:HookScript("OnEnter", function()

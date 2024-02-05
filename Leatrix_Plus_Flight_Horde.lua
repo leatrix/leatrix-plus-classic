@@ -558,6 +558,7 @@
 				["0.55:0.42:0.63:0.44:0.45:0.56"] = 321, -- Splintertree Post, Orgrimmar, Thunder Bluff
 				["0.55:0.42:0.56:0.53:0.41:0.47:0.32:0.58"] = 453, -- Splintertree Post, Crossroads, Sun Rock Retreat, Shadowprey Village
 				["0.55:0.42:0.63:0.44:0.46:0.30"] = 348, -- Splintertree Post, Orgrimmar, Bloodvenom Post
+				["0.55:0.42:0.63:0.36:0.46:0.30:0.54:0.21"] = 445, -- Splintertree Post, Valormok, Bloodvenom Post, Moonglade
 
 				-- Horde: Sun Rock Retreat (Stonetalon Mountains)
 				["0.41:0.47:0.56:0.53:0.55:0.73:0.61:0.80"] = 426, -- Sun Rock Retreat, Crossroads, Freewind Post, Gadgetzan

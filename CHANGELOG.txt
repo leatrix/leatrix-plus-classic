@@ -1,5 +1,5 @@
 1.15.17.alpha.1 - 4th February 2023
-- For 'Enhance minimap' ('Interface'), updated tooltip positioning logic.
+- For 'Enhance minimap' ('Interface'), updated tooltip positioning logic.  Added Wowhead Looter button.
 - Added flight times.
 
 1.15.16 - 3rd February 2023
