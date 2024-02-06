@@ -1,6 +1,6 @@
 1.15.17.alpha.1 - 4th February 2023
 - For 'Enhance minimap' ('Interface'), updated tooltip positioning logic.  Added Wowhead Looter button.
-- For 'Recent chat window' ('Chat'), adjusted mousescroll speed based on font size.
+- For 'Recent chat window' ('Chat'), scroll speed is now based on font size.
 - Added flight times.
 
 1.15.16 - 3rd February 2023
