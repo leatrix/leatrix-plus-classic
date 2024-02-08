@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.17 (7th February 2024)
+-- 	Leatrix Plus 1.15.18.alpha.1 (7th February 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.17"
+	LeaPlusLC["AddonVer"] = "1.15.18.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7858,6 +7858,12 @@
 				end
 
 			end
+
+			-- Translations for quest level suffixes (need to be English so links work in addons such as Questie for non-English locales)
+			L["D"] = "D" -- Dungeon quest
+			L["R"] = "R" -- Raid quest
+			L["P"] = "P" -- PvP quest
+			L["+"] = "+" -- Elite or group quest
 
 			-- Show quest level in quest log detail frame (but not in quest accept or turn-in frame)
 			hooksecurefunc("QuestLog_UpdateQuestDetails", function()
