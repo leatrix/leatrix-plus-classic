@@ -1,5 +1,6 @@
 1.15.18.alpha.1 - 7th February 2023
 - For 'Enhanced quest log' ('Interface'), fixed an issue with showing quest level suffixes for non-English locales.
+- Added flight times.
 
 1.15.17 - 7th February 2023
 - Updated for game version 1.15.1.
