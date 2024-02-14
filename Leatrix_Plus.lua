@@ -7893,6 +7893,8 @@
 				-- Traverse quests in log
 				for i = 1, QUESTS_DISPLAYED do
 					local questIndex = i + FauxScrollFrame_GetOffset(QuestLogListScrollFrame)
+					-- Can use below line instead of FauxScrollFrame_GetOffset
+					-- local questIndex = i + math.floor(QuestLogListScrollFrame:GetVerticalScroll() / QUESTLOG_QUEST_HEIGHT)
 					if questIndex <= numEntries then
 						-- Get quest title and check
 						local questLogTitle = _G["QuestLogTitle" .. i]
