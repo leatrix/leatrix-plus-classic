@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.18 (14th February 2024)
+-- 	Leatrix Plus 1.15.19.alpha.1 (14th February 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.18"
+	LeaPlusLC["AddonVer"] = "1.15.19.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -11336,14 +11336,12 @@
 
 			-- Show relevant list items
 			local function UpdateList()
-				FauxScrollFrame_Update(scrollFrame, #ListData, numButtons, 16)
-				for index = 1, numButtons do
-					local offset = index + FauxScrollFrame_GetOffset(scrollFrame)
-					local button = scrollFrame.buttons[index]
-					button.index = offset
-					if offset <= #ListData then
+				local offset = max(0, floor(scrollFrame:GetVerticalScroll() + 0.5))
+				for i, button in ipairs(scrollFrame.buttons) do
+					local index = offset + i
+					if index <= #ListData then
 						-- Show zone listing or track listing
-						button:SetText(ListData[offset].zone or ListData[offset])
+						button:SetText(ListData[index].zone or ListData[index])
 						-- Set width of highlight texture
 						if button:GetTextWidth() > 290 then
 							button.t:SetSize(290, 16)
@@ -11385,6 +11383,7 @@
 					else
 						button:Hide()
 					end
+					scrollFrame.child:SetSize(200, #ListData + (14*19.6) - 1) --++ LeaSoundsLC.NewPatch
 				end
 			end
 
@@ -11506,13 +11505,15 @@
 			end
 
 			-- Create scroll bar
-			scrollFrame = CreateFrame("ScrollFrame", "LeaPlusScrollFrame", LeaPlusLC["Page9"], "FauxScrollFrameTemplate")
+			scrollFrame = CreateFrame("ScrollFrame", "LeaPlusScrollFrame", LeaPlusLC["Page9"], "ScrollFrameTemplate")
 			scrollFrame:SetPoint("TOPLEFT", 0, -32)
 			scrollFrame:SetPoint("BOTTOMRIGHT", -30, 50)
-			scrollFrame:SetFrameLevel(10)
-			scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
-				FauxScrollFrame_OnVerticalScroll(self, offset, 16, UpdateList)
-			end)
+			scrollFrame:SetPanExtent(1)
+			scrollFrame:SetScript("OnVerticalScroll", UpdateList)
+
+			-- Create the scroll child
+			scrollFrame.child = CreateFrame("Frame", nil, scrollFrame)
+			scrollFrame:SetScrollChild(scrollFrame.child)
 
 			-- Add stop button
 			local stopBtn = LeaPlusLC:CreateButton("StopMusicBtn", LeaPlusLC["Page9"], "Stop", "TOPLEFT", 146, -292, 0, 25, true, "")
