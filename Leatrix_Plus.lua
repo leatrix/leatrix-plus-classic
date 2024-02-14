@@ -7893,7 +7893,7 @@
 				-- Traverse quests in log
 				for i = 1, QUESTS_DISPLAYED do
 					local questIndex = i + FauxScrollFrame_GetOffset(QuestLogListScrollFrame)
-					-- Can use below line instead of FauxScrollFrame_GetOffset
+					-- Can use below line instead of FauxScrollFrame_GetOffset (Wrath Classic uses QuestLogTitleButton_Resize)
 					-- local questIndex = i + math.floor(QuestLogListScrollFrame:GetVerticalScroll() / QUESTLOG_QUEST_HEIGHT)
 					if questIndex <= numEntries then
 						-- Get quest title and check
