@@ -1,14 +1,14 @@
-1.15.18.alpha.1 - 7th February 2023
+1.15.18 - 14th February 2024
 - For 'Enhanced quest log' ('Interface'), fixed an issue with showing quest level suffixes for non-English locales.
 - Added flight times.
 
-1.15.17 - 7th February 2023
+1.15.17 - 7th February 2024
 - Updated for game version 1.15.1.
 - For 'Enhance minimap' ('Interface'), updated tooltip positioning logic.  Added Wowhead Looter button.
 - For 'Recent chat window' ('Chat'), scroll speed is now based on font size.
 - Added flight times.
 
-1.15.16 - 3rd February 2023
+1.15.16 - 3rd February 2024
 - The 'Enhance minimap' ('Interface') option is now able to display custom buttons correctly if Leatrix Plus is aware of them.
 - For 'Automate quests' ('Automation'), quests from Valadar Starsong and Fariel Starsong (Moonglade) will no longer be automated.
 - Added flight times.
