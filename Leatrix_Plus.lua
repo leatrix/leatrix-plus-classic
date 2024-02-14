@@ -11383,8 +11383,8 @@
 					else
 						button:Hide()
 					end
-					scrollFrame.child:SetSize(200, #ListData + (14*19.6) - 1) --++ LeaSoundsLC.NewPatch
 				end
+				scrollFrame.child:SetSize(200, #ListData + (14*19.6) - 1) --++ LeaSoundsLC.NewPatch
 			end
 
 			-- Give function file level scope (it's used in SetPlusScale to set the highlight bar scale)
