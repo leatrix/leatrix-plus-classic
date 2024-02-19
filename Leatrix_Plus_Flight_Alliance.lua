@@ -177,6 +177,7 @@
 				["0.70:0.16:0.55:0.25:0.57:0.32:0.59:0.52"] = 402, -- Light's Hope Chapel, Aerie Peak, Refuge Pointe, Thelsamar
 				["0.70:0.16:0.51:0.49:0.43:0.67:0.56:0.70"] = 639, -- Light's Hope Chapel, Ironforge, Stormwind, Lakeshire
 				["0.70:0.16:0.51:0.49:0.49:0.44:0.48:0.30"] = 563, -- Light's Hope Chapel, Ironforge, Menethil Harbor, Southshore
+				["0.70:0.16:0.51:0.49:0.49:0.44"] = 462, -- Light's Hope Chapel, Ironforge, Menethil Harbor
 
 				-- Alliance: Menethil Harbor (Wetlands)
 				["0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 490, -- Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -314,6 +315,7 @@
 				["0.48:0.30:0.51:0.49:0.43:0.67:0.51:0.75"] = 474, -- Southshore, Ironforge, Stormwind, Darkshire
 				["0.48:0.30:0.51:0.49:0.59:0.52"] = 262, -- Southshore, Ironforge, Thelsamar
 				["0.48:0.30:0.51:0.49:0.43:0.67"] = 372, -- Southshore, Ironforge, Stormwind
+				["0.48:0.30:0.51:0.49:0.43:0.67:0.56:0.70"] = 471, -- Southshore, Ironforge, Stormwind, Lakeshire
 
 				-- Alliance: Stormwind (Elwynn Forest)
 				["0.43:0.67:0.43:0.93"] = 245, -- Stormwind, Booty Bay
@@ -703,6 +705,7 @@
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.40:0.51"] = 723, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Nijel's Point
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.55:0.21"] = 583, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Moonglade
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 795, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
+				["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 1120, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 
 				-- Alliance: Rut'theran Village (Teldrassil)
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -807,6 +810,7 @@
 				["0.61:0.40:0.43:0.25:0.42:0.16"] = 386, -- Talrendis Point, Auberdine, Rut'theran Village
 				["0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 663, -- Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 				["0.61:0.40:0.61:0.55:0.64:0.67:0.40:0.51"] = 567, -- Talrendis Point, Ratchet, Theramore, Nijel's Point
+				["0.61:0.40:0.46:0.40:0.43:0.25:0.40:0.51"] = 591, -- Talrendis Point, Astranaar, Auberdine, Nijel's Point
 
 				-- Alliance: Thalanaar (Feralas)
 				["0.48:0.70:0.60:0.81"] = 171, -- Thalanaar, Gadgetzan
