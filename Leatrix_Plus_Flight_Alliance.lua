@@ -178,6 +178,7 @@
 				["0.70:0.16:0.51:0.49:0.43:0.67:0.56:0.70"] = 639, -- Light's Hope Chapel, Ironforge, Stormwind, Lakeshire
 				["0.70:0.16:0.51:0.49:0.49:0.44:0.48:0.30"] = 563, -- Light's Hope Chapel, Ironforge, Menethil Harbor, Southshore
 				["0.70:0.16:0.51:0.49:0.49:0.44"] = 462, -- Light's Hope Chapel, Ironforge, Menethil Harbor
+				["0.70:0.16:0.51:0.49:0.43:0.67:0.58:0.65"] = 684, -- Kapelle des hoffnungsvollen Lichts, Ironforge, Stormwind, Morgans Wacht
 
 				-- Alliance: Menethil Harbor (Wetlands)
 				["0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 490, -- Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -230,7 +231,7 @@
 				["0.61:0.78:0.51:0.75"] = 91, -- Nethergarde Keep, Darkshire
 				["0.61:0.78:0.51:0.75:0.56:0.70"] = 150, -- Nethergarde Keep, Darkshire, Lakeshire
 				["0.61:0.78:0.58:0.65"] = 207, -- Nethergarde Keep, Morgan's Vigil
-				["0.61:0.78:0.43:0.67"] = 189, -- Nethergarde Keep, Stormwind
+				["0.61:0.78:0.43:0.67"] = 189, -- Nethergarde Keep, Stormwind (thomas batson reported 206)
 				["0.61:0.78:0.51:0.75:0.41:0.75"] = 184, -- Nethergarde Keep, Darkshire, Sentinel Hill
 				["0.61:0.78:0.58:0.65:0.51:0.57"] = 300, -- Nethergarde Keep, Morgan's Vigil, Thorium Point
 				["0.61:0.78:0.58:0.65:0.51:0.57:0.51:0.49"] = 382, -- Nethergarde Keep, Morgan's Vigil, Thorium Point, Ironforge
@@ -426,6 +427,7 @@
 				["0.46:0.40:0.61:0.40:0.64:0.67:0.48:0.70"] = 551, -- Astranaar, Talrendis Point, Theramore, Thalanaar
 				["0.46:0.40:0.43:0.25:0.64:0.67:0.60:0.81"] = 976, -- 아스트라나르 (잿빛 골짜기), 아우버다인 (어둠의 해안), 테라모어 섬 (먼지진흙 습지대), 가젯잔 (타나리스), 가젯잔 (타나리스)
 				["0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70"] = 775, -- Astranaar, Auberdine, Feathermoon, Thalanaar
+				["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 836, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 
 				-- Alliance: Auberdine (Darkshore)
 				["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -453,6 +455,7 @@
 				["0.43:0.25:0.40:0.51:0.64:0.67:0.61:0.55"] = 713, -- Auberdine, Nijel's Point, Theramore, Ratchet
 				["0.43:0.25:0.64:0.67:0.60:0.81"] = 828, -- Auberdine, Theramore, Gadgetzan
 				["0.43:0.25:0.61:0.40:0.64:0.67:0.48:0.70"] = 704, -- Auberdine, Punta Talrendis, Theramore, Thalanaar
+				["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 887, -- Auberdine, Talrendisspitze, Ratchet, Theramore, Gadgetzan, Marshals Zuflucht, Burg Cenarius
 
 				-- Alliance: Cenarion Hold (Silithus)
 				["0.42:0.79:0.60:0.81"] = 189, -- Cenarion Hold, Gadgetzan
@@ -668,6 +671,7 @@
 				["0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55"] = 555, -- Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point, Ratchet
 				["0.40:0.51:0.64:0.67:0.61:0.40"] = 541, -- Nijel's Point, Theramore, Talrendis Point
 				["0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 662, -- Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
+				["0.40:0.51:0.43:0.25:0.61:0.40"] = 582, -- Nijel's Point, Auberdine, Talrendis Point
 
 				-- Alliance: Ratchet (The Barrens)
 				["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan
