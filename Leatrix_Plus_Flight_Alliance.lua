@@ -320,7 +320,7 @@
 
 				-- Alliance: Stormwind (Elwynn Forest)
 				["0.43:0.67:0.43:0.93"] = 245, -- Stormwind, Booty Bay
-				["0.43:0.67:0.41:0.75"] = 78, -- Stormwind, Sentinel Hill (Galleon Brinton reported 102)
+				["0.43:0.67:0.41:0.75"] = 78, -- Stormwind, Sentinel Hill (Galleon Brinton reported 102, Eino Virtanen reported 113)
 				["0.43:0.67:0.51:0.75"] = 116, -- Stormwind, Darkshire
 				["0.43:0.67:0.61:0.78"] = 176, -- Stormwind, Nethergarde Keep
 				["0.43:0.67:0.56:0.70"] = 113, -- Stormwind, Lakeshire

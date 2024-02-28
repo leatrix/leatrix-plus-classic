@@ -1,4 +1,7 @@
-﻿1.15.19 - 21st February 2024
+﻿1.15.20 - 28th February 2024
+- Added flight times.
+
+1.15.19 - 21st February 2024
 - Updated ScrollFrameTemplate for Media.
 - Added flight times.
 
