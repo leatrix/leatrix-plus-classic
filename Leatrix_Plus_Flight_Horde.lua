@@ -79,6 +79,7 @@
 				["0.62:0.31:0.49:0.27:0.44:0.19:0.70:0.16"] = 441, -- Hammerfall, Tarren Mill, Undercity, Light's Hope Chapel
 				["0.62:0.31:0.44:0.19:0.38:0.24"] = 290, -- Hammerfall, Undercity, The Sepulcher
 				["0.62:0.31:0.55:0.57:0.43:0.93"] = 675, -- Hammerfall, Kargath, Booty Bay
+				["0.62:0.31:0.44:0.19:0.70:0.16"] = 444, -- Hammerfall, Undercity, Light's Hope Chapel
 
 				-- Horde: Kargath (Badlands)
 				["0.55:0.57:0.43:0.93"] = 417, -- Kargath, Booty Bay
@@ -369,6 +370,8 @@
 				["0.64:0.23:0.63:0.44:0.55:0.42:0.41:0.37"] = 553, -- Everlook, Orgrimmar, Splintertree Post, Zoram'gar Outpost
 				["0.64:0.23:0.63:0.44:0.56:0.53:0.55:0.73:0.61:0.80"] = 691, -- Everlook, Orgrimmar, Crossroads, Freewind Post, Gadgetzan
 				["0.64:0.23:0.63:0.44:0.45:0.56"] = 529, -- Everlook, Orgrimmar, Thunder Bluff
+				["0.64:0.23:0.63:0.44:0.56:0.53:0.61:0.80"] = 717, -- Everlook, Orgrimmar, Crossroads, Gadgetzan
+				["0.64:0.23:0.63:0.36:0.56:0.53:0.61:0.80"] = 611, -- Everlook, Valormok, Crossroads, Gadgetzan
 
 				-- Horde: Freewind Post (Thousand Needles)
 				["0.55:0.73:0.61:0.80"] = 93, -- Freewind Post, Gadgetzan
