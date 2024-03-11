@@ -4982,7 +4982,7 @@
 							-- Show button frame
 							local x, y, row, col = 0, 0, 0, 0
 							local buttons = LibDBIconStub:GetButtonList()
-							-- Sort the button table (order will be reversed if bFrame is shown on left side)
+							-- Sort the button table
 							table.sort(buttons, function(a, b)
 								if string.find(a, "LeaPlusCustomIcon_") then
 									a = string.gsub(a, "LeaPlusCustomIcon_", "")
