@@ -58,6 +58,7 @@
 				["0.43:0.93:0.43:0.67:0.56:0.70"] = 319, -- Booty Bay, Stormwind, Lakeshire
 				["0.43:0.93:0.41:0.75:0.56:0.70"] = 312, -- Booty Bay, Sentinel Hill, Lakeshire
 				["0.43:0.93:0.55:0.57:0.56:0.61"] = 492, -- Booty Bay, Kargath, Flame Crest
+				["0.43:0.93:0.43:0.67:0.51:0.49:0.57:0.32"] = 674, -- Booty Bay, Stormwind, Ironforge, Refuge Pointe
 
 				-- Alliance: Chillwind Camp (Western Plaguelands)
 				["0.52:0.22:0.51:0.49:0.43:0.67:0.43:0.93"] = 662, -- Chillwind Camp, Ironforge, Stormwind, Booty Bay
@@ -584,6 +585,7 @@
 				["0.60:0.81:0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55"] = 1136, -- Gadgetzan, Thalanaar, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point, Ratchet
 				["0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.55:0.21"] = 839, -- Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine, Moonglade
 				["0.60:0.81:0.64:0.67:0.43:0.25:0.55:0.21"] = 919, -- Gadgetzan, Theramore, Auberdine, Moonglade
+				["0.60:0.81:0.48:0.70:0.31:0.69:0.40:0.51"] = 581, -- Gadgetzan, Thalanaar, Feathermoon, Nijel's Point
 
 				-- Alliance: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
@@ -678,6 +680,7 @@
 				["0.40:0.51:0.64:0.67:0.61:0.40"] = 541, -- Nijel's Point, Theramore, Talrendis Point
 				["0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 662, -- Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 				["0.40:0.51:0.43:0.25:0.61:0.40"] = 582, -- Nijel's Point, Auberdine, Talrendis Point
+				["0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 558, -- Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 
 				-- Alliance: Ratchet (The Barrens)
 				["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan
