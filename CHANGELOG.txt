@@ -1,4 +1,7 @@
-﻿1.15.23 - 20th March 2024
+﻿1.15.24.alpha.1 - 20th March 2024
+- Updated deprecated functions.
+
+1.15.23 - 20th March 2024
 - Added flight times.
 
 1.15.22 - 13th March 2024

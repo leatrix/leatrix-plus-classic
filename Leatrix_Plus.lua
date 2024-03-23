@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.23 (20th March 2024)
+-- 	Leatrix Plus 1.15.24.alpha.1 (20th March 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.23"
+	LeaPlusLC["AddonVer"] = "1.15.24.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -9889,11 +9889,16 @@
 
 							-- If buff matches cooldown we want, start the cooldown
 							for q = 1, 40 do
-								local void, void, void, void, length, expire, void, void, void, spellID = UnitBuff(owner, q)
-								if spellID and id == spellID then
-									icon[i]:Show()
-									local start = expire - length
-									CooldownFrame_Set(icon[i].c, start, length, 1)
+								local BuffData = C_UnitAuras.GetBuffDataByIndex(owner, q)
+								if BuffData then
+									local spellID = BuffData.spellId
+									local length = BuffData.duration
+									local expire = BuffData.expirationTime
+									if spellID and id == spellID then
+										icon[i]:Show()
+										local start = expire - length
+										CooldownFrame_Set(icon[i].c, start, length, 1)
+									end
 								end
 							end
 
@@ -10018,11 +10023,16 @@
 
 						-- If buff matches spell we want, show cooldown icon
 						for q = 1, 40 do
-							local void, void, void, void, length, expire, void, void, void, spellID = UnitBuff(newowner, q)
-							if spellID and newspell == spellID then
-								icon[i]:Show()
-								-- Set the cooldown to the buff cooldown
-								CooldownFrame_Set(icon[i].c, expire - length, length, 1)
+							local BuffData = C_UnitAuras.GetBuffDataByIndex(newowner, q)
+							if BuffData then
+								local length = BuffData.duration
+								local expire = BuffData.expirationTime
+								local spellID = BuffData.spellId
+								if spellID and newspell == spellID then
+									icon[i]:Show()
+									-- Set the cooldown to the buff cooldown
+									CooldownFrame_Set(icon[i].c, expire - length, length, 1)
+								end
 							end
 						end
 					end
@@ -10097,10 +10107,13 @@
 			-- Function to show spell ID in tooltips
 			local function CooldownIDFunc(unit, target, index, auratype)
 				if LeaPlusLC["ShowCooldownID"] == "On" and auratype ~= "HARMFUL" then
-					local spellid = select(10, UnitAura(target, index))
-					if spellid then
-						GameTooltip:AddLine(L["Spell ID"] .. ": " .. spellid)
-						GameTooltip:Show()
+					local AuraData = C_UnitAuras.GetAuraDataByIndex(target, index)
+					if AuraData then
+						local spellid = AuraData.spellId
+						if spellid then
+							GameTooltip:AddLine(L["Spell ID"] .. ": " .. spellid)
+							GameTooltip:Show()
+						end
 					end
 				end
 			end
@@ -13845,20 +13858,28 @@
 					-- Buffs and debuffs
 					for i = 1, BUFF_MAX_DISPLAY do
 						if _G["BuffButton" .. i] and mouseFocus == _G["BuffButton" .. i] then
-							local spellName, void, void, void, void, void, void, void, void, spellID = UnitBuff("player", i)
-							if spellName and spellID then
-								LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
-								LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+							local BuffData = C_UnitAuras.GetBuffDataByIndex("player", i)
+							if BuffData then
+								local spellName = BuffData.name
+								local spellID = BuffData.spellId
+								if spellName and spellID then
+									LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
+									LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+								end
 							end
 							return
 						end
 					end
 					for i = 1, DEBUFF_MAX_DISPLAY do
 						if _G["DebuffButton" .. i] and mouseFocus == _G["DebuffButton" .. i] then
-							local spellName, void, void, void, void, void, void, void, void, spellID = UnitDebuff("player", i)
-							if spellName and spellID then
-								LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
-								LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+							local DebuffData = C_UnitAuras.GetDebuffDataByIndex("player", i)
+							if DebuffData then
+								local spellName = DebuffData.name
+								local spellID = DebuffData.spellId
+								if spellName and spellID then
+									LeaPlusLC:ShowSystemEditBox("https://" .. LeaPlusLC.WowheadLock .. "/spell=" .. spellID, false)
+									LeaPlusLC.FactoryEditBox.f:SetText(L["Spell"] .. ": " .. spellName .. " (" .. spellID .. ")")
+								end
 							end
 							return
 						end
