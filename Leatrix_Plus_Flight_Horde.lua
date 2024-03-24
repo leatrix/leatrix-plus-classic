@@ -483,7 +483,7 @@
 				["0.63:0.44:0.57:0.64"] = 229, -- Orgrimmar, Brackenwall Village
 				["0.63:0.44:0.56:0.53:0.53:0.61"] = 200, -- Orgrimmar, Crossroads, Camp Taurajo
 				["0.63:0.44:0.56:0.53:0.61:0.55"] = 161, -- Orgrimmar, Crossroads, Ratchet
-				["0.63:0.44:0.56:0.53"] = 110, -- Orgrimmar, Crossroads (david latal reported 162)
+				["0.63:0.44:0.56:0.53"] = 110, -- Orgrimmar, Crossroads (Joseph Ortiz and david latal reported 162)
 				["0.63:0.44:0.63:0.36"] = 99, -- Orgrimmar, Valormok
 				["0.63:0.44:0.55:0.42"] = 89, -- Orgrimmar, Splintertree Post
 				["0.63:0.44:0.64:0.23"] = 319, -- Orgrimmar, Everlook
