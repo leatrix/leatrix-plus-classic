@@ -1,4 +1,4 @@
-﻿1.15.24.alpha.1 - 20th March 2024
+﻿1.15.24 - 27th March 2024
 - Updated deprecated functions.
 - Added flight times.
 - Leatrix Plus for Cataclysm Classic will be available when Blizzard gives me access to Cataclysm Classic beta.  If you wish to request that Blizzard gives me access to the beta, send an email to cs@blizzard.com.
