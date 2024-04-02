@@ -657,6 +657,7 @@
 				["0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.61:0.55"] = 855, -- Moonglade, Auberdine, Nijel's Point, Theramore, Ratchet
 				["0.55:0.21:0.43:0.25:0.31:0.69:0.42:0.79:0.50:0.76"] = 854, -- Moonglade, Auberdine, Feathermoon, Cenarion Hold, Marshal's Refuge
 				["0.55:0.21:0.43:0.25:0.61:0.40:0.64:0.67"] = 682, -- Moonglade, Auberdine, Talrendis Point, Theramore
+				["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 725, -- Reflet-de-Lune, Clairière de Griffebranche, Halte de Talrendis, Ratchet, Theramore, Thalanaar
 
 				-- Alliance: Nijel's Pointe (Desolace)
 				["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -683,6 +684,7 @@
 				["0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 662, -- Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 				["0.40:0.51:0.43:0.25:0.61:0.40"] = 582, -- Nijel's Point, Auberdine, Talrendis Point
 				["0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 558, -- Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
+				["0.40:0.51:0.64:0.67:0.60:0.81:0.42:0.79"] = 661, -- Nijel's Point, Theramore, Gadgetzan, Cenarion Hold
 
 				-- Alliance: Ratchet (The Barrens)
 				["0.61:0.55:0.64:0.67:0.60:0.81"] = 261, -- Ratchet, Theramore, Gadgetzan
@@ -722,6 +724,7 @@
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 795, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 1120, -- Ratchet, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69"] = 904, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Feathermoon
+				["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21"] = 871, -- Ratchet, Theramore, Nijel's Point, Auberdine, Moonglade
 
 				-- Alliance: Rut'theran Village (Teldrassil)
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -857,6 +860,7 @@
 				["0.48:0.70:0.64:0.67:0.61:0.40:0.46:0.40:0.39:0.40"] = 698, -- Thalanaar, Theramore, Talrendis Point, Astranaar, Stonetalon Peak
 				["0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 678, -- Thalanaar, Feathermoon, Combe de Nijel, Pic des Serres-Rocheuses, Astranaar
 				["0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55"] = 960, -- Thalanaar, Feathermoon, Die Nijelspitze, Steinkrallengipfel, Astranaar, Talrendisspitze, Ratchet
+				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25"] = 775, -- Thalanaar, Theramore, Nijel's Point, Auberdine
 
 				-- Alliance: Theramore (Dustwallow Marsh)
 				["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
