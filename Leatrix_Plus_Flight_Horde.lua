@@ -129,6 +129,7 @@
 				["0.67:0.30:0.49:0.27"] = 159, -- Revantusk Village, Tarren Mill
 				["0.67:0.30:0.44:0.19"] = 284, -- Revantusk Village, Undercity
 				["0.67:0.30:0.49:0.27:0.38:0.24"] = 257, -- Revantusk Village, Tarren Mill, The Sepulcher
+				["0.67:0.30:0.44:0.19:0.55:0.57"] = 697, -- Revantusk Village, Undercity, Kargath
 
 				-- Horde: Stonard (Swamp of Sorrows)
 				["0.61:0.75:0.43:0.93"] = 260, -- Stonard, Booty Bay
@@ -581,6 +582,7 @@
 				["0.55:0.42:0.63:0.44:0.46:0.30"] = 348, -- Splintertree Post, Orgrimmar, Bloodvenom Post
 				["0.55:0.42:0.63:0.36:0.46:0.30:0.54:0.21"] = 445, -- Splintertree Post, Valormok, Bloodvenom Post, Moonglade
 				["0.55:0.42:0.63:0.44:0.64:0.23"] = 416, -- Splintertree Post, Orgrimmar, Everlook
+				["0.55:0.42:0.63:0.44:0.46:0.30:0.54:0.21"] = 469, -- Splintertree Post, Orgrimmar, Bloodvenom Post, Moonglade
 
 				-- Horde: Sun Rock Retreat (Stonetalon Mountains)
 				["0.41:0.47:0.56:0.53:0.55:0.73:0.61:0.80"] = 426, -- Sun Rock Retreat, Crossroads, Freewind Post, Gadgetzan
