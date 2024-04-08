@@ -1,7 +1,10 @@
-﻿1.15.25 - 3rd April 2024
-- Updated for game version 1.15.2.
+﻿1.15.26.alpha.1 - 3rd April 2024
 - Added flight times.
 - Leatrix Plus for Cataclysm Classic will be available when I get access to Cataclysm Classic beta.
+
+1.15.25 - 3rd April 2024
+- Updated for game version 1.15.2.
+- Added flight times.
 
 1.15.24 - 27th March 2024
 - Updated deprecated functions.
