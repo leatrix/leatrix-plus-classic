@@ -840,6 +840,7 @@
 				["0.61:0.40:0.61:0.55:0.64:0.67:0.40:0.51"] = 567, -- Talrendis Point, Ratchet, Theramore, Nijel's Point
 				["0.61:0.40:0.46:0.40:0.43:0.25:0.40:0.51"] = 591, -- Talrendis Point, Astranaar, Auberdine, Nijel's Point
 				["0.61:0.40:0.53:0.26:0.55:0.21"] = 342, -- Talrendis Point, Talonbranch Glade, Moonglade
+				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69"] = 773, -- Talrendis Point, Astranaar, Auberdine, Feathermoon
 
 				-- Alliance: Thalanaar (Feralas)
 				["0.48:0.70:0.60:0.81"] = 171, -- Thalanaar, Gadgetzan
