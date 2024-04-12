@@ -478,6 +478,8 @@
 				["0.54:0.21:0.64:0.23:0.63:0.44"] = 446, -- Moonglade, Everlook, Orgrimmar
 				["0.54:0.21:0.64:0.23:0.63:0.44:0.57:0.64"] = 674, -- Moonglade, Everlook, Orgrimmar, Brackenwall Village
 				["0.54:0.21:0.64:0.23:0.63:0.44:0.56:0.53:0.61:0.55"] = 607, -- Moonglade, Everlook, Orgrimmar, Crossroads, Ratchet
+				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.61:0.55"] = 499, -- Moonglade, Everlook, Valormok, Crossroads, Ratchet
+				["0.54:0.21:0.64:0.23:0.63:0.44:0.55:0.42"] = 535, -- Moonglade, Everlook, Orgrimmar, Splintertree Post
 
 				-- Horde: Orgrimmar (Durotar)
 				["0.63:0.44:0.61:0.80"] = 417, -- Orgrimmar, Gadgetzan (Pavel Pavlov reported 436)
@@ -518,7 +520,7 @@
 				["0.61:0.55:0.56:0.53:0.53:0.61"] = 158, -- Ratchet, Crossroads, Camp Taurajo
 				["0.61:0.55:0.56:0.53"] = 69, -- Ratchet, Crossroads
 				["0.61:0.55:0.56:0.53:0.63:0.44"] = 210, -- Ratchet, Crossroads, Orgrimmar
-				["0.61:0.55:0.56:0.53:0.55:0.42"] = 231, -- Ratchet, Crossroads, Splintertree Post
+				["0.61:0.55:0.56:0.53:0.55:0.42"] = 231, -- Ratchet, Crossroads, Splintertree Post (Peter mcninch reported 292)
 				["0.61:0.55:0.56:0.53:0.63:0.36"] = 236, -- Ratchet, Crossroads, Valormok
 				["0.61:0.55:0.56:0.53:0.63:0.36:0.64:0.23"] = 366, -- Ratchet, Crossroads, Valormok, Everlook
 				["0.61:0.55:0.56:0.53:0.46:0.30:0.54:0.21"] = 443, -- Ratchet, Crossroads, Bloodvenom Post, Moonglade

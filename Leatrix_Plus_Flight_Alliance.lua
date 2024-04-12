@@ -872,6 +872,8 @@
 				["0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 678, -- Thalanaar, Feathermoon, Combe de Nijel, Pic des Serres-Rocheuses, Astranaar
 				["0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40:0.61:0.55"] = 960, -- Thalanaar, Feathermoon, Die Nijelspitze, Steinkrallengipfel, Astranaar, Talrendisspitze, Ratchet
 				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25"] = 775, -- Thalanaar, Theramore, Nijel's Point, Auberdine
+				["0.48:0.70:0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 734, -- Thalanaar, Theramore, Talrendis Point, Talonbranch Glade, Moonglade
+				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 950, -- Thalanaar, Theramore, Nijel's Point, Auberdine, Astranaar
 
 				-- Alliance: Theramore (Dustwallow Marsh)
 				["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
