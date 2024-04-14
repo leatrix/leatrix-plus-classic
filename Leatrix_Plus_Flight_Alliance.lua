@@ -465,6 +465,7 @@
 				["0.43:0.25:0.64:0.67:0.60:0.81"] = 828, -- Auberdine, Theramore, Gadgetzan
 				["0.43:0.25:0.61:0.40:0.64:0.67:0.48:0.70"] = 704, -- Auberdine, Punta Talrendis, Theramore, Thalanaar
 				["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 887, -- Auberdine, Talrendisspitze, Ratchet, Theramore, Gadgetzan, Marshals Zuflucht, Burg Cenarius
+				["0.43:0.25:0.61:0.40:0.65:0.23"] = 479, -- Auberdine, Talrendis Point, Everlook
 
 				-- Alliance: Cenarion Hold (Silithus)
 				["0.42:0.79:0.60:0.81"] = 189, -- Cenarion Hold, Gadgetzan
