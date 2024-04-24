@@ -1,4 +1,4 @@
-﻿1.15.28.alpha.1 - 19th April 2024
+﻿1.15.28 - 24th April 2024
 - Added flight times.
 
 1.15.27 - 19th April 2024

@@ -131,6 +131,7 @@
 				["0.67:0.30:0.44:0.19"] = 284, -- Revantusk Village, Undercity
 				["0.67:0.30:0.49:0.27:0.38:0.24"] = 257, -- Revantusk Village, Tarren Mill, The Sepulcher
 				["0.67:0.30:0.44:0.19:0.55:0.57"] = 697, -- Revantusk Village, Undercity, Kargath
+				["0.67:0.30:0.62:0.31:0.55:0.57:0.43:0.93"] = 768, -- Revantusk Village, Hammerfall, Kargath, Booty Bay
 
 				-- Horde: Stonard (Swamp of Sorrows)
 				["0.61:0.75:0.43:0.93"] = 260, -- Stonard, Booty Bay
