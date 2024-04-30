@@ -85,6 +85,7 @@
 				["0.52:0.22:0.48:0.30:0.57:0.32:0.59:0.52"] = 327, -- Chillwind Camp, Southshore, Refuge Pointe, Thelsamar
 				["0.52:0.22:0.51:0.49:0.49:0.44"] = 352, -- Chillwind Camp, Ironforge, Menethil Harbor
 				["0.52:0.22:0.51:0.49:0.59:0.52"] = 325, -- Chillwind-Lager, Ironforge, Thelsamar
+				["0.52:0.22:0.55:0.25:0.57:0.32:0.49:0.44"] = 264, -- Chillwind Camp, Aerie Peak, Refuge Pointe, Menethil Harbor
 
 				-- Alliance: Darkshire (Duskwood)
 				["0.51:0.75:0.43:0.93"] = 171, -- Darkshire, Booty Bay
@@ -329,7 +330,7 @@
 
 				-- Alliance: Stormwind (Elwynn Forest)
 				["0.43:0.67:0.43:0.93"] = 245, -- Stormwind, Booty Bay
-				["0.43:0.67:0.41:0.75"] = 78, -- Stormwind, Sentinel Hill (Galleon Brinton reported 102, Eino Virtanen reported 113)
+				["0.43:0.67:0.41:0.75"] = 78, -- Stormwind, Sentinel Hill (Galleon Brinton reported 102, Eino Virtanen and wy1337@gmx.de reported 113)
 				["0.43:0.67:0.51:0.75"] = 116, -- Stormwind, Darkshire
 				["0.43:0.67:0.61:0.78"] = 176, -- Stormwind, Nethergarde Keep
 				["0.43:0.67:0.56:0.70"] = 113, -- Stormwind, Lakeshire
@@ -440,6 +441,8 @@
 				["0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70"] = 775, -- Astranaar, Auberdine, Feathermoon, Thalanaar
 				["0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 836, -- Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 				["0.46:0.40:0.61:0.40:0.64:0.67:0.60:0.81"] = 545, -- Astranaar, Talrendis Point, Theramore, Gadgetzan
+				["0.46:0.40:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.42:0.79"] = 734, -- Astranaar, Talrendis Point, Ratchet, Theramore, Gadgetzan, Cenarion Hold
+				["0.46:0.40:0.43:0.25:0.31:0.69:0.42:0.79"] = 778, -- Astranaar, Auberdine, Feathermoon, Cenarion Hold
 
 				-- Alliance: Auberdine (Darkshore)
 				["0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 689, -- Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
@@ -602,6 +605,8 @@
 				["0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 730, -- Gadgetzan, Theramore, Talrendis Point, Talonbranch Glade, Moonglade
 				["0.60:0.81:0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40"] = 1002, -- Gadgetzan, Thalanaar, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point
 				["0.60:0.81:0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 855, -- Gadgetzan, Thalanaar, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar
+				["0.60:0.81:0.64:0.67:0.61:0.40:0.43:0.25:0.31:0.69"] = 1161, -- Gadgetzan, Theramore, Talrendis Point, Auberdine, Feathermoon
+				["0.60:0.81:0.64:0.67:0.43:0.25:0.53:0.26"] = 958, -- Gadgetzan, Theramore, Auberdine, Talonbranch Glade
 
 				-- Alliance: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
@@ -632,6 +637,7 @@
 				["0.50:0.76:0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 833, -- Refuge des Marshal, Gadgetzan, Theramore, Halte de Talrendis, Clairière de Griffebranche, Reflet-de-Lune, Reflet-de-Lune
 				["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 1042, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point, Auberdine, Astranaar
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21"] = 876, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Moonglade
+				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.46:0.40"] = 902, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Astranaar
 
 				-- Alliance: Moonglade (Moonglade)
 				["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
@@ -885,6 +891,8 @@
 				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25"] = 775, -- Thalanaar, Theramore, Nijel's Point, Auberdine
 				["0.48:0.70:0.64:0.67:0.61:0.40:0.53:0.26:0.55:0.21"] = 734, -- Thalanaar, Theramore, Talrendis Point, Talonbranch Glade, Moonglade
 				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 950, -- Thalanaar, Theramore, Nijel's Point, Auberdine, Astranaar
+				["0.48:0.70:0.60:0.81:0.42:0.79"] = 368, -- Thalanaar, Gadgetzan, Cenarion Hold
+				["0.48:0.70:0.31:0.69:0.43:0.25:0.46:0.40"] = 821, -- Thalanaar, Feathermoon, Auberdine, Astranaar
 
 				-- Alliance: Theramore (Dustwallow Marsh)
 				["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan

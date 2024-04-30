@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.28 (24th April 2024)
+-- 	Leatrix Plus 1.15.29.alpha.1 (30th April 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.28"
+	LeaPlusLC["AddonVer"] = "1.15.29.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -56,7 +56,16 @@
 	-- Initialise variables
 	LeaPlusLC["ShowErrorsFlag"] = 1
 	LeaPlusLC["NumberOfPages"] = 9
-	LeaPlusLC["RaidColors"] = RAID_CLASS_COLORS
+
+	-- Class colors
+	do
+		local void, playerClass = UnitClass("player")
+		if CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[playerClass] then
+			LeaPlusLC["RaidColors"] = CUSTOM_CLASS_COLORS
+		else
+			LeaPlusLC["RaidColors"] = RAID_CLASS_COLORS
+		end
+	end
 
 	-- Create event frame
 	local LpEvt = CreateFrame("FRAME")
@@ -8017,12 +8026,12 @@
 		if LeaPlusLC["ShowBagSearchBox"] == "On" and not LeaLockList["ShowBagSearchBox"] then
 
 			-- Create bag item search box
-			local BagItemSearchBox = CreateFrame("EditBox", "BagItemSearchBox", ContainerFrame1, "BagSearchBoxTemplate")
+			local BagItemSearchBox = CreateFrame("EditBox", nil, ContainerFrame1, "BagSearchBoxTemplate")
 			BagItemSearchBox:SetSize(110, 18)
 			BagItemSearchBox:SetMaxLetters(15)
 
 			-- Create bank item search box
-			local BankItemSearchBox = CreateFrame("EditBox", "BankItemSearchBox", BankFrame, "BagSearchBoxTemplate")
+			local BankItemSearchBox = CreateFrame("EditBox", nil, BankFrame, "BagSearchBoxTemplate")
 			BankItemSearchBox:SetSize(120, 14)
 			BankItemSearchBox:SetMaxLetters(15)
 			BankItemSearchBox:SetPoint("TOPRIGHT", -60, -40)
