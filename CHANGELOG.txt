@@ -1,4 +1,7 @@
-﻿1.15.29 - 1st May 2024
+﻿1.15.30.alpha.1 - 1st May 2024
+- Added ability to toggle the main panel by clicking the slash command logo in the interface options panel.
+
+1.15.29 - 1st May 2024
 - Added custom class color support for 'Enhance tooltip' ('Interface') and 'Class colored frames' ('Frames').
 - Update to bag item and bank item search box code.
 - Added flight times.
