@@ -752,9 +752,9 @@
 
 				-- Alliance: Rut'theran Village (Teldrassil)
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
-				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67"] = 617, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore
+				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67"] = 617, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore (Brian Boyle reported 602)
 				["0.42:0.16:0.43:0.25:0.31:0.69:0.42:0.79:0.50:0.76"] = 797, -- Rut'theran Village, Auberdine, Feathermoon, Cenarion Hold, Marshal's Refuge
-				["0.42:0.16:0.43:0.25:0.31:0.69:0.48:0.70"] = 711, -- Rut'theran Village, Auberdine, Feathermoon, Thalanaar
+				["0.42:0.16:0.43:0.25:0.31:0.69:0.48:0.70"] = 711, -- Rut'theran Village, Auberdine, Feathermoon, Thalanaar (Brian Boyle reported 694)
 				["0.42:0.16:0.43:0.25:0.31:0.69:0.42:0.79"] = 714, -- Rut'theran Village, Auberdine, Feathermoon, Cenarion Hold
 				["0.42:0.16:0.43:0.25:0.31:0.69"] = 557, -- Rut'theran Village, Auberdine, Feathermoon
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55"] = 519, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet (Mathew Smeltzer reported 545)
@@ -893,6 +893,7 @@
 				["0.48:0.70:0.64:0.67:0.40:0.51:0.43:0.25:0.46:0.40"] = 950, -- Thalanaar, Theramore, Nijel's Point, Auberdine, Astranaar
 				["0.48:0.70:0.60:0.81:0.42:0.79"] = 368, -- Thalanaar, Gadgetzan, Cenarion Hold
 				["0.48:0.70:0.31:0.69:0.43:0.25:0.46:0.40"] = 821, -- Thalanaar, Feathermoon, Auberdine, Astranaar
+				["0.48:0.70:0.60:0.81:0.50:0.76:0.42:0.79"] = 370, -- Thalanaar, Gadgetzan, Marshal's Refuge, Cenarion Hold
 
 				-- Alliance: Theramore (Dustwallow Marsh)
 				["0.64:0.67:0.60:0.81"] = 157, -- Theramore, Gadgetzan
