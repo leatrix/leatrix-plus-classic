@@ -858,6 +858,8 @@
 				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69"] = 773, -- Talrendis Point, Astranaar, Auberdine, Feathermoon
 				["0.61:0.40:0.64:0.67:0.48:0.70"] = 405, -- Talrendis Point, Theramore, Thalanaar
 				["0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 988, -- Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
+				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70"] = 927, -- Talrendis Point, Astranaar, Auberdine, Feathermoon, Thalanaar
+				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 1098, -- Talrendis Point, Astranaar, Auberdine, Feathermoon, Thalanaar, Gadgetzan
 
 				-- Alliance: Thalanaar (Feralas)
 				["0.48:0.70:0.60:0.81"] = 171, -- Thalanaar, Gadgetzan

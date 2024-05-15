@@ -1,4 +1,7 @@
-﻿1.15.30 - 8th May 2024
+﻿1.15.31 - 15th May 2024
+- Added flight times.
+
+1.15.30 - 8th May 2024
 - Added ability to toggle the main panel by clicking the slash command logo in the interface options panel.
 - Added flight times.
 

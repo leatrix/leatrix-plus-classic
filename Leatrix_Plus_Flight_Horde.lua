@@ -33,6 +33,7 @@
 				["0.43:0.93:0.55:0.57:0.44:0.19:0.49:0.27"] = 970, -- Booty Bay, Kargath, Undercity, Tarren Mill
 				["0.43:0.93:0.55:0.57:0.44:0.19:0.38:0.24"] = 938, -- Booty Bay, Kargath, Undercity, The Sepulcher
 				["0.43:0.93:0.61:0.75:0.56:0.61:0.51:0.57"] = 534, -- Booty Bay, Stonard, Flame Crest, Thorium Point
+				["0.43:0.93:0.55:0.57:0.44:0.19:0.67:0.30"] = 1112, -- Booty Bay, Kargath, Undercity, Revantusk Village
 
 				-- Horde: Flame Crest (Burning Steppes)
 				["0.56:0.61:0.61:0.75:0.43:0.93"] = 472, -- Flame Crest, Stonard, Booty Bay
@@ -434,6 +435,7 @@
 				["0.61:0.80:0.45:0.56:0.53:0.61"] = 392, -- Gadgetzan, Thunder Bluff, Camp Taurajo
 				["0.61:0.80:0.63:0.44:0.64:0.23"] = 670, -- Gadgetzan, Orgrimmar, Everlook
 				["0.61:0.80:0.56:0.53:0.41:0.37"] = 531, -- 가젯잔 (타나리스), 크로스로드 (불모의 땅), 조람가르 전초기지 (잿빛 골짜기), 조람가르 전초기지 (잿빛 골짜기)
+				["0.61:0.80:0.55:0.73:0.56:0.53:0.41:0.47:0.32:0.58"] = 572, -- Gadgetzan, Freewind Post, Crossroads, Sun Rock Retreat, Shadowprey Village
 
 				-- Horde: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.61:0.80"] = 113, -- Marshal's Refuge, Gadgetzan
