@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.31 (15th May 2024)
+-- 	Leatrix Plus 1.15.32.alpha.1 (15th May 2024)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.31"
+	LeaPlusLC["AddonVer"] = "1.15.32.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -547,6 +547,7 @@
 		LeaPlusLC:LockOption("EnhanceDressup", "EnhanceDressupBtn", true)			-- Enhance dressup
 		LeaPlusLC:LockOption("EnhanceQuestLog", "EnhanceQuestLogBtn", true)			-- Enhance quest log
 		LeaPlusLC:LockOption("EnhanceTrainers", "EnhanceTrainersBtn", true)			-- Enhance trainers
+		LeaPlusLC:LockOption("EnhanceFlightMap", "EnhanceFlightMapBtn", true)		-- Enhance flight map
 		LeaPlusLC:LockOption("ShowCooldowns", "CooldownsButton", true)				-- Show cooldowns
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
 		LeaPlusLC:LockOption("ShowWowheadLinks", "ShowWowheadLinksBtn", true)		-- Show Wowhead links
@@ -611,6 +612,7 @@
 		or	(LeaPlusLC["EnhanceQuestTaller"]	~= LeaPlusDB["EnhanceQuestTaller"])		-- Enhance quest taller
 		or	(LeaPlusLC["EnhanceProfessions"]	~= LeaPlusDB["EnhanceProfessions"])		-- Enhance professions
 		or	(LeaPlusLC["EnhanceTrainers"]		~= LeaPlusDB["EnhanceTrainers"])		-- Enhance trainers
+		or	(LeaPlusLC["EnhanceFlightMap"]		~= LeaPlusDB["EnhanceFlightMap"])		-- Enhance flight map
 
 		or	(LeaPlusLC["ShowVolume"]			~= LeaPlusDB["ShowVolume"])				-- Show volume slider
 		or	(LeaPlusLC["AhExtras"]				~= LeaPlusDB["AhExtras"])				-- Show auction controls
@@ -3029,6 +3031,189 @@
 ----------------------------------------------------------------------
 
 	function LeaPlusLC:Player()
+
+
+		----------------------------------------------------------------------
+		-- Enhance flight map
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["EnhanceFlightMap"] == "On" then
+
+			-- Hide flight map textures
+			local regions = {TaxiFrame:GetRegions()}
+			regions[2]:Hide()
+			regions[3]:Hide()
+			regions[4]:Hide()
+			regions[5]:Hide()
+			TaxiPortrait:Hide()
+			TaxiMerchant:Hide()
+
+			-- Create flight map border
+			local border = TaxiFrame:CreateTexture(nil, "BACKGROUND")
+			border:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background-Dark")
+			border:SetPoint("TOPLEFT", 18, -73)
+			border:SetPoint("BOTTOMRIGHT", -45, 83)
+			border:SetVertexColor(0, 0, 0, 1)
+
+			-- Set flight map properties
+			TaxiFrame:SetFrameStrata("FULLSCREEN_DIALOG")
+			TaxiFrame:SetHitRectInsets(18, 45, 73, 83)
+			TaxiFrame:SetClampedToScreen(true)
+			TaxiFrame:SetClampRectInsets(200, -200, -300, 300)
+
+			-- Position flight map when shown
+			hooksecurefunc(TaxiFrame, "SetPoint", function(self, ...)
+				local a, void, r, x, y = TaxiFrame:GetPoint()
+				x = tonumber(string.format("%.2f", x))
+				y = tonumber(string.format("%.2f", y))
+				local xb = tonumber(string.format("%.2f", LeaPlusLC["FlightMapX"]))
+				local yb = tonumber(string.format("%.2f", LeaPlusLC["FlightMapY"]))
+				if a ~= LeaPlusLC["FlightMapA"] or r ~= LeaPlusLC["FlightMapR"] or x ~= xb or y ~= yb then
+					TaxiFrame:ClearAllPoints()
+					TaxiFrame:SetPoint(LeaPlusLC["FlightMapA"], UIParent, LeaPlusLC["FlightMapR"], LeaPlusLC["FlightMapX"], LeaPlusLC["FlightMapY"])
+				end
+			end)
+
+			-- Set flight point buttons size
+			TaxiFrame:HookScript("OnShow", function()
+				for i = 1, NUM_TAXI_BUTTONS do
+					local button = _G["TaxiButton"..i]
+					if button and button:IsVisible() then
+						_G["TaxiButton" .. i]:SetSize(LeaPlusLC["LeaPlusTaxiIconSize"], LeaPlusLC["LeaPlusTaxiIconSize"])
+						if button:GetHighlightTexture() then button:GetHighlightTexture():SetSize(LeaPlusLC["LeaPlusTaxiIconSize"] * 2, LeaPlusLC["LeaPlusTaxiIconSize"] * 2) end
+						if button:GetPushedTexture() then button:GetPushedTexture():SetSize(LeaPlusLC["LeaPlusTaxiIconSize"] * 2, LeaPlusLC["LeaPlusTaxiIconSize"] * 2) end
+				   end
+				end
+			end)
+
+			-- Move close button
+			TaxiCloseButton:SetIgnoreParentScale(true)
+			TaxiCloseButton:ClearAllPoints()
+			TaxiCloseButton:SetPoint("TOPRIGHT", TaxiRouteMap, "TOPRIGHT", 0, 0)
+
+			--UIPanelWindows["TaxiFrame"].width = 0
+
+			-- Create configuration panel
+			local TaxiPanel = LeaPlusLC:CreatePanel("Enhance flight map", "TaxiPanel")
+
+			LeaPlusLC:MakeTx(TaxiPanel, "Map scale", 356, -72)
+			LeaPlusLC:MakeSL(TaxiPanel, "LeaPlusTaxiMapScale", "Drag to set the scale of the flight map.", 1, 3, 0.05, 356, -92, "%.0f")
+
+			LeaPlusLC:MakeTx(TaxiPanel, "Icon size", 356, -132)
+			LeaPlusLC:MakeSL(TaxiPanel, "LeaPlusTaxiIconSize", "Drag to set the size of the icons.", 5, 30, 1, 356, -152, "%.0f")
+
+			LeaPlusLC:MakeTx(TaxiPanel, "Position", 16, -72)
+			TaxiPanel.txt = LeaPlusLC:MakeWD(TaxiPanel, "Hold ALT and drag the flight map to move it.", 16, -92, 500)
+			TaxiPanel.txt:SetWordWrap(true)
+			TaxiPanel.txt:SetWidth(300)
+
+			-- Function to set flight map scale
+			local function SetFlightMapScale()
+				TaxiFrame:SetScale(LeaPlusLC["LeaPlusTaxiMapScale"])
+				LeaPlusCB["LeaPlusTaxiMapScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["LeaPlusTaxiMapScale"] * 100)
+			end
+
+			-- Function to set icon size (used for reset and when slider changes)
+			local function SetFlightMapIconSize()
+				for i = 1, NUM_TAXI_BUTTONS do
+					local button = _G["TaxiButton"..i]
+					if button and button:IsVisible() then
+						_G["TaxiButton" .. i]:SetSize(LeaPlusLC["LeaPlusTaxiIconSize"], LeaPlusLC["LeaPlusTaxiIconSize"])
+						if button:GetHighlightTexture() then button:GetHighlightTexture():SetSize(LeaPlusLC["LeaPlusTaxiIconSize"] * 2, LeaPlusLC["LeaPlusTaxiIconSize"] * 2) end
+						if button:GetPushedTexture() then button:GetPushedTexture():SetSize(LeaPlusLC["LeaPlusTaxiIconSize"] * 2, LeaPlusLC["LeaPlusTaxiIconSize"] * 2) end
+				   end
+				end
+				LeaPlusCB["LeaPlusTaxiIconSize"].f:SetFormattedText("%.0f%%", LeaPlusLC["LeaPlusTaxiIconSize"] * 10)
+			end
+
+			-- Set flight map scale when slider changes and on startup
+			LeaPlusCB["LeaPlusTaxiMapScale"]:HookScript("OnValueChanged", SetFlightMapScale)
+			LeaPlusCB["LeaPlusTaxiIconSize"]:HookScript("OnValueChanged", SetFlightMapIconSize)
+			SetFlightMapScale()
+
+			-- Help button tooltip
+			TaxiPanel.h.tiptext = L["This panel will close automatically if you enter combat."]
+
+			-- Back button handler
+			TaxiPanel.b:SetScript("OnClick", function()
+				TaxiPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page5"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			TaxiPanel.r:SetScript("OnClick", function()
+
+				-- Reset slider
+				LeaPlusLC["LeaPlusTaxiMapScale"] = 1.9
+				LeaPlusLC["LeaPlusTaxiIconSize"] = 10
+				SetFlightMapScale()
+				LeaPlusLC["FlightMapA"] = "TOPLEFT"
+				LeaPlusLC["FlightMapR"] = "TOPLEFT"
+				LeaPlusLC["FlightMapX"] = 0
+				LeaPlusLC["FlightMapY"] = 61
+				TaxiFrame:ClearAllPoints()
+				TaxiFrame:SetPoint(LeaPlusLC["FlightMapA"], UIParent, LeaPlusLC["FlightMapR"], LeaPlusLC["FlightMapX"], LeaPlusLC["FlightMapY"])
+
+				-- Refresh side panel
+				TaxiPanel:Hide(); TaxiPanel:Show()
+
+			end)
+
+			-- Show configuration panal when options panel button is clicked
+			LeaPlusCB["EnhanceFlightMapBtn"]:SetScript("OnClick", function()
+				if LeaPlusLC:PlayerInCombat() then
+					return
+				else
+					if IsShiftKeyDown() and IsControlKeyDown() then
+						-- Preset profile
+						LeaPlusLC["LeaPlusTaxiMapScale"] = 1.9
+						LeaPlusLC["LeaPlusTaxiIconSize"] = 10
+						LeaPlusLC["FlightMapA"] = "TOPLEFT"
+						LeaPlusLC["FlightMapR"] = "TOPLEFT"
+						LeaPlusLC["FlightMapX"] = 0
+						LeaPlusLC["FlightMapY"] = 61
+						SetFlightMapScale()
+						SetFlightMapIconSize()
+					else
+						TaxiPanel:Show()
+						LeaPlusLC:HideFrames()
+					end
+				end
+			end)
+
+			-- Hide the configuration panel if combat starts
+			TaxiPanel:SetScript("OnUpdate", function()
+				if UnitAffectingCombat("player") then
+					TaxiPanel:Hide()
+				end
+			end)
+
+			-- Move the flight map
+			TaxiFrame:SetMovable(true)
+			TaxiFrame:RegisterForDrag("LeftButton")
+			TaxiFrame:SetScript("OnDragStart", function()
+				if IsAltKeyDown() then
+					TaxiFrame:StartMoving()
+				end
+			end)
+			TaxiFrame:SetScript("OnDragStop", function()
+				TaxiFrame:StopMovingOrSizing()
+				TaxiFrame:SetUserPlaced(false)
+				LeaPlusLC["FlightMapA"], void, LeaPlusLC["FlightMapR"], LeaPlusLC["FlightMapX"], LeaPlusLC["FlightMapY"] = TaxiFrame:GetPoint()
+			end)
+
+			-- ElvUI fixes
+			if LeaPlusLC.ElvUI then
+				if TaxiFrame.backdrop then
+					border:ClearAllPoints()
+					border:SetPoint("TOPLEFT", 22, -70)
+					border:SetPoint("BOTTOMRIGHT", -44, 88)
+					TaxiFrame:SetHitRectInsets(22, 44, 70, 88)
+					TaxiFrame.backdrop:SetAlpha(0)
+				end
+			end
+
+		end
 
 		----------------------------------------------------------------------
 		-- Keep audio synced
@@ -12494,6 +12679,13 @@
 				LeaPlusLC:LoadVarChk("EnhanceProfessions", "Off")			-- Enhance professions
 				LeaPlusLC:LoadVarChk("EnhanceTrainers", "Off")				-- Enhance trainers
 				LeaPlusLC:LoadVarChk("ShowTrainAllBtn", "On")				-- Enhance trainers train all button
+				LeaPlusLC:LoadVarChk("EnhanceFlightMap", "Off")				-- Enhance flight map
+				LeaPlusLC:LoadVarNum("LeaPlusTaxiMapScale", 1.9, 1, 3)		-- Enhance flight map scale
+				LeaPlusLC:LoadVarNum("LeaPlusTaxiIconSize", 10, 5, 30)		-- Enhance flight icon size
+				LeaPlusLC:LoadVarAnc("FlightMapA", "TOPLEFT")				-- Enhance flight map anchor
+				LeaPlusLC:LoadVarAnc("FlightMapR", "TOPLEFT")				-- Enhance flight map relative
+				LeaPlusLC:LoadVarNum("FlightMapX", 0, -5000, 5000)			-- Enhance flight map X
+				LeaPlusLC:LoadVarNum("FlightMapY", 61, -5000, 5000)			-- Enhance flight map Y
 
 				LeaPlusLC:LoadVarChk("ShowVolume", "Off")					-- Show volume slider
 				LeaPlusLC:LoadVarChk("AhExtras", "Off")						-- Show auction controls
@@ -12880,6 +13072,13 @@
 			LeaPlusDB["EnhanceProfessions"]		= LeaPlusLC["EnhanceProfessions"]
 			LeaPlusDB["EnhanceTrainers"]		= LeaPlusLC["EnhanceTrainers"]
 			LeaPlusDB["ShowTrainAllBtn"]		= LeaPlusLC["ShowTrainAllBtn"]
+			LeaPlusDB["EnhanceFlightMap"]		= LeaPlusLC["EnhanceFlightMap"]
+			LeaPlusDB["LeaPlusTaxiMapScale"]	= LeaPlusLC["LeaPlusTaxiMapScale"]
+			LeaPlusDB["LeaPlusTaxiIconSize"]	= LeaPlusLC["LeaPlusTaxiIconSize"]
+			LeaPlusDB["FlightMapA"]				= LeaPlusLC["FlightMapA"]
+			LeaPlusDB["FlightMapR"]				= LeaPlusLC["FlightMapR"]
+			LeaPlusDB["FlightMapX"]				= LeaPlusLC["FlightMapX"]
+			LeaPlusDB["FlightMapY"]				= LeaPlusLC["FlightMapY"]
 
 			LeaPlusDB["ShowVolume"] 			= LeaPlusLC["ShowVolume"]
 			LeaPlusDB["AhExtras"]				= LeaPlusLC["AhExtras"]
@@ -14831,6 +15030,13 @@
 				LeaPlusDB["EnhanceProfessions"] = "On"			-- Enhance professions
 				LeaPlusDB["EnhanceTrainers"] = "On"				-- Enhance trainers
 				LeaPlusDB["ShowTrainAllBtn"] = "On"				-- Show train all button
+				LeaPlusDB["EnhanceFlightMap"] = "On"			-- Enhance flight map
+				LeaPlusDB["LeaPlusTaxiMapScale"] = 1.9			-- Enhance flight map scale
+				LeaPlusDB["LeaPlusTaxiIconSize"] = 10			-- Enhance flight icon size
+				LeaPlusDB["FlightMapA"] = "TOPLEFT"				-- Enhance flight map anchor
+				LeaPlusDB["FlightMapR"] = "TOPLEFT"				-- Enhance flight map relative
+				LeaPlusDB["FlightMapX"] = 0						-- Enhance flight map X
+				LeaPlusDB["FlightMapX"] = 61					-- Enhance flight map Y
 
 				LeaPlusDB["ShowVolume"] = "On"					-- Show volume slider
 				LeaPlusDB["AhExtras"] = "On"					-- Show auction controls
@@ -15228,10 +15434,11 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceQuestLog"			, 	"Enhance quest log"				,	146, -152, 	true,	"If checked, the quest log frame will be larger and feature a world map button and quest levels.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceProfessions"		, 	"Enhance professions"			,	146, -172, 	true,	"If checked, the professions frame will be larger.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceTrainers"			, 	"Enhance trainers"				,	146, -192, 	true,	"If checked, the skill trainer frame will be larger and feature a train all skills button.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "EnhanceFlightMap"			, 	"Enhance flight map"			,	146, -212, 	true,	"If checked, you will be able to customise the flight map.")
 
-	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Extras"					, 	146, -232);
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowVolume"				, 	"Show volume slider"			, 	146, -252, 	true,	"If checked, a master volume slider will be shown in the character frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AhExtras"					, 	"Show auction controls"			, 	146, -272, 	true,	"If checked, additional functionality will be added to the auction house.|n|nBuyout only - create buyout auctions without filling in the starting price.|n|nGold only - set the copper and silver prices at 99 to speed up new auctions.|n|nFind item - search the auction house for the item you are selling.|n|nIn addition, the auction duration setting will be saved account-wide.")
+	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Extras"					, 	146, -252);
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowVolume"				, 	"Show volume slider"			, 	146, -272, 	true,	"If checked, a master volume slider will be shown in the character frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AhExtras"					, 	"Show auction controls"			, 	146, -292, 	true,	"If checked, additional functionality will be added to the auction house.|n|nBuyout only - create buyout auctions without filling in the starting price.|n|nGold only - set the copper and silver prices at 99 to speed up new auctions.|n|nFind item - search the auction house for the item you are selling.|n|nIn addition, the auction duration setting will be saved account-wide.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Extras"					, 	340, -72);
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ShowCooldowns"				, 	"Show cooldowns"				, 	340, -92, 	true,	"If checked, you will be able to place up to five beneficial cooldown icons above the target frame.")
@@ -15251,6 +15458,7 @@
 	LeaPlusLC:CfgBtn("EnhanceDressupBtn", LeaPlusCB["EnhanceDressup"])
 	LeaPlusLC:CfgBtn("EnhanceQuestLogBtn", LeaPlusCB["EnhanceQuestLog"])
 	LeaPlusLC:CfgBtn("EnhanceTrainersBtn", LeaPlusCB["EnhanceTrainers"])
+	LeaPlusLC:CfgBtn("EnhanceFlightMapBtn", LeaPlusCB["EnhanceFlightMap"])
 	LeaPlusLC:CfgBtn("CooldownsButton", LeaPlusCB["ShowCooldowns"])
 	LeaPlusLC:CfgBtn("ModPlayerChain", LeaPlusCB["ShowPlayerChain"])
 	LeaPlusLC:CfgBtn("ShowWowheadLinksBtn", LeaPlusCB["ShowWowheadLinks"])
