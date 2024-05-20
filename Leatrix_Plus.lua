@@ -5472,6 +5472,17 @@
 						myButton:HookScript("OnLeave", function()
 							_G[name]:GetScript("OnLeave")()
 						end)
+					elseif name == "Narci_MinimapButton" then
+						-- Narcissus
+						local myButton = LibStub("LibDBIcon-1.0"):GetMinimapButton("LeaPlusCustomIcon_" .. name)
+						myButton.icon:SetTexture("Interface\\AddOns\\Narcissus\\Art\\Minimap\\LOGO-Dragonflight")
+						myButton:HookScript("OnEnter", function()
+							_G[name]:GetScript("OnEnter")(_G[name], true)
+						end)
+						hooksecurefunc(myButton.icon, "UpdateCoord", function()
+							myButton.icon:SetTexCoord(0, 0.25, 0.75, 1)
+						end)
+						myButton.icon:SetTexCoord(0, 0.25, 0.75, 1)
 					elseif name == "WIM3MinimapButton" then
 						-- WIM
 						local myButton = LibStub("LibDBIcon-1.0"):GetMinimapButton("LeaPlusCustomIcon_" .. name)
