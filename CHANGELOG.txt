@@ -1,4 +1,7 @@
-﻿1.15.32 - 22nd May 2024
+﻿1.15.33.alpha.1 - 1st June 2024
+- For 'Recent chat window', increased the number of recent chat messages shown from 128 to 256.
+
+1.15.32 - 22nd May 2024
 - Added a new option called 'Enhance flight map' ('Interface').  If enabled, you can customise the flight map (such as map scale, map position and icon size).  You can adjust the settings in the configuration panel.  Hold down ALT and drag the flight map to move it.
 - For 'Enhance minimap', added support for Narcissus custom minimap button.
 - Added flight times.
