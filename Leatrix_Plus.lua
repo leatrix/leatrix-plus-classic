@@ -9947,7 +9947,7 @@
 						-- Handle colors
 						if r and g and b then
 							local colorCode = RGBToColorCode(r, g, b)
-							chatMessage = string.gsub(chatMessage, "|r", "|r" .. colorCode) -- Needed for Classic only
+							-- chatMessage = string.gsub(chatMessage, "|r", "|r" .. colorCode) -- Needed for Classic only
 							chatMessage = colorCode .. chatMessage .. "|r"
 						end
 
