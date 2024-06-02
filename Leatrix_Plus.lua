@@ -2,7 +2,7 @@
 -- 	Leatrix Plus 1.15.33.alpha.1 (29th May 2024)
 ----------------------------------------------------------------------
 
---	01:Functns, 02:Locks, 03:Restart, 20:Live, 40:Player
+--	01:Functns, 02:Locks, 03:Restart, 40:Player
 --	50:RunOnce, 60:Evnts, 62:Profile, 70:Lgot, 80:Commands, 90:Panel
 
 ----------------------------------------------------------------------
@@ -664,78 +664,273 @@
 	end
 
 ----------------------------------------------------------------------
---	L20: Live
+--	L40: Player
 ----------------------------------------------------------------------
 
-	function LeaPlusLC:Live()
+	function LeaPlusLC:Player()
 
 		----------------------------------------------------------------------
-		--	Invite from whispers
+		--	Block duels (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["InviteFromWhisper"] == "On" then
-			LpEvt:RegisterEvent("CHAT_MSG_WHISPER");
-			LpEvt:RegisterEvent("CHAT_MSG_BN_WHISPER");
-		else
-			LpEvt:UnregisterEvent("CHAT_MSG_WHISPER");
-			LpEvt:UnregisterEvent("CHAT_MSG_BN_WHISPER");
+		do
+
+			-- Handler for event
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1)
+				if event == "DUEL_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
+					CancelDuel()
+					StaticPopup_Hide("DUEL_REQUESTED")
+					return
+				elseif event == "DUEL_TO_THE_DEATH_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
+					CancelDuel()
+					StaticPopup_Hide("DUEL_TO_THE_DEATH_REQUESTED")
+					return
+				end
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["NoDuelRequests"] == "On" then
+					frame:RegisterEvent("DUEL_REQUESTED")
+					frame:RegisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
+				else
+					frame:UnregisterEvent("DUEL_REQUESTED")
+					frame:UnregisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["NoDuelRequests"] == "On" then SetEvent() end
+			LeaPlusCB["NoDuelRequests"]:HookScript("OnClick", SetEvent)
+
 		end
 
 		----------------------------------------------------------------------
-		--	Block duels
+		--	Invite from whispers (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["NoDuelRequests"] == "On" then
-			LpEvt:RegisterEvent("DUEL_REQUESTED")
-			LpEvt:RegisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
-		else
-			LpEvt:UnregisterEvent("DUEL_REQUESTED")
-			LpEvt:UnregisterEvent("DUEL_TO_THE_DEATH_REQUESTED")
+		do
+
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1, arg2, ...)
+				if event == "CHAT_MSG_WHISPER" or event == "CHAT_MSG_BN_WHISPER" then
+					if (not UnitExists("party1") or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")) and strlower(strtrim(arg1)) == strlower(LeaPlusLC["InvKey"]) then
+						if not LeaPlusLC:IsInLFGQueue() then
+							if event == "CHAT_MSG_WHISPER" then
+								if LeaPlusLC:FriendCheck(strsplit("-", arg2, 2)) or LeaPlusLC["InviteFriendsOnly"] == "Off" then
+									InviteUnit(arg2)
+								end
+							elseif event == "CHAT_MSG_BN_WHISPER" then
+								local presenceID = select(11, ...)
+								if presenceID and BNIsFriend(presenceID) then
+									local index = BNGetFriendIndex(presenceID)
+									if index then
+										local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID = BNGetFriendInfo(index)
+										if toonID then
+											BNInviteFriend(toonID)
+										end
+									end
+								end
+							end
+						end
+					end
+					return
+				end
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["InviteFromWhisper"] == "On" then
+					frame:RegisterEvent("CHAT_MSG_WHISPER")
+					frame:RegisterEvent("CHAT_MSG_BN_WHISPER")
+				else
+					frame:UnregisterEvent("CHAT_MSG_WHISPER")
+					frame:UnregisterEvent("CHAT_MSG_BN_WHISPER")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["InviteFromWhisper"] == "On" then SetEvent() end
+			LeaPlusCB["InviteFromWhisper"]:HookScript("OnClick", SetEvent)
+
 		end
 
 		----------------------------------------------------------------------
-		--	Block party invites and Party from friends
+		--	Party from friends (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["NoPartyInvites"] == "On" or LeaPlusLC["AcceptPartyFriends"] == "On" then
-			LpEvt:RegisterEvent("PARTY_INVITE_REQUEST");
-		else
-			LpEvt:UnregisterEvent("PARTY_INVITE_REQUEST");
+		do
+
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1, ...)
+				-- If a friend, accept if you're accepting friends and not in battleground queue
+				if (LeaPlusLC["AcceptPartyFriends"] == "On" and LeaPlusLC:FriendCheck(arg1)) then
+					if not LeaPlusLC:IsInLFGQueue() then
+						AcceptGroup()
+						for i=1, STATICPOPUP_NUMDIALOGS do
+							if _G["StaticPopup"..i].which == "PARTY_INVITE" then
+								_G["StaticPopup"..i].inviteAccepted = 1
+								StaticPopup_Hide("PARTY_INVITE")
+								break
+							elseif _G["StaticPopup"..i].which == "PARTY_INVITE_XREALM" then
+								_G["StaticPopup"..i].inviteAccepted = 1
+								StaticPopup_Hide("PARTY_INVITE_XREALM")
+								break
+							end
+						end
+						return
+					end
+				end
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["AcceptPartyFriends"] == "On" then
+					frame:RegisterEvent("PARTY_INVITE_REQUEST")
+				else
+					frame:UnregisterEvent("PARTY_INVITE_REQUEST")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["AcceptPartyFriends"] == "On" then SetEvent() end
+			LeaPlusCB["AcceptPartyFriends"]:HookScript("OnClick", SetEvent)
+
 		end
 
 		----------------------------------------------------------------------
-		--	Automatic summon
+		--	Block party invites (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["AutoAcceptSummon"] == "On" then
-			LpEvt:RegisterEvent("CONFIRM_SUMMON");
-		else
-			LpEvt:UnregisterEvent("CONFIRM_SUMMON");
+		do
+
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1)
+				-- If not a friend and you're blocking invites, decline
+				if LeaPlusLC["NoPartyInvites"] == "On" then
+					if LeaPlusLC:FriendCheck(arg1) then
+						return
+					else
+						DeclineGroup()
+						StaticPopup_Hide("PARTY_INVITE")
+						StaticPopup_Hide("PARTY_INVITE_XREALM")
+						return
+					end
+				end
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["NoPartyInvites"] == "On" then
+					frame:RegisterEvent("PARTY_INVITE_REQUEST")
+				else
+					frame:UnregisterEvent("PARTY_INVITE_REQUEST")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["NoPartyInvites"] == "On" then SetEvent() end
+			LeaPlusCB["NoPartyInvites"]:HookScript("OnClick", SetEvent)
+
+		end
+
+		----------------------------------------------------------------------
+		--	Automatic summon (no reload required)
+		----------------------------------------------------------------------
+
+		do
+
+			-- Event function
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1)
+				if not UnitAffectingCombat("player") then
+					local sName = C_SummonInfo.GetSummonConfirmSummoner()
+					local sLocation = C_SummonInfo.GetSummonConfirmAreaName()
+					LeaPlusLC:Print(L["The summon from"] .. " " .. sName .. " (" .. sLocation .. ") " .. L["will be automatically accepted in 10 seconds unless cancelled."])
+					C_Timer.After(10, function()
+						local sNameNew = C_SummonInfo.GetSummonConfirmSummoner()
+						local sLocationNew = C_SummonInfo.GetSummonConfirmAreaName()
+						if sName == sNameNew and sLocation == sLocationNew then
+							-- Automatically accept summon after 10 seconds if summoner name and location have not changed
+							C_SummonInfo.ConfirmSummon()
+							StaticPopup_Hide("CONFIRM_SUMMON")
+						end
+					end)
+				end
+				return
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["AutoAcceptSummon"] == "On" then
+					frame:RegisterEvent("CONFIRM_SUMMON")
+				else
+					frame:UnregisterEvent("CONFIRM_SUMMON")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["AutoAcceptSummon"] == "On" then SetEvent() end
+			LeaPlusCB["AutoAcceptSummon"]:HookScript("OnClick", SetEvent)
+
 		end
 
 		----------------------------------------------------------------------
 		--	Disable loot warnings
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["NoConfirmLoot"] == "On" then
-			LpEvt:RegisterEvent("CONFIRM_LOOT_ROLL")
-			LpEvt:RegisterEvent("LOOT_BIND_CONFIRM")
-			LpEvt:RegisterEvent("MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL")
-			LpEvt:RegisterEvent("MAIL_LOCK_SEND_ITEMS")
-		else
-			LpEvt:UnregisterEvent("CONFIRM_LOOT_ROLL")
-			LpEvt:UnregisterEvent("LOOT_BIND_CONFIRM")
-			LpEvt:UnregisterEvent("MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL")
-			LpEvt:UnregisterEvent("MAIL_LOCK_SEND_ITEMS")
+		do
+
+			local frame = CreateFrame("FRAME")
+			frame:SetScript("OnEvent", function(self, event, arg1, arg2, ...)
+				-- Disable warnings for attempting to roll Need on loot
+				if event == "CONFIRM_LOOT_ROLL" then
+					ConfirmLootRoll(arg1, arg2)
+					StaticPopup_Hide("CONFIRM_LOOT_ROLL")
+					return
+				end
+
+				-- Disable warning for attempting to loot a Bind on Pickup item
+				if event == "LOOT_BIND_CONFIRM" then
+					ConfirmLootSlot(arg1, arg2)
+					StaticPopup_Hide("LOOT_BIND",...)
+					return
+				end
+
+				-- Disable warning for attempting to vendor an item within its refund window
+				if event == "MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL" then
+					SellCursorItem()
+					return
+				end
+
+				-- Disable warning for attempting to mail an item within its refund window
+				if event == "MAIL_LOCK_SEND_ITEMS" then
+					RespondMailLockSendItem(arg1, true)
+					return
+				end
+			end)
+
+			-- Function to set event
+			local function SetEvent()
+				if LeaPlusLC["NoConfirmLoot"] == "On" then
+					frame:RegisterEvent("CONFIRM_LOOT_ROLL")
+					frame:RegisterEvent("LOOT_BIND_CONFIRM")
+					frame:RegisterEvent("MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL")
+					frame:RegisterEvent("MAIL_LOCK_SEND_ITEMS")
+				else
+					frame:UnregisterEvent("CONFIRM_LOOT_ROLL")
+					frame:UnregisterEvent("LOOT_BIND_CONFIRM")
+					frame:UnregisterEvent("MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL")
+					frame:UnregisterEvent("MAIL_LOCK_SEND_ITEMS")
+				end
+			end
+
+			-- Set event on startup if enabled and when option is clicked
+			if LeaPlusLC["NoConfirmLoot"] == "On" then SetEvent() end
+			LeaPlusCB["NoConfirmLoot"]:HookScript("OnClick", SetEvent)
+
 		end
-
-	end
-
-----------------------------------------------------------------------
---	L40: Player
-----------------------------------------------------------------------
-
-	function LeaPlusLC:Player()
 
 		----------------------------------------------------------------------
 		-- Mute game sounds (no reload required) (MuteGameSounds)
@@ -12413,142 +12608,6 @@
 	local function eventHandler(self, event, arg1, arg2, ...)
 
 		----------------------------------------------------------------------
-		-- Invite from whisper
-		----------------------------------------------------------------------
-
-		if event == "CHAT_MSG_WHISPER" or event == "CHAT_MSG_BN_WHISPER" then
-			if (not UnitExists("party1") or UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")) and strlower(strtrim(arg1)) == strlower(LeaPlusLC["InvKey"]) then
-				if not LeaPlusLC:IsInLFGQueue() then
-					if event == "CHAT_MSG_WHISPER" then
-						if LeaPlusLC:FriendCheck(strsplit("-", arg2, 2)) or LeaPlusLC["InviteFriendsOnly"] == "Off" then
-							InviteUnit(arg2)
-						end
-					elseif event == "CHAT_MSG_BN_WHISPER" then
-						local presenceID = select(11, ...)
-						if presenceID and BNIsFriend(presenceID) then
-							local index = BNGetFriendIndex(presenceID);
-							if index then
-								local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID = BNGetFriendInfo(index);
-								if toonID then
-									BNInviteFriend(toonID);
-								end
-							end
-						end
-					end
-				end
-			end
-			return
-		end
-
-		----------------------------------------------------------------------
-		-- Block duel requests
-		----------------------------------------------------------------------
-
-		if event == "DUEL_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
-			CancelDuel()
-			StaticPopup_Hide("DUEL_REQUESTED")
-			return
-		end
-
-		if event == "DUEL_TO_THE_DEATH_REQUESTED" and not LeaPlusLC:FriendCheck(arg1) then
-			CancelDuel()
-			StaticPopup_Hide("DUEL_TO_THE_DEATH_REQUESTED")
-			return
-		end
-
-		----------------------------------------------------------------------
-		-- Accept summon
-		----------------------------------------------------------------------
-
-		if event == "CONFIRM_SUMMON" then
-			if not UnitAffectingCombat("player") then
-				local sName = C_SummonInfo.GetSummonConfirmSummoner()
-				local sLocation = C_SummonInfo.GetSummonConfirmAreaName()
-				LeaPlusLC:Print(L["The summon from"] .. " " .. sName .. " (" .. sLocation .. ") " .. L["will be automatically accepted in 10 seconds unless cancelled."])
-				C_Timer.After(10, function()
-					local sNameNew = C_SummonInfo.GetSummonConfirmSummoner()
-					local sLocationNew = C_SummonInfo.GetSummonConfirmAreaName()
-					if sName == sNameNew and sLocation == sLocationNew then
-						-- Automatically accept summon after 10 seconds if summoner name and location have not changed
-						C_SummonInfo.ConfirmSummon()
-						StaticPopup_Hide("CONFIRM_SUMMON")
-					end
-				end)
-			end
-			return
-		end
-
-		----------------------------------------------------------------------
-		-- Block party invites
-		----------------------------------------------------------------------
-
-		if event == "PARTY_INVITE_REQUEST" then
-
-			-- If a friend, accept if you're accepting friends and not in battleground queue
-			if (LeaPlusLC["AcceptPartyFriends"] == "On" and LeaPlusLC:FriendCheck(arg1)) then
-				if not LeaPlusLC:IsInLFGQueue() then
-					AcceptGroup()
-					for i=1, STATICPOPUP_NUMDIALOGS do
-						if _G["StaticPopup"..i].which == "PARTY_INVITE" then
-							_G["StaticPopup"..i].inviteAccepted = 1
-							StaticPopup_Hide("PARTY_INVITE")
-							break
-						elseif _G["StaticPopup"..i].which == "PARTY_INVITE_XREALM" then
-							_G["StaticPopup"..i].inviteAccepted = 1
-							StaticPopup_Hide("PARTY_INVITE_XREALM")
-							break
-						end
-					end
-					return
-				end
-			end
-
-			-- If not a friend and you're blocking invites, decline
-			if LeaPlusLC["NoPartyInvites"] == "On" then
-				if LeaPlusLC:FriendCheck(arg1) then
-					return
-				else
-					DeclineGroup();
-					StaticPopup_Hide("PARTY_INVITE");
-					StaticPopup_Hide("PARTY_INVITE_XREALM");
-					return
-				end
-			end
-
-			return
-		end
-
-		----------------------------------------------------------------------
-		-- Disable loot warnings
-		----------------------------------------------------------------------
-
-		-- Disable warnings for attempting to roll Need on loot
-		if event == "CONFIRM_LOOT_ROLL" then
-			ConfirmLootRoll(arg1, arg2)
-			StaticPopup_Hide("CONFIRM_LOOT_ROLL")
-			return
-		end
-
-		-- Disable warning for attempting to loot a Bind on Pickup item
-		if event == "LOOT_BIND_CONFIRM" then
-			ConfirmLootSlot(arg1, arg2)
-			StaticPopup_Hide("LOOT_BIND",...)
-			return
-		end
-
-		-- Disable warning for attempting to vendor an item within its refund window
-		if event == "MERCHANT_CONFIRM_TRADE_TIMER_REMOVAL" then
-			SellCursorItem()
-			return
-		end
-
-		-- Disable warning for attempting to mail an item within its refund window
-		if event == "MAIL_LOCK_SEND_ITEMS" then
-			RespondMailLockSendItem(arg1, true)
-			return
-		end
-
-		----------------------------------------------------------------------
 		-- Hide the combat log
 		----------------------------------------------------------------------
 
@@ -12940,7 +12999,6 @@
 				end
 
 				-- Run other startup items
-				LeaPlusLC:Live()
 				LeaPlusLC:RunOnce()
 				LeaPlusLC:SetDim()
 
@@ -13632,7 +13690,6 @@
 			end
 			LeaPlusLC:SetDim(); -- Lock invalid options
 			LeaPlusLC:ReloadCheck(); -- Show reload button if needed
-			LeaPlusLC:Live(); -- Run live code
 		end)
 	end
 
