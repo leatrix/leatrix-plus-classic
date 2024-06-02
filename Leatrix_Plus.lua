@@ -2,8 +2,8 @@
 -- 	Leatrix Plus 1.15.33.alpha.1 (29th May 2024)
 ----------------------------------------------------------------------
 
---	01:Functns, 02:Locks, 03:Restart, 40:Player
---	50:RunOnce, 60:Evnts, 62:Profile, 70:Lgot, 80:Commands, 90:Panel
+--	01:Functions 02:Locks   03:Restart 40:Player
+--	60:Events    62:Profile 70:Logout  80:Commands, 90:Panel
 
 ----------------------------------------------------------------------
 -- 	Leatrix Plus
@@ -12547,6 +12547,13 @@
 		-- Register logout event to save settings
 		LpEvt:RegisterEvent("PLAYER_LOGOUT")
 
+		-- Hide Leatrix Plus if game options panel is shown
+		InterfaceOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
+		VideoOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
+
+		-- Update addon memory usage (speeds up initial value)
+		UpdateAddOnMemoryUsage()
+
 		-- Release memory
 		LeaPlusLC.Player = nil
 
@@ -12578,32 +12585,6 @@
 			if LeaPlusLC["MaxCameraZoom"] == "On" then SetZoom() end
 
 		end
-
-	end
-
-----------------------------------------------------------------------
--- 	L50: RunOnce
-----------------------------------------------------------------------
-
-	function LeaPlusLC:RunOnce()
-
-		----------------------------------------------------------------------
-		-- Options panel
-		----------------------------------------------------------------------
-
-		-- Hide Leatrix Plus if game options panel is shown
-		InterfaceOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames);
-		VideoOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames);
-
-		----------------------------------------------------------------------
-		-- Final code for RunOnce
-		----------------------------------------------------------------------
-
-		-- Update addon memory usage (speeds up initial value)
-		UpdateAddOnMemoryUsage();
-
-		-- Release memory
-		LeaPlusLC.RunOnce = nil
 
 	end
 
@@ -12993,7 +12974,6 @@
 				end
 
 				-- Run other startup items
-				LeaPlusLC:RunOnce()
 				LeaPlusLC:SetDim()
 
 			end
