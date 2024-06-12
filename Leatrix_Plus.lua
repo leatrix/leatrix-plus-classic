@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.35 (12th June 2024)
+-- 	Leatrix Plus 1.15.36.alpha.1 (12th June 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.35"
+	LeaPlusLC["AddonVer"] = "1.15.36.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -7552,7 +7552,7 @@
 			local function TrainerFunc(frame)
 
 				-- Make the frame double-wide
-				UIPanelWindows["ClassTrainerFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
+				UIPanelWindows["ClassTrainerFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
 
 				-- Size the frame
 				_G["ClassTrainerFrame"]:SetSize(714, 487 + tall)
@@ -7897,7 +7897,7 @@
 			local function TradeSkillFunc(frame)
 
 				-- Make the tradeskill frame double-wide
-				UIPanelWindows["TradeSkillFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
+				UIPanelWindows["TradeSkillFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
 
 				-- Size the tradeskill frame
 				_G["TradeSkillFrame"]:SetWidth(714)
@@ -8071,7 +8071,7 @@
 			local function CraftFunc()
 
 				-- Make the craft frame double-wide
-				UIPanelWindows["CraftFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
+				UIPanelWindows["CraftFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
 
 				-- Size the craft frame
 				_G["CraftFrame"]:SetWidth(714)
@@ -8304,7 +8304,7 @@
 				local tall, numTallQuests = 73, 21
 
 				-- Make the quest log frame double-wide
-				UIPanelWindows["QuestLogFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 714, height = 487, whileDead = 1}
+				UIPanelWindows["QuestLogFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
 
 				-- Size the quest log frame
 				QuestLogFrame:SetWidth(714)
