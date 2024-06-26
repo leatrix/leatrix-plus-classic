@@ -1,4 +1,7 @@
-﻿1.15.36 - 19th June 2024
+﻿1.15.37 - 26th June 2024
+- Added flight times.
+
+1.15.36 - 19th June 2024
 - For 'Enhance quest log', 'Enhance professions' and 'Enhance trainers' ('Interface'), adjusted frame layout slightly.
 - Added flight times.
 
