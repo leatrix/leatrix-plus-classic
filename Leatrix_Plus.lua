@@ -35,7 +35,7 @@
 			end)
 			return
 		end
-		if gametocversion and gametocversion == 11404 then
+		if gametocversion and gametocversion == 11503 then
 			-- Used for upcoming game patch
 			LeaPlusLC.NewPatch = true
 		end
@@ -10014,11 +10014,19 @@
 			local function HideButtons(chtfrm)
 				_G[chtfrm .. "ButtonFrameUpButton"]:SetParent(tframe)
 				_G[chtfrm .. "ButtonFrameDownButton"]:SetParent(tframe)
-				_G[chtfrm .. "ButtonFrameMinimizeButton"]:SetParent(tframe)
-				_G[chtfrm .. "ButtonFrameUpButton"]:Hide();
-				_G[chtfrm .. "ButtonFrameDownButton"]:Hide();
-				_G[chtfrm .. "ButtonFrameMinimizeButton"]:Hide();
+				if _G[chtfrm .. "ButtonFrameMinimizeButton"] then -- LeaPlusLC.NewPatch: Removed in 1.15.3
+					_G[chtfrm .. "ButtonFrameMinimizeButton"]:SetParent(tframe)
+				end
+				_G[chtfrm .. "ButtonFrameUpButton"]:Hide()
+				_G[chtfrm .. "ButtonFrameDownButton"]:Hide()
+				if _G[chtfrm .. "ButtonFrameMinimizeButton"] then -- LeaPlusLC.NewPatch: Removed in 1.15.3
+					_G[chtfrm .. "ButtonFrameMinimizeButton"]:Hide()
+				end
 				_G[chtfrm .. "ButtonFrame"]:SetSize(0.1,0.1)
+			end
+
+			if FriendsMicroButton then -- LeaPlusLC.NewPatch: Added in 1.15.3
+				FriendsMicroButton:Hide()
 			end
 
 			-- Function to highlight chat tabs and click to scroll to bottom

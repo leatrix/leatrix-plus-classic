@@ -1,5 +1,7 @@
 ﻿1.15.38.alpha.1 - 26th June 2024
-- For 'Enhance minimap', added a button texture for Zygor.
+- Updated for game version 1.15.3.
+- For 'Hide chat buttons' ('Chat'), the new social button will now be hidden.
+- For 'Enhance minimap' ('Interface'), added a button texture for Zygor.
 - Added flight times.
 
 1.15.37 - 26th June 2024
@@ -16,7 +18,7 @@
 
 1.15.32 - 22nd May 2024
 - Added a new option called 'Enhance flight map' ('Interface').  If enabled, you can customise the flight map (such as map scale, map position and icon size).  You can adjust the settings in the configuration panel.  Hold down ALT and drag the flight map to move it.
-- For 'Enhance minimap', added support for Narcissus custom minimap button.
+- For 'Enhance minimap' ('Interface'), added support for Narcissus custom minimap button.
 - Added flight times.
 
 1.15.31 - 15th May 2024
