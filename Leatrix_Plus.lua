@@ -41,13 +41,8 @@
 		end
 	end
 
-	-- Check for addons
+	-- Check for ElvUI
 	if C_AddOns.IsAddOnLoaded("ElvUI") then LeaPlusLC.ElvUI = unpack(ElvUI) end
-	if C_AddOns.IsAddOnLoaded("Glass") then LeaPlusLC.Glass = true end
-	if C_AddOns.IsAddOnLoaded("CharacterStatsClassic") then LeaPlusLC.CharacterStatsClassic = true end
-	if C_AddOns.IsAddOnLoaded("ClassicProfessionFilter") then LeaPlusLC.ClassicProfessionFilter = true end
-	if C_AddOns.IsAddOnLoaded("TitanClassic") then LeaPlusLC.TitanClassic = true end
-	if C_AddOns.IsAddOnLoaded("totalRP3") then LeaPlusLC.totalRP3 = true end
 
 ----------------------------------------------------------------------
 --	L00: Leatrix Plus
@@ -6794,7 +6789,7 @@
 					-- Default layout
 					LeaPlusCB["ShowHelm"].f:SetText(L["Helm"])
 					LeaPlusCB["ShowHelm"]:ClearAllPoints()
-					if LeaPlusLC.CharacterStatsClassic then
+					if C_AddOns.IsAddOnLoaded("CharacterStatsClassic") then
 						LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 65, -258)
 					else
 						LeaPlusCB["ShowHelm"]:SetPoint("TOPLEFT", 65, -270)
@@ -6805,7 +6800,7 @@
 
 					LeaPlusCB["ShowCloak"].f:SetText(L["Cloak"])
 					LeaPlusCB["ShowCloak"]:ClearAllPoints()
-					if LeaPlusLC.CharacterStatsClassic then
+					if C_AddOns.IsAddOnLoaded("CharacterStatsClassic") then
 						LeaPlusCB["ShowCloak"]:SetPoint("TOPLEFT", 275, -258)
 					else
 						LeaPlusCB["ShowCloak"]:SetPoint("TOPLEFT", 275, -270)
@@ -8036,7 +8031,7 @@
 				end
 
 				-- Classic Profession Filter addon fixes
-				if LeaPlusLC.ClassicProfessionFilter and TradeSkillFrame.SearchBox and TradeSkillFrame.HaveMats and TradeSkillFrame.HaveMats.text then
+				if C_AddOns.IsAddOnLoaded("ClassicProfessionFilter") and TradeSkillFrame.SearchBox and TradeSkillFrame.HaveMats and TradeSkillFrame.HaveMats.text then
 					TradeSkillFrame.SearchBox:ClearAllPoints()
 					TradeSkillFrame.SearchBox:SetPoint("LEFT", TradeSkillRankFrame, "RIGHT", 20, -10)
 
@@ -8234,7 +8229,7 @@
 				end)
 
 				-- Classic Profession Filter addon fixes
-				if LeaPlusLC.ClassicProfessionFilter and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text and CraftFrame.SearchMats and CraftFrame.SearchMats.text then
+				if C_AddOns.IsAddOnLoaded("ClassicProfessionFilter") and CraftFrame.SearchBox and CraftFrame.HaveMats and CraftFrame.HaveMats.text and CraftFrame.SearchMats and CraftFrame.SearchMats.text then
 					CraftFrame.SearchBox:ClearAllPoints()
 					CraftFrame.SearchBox:SetPoint("LEFT", CraftRankFrame, "RIGHT", 20, -10)
 
@@ -9945,7 +9940,7 @@
 					UIWidgetTopCenterContainerFrame:SetScale(LeaPlusLC["WidgetScale"])
 				else
 					-- Show Titan Panel screen adjust warning if Titan Panel is installed with screen adjust enabled
-					if LeaPlusLC.TitanClassic then
+					if C_AddOns.IsAddOnLoaded("TitanClassic") then
 						if TitanPanelSetVar and TitanPanelGetVar then
 							if not TitanPanelGetVar("ScreenAdjust") then
 								titanFrame:Show()
@@ -10998,7 +10993,7 @@
 				if LibDBIconTooltip then LibDBIconTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"]) end
 
 				-- Total RP 3
-				if LeaPlusLC.totalRP3 and TRP3_MainTooltip and TRP3_CharacterTooltip then
+				if C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_MainTooltip and TRP3_CharacterTooltip then
 					TRP3_MainTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
 					TRP3_CharacterTooltip:SetScale(LeaPlusLC["LeaPlusTipSize"])
 				end
@@ -12886,7 +12881,7 @@
 					end
 
 					-- Disable items that conflict with Glass
-					if LeaPlusLC.Glass then
+					if C_AddOns.IsAddOnLoaded("Glass") then
 						local reason = L["Cannot be used with Glass"]
 						Lock("UseEasyChatResizing", reason) -- Use easy resizing
 						Lock("NoCombatLogTab", reason) -- Hide the combat log
