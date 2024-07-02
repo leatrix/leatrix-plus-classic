@@ -1,5 +1,6 @@
 ﻿1.15.38.alpha.1 - 26th June 2024
 - For 'Enhance minimap', added a button texture for Zygor.
+- Added flight times.
 
 1.15.37 - 26th June 2024
 - Added flight times.
