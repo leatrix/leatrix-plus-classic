@@ -1,7 +1,7 @@
-﻿1.15.38.alpha.1 - 26th June 2024
+﻿1.15.38 - 3rd July 2024
 - Updated for game version 1.15.3.
-- For 'Hide chat buttons' ('Chat'), the new social button will now be hidden.
 - For 'Enhance minimap' ('Interface'), added a button texture for Zygor.
+- PTR (1.15.3): For 'Hide chat buttons' ('Chat'), the new social button will now be hidden.
 - Added flight times.
 
 1.15.37 - 26th June 2024
