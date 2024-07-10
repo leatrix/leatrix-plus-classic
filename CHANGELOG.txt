@@ -1,4 +1,5 @@
-﻿1.15.39.alpha.1 - 3rd July 2024
+﻿1.15.39 - 10th July 2024
+- Updated for game version 1.15.3.
 - Added flight times.
 
 1.15.38 - 3rd July 2024
