@@ -1,4 +1,7 @@
-﻿1.15.40 - 17th July 2024
+﻿1.15.41 - 24th July 2024
+- Added flight times.
+
+1.15.40 - 17th July 2024
 - Added flight times.
 
 1.15.39 - 10th July 2024
