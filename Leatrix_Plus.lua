@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.41 (24th July 2024)
+-- 	Leatrix Plus 1.15.42.alpha.1 (24th July 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.41"
+	LeaPlusLC["AddonVer"] = "1.15.42.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1679,6 +1679,7 @@
 						or npcID == "14921" -- Rin'wosho the Trader (Zul'Gurub Isle, Stranglethorn Vale)
 						or npcID == "15864" -- Valadar Starsong (Coin of Ancestry Collector, Moonglade)
 						or npcID == "15909" -- Fariel Starsong (Coin of Ancestry Collector, Moonglade)
+						or npcID == "15540" -- Windcaller Kaldon (Badge Collector, Silithus)
 						-- Ignore supply officers
 						or npcID == "213077" -- Elaine Compton <Supply Officer> (Stormwind)
 						or npcID == "214099" -- Tamelyn Aldridge <Supply Officer> (Ironforge)
