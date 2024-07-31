@@ -69,6 +69,7 @@
 				["0.45:0.84:0.55:0.57:0.44:0.19:0.70:0.16"] = 1012, -- Grom'gol, Kargath, Undercity, Light's Hope Chapel
 				["0.45:0.84:0.55:0.57:0.44:0.19:0.38:0.24"] = 858, -- Grom'gol, Kargath, Undercity, The Sepulcher
 				["0.45:0.84:0.61:0.75:0.56:0.61:0.51:0.57"] = 473, -- Grom'gol, Stonard, Flame Crest, Thorium Point
+				["0.45:0.84:0.55:0.57:0.44:0.19:0.67:0.30"] = 1032, -- Grom'gol, Kargath, Undercity, Revantusk Village
 
 				-- Horde: Hammerfall (Arathi Highlands)
 				["0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 651, -- Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -584,6 +585,8 @@
 				["0.32:0.58:0.45:0.56:0.56:0.53:0.46:0.30:0.54:0.21"] = 711, -- Shadowprey Village, Thunder Bluff, Crossroads, Bloodvenom Post, Moonglade
 				["0.32:0.58:0.41:0.47:0.56:0.53:0.46:0.30"] = 602, -- Shadowprey Village, Sun Rock Retreat, Crossroads, Bloodvenom Post
 				["0.32:0.58:0.44:0.69:0.56:0.53:0.61:0.55"] = 511, -- Shadowprey Village, Camp Mojache, Crossroads, Ratchet
+				["0.32:0.58:0.44:0.69:0.61:0.80"] = 397, -- Shadowprey Village, Camp Mojache, Gadgetzan
+				["0.32:0.58:0.41:0.47:0.56:0.53:0.57:0.64"] = 511, -- Shadowprey Village, Sun Rock Retreat, Crossroads, Brackenwall Village
 
 				-- Horde: Splintertree Post (Ashenvale)
 				["0.55:0.42:0.56:0.53:0.55:0.73:0.61:0.80"] = 436, -- Splintertree Post, Crossroads, Freewind Post, Gadgetzan

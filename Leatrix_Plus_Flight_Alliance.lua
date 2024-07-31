@@ -500,6 +500,7 @@
 				["0.42:0.79:0.60:0.81:0.64:0.67:0.40:0.51"] = 669, -- Cenarion Hold, Gadgetzan, Theramore, Nijel's Point
 				["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 961, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village
 				["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26"] = 859, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Talonbranch Glade
+				["0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21:0.65:0.23"] = 923, -- Cenarion Hold, Feathermoon, Auberdine, Moonglade, Everlook
 
 				-- Alliance: Everlook (Winterspring)
 				["0.65:0.23:0.55:0.21"] = 122, -- Everlook, Moonglade
@@ -614,6 +615,7 @@
 				["0.60:0.81:0.48:0.70:0.31:0.69:0.40:0.51:0.39:0.40:0.46:0.40"] = 855, -- Gadgetzan, Thalanaar, Feathermoon, Nijel's Point, Stonetalon Peak, Astranaar
 				["0.60:0.81:0.64:0.67:0.61:0.40:0.43:0.25:0.31:0.69"] = 1161, -- Gadgetzan, Theramore, Talrendis Point, Auberdine, Feathermoon
 				["0.60:0.81:0.64:0.67:0.43:0.25:0.53:0.26"] = 958, -- Gadgetzan, Theramore, Auberdine, Talonbranch Glade
+				["0.60:0.81:0.64:0.67:0.61:0.40:0.43:0.25:0.42:0.16"] = 774, -- Gadgetzan, Theramore, Halte de Talrendis, Auberdine, Rut'theran
 
 				-- Alliance: Marshal's Refuge (Un'Goro Crater)
 				["0.50:0.76:0.60:0.81"] = 104, -- Marshal's Refuge, Gadgetzan
@@ -840,6 +842,7 @@
 				["0.53:0.26:0.43:0.25:0.40:0.51:0.64:0.67:0.48:0.70"] = 948, -- Talonbranch Glade, Auberdine, Nijel's Point, Theramore, Thalanaar
 				["0.53:0.26:0.43:0.25:0.40:0.51:0.64:0.67"] = 786, -- Talonbranch Glade, Auberdine, Nijel's Point, Theramore
 				["0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 870, -- Talonbranch Glade, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
+				["0.53:0.26:0.43:0.25:0.31:0.69:0.42:0.79:0.50:0.76"] = 900, -- Talonbranch Glade, Auberdine, Feathermoon, Cenarion Hold, Marshal's Refuge
 
 				-- Alliance: Talrendis Point (Azshara)
 				["0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 391, -- Talrendis Point, Ratchet, Theramore, Gadgetzan
