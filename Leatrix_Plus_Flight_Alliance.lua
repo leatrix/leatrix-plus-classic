@@ -61,6 +61,7 @@
 				["0.43:0.93:0.55:0.57:0.56:0.61"] = 492, -- Booty Bay, Kargath, Flame Crest
 				["0.43:0.93:0.43:0.67:0.51:0.49:0.57:0.32"] = 674, -- Booty Bay, Stormwind, Ironforge, Refuge Pointe
 				["0.43:0.93:0.43:0.67:0.51:0.49:0.48:0.30"] = 680, -- Booty Bay, Stormwind, Ironforge, Southshore
+				["0.43:0.93:0.41:0.75:0.56:0.70:0.58:0.65"] = 373, -- Booty Bay, Sentinel Hill, Lakeshire, Morgan's Vigil
 
 				-- Alliance: Chillwind Camp (Western Plaguelands)
 				["0.52:0.22:0.51:0.49:0.43:0.67:0.43:0.93"] = 662, -- Chillwind Camp, Ironforge, Stormwind, Booty Bay
@@ -184,6 +185,8 @@
 				["0.70:0.16:0.51:0.49:0.49:0.44:0.48:0.30"] = 563, -- Light's Hope Chapel, Ironforge, Menethil Harbor, Southshore
 				["0.70:0.16:0.51:0.49:0.49:0.44"] = 462, -- Light's Hope Chapel, Ironforge, Menethil Harbor
 				["0.70:0.16:0.51:0.49:0.43:0.67:0.58:0.65"] = 684, -- Kapelle des hoffnungsvollen Lichts, Ironforge, Stormwind, Morgans Wacht
+				["0.70:0.16:0.51:0.49:0.49:0.44:0.57:0.32"] = 569, -- Light's Hope Chapel, Ironforge, Menethil Harbor, Refuge Pointe
+				["0.70:0.16:0.51:0.49:0.43:0.67:0.51:0.75"] = 643, -- Light's Hope Chapel, Ironforge, Stormwind, Darkshire
 
 				-- Alliance: Menethil Harbor (Wetlands)
 				["0.49:0.44:0.51:0.49:0.43:0.67:0.43:0.93"] = 490, -- Menethil Harbor, Ironforge, Stormwind, Booty Bay
@@ -399,7 +402,7 @@
 				["0.51:0.57:0.58:0.65:0.56:0.70:0.41:0.75"] = 257, -- Thorium Point, Morgan's Vigil, Lakeshire, Sentinel Hill
 				["0.51:0.57:0.51:0.49:0.43:0.67:0.43:0.93"] = 488, -- Thorium Point, Ironforge, Stormwind, Booty Bay
 				["0.51:0.57:0.51:0.49:0.43:0.67:0.51:0.75"] = 359, -- Thorium Point, Ironforge, Stormwind, Darkshire
-
+				["0.51:0.57:0.58:0.65:0.43:0.67:0.51:0.75"] = 322, -- Thorium Point, Morgan's Vigil, Stormwind, Darkshire
 			},
 
 			-- Alliance: Kalimdor
@@ -537,6 +540,8 @@
 				["0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.42:0.79"] = 762, -- Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan, Cenarion Hold
 				["0.65:0.23:0.61:0.40:0.46:0.40:0.39:0.40"] = 480, -- Everlook, Talrendis Point, Astranaar, Stonetalon Peak
 				["0.65:0.23:0.61:0.40:0.64:0.67:0.60:0.81:0.50:0.76"] = 676, -- Everlook, Talrendis Point, Theramore, Gadgetzan, Marshal's Refuge
+				["0.65:0.23:0.61:0.40:0.64:0.67:0.48:0.70"] = 579, -- Everlook, Talrendis Point, Theramore, Thalanaar
+				["0.65:0.23:0.53:0.26:0.43:0.25:0.31:0.69:0.42:0.79"] = 921, -- Everlook, Nachtlaublichtung, Auberdine, Feathermoon, Burg Cenarius
 
 				-- Alliance: Feathermoon (Feralas)
 				["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan (Microburst reported 354)
@@ -689,6 +694,7 @@
 				["0.55:0.21:0.53:0.26:0.61:0.40:0.61:0.55:0.64:0.67:0.48:0.70"] = 725, -- Reflet-de-Lune, Clairière de Griffebranche, Halte de Talrendis, Ratchet, Theramore, Thalanaar
 				["0.55:0.21:0.43:0.25:0.61:0.40:0.64:0.67:0.60:0.81"] = 838, -- Moonglade, Auberdine, Talrendis Point, Theramore, Gadgetzan
 				["0.55:0.21:0.53:0.26:0.61:0.40:0.64:0.67"] = 570, -- Moonglade, Talonbranch Glade, Talrendis Point, Theramore
+				["0.55:0.21:0.65:0.23:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79"] = 892, -- Moonglade, Everlook, Talrendis Point, Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold
 
 				-- Alliance: Nijel's Pointe (Desolace)
 				["0.40:0.51:0.64:0.67:0.60:0.81"] = 464, -- Nijel's Point, Theramore, Gadgetzan
@@ -872,6 +878,7 @@
 				["0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69:0.48:0.70:0.60:0.81"] = 988, -- Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon, Thalanaar, Gadgetzan
 				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70"] = 927, -- Talrendis Point, Astranaar, Auberdine, Feathermoon, Thalanaar
 				["0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 1098, -- Talrendis Point, Astranaar, Auberdine, Feathermoon, Thalanaar, Gadgetzan
+				["0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81:0.42:0.79"] = 587, -- Talrendis Point, Ratchet, Theramore, Gadgetzan, Cenarion Hold
 
 				-- Alliance: Thalanaar (Feralas)
 				["0.48:0.70:0.60:0.81"] = 171, -- Thalanaar, Gadgetzan

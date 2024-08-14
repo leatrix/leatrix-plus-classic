@@ -1,4 +1,7 @@
-﻿1.15.42 - 31st July 2024
+﻿1.15.44 - 14th August 2024
+- Added flight times.
+
+1.15.42 - 31st July 2024
 - For 'Automate quests' ('Automation'), quests from Windcaller Kaldon (Silithus) will no longer be selected, accepted or turned-in automatically.
 - Added flight times.
 
