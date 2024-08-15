@@ -209,6 +209,7 @@
 				["0.49:0.44:0.57:0.32:0.55:0.25"] = 185, -- Menethil Harbor, Refuge Pointe, Aerie Peak
 				["0.49:0.44:0.51:0.49:0.43:0.67:0.58:0.65"] = 403, -- Menethil Harbor, Ironforge, Stormwind, Morgan's Vigil
 				["0.49:0.44:0.51:0.49:0.52:0.22"] = 344, -- Hafen von Menethil, Ironforge, Chillwind-Lager, Chillwind-Lager
+				["0.49:0.44:0.51:0.49:0.70:0.16"] = 394, -- Menethil Harbor, Ironforge, Light's Hope Chapel
 
 				-- Alliance: Morgan's Vigil (Burning Steppes)
 				["0.58:0.65:0.56:0.70:0.51:0.75:0.43:0.93"] = 288, -- Morgan's Vigil, Lakeshire, Darkshire, Booty Bay
