@@ -1,4 +1,4 @@
-﻿1.15.45.alpha.1 - 14th August 2024
+﻿1.15.45 - 21st August 2024
 - For 'Enhance minimap' ('Interface'), the 'MoveAny' addon button will now show in the combine addon buttons frame.
 - Added flight times.
 
