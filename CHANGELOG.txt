@@ -1,4 +1,7 @@
-﻿1.15.45 - 21st August 2024
+﻿1.15.47.alpha.1 - 29th August 2024
+- For 'Show player chain' ('Interface'), the default game texture will now be used for the rare elite chain.
+
+1.15.45 - 21st August 2024
 - For 'Enhance minimap' ('Interface'), the 'MoveAny' addon button will now show in the combine addon buttons frame.
 - Added flight times.
 

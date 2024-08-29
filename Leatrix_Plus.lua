@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.46 (28th August 2024)
+-- 	Leatrix Plus 1.15.47.alpha.1 (28th August 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.46"
+	LeaPlusLC["AddonVer"] = "1.15.47.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -2644,8 +2644,8 @@
 					PlayerFrameTexture:SetTexCoord(1, .09375, 0, .78125)
 
 				elseif chain == 3 then -- Rare Elite
-					PlayerFrameTexture:SetTexture("Interface\\AddOns\\Leatrix_Plus\\Leatrix_Plus.blp")
-					PlayerFrameTexture:SetTexCoord(0.25, 0.0234375, 0, 0.1953125)
+					PlayerFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Rare-Elite.blp")
+					PlayerFrameTexture:SetTexCoord(1, .09375, 0, .78125)
 
 				end
 			end
