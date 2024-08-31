@@ -10748,32 +10748,61 @@
 			--	Position the tooltip
 			----------------------------------------------------------------------
 
-			hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
-				if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
-					if (not tooltip or not parent) then
-						return
-					end
-					if LeaPlusLC["TooltipAnchorMenu"] == 2 or GetMouseFocus() ~= WorldFrame then
-						local a,b,c,d,e = tooltip:GetPoint()
-						if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
-							tooltip:ClearAllPoints()
-						end
-						tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
-						return
-					else
-						if LeaPlusLC["TooltipAnchorMenu"] == 3 then
-							tooltip:SetOwner(parent, "ANCHOR_CURSOR")
-							return
-						elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
-							tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
-							return
-						elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
-							tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+			if LeaPlusLC.NewPatch then
+				hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
+					if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
+						if (not tooltip or not parent) then
 							return
 						end
+						if LeaPlusLC["TooltipAnchorMenu"] == 2 or not WorldFrame:IsMouseMotionFocus() then
+							local a,b,c,d,e = tooltip:GetPoint()
+							if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
+								tooltip:ClearAllPoints()
+							end
+							tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
+							return
+						else
+							if LeaPlusLC["TooltipAnchorMenu"] == 3 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR")
+								return
+							elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+								return
+							elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+								return
+							end
+						end
 					end
-				end
-			end)
+				end)
+			else
+				hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
+					if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
+						if (not tooltip or not parent) then
+							return
+						end
+						if LeaPlusLC["TooltipAnchorMenu"] == 2 or GetMouseFocus() ~= WorldFrame then
+							local a,b,c,d,e = tooltip:GetPoint()
+							if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
+								tooltip:ClearAllPoints()
+							end
+							tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
+							return
+						else
+							if LeaPlusLC["TooltipAnchorMenu"] == 3 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR")
+								return
+							elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+								return
+							elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
+								tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+								return
+							end
+						end
+					end
+				end)
+			end
 
 			----------------------------------------------------------------------
 			--	Tooltip Configuration
@@ -14916,35 +14945,74 @@
 				return
 			elseif str == "click" then
 				-- Click a button (optional x number of times)
-				local frame = GetMouseFocus()
-				local ftype = frame:GetObjectType()
-				if frame and ftype and ftype == "Button" then
-					if arg1 and tonumber(arg1) > 1 and tonumber(arg1) < 1000 then
-						for i =1, tonumber(arg1) do C_Timer.After(0.1 * i, function() frame:Click() end) end
-					else
-						frame:Click()
+				if LeaPlusLC.NewPatch then
+					local mouseFoci = GetMouseFoci()
+					if mouseFoci then
+						local frame = mouseFoci[#mouseFoci]
+						local ftype = frame:GetObjectType()
+						if frame and ftype and ftype == "Button" then
+							if arg1 and tonumber(arg1) > 1 and tonumber(arg1) < 1000 then
+								for i =1, tonumber(arg1) do C_Timer.After(0.1 * i, function() frame:Click() end) end
+							else
+								frame:Click()
+							end
+						else
+							LeaPlusLC:Print("Hover the pointer over a button.")
+						end
+						return
 					end
 				else
-					LeaPlusLC:Print("Hover the pointer over a button.")
+					local frame = GetMouseFocus()
+					local ftype = frame:GetObjectType()
+					if frame and ftype and ftype == "Button" then
+						if arg1 and tonumber(arg1) > 1 and tonumber(arg1) < 1000 then
+							for i =1, tonumber(arg1) do C_Timer.After(0.1 * i, function() frame:Click() end) end
+						else
+							frame:Click()
+						end
+					else
+						LeaPlusLC:Print("Hover the pointer over a button.")
+					end
+					return
 				end
-				return
 			elseif str == "frame" then
 				-- Print frame name under mouse
-				local frame = GetMouseFocus()
-				local ftype = frame:GetObjectType()
-				if frame and ftype then
-					local fname = frame:GetName()
-					local issecure, tainted = issecurevariable(fname)
-					if issecure then issecure = "Yes" else issecure = "No" end
-					if tainted then tainted = "Yes" else tainted = "No" end
-					if fname then
-						LeaPlusLC:Print("Name: |cffffffff" .. fname)
-						LeaPlusLC:Print("Type: |cffffffff" .. ftype)
-						LeaPlusLC:Print("Secure: |cffffffff" .. issecure)
-						LeaPlusLC:Print("Tainted: |cffffffff" .. tainted)
+				if LeaPlusLC.NewPatch then
+					local mouseFoci = GetMouseFoci()
+					if mouseFoci then
+						local frame = mouseFoci[#mouseFoci]
+						local ftype = frame:GetObjectType()
+						if frame and ftype then
+							local fname = frame:GetName()
+							local issecure, tainted = issecurevariable(fname)
+							if issecure then issecure = "Yes" else issecure = "No" end
+							if tainted then tainted = "Yes" else tainted = "No" end
+							if fname then
+								LeaPlusLC:Print("Name: |cffffffff" .. fname)
+								LeaPlusLC:Print("Type: |cffffffff" .. ftype)
+								LeaPlusLC:Print("Secure: |cffffffff" .. issecure)
+								LeaPlusLC:Print("Tainted: |cffffffff" .. tainted)
+							end
+						end
 					end
+					return
+				else
+					local frame = GetMouseFocus()
+					local ftype = frame:GetObjectType()
+					if frame and ftype then
+						local fname = frame:GetName()
+						local issecure, tainted = issecurevariable(fname)
+						if issecure then issecure = "Yes" else issecure = "No" end
+						if tainted then tainted = "Yes" else tainted = "No" end
+						if fname then
+							LeaPlusLC:Print("Name: |cffffffff" .. fname)
+							LeaPlusLC:Print("Type: |cffffffff" .. ftype)
+							LeaPlusLC:Print("Secure: |cffffffff" .. issecure)
+							LeaPlusLC:Print("Tainted: |cffffffff" .. tainted)
+						end
+					end
+					return
 				end
-				return
 			elseif str == "arrow" then
 				-- Arrow (left: drag, shift/ctrl: rotate, mouseup: loc, pointer must be on arrow stem)
 				local f = CreateFrame("Frame", nil, WorldMapFrame.ScrollContainer)
