@@ -35,7 +35,7 @@
 			end)
 			return
 		end
-		if gametocversion and gametocversion == 11503 then
+		if gametocversion and gametocversion == 11504 then
 			-- Used for upcoming game patch
 			LeaPlusLC.NewPatch = true
 		end
@@ -13561,7 +13561,13 @@
 	function LeaPlusLC:MakeSL(frame, field, caption, low, high, step, x, y, form)
 
 		-- Create slider control
-		local Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "OptionssliderTemplate")
+		local Slider
+		if LeaPlusLC.NewPatch then
+			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "UISliderTemplate")
+		else
+			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "OptionssliderTemplate")
+		end
+
 		LeaPlusCB[field] = Slider;
 		Slider:SetMinMaxValues(low, high)
 		Slider:SetValueStep(step)
@@ -13575,8 +13581,10 @@
 		Slider:SetScript("OnLeave", GameTooltip_Hide)
 
 		-- Remove slider text
-		_G[Slider:GetName().."Low"]:SetText('');
-		_G[Slider:GetName().."High"]:SetText('');
+		if not LeaPlusLC.NewPatch then
+			_G[Slider:GetName().."Low"]:SetText('');
+			_G[Slider:GetName().."High"]:SetText('');
+		end
 
 		-- Create slider label
 		Slider.f = Slider:CreateFontString(nil, 'BACKGROUND')
