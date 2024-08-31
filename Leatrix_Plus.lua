@@ -14214,10 +14214,19 @@
 					end
 				end
 				-- Store frame under mouse
-				local mouseFocus = GetMouseFocus()
+				local mouseFocus
+				if LeaPlusLC.NewPatch then
+					mouseFocus = GetMouseFoci()[1]
+				else
+					mouseFocus = GetMouseFocus()
+				end
 				-- ItemRefTooltip or GameTooltip
 				local tooltip
-				if mouseFocus == ItemRefTooltip then tooltip = ItemRefTooltip else tooltip = GameTooltip end
+				if LeaPlusLC.NewPatch then
+					if ItemRefTooltip:IsMouseMotionFocus() then tooltip = ItemRefTooltip else tooltip = GameTooltip end
+				else
+					if mouseFocus == ItemRefTooltip then tooltip = ItemRefTooltip else tooltip = GameTooltip end
+				end
 				-- Process tooltip
 				if tooltip:IsShown() then
 					-- Item
