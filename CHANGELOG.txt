@@ -1,5 +1,5 @@
 ﻿1.15.47.alpha.1 - 29th August 2024
-- Updated for game version 1.15.4.  Note that on the 1.15.4 PTR, slider controls currently have no tracking bar.
+- Preliminary updates for game version 1.15.4.  Note that on the 1.15.4 PTR, slider controls currently have no tracking bar.
 - For 'Show player chain' ('Interface'), the default game texture will now be used for the rare elite chain.
 - Added flight times.
 
