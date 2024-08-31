@@ -2095,9 +2095,20 @@
 
 		if LeaPlusLC["CharAddonList"] == "On" then
 			-- Set the addon list to character by default
-			if AddonCharacterDropDown and AddonCharacterDropDown.selectedValue then
-				AddonCharacterDropDown.selectedValue = UnitName("player");
-				AddonCharacterDropDownText:SetText(UnitName("player"))
+			if LeaPlusLC.NewPatch then
+				-- Set the addon list to character by default
+				hooksecurefunc(AddonList.Dropdown, "SetupMenu", function(self)
+					local nextRadio
+					MenuUtil.TraverseMenu(self:GetMenuDescription(), function(description)
+						nextRadio = description
+					end)
+					self:Pick(nextRadio, MenuInputContext.MouseWheel)
+				end)
+			else
+				if AddonCharacterDropDown and AddonCharacterDropDown.selectedValue then
+					AddonCharacterDropDown.selectedValue = UnitName("player");
+					AddonCharacterDropDownText:SetText(UnitName("player"))
+				end
 			end
 		end
 
