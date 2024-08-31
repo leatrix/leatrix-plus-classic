@@ -8605,8 +8605,14 @@
 				if tooltip.shownMoneyFrames then return end
 				tooltipObject = tooltipObject or GameTooltip
 				-- Get container
-				local container = GetMouseFocus()
-				if not container then return end
+				local container
+				if LeaPlusLC.NewPatch then
+					container = GetMouseFoci()[1]
+					if not container then return end
+				else
+					container = GetMouseFocus()
+					if not container then return end
+				end
 				-- Get item
 				local itemName, itemlink = tooltipObject:GetItem()
 				if not itemlink then return end
@@ -11094,18 +11100,34 @@
 				end
 
 				-- Get unit information
-				if GetMouseFocus() == WorldFrame then
-					LT["Unit"] = "mouseover"
-					-- Hide and quit if tips should be hidden during combat
-					if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
-						if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
-							GameTooltip:Hide()
-							return
+				if LeaPlusLC.NewPatch then
+					if WorldFrame:IsMouseMotionFocus() then
+						LT["Unit"] = "mouseover"
+						-- Hide and quit if tips should be hidden during combat
+						if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
+							if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
+								GameTooltip:Hide()
+								return
+							end
 						end
+					else
+						LT["Unit"] = select(2, GameTooltip:GetUnit())
+						if not (LT["Unit"]) then return end
 					end
 				else
-					LT["Unit"] = select(2, GameTooltip:GetUnit())
-					if not (LT["Unit"]) then return end
+					if GetMouseFocus() == WorldFrame then
+						LT["Unit"] = "mouseover"
+						-- Hide and quit if tips should be hidden during combat
+						if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
+							if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
+								GameTooltip:Hide()
+								return
+							end
+						end
+					else
+						LT["Unit"] = select(2, GameTooltip:GetUnit())
+						if not (LT["Unit"]) then return end
+					end
 				end
 
 				-- Quit if unit has no reaction to player
@@ -15343,7 +15365,11 @@
 			return
 		else
 			-- Prevent options panel from showing if a game options panel is showing
-			if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+			if LeaPlusLC.NewPatch then
+				if ChatConfigFrame:IsShown() then return end
+			else
+				if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+			end
 			-- Prevent options panel from showing if Blizzard Store is showing
 			if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 			-- Toggle the options panel if game options panel is not showing
