@@ -5041,6 +5041,9 @@
 				end
 			end
 
+			-- LeaPlusLC.NewPatch - Replace MiniMapTrackingFrame with MiniMapTracking
+			local MiniMapTrackingFrame = MiniMapTracking or MiniMapTrackingFrame
+
 			-- Fix for bug in default UI which does not texture tracking button icon on login
 			local icon = GetTrackingTexture()
 			if icon and not MiniMapTrackingIcon:GetTexture() then
@@ -11704,7 +11707,53 @@
 		-- L45: Create panel in game options panel
 		----------------------------------------------------------------------
 
-		do
+		if LeaPlusLC.NewPatch then
+
+			local interPanel = CreateFrame("FRAME")
+			interPanel.name = "Leatrix Plus"
+
+			local maintitle = LeaPlusLC:MakeTx(interPanel, "Leatrix Plus", 0, 0)
+			maintitle:SetFont(maintitle:GetFont(), 72)
+			maintitle:ClearAllPoints()
+			maintitle:SetPoint("TOP", 0, -72)
+
+			local expTitle = LeaPlusLC:MakeTx(interPanel, L["World of Warcraft Classic"], 0, 0)
+			expTitle:SetFont(expTitle:GetFont(), 32)
+			expTitle:ClearAllPoints()
+			expTitle:SetPoint("TOP", 0, -152)
+
+			local subTitle = LeaPlusLC:MakeTx(interPanel, "www.leatrix.com", 0, 0)
+			subTitle:SetFont(subTitle:GetFont(), 20)
+			subTitle:ClearAllPoints()
+			subTitle:SetPoint("BOTTOM", 0, 72)
+
+			local slashTitle = LeaPlusLC:MakeTx(interPanel, "/ltp", 0, 0)
+			slashTitle:SetFont(slashTitle:GetFont(), 72)
+			slashTitle:ClearAllPoints()
+			slashTitle:SetPoint("BOTTOM", subTitle, "TOP", 0, 40)
+			slashTitle:SetScript("OnMouseUp", function(self, button)
+				if button == "LeftButton" then
+					SlashCmdList["Leatrix_Plus"]("")
+				end
+			end)
+			slashTitle:SetScript("OnEnter", function()
+				slashTitle.r,  slashTitle.g, slashTitle.b = slashTitle:GetTextColor()
+				slashTitle:SetTextColor(1, 1, 0)
+			end)
+			slashTitle:SetScript("OnLeave", function()
+				slashTitle:SetTextColor(slashTitle.r, slashTitle.g, slashTitle.b)
+			end)
+
+			local pTex = interPanel:CreateTexture(nil, "BACKGROUND")
+			pTex:SetAllPoints()
+			pTex:SetTexture("Interface\\GLUES\\Models\\UI_MainMenu\\swordgradient2")
+			pTex:SetAlpha(0.2)
+			pTex:SetTexCoord(0, 1, 1, 0)
+
+			local category = Settings.RegisterCanvasLayoutCategory(interPanel, L["Leatrix Plus"])
+			Settings.RegisterAddOnCategory(category)
+
+		else
 
 			local interPanel = CreateFrame("FRAME")
 			interPanel.name = "Leatrix Plus"
@@ -12604,8 +12653,10 @@
 		LpEvt:RegisterEvent("PLAYER_LOGOUT")
 
 		-- Hide Leatrix Plus if game options panel is shown
-		InterfaceOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
-		VideoOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
+		if not LeaPlusLC.NewPatch then
+			InterfaceOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
+			VideoOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
+		end
 
 		-- Update addon memory usage (speeds up initial value)
 		UpdateAddOnMemoryUsage()
