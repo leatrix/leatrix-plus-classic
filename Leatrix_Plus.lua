@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.47.alpha.1 (28th August 2024)
+-- 	Leatrix Plus 1.15.47.alpha.2 (1st September 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.47.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.15.47.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -13676,7 +13676,7 @@
 		-- Create slider control
 		local Slider
 		if LeaPlusLC.NewPatch then
-			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "UISliderTemplate")
+			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "HorizontalSliderTemplate")
 		else
 			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "OptionssliderTemplate")
 		end
