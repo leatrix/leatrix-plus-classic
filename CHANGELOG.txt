@@ -1,5 +1,5 @@
-﻿1.15.47.alpha.2 - 1st September 2024
-- Preliminary updates for game version 1.15.4.
+﻿1.15.47 - 4th September 2024
+- PTR: Preliminary updates for PTR game version 1.15.4.
 - For 'Show player chain' ('Interface'), the default game texture will now be used for the rare elite chain.
 - Added flight times.
 
