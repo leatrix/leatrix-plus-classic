@@ -238,6 +238,7 @@
 				["0.58:0.65:0.43:0.67:0.51:0.49:0.49:0.44:0.48:0.30"] = 581, -- Morgan's Vigil, Stormwind, Ironforge, Menethil Harbor, Southshore
 				["0.58:0.65:0.43:0.67:0.51:0.49:0.49:0.44:0.57:0.32"] = 588, -- Morgan's Vigil, Stormwind, Ironforge, Menethil Harbor, Refuge Pointe
 				["0.58:0.65:0.43:0.67:0.51:0.49:0.52:0.22"] = 644, -- Morgan's Vigil, Stormwind, Ironforge, Chillwind Camp
+				["0.58:0.65:0.43:0.67:0.43:0.93"] = 382, -- Morgan's Vigil, Stormwind, Booty Bay
 
 				-- Alliance: Nethergarde Keep (Blasted Lands)
 				["0.61:0.78:0.51:0.75:0.43:0.93"] = 260, -- Nethergarde Keep, Darkshire, Booty Bay
