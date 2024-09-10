@@ -8048,10 +8048,17 @@
 				_G["TradeSkillFrameCloseButton"]:SetPoint("TOPRIGHT", _G["TradeSkillFrame"], "TOPRIGHT", -30, -8)
 
 				-- Position dropdown menus
-				TradeSkillInvSlotDropDown:ClearAllPoints()
-				TradeSkillInvSlotDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 510, -40)
-				TradeSkillSubClassDropDown:ClearAllPoints()
-				TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 0, 0)
+				if LeaPlusLC.NewPatch then
+					TradeSkillInvSlotDropdown:ClearAllPoints()
+					TradeSkillInvSlotDropdown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 550, -42)
+					TradeSkillSubClassDropdown:ClearAllPoints()
+					TradeSkillSubClassDropdown:SetPoint("RIGHT", TradeSkillInvSlotDropdown, "LEFT", -10, 0)
+				else
+					TradeSkillInvSlotDropDown:ClearAllPoints()
+					TradeSkillInvSlotDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 510, -40)
+					TradeSkillSubClassDropDown:ClearAllPoints()
+					TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 0, 0)
+				end
 
 				-- ElvUI fixes
 				if LeaPlusLC.ElvUI then
