@@ -2684,7 +2684,9 @@
 
 			-- Back button handler
 			ChainPanel.b:SetScript("OnClick", function()
-				LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
+				if not LeaPlusLC.NewPatch then
+					LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
+				end
 				ChainPanel:Hide();
 				LeaPlusLC["PageF"]:Show();
 				LeaPlusLC["Page5"]:Show();
@@ -2693,7 +2695,9 @@
 
 			-- Reset button handler
 			ChainPanel.r:SetScript("OnClick", function()
-				LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
+				if not LeaPlusLC.NewPatch then
+					LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
+				end
 				LeaPlusLC["PlayerChainMenu"] = 2
 				ChainPanel:Hide(); ChainPanel:Show();
 				SetChainStyle()
@@ -8860,9 +8864,12 @@
 
 			-- Minimap button click function
 			local function MiniBtnClickFunc(arg1)
-
 				-- Prevent options panel from showing if Blizzard options panel is showing
-				if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+				if LeaPlusLC.NewPatch then
+					if ChatConfigFrame:IsShown() then return end
+				else
+					if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+				end
 				-- Prevent options panel from showing if Blizzard Store is showing
 				if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 				-- Left button down
@@ -15177,7 +15184,11 @@
 					LeaPlusLC:ShowMemoryUsage(LeaPlusLC["Page8"], "TOPLEFT", 146, -262)
 				end
 				-- Prevent options panel from showing if a game options panel is showing
-				if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+				if LeaPlusLC.NewPatch then
+					if ChatConfigFrame:IsShown() then return end
+				else
+					if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
+				end
 				-- Prevent options panel from showing if Blizzard Store is showing
 				if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 				-- Toggle the options panel if game options panel is not showing
