@@ -7718,8 +7718,13 @@
 				_G["ClassTrainerFrameCloseButton"]:SetPoint("TOPRIGHT", _G["ClassTrainerFrame"], "TOPRIGHT", -30, -8)
 
 				-- Position dropdown menus
-				ClassTrainerFrameFilterDropDown:ClearAllPoints()
-				ClassTrainerFrameFilterDropDown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 501, -40)
+				if LeaPlusLC.NewPatch then
+					ClassTrainerFrame.FilterDropdown:ClearAllPoints()
+					ClassTrainerFrame.FilterDropdown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 576, -44)
+				else
+					ClassTrainerFrameFilterDropDown:ClearAllPoints()
+					ClassTrainerFrameFilterDropDown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 501, -40)
+				end
 
 				-- Position money frame
 				ClassTrainerMoneyFrame:ClearAllPoints()
