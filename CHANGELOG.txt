@@ -1,6 +1,6 @@
 ﻿1.15.48.alpha.1 - 4th September 2024
-- Added flight times.
 - PTR (1.15.4): Game API updates.
+- Added flight times.
 
 1.15.47 - 4th September 2024
 - PTR (1.15.4): Preliminary updates for PTR game version 1.15.4.

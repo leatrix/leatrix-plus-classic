@@ -770,6 +770,7 @@
 				["0.61:0.55:0.61:0.40:0.46:0.40:0.43:0.25:0.31:0.69"] = 904, -- Ratchet, Talrendis Point, Astranaar, Auberdine, Feathermoon
 				["0.61:0.55:0.64:0.67:0.40:0.51:0.43:0.25:0.55:0.21"] = 871, -- Ratchet, Theramore, Nijel's Point, Auberdine, Moonglade
 				["0.61:0.55:0.61:0.40:0.53:0.26:0.55:0.21"] = 474, -- Ratchet, Talrendis Point, Talonbranch Glade, Moonglade
+				["0.61:0.55:0.64:0.67:0.60:0.81:0.50:0.76:0.42:0.79:0.31:0.69"] = 624, -- Ratchet, Theramore, Gadgetzan, Marshal's Refuge, Cenarion Hold, Feathermoon
 
 				-- Alliance: Rut'theran Village (Teldrassil)
 				["0.42:0.16:0.43:0.25:0.61:0.40:0.61:0.55:0.64:0.67:0.60:0.81"] = 774, -- Rut'theran Village, Auberdine, Talrendis Point, Ratchet, Theramore, Gadgetzan
