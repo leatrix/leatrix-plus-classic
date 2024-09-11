@@ -1,4 +1,4 @@
-﻿1.15.48.alpha.1 - 4th September 2024
+﻿1.15.48 - 11th September 2024
 - PTR (1.15.4): Game API updates.
 - Added flight times.
 
