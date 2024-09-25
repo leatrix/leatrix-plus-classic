@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.49 (18th September 2024)
+-- 	Leatrix Plus 1.15.50.alpha.1 (25th September 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.49"
+	LeaPlusLC["AddonVer"] = "1.15.50.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -1616,11 +1616,7 @@
 			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestCompleted", "Turn-in completed quests automatically", 16, -112, false, "If checked, completed quests will be turned-in automatically.")
 			LeaPlusLC:MakeCB(QuestPanel, "AutoQuestShift", "Require override key for quest automation", 16, -132, false, "If checked, you will need to hold the override key down for quests to be automated.|n|nIf unchecked, holding the override key will prevent quests from being automated.")
 
-			if LeaPlusLC.NewPatch then
-				LeaPlusLC:CreateDropdown("AutoQuestKeyMenu", "Override key", 146, "TOPLEFT", QuestPanel, "TOPLEFT", 356, -92, {{L["SHIFT"], 1}, {L["ALT"], 2}, {L["CONTROL"], 3}, {L["CMD (MAC)"], 4}})
-			else
-				LeaPlusLC:CreateDropDownOld("AutoQuestKeyMenu", "Override key", QuestPanel, 146, "TOPLEFT", 356, -115, {L["SHIFT"], L["ALT"], L["CONTROL"], L["CMD (MAC)"]}, "")
-			end
+			LeaPlusLC:CreateDropdown("AutoQuestKeyMenu", "Override key", 146, "TOPLEFT", QuestPanel, "TOPLEFT", 356, -92, {{L["SHIFT"], 1}, {L["ALT"], 2}, {L["CONTROL"], 3}, {L["CMD (MAC)"], 4}})
 
 			-- Help button hidden
 			QuestPanel.h:Hide()
@@ -2099,21 +2095,13 @@
 
 		if LeaPlusLC["CharAddonList"] == "On" then
 			-- Set the addon list to character by default
-			if LeaPlusLC.NewPatch then
-				-- Set the addon list to character by default
-				hooksecurefunc(AddonList.Dropdown, "SetupMenu", function(self)
-					local nextRadio
-					MenuUtil.TraverseMenu(self:GetMenuDescription(), function(description)
-						nextRadio = description
-					end)
-					self:Pick(nextRadio, MenuInputContext.MouseWheel)
+			hooksecurefunc(AddonList.Dropdown, "SetupMenu", function(self)
+				local nextRadio
+				MenuUtil.TraverseMenu(self:GetMenuDescription(), function(description)
+					nextRadio = description
 				end)
-			else
-				if AddonCharacterDropDown and AddonCharacterDropDown.selectedValue then
-					AddonCharacterDropDown.selectedValue = UnitName("player");
-					AddonCharacterDropDownText:SetText(UnitName("player"))
-				end
-			end
+				self:Pick(nextRadio, MenuInputContext.MouseWheel)
+			end)
 		end
 
 		----------------------------------------------------------------------
@@ -2643,11 +2631,7 @@
 			local ChainPanel = LeaPlusLC:CreatePanel("Show player chain", "ChainPanel")
 
 			-- Add dropdown menu
-			if LeaPlusLC.NewPatch then
-				LeaPlusLC:CreateDropdown("PlayerChainMenu", "Chain style", 146, "TOPLEFT", ChainPanel, "TOPLEFT", 16, -92, {{L["RARE"], 1}, {L["ELITE"], 2}, {L["RARE ELITE"], 3}})
-			else
-				LeaPlusLC:CreateDropDownOld("PlayerChainMenu", "Chain style", ChainPanel, 146, "TOPLEFT", 16, -112, {L["RARE"], L["ELITE"], L["RARE ELITE"]}, "")
-			end
+			LeaPlusLC:CreateDropdown("PlayerChainMenu", "Chain style", 146, "TOPLEFT", ChainPanel, "TOPLEFT", 16, -92, {{L["RARE"], 1}, {L["ELITE"], 2}, {L["RARE ELITE"], 3}})
 
 			-- Set chain style
 			local function SetChainStyle()
@@ -2673,33 +2657,23 @@
 			SetChainStyle()
 
 			-- Set style when a drop menu is selected (procs when the list is hidden)
-			if LeaPlusLC.NewPatch then
-				LeaPlusCB["PlayerChainMenu"]:RegisterCallback("OnUpdate", SetChainStyle)
-			else
-				LeaPlusCB["ListFramePlayerChainMenu"]:HookScript("OnHide", SetChainStyle)
-			end
+			LeaPlusCB["PlayerChainMenu"]:RegisterCallback("OnUpdate", SetChainStyle)
 
 			-- Help button hidden
 			ChainPanel.h:Hide()
 
 			-- Back button handler
 			ChainPanel.b:SetScript("OnClick", function()
-				if not LeaPlusLC.NewPatch then
-					LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
-				end
-				ChainPanel:Hide();
-				LeaPlusLC["PageF"]:Show();
-				LeaPlusLC["Page5"]:Show();
+				ChainPanel:Hide()
+				LeaPlusLC["PageF"]:Show()
+				LeaPlusLC["Page5"]:Show()
 				return
 			end)
 
 			-- Reset button handler
 			ChainPanel.r:SetScript("OnClick", function()
-				if not LeaPlusLC.NewPatch then
-					LeaPlusCB["ListFramePlayerChainMenu"]:Hide(); -- Hide the dropdown list
-				end
 				LeaPlusLC["PlayerChainMenu"] = 2
-				ChainPanel:Hide(); ChainPanel:Show();
+				ChainPanel:Hide(); ChainPanel:Show()
 				SetChainStyle()
 			end)
 
@@ -5068,14 +5042,11 @@
 				end
 			end
 
-			-- LeaPlusLC.NewPatch - Replace MiniMapTrackingFrame with MiniMapTracking
-			local MiniMapTrackingFrame = MiniMapTracking or MiniMapTrackingFrame
-
 			-- Fix for bug in default UI which does not texture tracking button icon on login
 			local icon = GetTrackingTexture()
 			if icon and not MiniMapTrackingIcon:GetTexture() then
 				MiniMapTrackingIcon:SetTexture(icon)
-				MiniMapTrackingFrame:Show()
+				MiniMapTracking:Show()
 			end
 
 			-- Disable mouse on invisible minimap cluster
@@ -5640,10 +5611,10 @@
 
 				-- Tracking button (only visible when needed)
 				C_Timer.After(0.1, function()
-					MiniMapTrackingFrame:SetScale(0.60)
-					miniFrame.ClearAllPoints(MiniMapTrackingFrame)
-					MiniMapTrackingFrame:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -24, -24) -- SetLookingForGroupUIAvailable
-					MiniMapTrackingFrame:SetFrameLevel(4)
+					MiniMapTracking:SetScale(0.60)
+					miniFrame.ClearAllPoints(MiniMapTracking)
+					MiniMapTracking:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -24, -24) -- SetLookingForGroupUIAvailable
+					MiniMapTracking:SetFrameLevel(4)
 				end)
 
 				-- Mail button
@@ -5690,7 +5661,7 @@
 						MiniMapWorldMapButton:Show()
 						GameTimeFrame:Show()
 						MiniMapLFGFrame:Show()
-						MiniMapTrackingFrame:Show()
+						MiniMapTracking:Show()
 					end)
 				end
 
@@ -6253,38 +6224,38 @@
 			if LeaPlusLC["HideMiniTracking"] == "On" then
 
 				-- Hide tracking button initially
-				MiniMapTrackingFrame:SetAlpha(0)
-				MiniMapTrackingFrame:Hide()
+				MiniMapTracking:SetAlpha(0)
+				MiniMapTracking:Hide()
 
 				-- Create tracking button fade out animation
-				MiniMapTrackingFrame.fadeOut = MiniMapTrackingFrame:CreateAnimationGroup()
-				local animOut = MiniMapTrackingFrame.fadeOut:CreateAnimation("Alpha")
+				MiniMapTracking.fadeOut = MiniMapTracking:CreateAnimationGroup()
+				local animOut = MiniMapTracking.fadeOut:CreateAnimation("Alpha")
 				animOut:SetOrder(1)
 				animOut:SetDuration(0.2)
 				animOut:SetFromAlpha(1)
 				animOut:SetToAlpha(0)
 				animOut:SetStartDelay(1)
-				MiniMapTrackingFrame.fadeOut:SetToFinalAlpha(true)
+				MiniMapTracking.fadeOut:SetToFinalAlpha(true)
 
 				-- Show tracking button when entering minimap
 				Minimap:HookScript("OnEnter", function()
 					if GetTrackingTexture() then
-						MiniMapTrackingFrame.fadeOut:Stop()
-						MiniMapTrackingFrame:SetAlpha(1)
+						MiniMapTracking.fadeOut:Stop()
+						MiniMapTracking:SetAlpha(1)
 					end
 				end)
 
 				-- Hide tracking button when leaving minimap if pointer is not over tracking button
 				Minimap:HookScript("OnLeave", function()
-					if not MouseIsOver(MiniMapTrackingFrame) and GetTrackingTexture() then
-						MiniMapTrackingFrame.fadeOut:Play()
+					if not MouseIsOver(MiniMapTracking) and GetTrackingTexture() then
+						MiniMapTracking.fadeOut:Play()
 					end
 				end)
 
 				-- Hide tracking button when leaving tracking button
-				MiniMapTrackingFrame:HookScript("OnLeave", function()
+				MiniMapTracking:HookScript("OnLeave", function()
 					if GetTrackingTexture() then
-						MiniMapTrackingFrame.fadeOut:Play()
+						MiniMapTracking.fadeOut:Play()
 					end
 				end)
 
@@ -6295,13 +6266,13 @@
 					if button then
 						button:HookScript("OnEnter", function()
 							if GetTrackingTexture() then
-								MiniMapTrackingFrame.fadeOut:Stop()
-								MiniMapTrackingFrame:SetAlpha(1)
+								MiniMapTracking.fadeOut:Stop()
+								MiniMapTracking:SetAlpha(1)
 							end
 						end)
 						button:HookScript("OnLeave", function()
 							if GetTrackingTexture() then
-								MiniMapTrackingFrame.fadeOut:Play()
+								MiniMapTracking.fadeOut:Play()
 							end
 						end)
 					end
@@ -6311,16 +6282,16 @@
 				-- LibDBIcon_IconCreated: Done in LibDBIcon callback function
 
 				-- Show tracking button when button alpha is set to 1 if tracking is active
-				hooksecurefunc(MiniMapTrackingFrame, "SetAlpha", function(self, alphavalue)
+				hooksecurefunc(MiniMapTracking, "SetAlpha", function(self, alphavalue)
 					if alphavalue and alphavalue == 1 and GetTrackingTexture() then
-						MiniMapTrackingFrame:Show()
+						MiniMapTracking:Show()
 					end
 				end)
 
 				-- Hide tracking button when fadeout animation has finished
-				MiniMapTrackingFrame.fadeOut:HookScript("OnFinished", function()
+				MiniMapTracking.fadeOut:HookScript("OnFinished", function()
 					if GetTrackingTexture() then
-						MiniMapTrackingFrame:Hide()
+						MiniMapTracking:Hide()
 					end
 				end)
 
@@ -6385,14 +6356,14 @@
 					button:HookScript("OnEnter", function()
 						-- Show tracking button when entering LibDBIcon button
 						if GetTrackingTexture() then
-							MiniMapTrackingFrame.fadeOut:Stop()
-							MiniMapTrackingFrame:SetAlpha(1)
+							MiniMapTracking.fadeOut:Stop()
+							MiniMapTracking:SetAlpha(1)
 						end
 					end)
 					button:HookScript("OnLeave", function()
 						-- Hide tracking button when leaving LibDBIcon button
 						if GetTrackingTexture() then
-							MiniMapTrackingFrame.fadeOut:Play()
+							MiniMapTracking.fadeOut:Play()
 						end
 					end)
 				end
@@ -7722,13 +7693,8 @@
 				_G["ClassTrainerFrameCloseButton"]:SetPoint("TOPRIGHT", _G["ClassTrainerFrame"], "TOPRIGHT", -30, -8)
 
 				-- Position dropdown menus
-				if LeaPlusLC.NewPatch then
-					ClassTrainerFrame.FilterDropdown:ClearAllPoints()
-					ClassTrainerFrame.FilterDropdown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 576, -44)
-				else
-					ClassTrainerFrameFilterDropDown:ClearAllPoints()
-					ClassTrainerFrameFilterDropDown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 501, -40)
-				end
+				ClassTrainerFrame.FilterDropdown:ClearAllPoints()
+				ClassTrainerFrame.FilterDropdown:SetPoint("TOPLEFT", ClassTrainerFrame, "TOPLEFT", 576, -44)
 
 				-- Position money frame
 				ClassTrainerMoneyFrame:ClearAllPoints()
@@ -8057,17 +8023,10 @@
 				_G["TradeSkillFrameCloseButton"]:SetPoint("TOPRIGHT", _G["TradeSkillFrame"], "TOPRIGHT", -30, -8)
 
 				-- Position dropdown menus
-				if LeaPlusLC.NewPatch then
-					TradeSkillInvSlotDropdown:ClearAllPoints()
-					TradeSkillInvSlotDropdown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 550, -42)
-					TradeSkillSubClassDropdown:ClearAllPoints()
-					TradeSkillSubClassDropdown:SetPoint("RIGHT", TradeSkillInvSlotDropdown, "LEFT", -10, 0)
-				else
-					TradeSkillInvSlotDropDown:ClearAllPoints()
-					TradeSkillInvSlotDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 510, -40)
-					TradeSkillSubClassDropDown:ClearAllPoints()
-					TradeSkillSubClassDropDown:SetPoint("RIGHT", TradeSkillInvSlotDropDown, "LEFT", 0, 0)
-				end
+				TradeSkillInvSlotDropdown:ClearAllPoints()
+				TradeSkillInvSlotDropdown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 550, -42)
+				TradeSkillSubClassDropdown:ClearAllPoints()
+				TradeSkillSubClassDropdown:SetPoint("RIGHT", TradeSkillInvSlotDropdown, "LEFT", -10, 0)
 
 				-- ElvUI fixes
 				if LeaPlusLC.ElvUI then
@@ -8644,14 +8603,8 @@
 				if tooltip.shownMoneyFrames then return end
 				tooltipObject = tooltipObject or GameTooltip
 				-- Get container
-				local container
-				if LeaPlusLC.NewPatch then
-					container = GetMouseFoci()[1]
-					if not container then return end
-				else
-					container = GetMouseFocus()
-					if not container then return end
-				end
+				local container = GetMouseFoci()[1]
+				if not container then return end
 				-- Get item
 				local itemName, itemlink = tooltipObject:GetItem()
 				if not itemlink then return end
@@ -8864,12 +8817,8 @@
 
 			-- Minimap button click function
 			local function MiniBtnClickFunc(arg1)
-				-- Prevent options panel from showing if Blizzard options panel is showing
-				if LeaPlusLC.NewPatch then
-					if ChatConfigFrame:IsShown() then return end
-				else
-					if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
-				end
+				-- Prevent options panel from showing if chat configuration panel is showing
+				if ChatConfigFrame:IsShown() then return end
 				-- Prevent options panel from showing if Blizzard Store is showing
 				if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 				-- Left button down
@@ -10078,20 +10027,13 @@
 			local function HideButtons(chtfrm)
 				_G[chtfrm .. "ButtonFrameUpButton"]:SetParent(tframe)
 				_G[chtfrm .. "ButtonFrameDownButton"]:SetParent(tframe)
-				if _G[chtfrm .. "ButtonFrameMinimizeButton"] then -- LeaPlusLC.NewPatch: Removed in 1.15.3
-					_G[chtfrm .. "ButtonFrameMinimizeButton"]:SetParent(tframe)
-				end
 				_G[chtfrm .. "ButtonFrameUpButton"]:Hide()
 				_G[chtfrm .. "ButtonFrameDownButton"]:Hide()
-				if _G[chtfrm .. "ButtonFrameMinimizeButton"] then -- LeaPlusLC.NewPatch: Removed in 1.15.3
-					_G[chtfrm .. "ButtonFrameMinimizeButton"]:Hide()
-				end
-				_G[chtfrm .. "ButtonFrame"]:SetSize(0.1,0.1)
+				_G[chtfrm .. "ButtonFrame"]:SetSize(0.1, 0.1)
+				_G[chtfrm .. "MinimizeButton"]:SetParent(tframe)
 			end
 
-			if FriendsMicroButton then -- LeaPlusLC.NewPatch: Added in 1.15.3
-				FriendsMicroButton:Hide()
-			end
+			FriendsMicroButton:Hide()
 
 			-- Function to highlight chat tabs and click to scroll to bottom
 			local function HighlightTabs(chtfrm)
@@ -10782,61 +10724,32 @@
 			--	Position the tooltip
 			----------------------------------------------------------------------
 
-			if LeaPlusLC.NewPatch then
-				hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
-					if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
-						if (not tooltip or not parent) then
-							return
+			hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
+				if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
+					if (not tooltip or not parent) then
+						return
+					end
+					if LeaPlusLC["TooltipAnchorMenu"] == 2 or not WorldFrame:IsMouseMotionFocus() then
+						local a,b,c,d,e = tooltip:GetPoint()
+						if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
+							tooltip:ClearAllPoints()
 						end
-						if LeaPlusLC["TooltipAnchorMenu"] == 2 or not WorldFrame:IsMouseMotionFocus() then
-							local a,b,c,d,e = tooltip:GetPoint()
-							if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
-								tooltip:ClearAllPoints()
-							end
-							tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
+						tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
+						return
+					else
+						if LeaPlusLC["TooltipAnchorMenu"] == 3 then
+							tooltip:SetOwner(parent, "ANCHOR_CURSOR")
 							return
-						else
-							if LeaPlusLC["TooltipAnchorMenu"] == 3 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR")
-								return
-							elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
-								return
-							elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
-								return
-							end
+						elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
+							tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+							return
+						elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
+							tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
+							return
 						end
 					end
-				end)
-			else
-				hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
-					if LeaPlusLC["TooltipAnchorMenu"] ~= 1 then
-						if (not tooltip or not parent) then
-							return
-						end
-						if LeaPlusLC["TooltipAnchorMenu"] == 2 or GetMouseFocus() ~= WorldFrame then
-							local a,b,c,d,e = tooltip:GetPoint()
-							if a ~= "BOTTOMRIGHT" or c ~= "BOTTOMRIGHT" then
-								tooltip:ClearAllPoints()
-							end
-							tooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", LeaPlusLC["TipOffsetX"], LeaPlusLC["TipOffsetY"]);
-							return
-						else
-							if LeaPlusLC["TooltipAnchorMenu"] == 3 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR")
-								return
-							elseif LeaPlusLC["TooltipAnchorMenu"] == 4 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR_LEFT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
-								return
-							elseif LeaPlusLC["TooltipAnchorMenu"] == 5 then
-								tooltip:SetOwner(parent, "ANCHOR_CURSOR_RIGHT", LeaPlusLC["TipCursorX"], LeaPlusLC["TipCursorY"])
-								return
-							end
-						end
-					end
-				end)
-			end
+				end
+			end)
 
 			----------------------------------------------------------------------
 			--	Tooltip Configuration
@@ -10908,11 +10821,7 @@
 			LeaPlusCB["TipHideInCombat"]:HookScript("OnClick", SetTipHideShiftOverrideFunc)
 			SetTipHideShiftOverrideFunc()
 
-			if LeaPlusLC.NewPatch then
-				LeaPlusLC:CreateDropdown("TooltipAnchorMenu", "Anchor", 146, "TOPLEFT", SideTip, "TOPLEFT", 356, -92, {{L["None"], 1}, {L["Overlay"], 2}, {L["Cursor"], 3}, {L["Cursor Left"], 4}, {L["Cursor Right"], 5}})
-			else
-				LeaPlusLC:CreateDropDownOld("TooltipAnchorMenu", "Anchor", SideTip, 146, "TOPLEFT", 356, -115, {L["None"], L["Overlay"], L["Cursor"], L["Cursor Left"], L["Cursor Right"]}, "")
-			end
+			LeaPlusLC:CreateDropdown("TooltipAnchorMenu", "Anchor", 146, "TOPLEFT", SideTip, "TOPLEFT", 356, -92, {{L["None"], 1}, {L["Overlay"], 2}, {L["Cursor"], 3}, {L["Cursor Left"], 4}, {L["Cursor Right"], 5}})
 
 			local XOffsetHeading = LeaPlusLC:MakeTx(SideTip, "X Offset", 356, -132)
 			LeaPlusLC:MakeSL(SideTip, "TipCursorX", "Drag to set the cursor X offset.", -128, 128, 1, 356, -152, "%.0f")
@@ -10952,11 +10861,7 @@
 			end
 
 			-- Set controls when anchor dropdown menu is changed and on startup
-			if LeaPlusLC.NewPatch then
-				LeaPlusCB["TooltipAnchorMenu"]:RegisterCallback("OnUpdate", SetAnchorControls)
-			else
-				LeaPlusCB["ListFrameTooltipAnchorMenu"]:HookScript("OnHide", SetAnchorControls)
-			end
+			LeaPlusCB["TooltipAnchorMenu"]:RegisterCallback("OnUpdate", SetAnchorControls)
 			SetAnchorControls()
 
 			---------------------------------------------------------------------------------------------------------
@@ -11182,34 +11087,18 @@
 				end
 
 				-- Get unit information
-				if LeaPlusLC.NewPatch then
-					if WorldFrame:IsMouseMotionFocus() then
-						LT["Unit"] = "mouseover"
-						-- Hide and quit if tips should be hidden during combat
-						if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
-							if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
-								GameTooltip:Hide()
-								return
-							end
+				if WorldFrame:IsMouseMotionFocus() then
+					LT["Unit"] = "mouseover"
+					-- Hide and quit if tips should be hidden during combat
+					if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
+						if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
+							GameTooltip:Hide()
+							return
 						end
-					else
-						LT["Unit"] = select(2, GameTooltip:GetUnit())
-						if not (LT["Unit"]) then return end
 					end
 				else
-					if GetMouseFocus() == WorldFrame then
-						LT["Unit"] = "mouseover"
-						-- Hide and quit if tips should be hidden during combat
-						if LeaPlusLC["TipHideInCombat"] == "On" and UnitAffectingCombat("player") then
-							if not IsShiftKeyDown() or LeaPlusLC["TipHideShiftOverride"] == "Off" then
-								GameTooltip:Hide()
-								return
-							end
-						end
-					else
-						LT["Unit"] = select(2, GameTooltip:GetUnit())
-						if not (LT["Unit"]) then return end
-					end
+					LT["Unit"] = select(2, GameTooltip:GetUnit())
+					if not (LT["Unit"]) then return end
 				end
 
 				-- Quit if unit has no reaction to player
@@ -11811,7 +11700,7 @@
 		-- L45: Create panel in game options panel
 		----------------------------------------------------------------------
 
-		if LeaPlusLC.NewPatch then
+		do
 
 			local interPanel = CreateFrame("FRAME")
 			interPanel.name = "Leatrix Plus"
@@ -11856,51 +11745,6 @@
 
 			local category = Settings.RegisterCanvasLayoutCategory(interPanel, L["Leatrix Plus"])
 			Settings.RegisterAddOnCategory(category)
-
-		else
-
-			local interPanel = CreateFrame("FRAME")
-			interPanel.name = "Leatrix Plus"
-
-			local maintitle = LeaPlusLC:MakeTx(interPanel, "Leatrix Plus", 0, 0)
-			maintitle:SetFont(maintitle:GetFont(), 72)
-			maintitle:ClearAllPoints()
-			maintitle:SetPoint("TOP", 0, -72)
-
-			local expTitle = LeaPlusLC:MakeTx(interPanel, "World of Warcraft Classic", 0, 0)
-			expTitle:SetFont(expTitle:GetFont(), 32)
-			expTitle:ClearAllPoints()
-			expTitle:SetPoint("TOP", 0, -152)
-
-			local subTitle = LeaPlusLC:MakeTx(interPanel, "www.leatrix.com", 0, 0)
-			subTitle:SetFont(subTitle:GetFont(), 20)
-			subTitle:ClearAllPoints()
-			subTitle:SetPoint("BOTTOM", 0, 72)
-
-			local slashTitle = LeaPlusLC:MakeTx(interPanel, "/ltp", 0, 0)
-			slashTitle:SetFont(slashTitle:GetFont(), 72)
-			slashTitle:ClearAllPoints()
-			slashTitle:SetPoint("BOTTOM", subTitle, "TOP", 0, 40)
-			slashTitle:SetScript("OnMouseUp", function(self, button)
-				if button == "LeftButton" then
-					SlashCmdList["Leatrix_Plus"]("")
-				end
-			end)
-			slashTitle:SetScript("OnEnter", function()
-				slashTitle.r,  slashTitle.g, slashTitle.b = slashTitle:GetTextColor()
-				slashTitle:SetTextColor(1, 1, 0)
-			end)
-			slashTitle:SetScript("OnLeave", function()
-				slashTitle:SetTextColor(slashTitle.r, slashTitle.g, slashTitle.b)
-			end)
-
-			local pTex = interPanel:CreateTexture(nil, "BACKGROUND")
-			pTex:SetAllPoints()
-			pTex:SetTexture("Interface\\GLUES\\Models\\UI_MainMenu\\swordgradient2")
-			pTex:SetAlpha(0.2)
-			pTex:SetTexCoord(0, 1, 1, 0)
-
-			InterfaceOptions_AddCategory(interPanel)
 
 		end
 
@@ -12755,12 +12599,6 @@
 
 		-- Register logout event to save settings
 		LpEvt:RegisterEvent("PLAYER_LOGOUT")
-
-		-- Hide Leatrix Plus if game options panel is shown
-		if not LeaPlusLC.NewPatch then
-			InterfaceOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
-			VideoOptionsFrame:HookScript("OnShow", LeaPlusLC.HideFrames)
-		end
 
 		-- Update addon memory usage (speeds up initial value)
 		UpdateAddOnMemoryUsage()
@@ -13716,30 +13554,18 @@
 	function LeaPlusLC:MakeSL(frame, field, caption, low, high, step, x, y, form)
 
 		-- Create slider control
-		local Slider
-		if LeaPlusLC.NewPatch then
-			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "UISliderTemplate")
-		else
-			Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "OptionssliderTemplate")
-		end
-
-		LeaPlusCB[field] = Slider;
+		local Slider = CreateFrame("Slider", "LeaPlusGlobalSlider" .. field, frame, "UISliderTemplate")
+		LeaPlusCB[field] = Slider
 		Slider:SetMinMaxValues(low, high)
 		Slider:SetValueStep(step)
 		Slider:EnableMouseWheel(true)
-		Slider:SetPoint('TOPLEFT', x,y)
+		Slider:SetPoint('TOPLEFT', x, y)
 		Slider:SetWidth(100)
 		Slider:SetHeight(20)
-		Slider:SetHitRectInsets(0, 0, 0, 0);
+		Slider:SetHitRectInsets(0, 0, 0, 0)
 		Slider.tiptext = L[caption]
 		Slider:SetScript("OnEnter", LeaPlusLC.TipSee)
 		Slider:SetScript("OnLeave", GameTooltip_Hide)
-
-		-- Remove slider text
-		if not LeaPlusLC.NewPatch then
-			_G[Slider:GetName().."Low"]:SetText('');
-			_G[Slider:GetName().."High"]:SetText('');
-		end
 
 		-- Create slider label
 		Slider.f = Slider:CreateFontString(nil, 'BACKGROUND')
@@ -14307,19 +14133,10 @@
 					end
 				end
 				-- Store frame under mouse
-				local mouseFocus
-				if LeaPlusLC.NewPatch then
-					mouseFocus = GetMouseFoci()[1]
-				else
-					mouseFocus = GetMouseFocus()
-				end
+				local mouseFocus = GetMouseFoci()[1]
 				-- ItemRefTooltip or GameTooltip
 				local tooltip
-				if LeaPlusLC.NewPatch then
-					if ItemRefTooltip:IsMouseMotionFocus() then tooltip = ItemRefTooltip else tooltip = GameTooltip end
-				else
-					if mouseFocus == ItemRefTooltip then tooltip = ItemRefTooltip else tooltip = GameTooltip end
-				end
+				if ItemRefTooltip:IsMouseMotionFocus() then tooltip = ItemRefTooltip else tooltip = GameTooltip end
 				-- Process tooltip
 				if tooltip:IsShown() then
 					-- Item
@@ -15009,24 +14826,9 @@
 				return
 			elseif str == "click" then
 				-- Click a button (optional x number of times)
-				if LeaPlusLC.NewPatch then
-					local mouseFoci = GetMouseFoci()
-					if mouseFoci then
-						local frame = mouseFoci[#mouseFoci]
-						local ftype = frame:GetObjectType()
-						if frame and ftype and ftype == "Button" then
-							if arg1 and tonumber(arg1) > 1 and tonumber(arg1) < 1000 then
-								for i =1, tonumber(arg1) do C_Timer.After(0.1 * i, function() frame:Click() end) end
-							else
-								frame:Click()
-							end
-						else
-							LeaPlusLC:Print("Hover the pointer over a button.")
-						end
-						return
-					end
-				else
-					local frame = GetMouseFocus()
+				local mouseFoci = GetMouseFoci()
+				if mouseFoci then
+					local frame = mouseFoci[#mouseFoci]
 					local ftype = frame:GetObjectType()
 					if frame and ftype and ftype == "Button" then
 						if arg1 and tonumber(arg1) > 1 and tonumber(arg1) < 1000 then
@@ -15041,27 +14843,9 @@
 				end
 			elseif str == "frame" then
 				-- Print frame name under mouse
-				if LeaPlusLC.NewPatch then
-					local mouseFoci = GetMouseFoci()
-					if mouseFoci then
-						local frame = mouseFoci[#mouseFoci]
-						local ftype = frame:GetObjectType()
-						if frame and ftype then
-							local fname = frame:GetName()
-							local issecure, tainted = issecurevariable(fname)
-							if issecure then issecure = "Yes" else issecure = "No" end
-							if tainted then tainted = "Yes" else tainted = "No" end
-							if fname then
-								LeaPlusLC:Print("Name: |cffffffff" .. fname)
-								LeaPlusLC:Print("Type: |cffffffff" .. ftype)
-								LeaPlusLC:Print("Secure: |cffffffff" .. issecure)
-								LeaPlusLC:Print("Tainted: |cffffffff" .. tainted)
-							end
-						end
-					end
-					return
-				else
-					local frame = GetMouseFocus()
+				local mouseFoci = GetMouseFoci()
+				if mouseFoci then
+					local frame = mouseFoci[#mouseFoci]
 					local ftype = frame:GetObjectType()
 					if frame and ftype then
 						local fname = frame:GetName()
@@ -15075,8 +14859,8 @@
 							LeaPlusLC:Print("Tainted: |cffffffff" .. tainted)
 						end
 					end
-					return
 				end
+				return
 			elseif str == "arrow" then
 				-- Arrow (left: drag, shift/ctrl: rotate, mouseup: loc, pointer must be on arrow stem)
 				local f = CreateFrame("Frame", nil, WorldMapFrame.ScrollContainer)
@@ -15183,12 +14967,8 @@
 				if LeaPlusLC.ShowMemoryUsage then
 					LeaPlusLC:ShowMemoryUsage(LeaPlusLC["Page8"], "TOPLEFT", 146, -262)
 				end
-				-- Prevent options panel from showing if a game options panel is showing
-				if LeaPlusLC.NewPatch then
-					if ChatConfigFrame:IsShown() then return end
-				else
-					if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
-				end
+				-- Prevent options panel from showing if a chat configuration panel is showing
+				if ChatConfigFrame:IsShown() then return end
 				-- Prevent options panel from showing if Blizzard Store is showing
 				if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 				-- Toggle the options panel if game options panel is not showing
@@ -15520,12 +15300,8 @@
 			end
 			return
 		else
-			-- Prevent options panel from showing if a game options panel is showing
-			if LeaPlusLC.NewPatch then
-				if ChatConfigFrame:IsShown() then return end
-			else
-				if InterfaceOptionsFrame:IsShown() or VideoOptionsFrame:IsShown() or ChatConfigFrame:IsShown() then return end
-			end
+			-- Prevent options panel from showing if a chat configuration panel is showing
+			if ChatConfigFrame:IsShown() then return end
 			-- Prevent options panel from showing if Blizzard Store is showing
 			if StoreFrame and StoreFrame:GetAttribute("isshown") then return end
 			-- Toggle the options panel if game options panel is not showing

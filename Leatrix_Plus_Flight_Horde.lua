@@ -125,6 +125,7 @@
 				["0.70:0.16:0.44:0.19:0.49:0.27"] = 327, -- Light's Hope Chapel, Undercity, Tarren Mill
 				["0.70:0.16:0.44:0.19:0.55:0.57:0.61:0.75"] = 953, -- Light's Hope Chapel, Undercity, Kargath, Stonard
 				["0.70:0.16:0.44:0.19:0.62:0.31"] = 489, -- Light's Hope Chapel, Undercity, Hammerfall
+				["0.70:0.16:0.44:0.19:0.55:0.57:0.45:0.84:0.43:0.93"] = 1065, -- Light's Hope Chapel, Undercity, Kargath, Grom'gol, Booty Bay
 
 				-- Horde: Revantusk Village (The Hinterlands)
 				["0.67:0.30:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 743, -- Revantusk Village, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -315,6 +316,7 @@
 				["0.53:0.61:0.45:0.56:0.32:0.58"] = 273, -- Camp Taurajo, Thunder Bluff, Shadowprey Village
 				["0.53:0.61:0.45:0.56:0.63:0.44"] = 321, -- Camp Taurajo, Thunder Bluff, Orgrimmar
 				["0.53:0.61:0.56:0.53:0.41:0.47:0.32:0.58"] = 372, -- Camp Taurajo, Crossroads, Sun Rock Retreat, Shadowprey Village
+				["0.53:0.61:0.56:0.53:0.44:0.69"] = 332, -- Camp Taurajo, Crossroads, Camp Mojache
 
 				-- Horde: Cenarion Hold (Silithus)
 				["0.42:0.79:0.61:0.80"] = 241, -- Cenarion Hold, Gadgetzan
@@ -667,6 +669,7 @@
 				["0.45:0.56:0.63:0.44:0.64:0.23"] = 527, -- Thunder Bluff, Orgrimmar, Everlook
 				["0.45:0.56:0.61:0.80:0.50:0.76:0.42:0.79"] = 498, -- Thunder Bluff, Gadgetzan, Marshal's Refuge, Cenarion Hold
 				["0.45:0.56:0.56:0.53:0.55:0.42"] = 321, -- Thunder Bluff, Crossroads, Splintertree Post
+				["0.45:0.56:0.63:0.44:0.64:0.23:0.54:0.21"] = 661, -- Thunder Bluff, Orgrimmar, Everlook, Moonglade
 
 				-- Horde: Valormok (Azshara)
 				["0.63:0.36:0.56:0.53:0.55:0.73:0.61:0.80"] = 449, -- Valormok, Crossroads, Freewind Post, Gadgetzan
