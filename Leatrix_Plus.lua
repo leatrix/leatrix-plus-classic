@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.51 (25th September 2024)
+-- 	Leatrix Plus 1.15.52 (25th September 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.51"
+	LeaPlusLC["AddonVer"] = "1.15.52"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -8959,7 +8959,7 @@
 
 				-- Functions
 				local function CreateAuctionCB(name, anchor, x, y, text)
-					LeaPlusCB[name] = CreateFrame("CheckButton", nil, AuctionFrameAuctions, "OptionsCheckButtonTemplate")
+					LeaPlusCB[name] = CreateFrame("CheckButton", nil, AuctionFrameAuctions, "ChatConfigCheckButtonTemplate")
 					LeaPlusCB[name]:SetFrameStrata("HIGH")
 					LeaPlusCB[name]:SetSize(20, 20)
 					LeaPlusCB[name]:SetPoint(anchor, x, y)
