@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.52 (25th September 2024)
+-- 	Leatrix Plus 1.15.53.alpha.1 (25th September 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.52"
+	LeaPlusLC["AddonVer"] = "1.15.53.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -14937,6 +14937,10 @@
 						LeaPlusLC:Print("Dropdown: " .. "|cffffffff" .. key .. "|r |cff1eff0c(" .. value .. ")|r")
 					end
 				end
+				return
+			elseif str == "tags" then
+				-- Print open menu tags (such as dropdown menus)
+				Menu.PrintOpenMenuTags()
 				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
