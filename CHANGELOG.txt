@@ -1,4 +1,7 @@
-﻿1.15.53 - 2nd October 2024
+﻿1.15.54.alpha.1 - 2nd October 2024
+- For 'Enhance minimap' ('Interface'), improved compatibility with Zygor minimap button notifications.
+
+1.15.53 - 2nd October 2024
 - Game API updates.
 - Added flight times.
 
