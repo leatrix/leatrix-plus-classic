@@ -126,6 +126,7 @@
 				["0.70:0.16:0.44:0.19:0.55:0.57:0.61:0.75"] = 953, -- Light's Hope Chapel, Undercity, Kargath, Stonard
 				["0.70:0.16:0.44:0.19:0.62:0.31"] = 489, -- Light's Hope Chapel, Undercity, Hammerfall
 				["0.70:0.16:0.44:0.19:0.55:0.57:0.45:0.84:0.43:0.93"] = 1065, -- Light's Hope Chapel, Undercity, Kargath, Grom'gol, Booty Bay
+				["0.70:0.16:0.44:0.19:0.55:0.57:0.56:0.61"] = 758, -- Light's Hope Chapel, Undercity, Kargath, Flame Crest
 
 				-- Horde: Revantusk Village (The Hinterlands)
 				["0.67:0.30:0.62:0.31:0.55:0.57:0.45:0.84:0.43:0.93"] = 743, -- Revantusk Village, Hammerfall, Kargath, Grom'gol, Booty Bay
@@ -207,6 +208,7 @@
 				["0.51:0.57:0.55:0.57:0.44:0.19:0.70:0.16"] = 755, -- Thorium Point, Kargath, Undercity, Light's Hope Chapel
 				["0.51:0.57:0.55:0.57:0.44:0.19:0.49:0.27"] = 633, -- Thorium Point, Kargath, Undercity, Tarren Mill
 				["0.51:0.57:0.55:0.57:0.44:0.19:0.67:0.30"] = 775, -- Thorium Point, Kargath, Undercity, Revantusk Village
+				["0.51:0.57:0.55:0.57:0.43:0.93"] = 486, -- Thorium Point, Kargath, Booty Bay
 
 				-- Horde: Undercity (Tirisfal Glades)
 				["0.44:0.19:0.55:0.57:0.45:0.84:0.43:0.93"] = 880, -- Undercity, Kargath, Grom'gol, Booty Bay
@@ -346,6 +348,7 @@
 				["0.42:0.79:0.61:0.80:0.57:0.64"] = 463, -- Cenarion Hold, Gadgetzan, Brackenwall Village
 				["0.42:0.79:0.44:0.69:0.56:0.53:0.46:0.30:0.64:0.23"] = 790, -- Cenarion Hold, Camp Mojache, Crossroads, Bloodvenom Post, Everlook
 				["0.42:0.79:0.50:0.76:0.61:0.80:0.55:0.73:0.56:0.53:0.63:0.36:0.64:0.23"] = 782, -- Cenarion Hold, Marshal's Refuge, Gadgetzan, Freewind Post, Crossroads, Valormok, Everlook
+				["0.42:0.79:0.61:0.80:0.55:0.73:0.56:0.53:0.61:0.55"] = 572, -- Cenarion Hold, Gadgetzan, Freewind Post, Crossroads, Ratchet
 
 				-- Horde: Crossroads (The Barrens)
 				["0.56:0.53:0.61:0.80"] = 303, -- Crossroads, Gadgetzan
@@ -511,6 +514,7 @@
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.45:0.56:0.32:0.58"] = 692, -- Moonglade, Everlook, Valormok, Thunder Bluff, Shadowprey Village
 				["0.54:0.21:0.46:0.30:0.56:0.53:0.61:0.80"] = 656, -- Moonglade, Bloodvenom Post, Crossroads, Gadgetzan
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.55:0.73:0.61:0.80"] = 725, -- Moonglade, Everlook, Valormok, Crossroads, Freewind Post, Gadgetzan
+				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.44:0.69"] = 699, -- Moonglade, Everlook, Valormok, Crossroads, Camp Mojache
 
 				-- Horde: Orgrimmar (Durotar)
 				["0.63:0.44:0.61:0.80"] = 417, -- Orgrimmar, Gadgetzan (Pavel Pavlov reported 436)
