@@ -124,7 +124,7 @@
 				["0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70:0.51:0.75"] = 260, -- Ironforge, Thorium Point, Morgan's Vigil, Lakeshire, Darkshire
 				["0.51:0.49:0.51:0.57:0.58:0.65:0.56:0.70"] = 201, -- Ironforge, Thorium Point, Morgan's Vigil, Lakeshire
 				["0.51:0.49:0.51:0.57:0.58:0.65"] = 173, -- Ironforge, Thorium Point, Morgan's Vigil
-				["0.51:0.49:0.43:0.67"] = 210, -- Ironforge, Stormwind (Alec Ceccon reported 314, Lome Alagos reported 225, Nenad Zahitovic reported 232)
+				["0.51:0.49:0.43:0.67"] = 210, -- Ironforge, Stormwind (Alec Ceccon reported 314, Lome Alagos reported 225, Nenad Zahitovic reported 232, Michael Packard reported 236)
 				["0.51:0.49:0.43:0.67:0.41:0.75"] = 274, -- Ironforge, Stormwind, Sentinel Hill
 				["0.51:0.49:0.51:0.57"] = 87, -- Ironforge, Thorium Point
 				["0.51:0.49:0.59:0.52"] = 101, -- Ironforge, Thelsamar (max nelson and Tobias reported 116 for Heroic)
@@ -292,6 +292,7 @@
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.52:0.22"] = 469, -- Refuge Pointe, Menethil Harbor, Ironforge, Chillwind Camp
 				["0.57:0.32:0.49:0.44:0.51:0.49:0.43:0.67:0.58:0.65"] = 528, -- Refuge Pointe, Menethil Harbor, Ironforge, Stormwind, Morgan's Vigil
 				["0.57:0.32:0.51:0.49:0.43:0.67:0.41:0.75"] = 502, -- Refuge Pointe, Ironforge, Stormwind, Sentinel Hill
+				["0.57:0.32:0.51:0.49:0.43:0.67:0.56:0.70"] = 538, -- Refuge Pointe, Ironforge, Stormwind, Lakeshire
 
 				-- Alliance: Sentinel Hill (Westfall)
 				["0.41:0.75:0.43:0.93"] = 185, -- Sentinel Hill, Booty Bay
@@ -550,6 +551,8 @@
 				["0.65:0.23:0.53:0.26:0.43:0.25:0.31:0.69:0.42:0.79"] = 921, -- Everlook, Nachtlaublichtung, Auberdine, Feathermoon, Burg Cenarius
 				["0.65:0.23:0.61:0.40:0.46:0.40:0.39:0.40:0.40:0.51:0.31:0.69"] = 838, -- Everlook, Talrendis Point, Astranaar, Stonetalon Peak, Nijel's Point, Feathermoon
 				["0.65:0.23:0.55:0.21:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 1060, -- Everlook, Moonglade, Auberdine, Feathermoon, Thalanaar, Gadgetzan
+				["0.65:0.23:0.53:0.26:0.43:0.25:0.64:0.67:0.60:0.81"] = 1120, -- Everlook, Talonbranch Glade, Auberdine, Theramore, Gadgetzan
+				["0.65:0.23:0.61:0.40:0.46:0.40:0.43:0.25"] = 475, -- Everlook, Talrendis Point, Astranaar, Auberdine
 
 				-- Alliance: Feathermoon (Feralas)
 				["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan (Microburst reported 354)
