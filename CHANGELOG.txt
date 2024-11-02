@@ -1,4 +1,7 @@
-﻿1.15.57 - 30th October 2024
+﻿1.15.58.alpha.1 - 30th October 2024
+- For 'Show player chain' ('Interface'), fixed an issue which caused the rare elite chain level indiciator texture to be wider than intended.
+
+1.15.57 - 30th October 2024
 - Added flight times.
 
 1.15.56 - 23rd October 2024
