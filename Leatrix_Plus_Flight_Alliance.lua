@@ -553,6 +553,7 @@
 				["0.65:0.23:0.55:0.21:0.43:0.25:0.31:0.69:0.48:0.70:0.60:0.81"] = 1060, -- Everlook, Moonglade, Auberdine, Feathermoon, Thalanaar, Gadgetzan
 				["0.65:0.23:0.53:0.26:0.43:0.25:0.64:0.67:0.60:0.81"] = 1120, -- Everlook, Talonbranch Glade, Auberdine, Theramore, Gadgetzan
 				["0.65:0.23:0.61:0.40:0.46:0.40:0.43:0.25"] = 475, -- Everlook, Talrendis Point, Astranaar, Auberdine
+				["0.65:0.23:0.55:0.21:0.43:0.25:0.40:0.51:0.64:0.67:0.60:0.81:0.50:0.76"] = 1120, -- Everlook, Moonglade, Auberdine, Nijel's Point, Theramore, Gadgetzan, Marshal's Refuge
 
 				-- Alliance: Feathermoon (Feralas)
 				["0.31:0.69:0.48:0.70:0.60:0.81"] = 326, -- Feathermoon, Thalanaar, Gadgetzan (Microburst reported 354)
