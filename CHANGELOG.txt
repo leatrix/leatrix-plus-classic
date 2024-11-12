@@ -1,4 +1,9 @@
-﻿1.15.58 - 6th November 2024
+﻿1.15.59.alpha.1 - 6th November 2024
+- Game API updates.
+- For 'Enhance minimap' ('Interface'), fixed an issue with 'Hide the clock' which sometimes caused the setting to be ignored.
+- Added flight times.
+
+1.15.58 - 6th November 2024
 - For 'Show player chain' ('Interface'), fixed an issue which caused the rare elite chain level indiciator texture to be wider than intended.
 - Added flight times.
 

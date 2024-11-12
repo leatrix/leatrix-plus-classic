@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.58 (6th November 2024)
+-- 	Leatrix Plus 1.15.59.alpha.1 (6th November 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.58"
+	LeaPlusLC["AddonVer"] = "1.15.59.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -6080,41 +6080,36 @@
 			----------------------------------------------------------------------
 
 			-- Function to show or hide the clock
-			local function SetMiniClock(firstRun)
-				if C_AddOns.IsAddOnLoaded("Blizzard_TimeManager") then
-					if LeaPlusLC["SquareMinimap"] == "On" and firstRun == true then
-						local regions = {TimeManagerClockButton:GetRegions()}
-						regions[1]:Hide()
-						TimeManagerClockButton:ClearAllPoints()
-						TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -15, -8)
-						TimeManagerClockButton:SetHitRectInsets(15, 10, 5, 8)
-						TimeManagerClockButton:SetFrameLevel(100)
-						local timeBG = TimeManagerClockButton:CreateTexture(nil, "BACKGROUND")
-						timeBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-						timeBG:SetPoint("TOPLEFT", 15, -5)
-						timeBG:SetPoint("BOTTOMRIGHT", -10, 8)
-						timeBG:SetVertexColor(0, 0, 0, 0.6)
-					end
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_TimeManager",function()
+				if LeaPlusLC["SquareMinimap"] == "On" then
+					local regions = {TimeManagerClockButton:GetRegions()}
+					regions[1]:Hide()
+					TimeManagerClockButton:ClearAllPoints()
+					TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -15, -8)
+					TimeManagerClockButton:SetHitRectInsets(15, 10, 5, 8)
+					TimeManagerClockButton:SetFrameLevel(100)
+					local timeBG = TimeManagerClockButton:CreateTexture(nil, "BACKGROUND")
+					timeBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+					timeBG:SetPoint("TOPLEFT", 15, -5)
+					timeBG:SetPoint("BOTTOMRIGHT", -10, 8)
+					timeBG:SetVertexColor(0, 0, 0, 0.6)
+				end
+				hooksecurefunc("TimeManagerClockButton_UpdateShowClockSetting", function()
 					if LeaPlusLC["HideMiniClock"] == "On" then
 						TimeManagerClockButton:Hide()
 					else
 						TimeManagerClockButton:Show()
 					end
-				end
-			end
-
-			-- Run function when Blizzard addon is loaded
-			if C_AddOns.IsAddOnLoaded("Blizzard_TimeManager") then
-				SetMiniClock(true)
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_TimeManager" then
-						SetMiniClock(true)
-						waitFrame:UnregisterAllEvents()
-					end
 				end)
+			end)
+
+			-- Function to toggle clock
+			local function SetMiniClock()
+				if LeaPlusLC["HideMiniClock"] == "On" then
+					TimeManagerClockButton:Hide()
+				else
+					TimeManagerClockButton:Show()
+				end
 			end
 
 			-- Update the clock when the checkbox is clicked
@@ -7420,7 +7415,7 @@
 			----------------------------------------------------------------------
 
 			-- Inspect System
-			local function DoInspectSystemFunc()
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_InspectUI",function()
 
 				-- Hide model rotation controls
 				InspectModelFrameRotateLeftButton:Hide()
@@ -7441,20 +7436,7 @@
 					Model_StopPanning(self)
 				end)
 
-			end
-
-			if C_AddOns.IsAddOnLoaded("Blizzard_InspectUI") then
-				DoInspectSystemFunc()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_InspectUI" then
-						DoInspectSystemFunc()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
+			end)
 
 		end
 
@@ -7585,7 +7567,7 @@
 			--	Skill trainer frame
 			----------------------------------------------------------------------
 
-			local function TrainerFunc(frame)
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_TrainerUI",function()
 
 				-- Make the frame double-wide
 				UIPanelWindows["ClassTrainerFrame"] = {area = "override", pushable = 0, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
@@ -7816,21 +7798,7 @@
 					end
 				end
 
-			end
-
-			-- Run function when Trainer UI has loaded
-			if C_AddOns.IsAddOnLoaded("Blizzard_TrainerUI") then
-				TrainerFunc()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_TrainerUI" then
-						TrainerFunc()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
+			end)
 
 		end
 
@@ -7930,7 +7898,7 @@
 			--	TradeSkill Frame
 			----------------------------------------------------------------------
 
-			local function TradeSkillFunc(frame)
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_TradeSkillUI",function()
 
 				-- Make the tradeskill frame double-wide
 				UIPanelWindows["TradeSkillFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
@@ -8084,27 +8052,13 @@
 					end
 				end
 
-			end
-
-			-- Run function when TradeSkill UI has loaded
-			if C_AddOns.IsAddOnLoaded("Blizzard_TradeSkillUI") then
-				TradeSkillFunc("TradeSkill")
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_TradeSkillUI" then
-						TradeSkillFunc("TradeSkill")
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
+			end)
 
 			----------------------------------------------------------------------
 			--	Craft Frame
 			----------------------------------------------------------------------
 
-			local function CraftFunc()
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_CraftUI",function()
 
 				-- Make the craft frame double-wide
 				UIPanelWindows["CraftFrame"] = {area = "override", pushable = 1, xoffset = -16, yoffset = 12, bottomClampOverride = 140 + 12, width = 685, height = 487, whileDead = 1}
@@ -8282,21 +8236,7 @@
 					end
 				end
 
-			end
-
-			-- Run function when Craft UI has loaded
-			if C_AddOns.IsAddOnLoaded("Blizzard_CraftUI") then
-				CraftFunc()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_CraftUI" then
-						CraftFunc()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
+			end)
 
 		end
 
@@ -8952,7 +8892,7 @@
 
 		if LeaPlusLC["AhExtras"] == "On" then
 
-			local function AuctionFunc()
+			EventUtil.ContinueOnAddOnLoaded("Blizzard_AuctionUI",function()
 
 				-- Set default auction duration value to saved settings or default settings
 				AuctionFrameAuctions.duration = LeaPlusDB["AHDuration"] or 3
@@ -9145,21 +9085,7 @@
 						end
 					end
 				end)
-			end
-
-			-- Run function when Blizzard addon is loaded
-			if C_AddOns.IsAddOnLoaded("Blizzard_AuctionUI") then
-				AuctionFunc()
-			else
-				local waitFrame = CreateFrame("FRAME")
-				waitFrame:RegisterEvent("ADDON_LOADED")
-				waitFrame:SetScript("OnEvent", function(self, event, arg1)
-					if arg1 == "Blizzard_AuctionUI" then
-						AuctionFunc()
-						waitFrame:UnregisterAllEvents()
-					end
-				end)
-			end
+			end)
 
 		end
 
