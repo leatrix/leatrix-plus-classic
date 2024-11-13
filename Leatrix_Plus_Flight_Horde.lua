@@ -515,6 +515,7 @@
 				["0.54:0.21:0.46:0.30:0.56:0.53:0.61:0.80"] = 656, -- Moonglade, Bloodvenom Post, Crossroads, Gadgetzan
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.55:0.73:0.61:0.80"] = 725, -- Moonglade, Everlook, Valormok, Crossroads, Freewind Post, Gadgetzan
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.44:0.69"] = 699, -- Moonglade, Everlook, Valormok, Crossroads, Camp Mojache
+				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.44:0.69:0.42:0.79"] = 829, -- Moonglade, Everlook, Valormok, Crossroads, Camp Mojache, Cenarion Hold
 
 				-- Horde: Orgrimmar (Durotar)
 				["0.63:0.44:0.61:0.80"] = 417, -- Orgrimmar, Gadgetzan (Pavel Pavlov reported 436)

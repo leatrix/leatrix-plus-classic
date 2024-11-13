@@ -1,4 +1,4 @@
-﻿1.15.59.alpha.1 - 6th November 2024
+﻿1.15.59 - 13th November 2024
 - Game API updates.
 - For 'Enhance minimap' ('Interface'), fixed an issue with 'Hide the clock' which sometimes caused the setting to be ignored.
 - Added flight times.
