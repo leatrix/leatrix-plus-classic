@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.59 (13th November 2024)
+-- 	Leatrix Plus 1.15.60.alpha.1 (15th November 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.59"
+	LeaPlusLC["AddonVer"] = "1.15.60.alpha.1"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5625,14 +5625,18 @@
 				MiniMapBattlefieldFrame:SetPoint("TOP", MiniMapMailFrame, "BOTTOM", 0, 0)
 
 				-- Looking For Group button
-				MiniMapLFGFrame:SetScale(0.75)
-				MiniMapLFGFrame:ClearAllPoints()
-				MiniMapLFGFrame:SetPoint("TOP", MiniMapBattlefieldFrame, "BOTTOM", 0, 0)
+				if MiniMapLFGFrame then -- LeaPlusLC.NewPatch (does not exist on 1.15.5)
+					MiniMapLFGFrame:SetScale(0.75)
+					MiniMapLFGFrame:ClearAllPoints()
+					MiniMapLFGFrame:SetPoint("TOP", MiniMapBattlefieldFrame, "BOTTOM", 0, 0)
+				end
 
 				-- World map button
-				MiniMapWorldMapButton:SetScale(0.75)
-				MiniMapWorldMapButton:ClearAllPoints()
-				MiniMapWorldMapButton:SetPoint("BOTTOM", MinimapZoomIn, "TOP", 0, 0)
+				if MiniMapWorldMapButton then -- LeaPlusLC.NewPatch (does not exist on 1.15.5)
+					MiniMapWorldMapButton:SetScale(0.75)
+					MiniMapWorldMapButton:ClearAllPoints()
+					MiniMapWorldMapButton:SetPoint("BOTTOM", MinimapZoomIn, "TOP", 0, 0)
+				end
 
 				-- Zoom in button
 				MinimapZoomIn:SetScale(0.75)
@@ -5657,7 +5661,9 @@
 						MiniMapBattlefieldFrame:Show()
 						MiniMapWorldMapButton:Show()
 						GameTimeFrame:Show()
-						MiniMapLFGFrame:Show()
+						if MiniMapLFGFrame then
+							MiniMapLFGFrame:Show() -- LeaPlusLC.NewPatch (does not exist in 1.15.5)
+						end
 						MiniMapTracking:Show()
 					end)
 				end

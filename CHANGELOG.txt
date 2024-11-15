@@ -1,4 +1,8 @@
-﻿1.15.59 - 13th November 2024
+﻿1.15.60.alpha.1 - 15th November 2024
+- PTR (1.15.5): Updated for 1.15.5.
+- Added flight times.
+
+1.15.59 - 13th November 2024
 - Game API updates.
 - For 'Enhance minimap' ('Interface'), fixed an issue with 'Hide the clock' which sometimes caused the setting to be ignored.
 - Added flight times.
