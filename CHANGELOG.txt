@@ -1,5 +1,9 @@
-﻿1.15.61 - 20th November 2024
-- PTR (1.15.5): Updated for 1.15.5.
+﻿1.15.62 - 20th November 2024
+- For 'Enhance minimap', fixed the position and scale of the new SoD and anniversary LFG minimap button when using the square minimap setting.
+- Added flight times.
+
+1.15.61 - 20th November 2024
+- Updated for game version 1.15.5.
 - Added flight times.
 
 1.15.59 - 13th November 2024

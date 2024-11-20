@@ -512,6 +512,7 @@
 				["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.53:0.26"] = 859, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Talonbranch Glade
 				["0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21:0.65:0.23"] = 923, -- Cenarion Hold, Feathermoon, Auberdine, Moonglade, Everlook
 				["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.65:0.23:0.55:0.21"] = 876, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Everlook, Moonglade
+				["0.42:0.79:0.60:0.81:0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25"] = 876, -- Cenarion Hold, Gadgetzan, Theramore, Talrendis Point, Astranaar, Auberdine
 
 				-- Alliance: Everlook (Winterspring)
 				["0.65:0.23:0.55:0.21"] = 122, -- Everlook, Moonglade
