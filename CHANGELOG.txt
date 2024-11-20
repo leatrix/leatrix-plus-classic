@@ -1,4 +1,4 @@
-﻿1.15.60.alpha.2 - 15th November 2024
+﻿1.15.61 - 20th November 2024
 - PTR (1.15.5): Updated for 1.15.5.
 - Added flight times.
 
