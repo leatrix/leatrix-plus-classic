@@ -1,5 +1,8 @@
-﻿1.15.62 - 20th November 2024
-- For 'Enhance minimap', fixed the position and scale of the new SoD and anniversary LFG minimap button when using the square minimap setting.
+﻿1.15.64.alpha.1 - 27th November 2024
+- For 'Enhance minimap' ('Interface'), added a new setting that lets you hide the Looking for Group button while you are not queued.  This only applies to game realms with a Looking for Group feature.
+
+1.15.62 - 20th November 2024
+- For 'Enhance minimap' ('Interface'), fixed the position and scale of the new SoD and anniversary LFG minimap button when using the square minimap setting.
 - Added flight times.
 
 1.15.61 - 20th November 2024
