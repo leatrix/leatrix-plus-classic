@@ -164,6 +164,7 @@
 				["0.56:0.70:0.43:0.67:0.51:0.49:0.52:0.22"] = 605, -- Lakeshire, Stormwind, Ironforge, Chillwind Camp
 				["0.56:0.70:0.43:0.67:0.51:0.49:0.51:0.57"] = 390, -- Lakeshire, Stormwind, Ironforge, Thorium Point
 				["0.56:0.70:0.43:0.67:0.43:0.93"] = 343, -- Lakeshire, Stormwind, Booty Bay
+				["0.56:0.70:0.43:0.67:0.51:0.49:0.48:0.30"] = 573, -- Lakeshire, Stormwind, Ironforge, Southshore
 
 				-- Alliance: Light's Hope Chapel (Eastern Plaguelands)
 				["0.70:0.16:0.51:0.49:0.43:0.67:0.43:0.93"] = 771, -- Light's Hope Chapel, Ironforge, Stormwind, Booty Bay
@@ -345,7 +346,7 @@
 				["0.43:0.67:0.41:0.75"] = 78, -- Stormwind, Sentinel Hill (Galleon Brinton reported 102, Eino Virtanen and wy1337@gmx.de reported 113)
 				["0.43:0.67:0.51:0.75"] = 116, -- Stormwind, Darkshire
 				["0.43:0.67:0.61:0.78"] = 176, -- Stormwind, Nethergarde Keep
-				["0.43:0.67:0.56:0.70"] = 113, -- Stormwind, Lakeshire
+				["0.43:0.67:0.56:0.70"] = 113, -- Stormwind, Lakeshire (Taylor Mcphun reported 142)
 				["0.43:0.67:0.58:0.65"] = 157, -- Stormwind, Morgan's Vigil
 				["0.43:0.67:0.58:0.65:0.51:0.57"] = 247, -- Stormwind, Morgan's Vigil, Thorium Point
 				["0.43:0.67:0.51:0.49:0.59:0.52"] = 317, -- Stormwind, Ironforge, Thelsamar (Andrei O. reported 333)

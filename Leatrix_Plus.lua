@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.64.alpha.1 (27th November 2024)
+-- 	Leatrix Plus 1.15.64.alpha.2 (27th November 2024)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.64.alpha.1"
+	LeaPlusLC["AddonVer"] = "1.15.64.alpha.2"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -6252,6 +6252,10 @@
 
 					local frame = CreateFrame("FRAME")
 					frame:RegisterEvent("LFG_LIST_ACTIVE_ENTRY_UPDATE")
+					frame:RegisterEvent("LFG_LIST_AVAILABILITY_UPDATE")
+					frame:RegisterEvent("LFG_LIST_ENTRY_EXPIRED_TOO_MANY_PLAYERS")
+					frame:RegisterEvent("LFG_LIST_ENTRY_EXPIRED_TIMEOUT")
+					frame:RegisterEvent("LFG_LIST_ROLE_UPDATE")
 					frame:SetScript("OnEvent", SetLFGButton)
 					SetLFGButton()
 

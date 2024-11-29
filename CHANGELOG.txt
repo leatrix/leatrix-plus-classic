@@ -1,4 +1,4 @@
-﻿1.15.64.alpha.1 - 27th November 2024
+﻿1.15.64.alpha.2 - 27th November 2024
 - For 'Enhance minimap' ('Interface'), added a new setting that lets you hide the Looking for Group button while you are not queued.  This only applies to game realms with the Looking for Group feature.
 - The 'Party from friends' and 'Invite from whispers' options ('Social') now check to ensure you are not queued in the Looking for Group feature.  On realms without the Looking for Group feature, the options only ensure you are not queued for a battleground as before.
 - Added flight times.
