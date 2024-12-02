@@ -95,7 +95,7 @@
 				["0.55:0.57:0.45:0.84"] = 313, -- Kargath, Grom'gol
 				["0.55:0.57:0.61:0.75"] = 280, -- Kargath, Stonard
 				["0.55:0.57:0.56:0.61"] = 87, -- Kargath, Flame Crest
-				["0.55:0.57:0.51:0.57"] = 56, -- Kargath, Thorium Point
+				["0.55:0.57:0.51:0.57"] = 56, -- Kargath, Thorium Point (Richard J reported 94)
 				["0.55:0.57:0.62:0.31"] = 263, -- Kargath, Hammerfall
 				["0.55:0.57:0.62:0.31:0.67:0.30"] = 352, -- Kargath, Hammerfall, Revantusk Village
 				["0.55:0.57:0.62:0.31:0.67:0.30:0.70:0.16"] = 491, -- Kargath, Hammerfall, Revantusk Village, Light's Hope Chapel
@@ -314,7 +314,7 @@
 				["0.53:0.61:0.56:0.53:0.46:0.30"] = 333, -- Camp Taurajo, Crossroads, Bloodvenom Post
 				["0.53:0.61:0.56:0.53:0.41:0.37"] = 310, -- Camp Taurajo, Crossroads, Zoram'gar Outpost
 				["0.53:0.61:0.56:0.53:0.41:0.47"] = 229, -- Camp Taurajo, Crossroads, Sun Rock Retreat
-				["0.53:0.61:0.45:0.56"] = 114, -- Camp Taurajo, Thunder Bluff
+				["0.53:0.61:0.45:0.56"] = 114, -- Camp Taurajo, Thunder Bluff (Mike Soult reported 132)
 				["0.53:0.61:0.45:0.56:0.32:0.58"] = 273, -- Camp Taurajo, Thunder Bluff, Shadowprey Village
 				["0.53:0.61:0.45:0.56:0.63:0.44"] = 321, -- Camp Taurajo, Thunder Bluff, Orgrimmar
 				["0.53:0.61:0.56:0.53:0.41:0.47:0.32:0.58"] = 372, -- Camp Taurajo, Crossroads, Sun Rock Retreat, Shadowprey Village
@@ -517,6 +517,7 @@
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.44:0.69"] = 699, -- Moonglade, Everlook, Valormok, Crossroads, Camp Mojache
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53:0.44:0.69:0.42:0.79"] = 829, -- Moonglade, Everlook, Valormok, Crossroads, Camp Mojache, Cenarion Hold
 				["0.54:0.21:0.64:0.23:0.63:0.36:0.56:0.53"] = 448, -- Moonglade, Everlook, Valormok, Crossroads
+				["0.54:0.21:0.64:0.23:0.63:0.44:0.56:0.53:0.53:0.61"] = 646, -- Moonglade, Everlook, Orgrimmar, Crossroads, Camp Taurajo
 
 				-- Horde: Orgrimmar (Durotar)
 				["0.63:0.44:0.61:0.80"] = 417, -- Orgrimmar, Gadgetzan (Pavel Pavlov reported 436)

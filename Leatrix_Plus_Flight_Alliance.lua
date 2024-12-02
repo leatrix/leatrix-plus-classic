@@ -301,7 +301,7 @@
 				["0.41:0.75:0.51:0.75"] = 97, -- Sentinel Hill, Darkshire
 				["0.41:0.75:0.56:0.70"] = 130, -- Sentinel Hill, Lakeshire
 				["0.41:0.75:0.56:0.70:0.58:0.65"] = 191, -- Sentinel Hill, Lakeshire, Morgan's Vigil
-				["0.41:0.75:0.43:0.67"] = 86, -- Sentinel Hill, Stormwind (Aleksey Lapshov reported 102)
+				["0.41:0.75:0.43:0.67"] = 86, -- Sentinel Hill, Stormwind (Aleksey Lapshov reported 102, marko vejic reported 139)
 				["0.41:0.75:0.56:0.70:0.58:0.65:0.51:0.57"] = 282, -- Sentinel Hill, Lakeshire, Morgan's Vigil, Thorium Point
 				["0.41:0.75:0.43:0.67:0.51:0.49:0.59:0.52"] = 389, -- Sentinel Hill, Stormwind, Ironforge, Thelsamar (Sigurd Wilhelmsen reported 180)
 				["0.41:0.75:0.43:0.67:0.51:0.49"] = 331, -- Sentinel Hill, Stormwind, Ironforge
@@ -724,7 +724,7 @@
 				["0.40:0.51:0.64:0.67:0.61:0.55"] = 422, -- Nijel's Point, Theramore, Ratchet
 				["0.40:0.51:0.39:0.40:0.46:0.40:0.61:0.40"] = 421, -- Nijel's Point, Stonetalon Peak, Astranaar, Talrendis Point
 				["0.40:0.51:0.39:0.40:0.46:0.40"] = 273, -- Nijel's Point, Stonetalon Peak, Astranaar
-				["0.40:0.51:0.39:0.40"] = 120, -- Nijel's Point, Stonetalon Peak
+				["0.40:0.51:0.39:0.40"] = 120, -- Nijel's Point, Stonetalon Peak (Şeref Emre Aktuğ reported 137)
 				["0.40:0.51:0.43:0.25"] = 282, -- Nijel's Point, Auberdine
 				["0.40:0.51:0.43:0.25:0.42:0.16"] = 367, -- Nijel's Point, Auberdine, Rut'theran Village
 				["0.40:0.51:0.43:0.25:0.55:0.21:0.65:0.23"] = 563, -- Nijel's Point, Auberdine, Moonglade, Everlook
