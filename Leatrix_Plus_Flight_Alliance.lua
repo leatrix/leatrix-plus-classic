@@ -117,6 +117,7 @@
 				["0.51:0.75:0.43:0.67:0.51:0.49:0.51:0.57"] = 365, -- Darkshire, Stormwind, Ironforge, Thorium Point
 				["0.51:0.75:0.43:0.67:0.51:0.49:0.48:0.30"] = 549, -- Darkshire, Stormwind, Ironforge, Southshore
 				["0.51:0.75:0.43:0.67:0.58:0.65:0.51:0.57"] = 322, -- Darkshire, Stormwind, Morgan's Vigil, Thorium Point
+				["0.51:0.75:0.43:0.67:0.51:0.49:0.57:0.32"] = 543, -- Darkshire, Stormwind, Ironforge, Refuge Pointe
 
 				-- Alliance: Ironforge (Dun Morogh)
 				["0.51:0.49:0.43:0.67:0.43:0.93"] = 440, -- Ironforge, Stormwind, Booty Bay
@@ -669,6 +670,7 @@
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21"] = 876, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Moonglade
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.46:0.40"] = 902, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Astranaar
 				["0.50:0.76:0.42:0.79:0.31:0.69:0.43:0.25:0.55:0.21:0.65:0.23"] = 1006, -- Marshal's Refuge, Cenarion Hold, Feathermoon, Auberdine, Moonglade, Everlook
+				["0.50:0.76:0.60:0.81:0.64:0.67:0.40:0.51:0.39:0.40:0.46:0.40"] = 856, -- Marshal's Refuge, Gadgetzan, Theramore, Nijel's Point, Stonetalon Peak, Astranaar
 
 				-- Alliance: Moonglade (Moonglade)
 				["0.55:0.21:0.43:0.25:0.31:0.69"] = 614, -- Moonglade, Auberdine, Feathermoon
@@ -955,7 +957,7 @@
 				["0.64:0.67:0.61:0.55"] = 115, -- Theramore, Ratchet
 				["0.64:0.67:0.61:0.40"] = 235, -- Theramore, Talrendis Point
 				["0.64:0.67:0.61:0.40:0.46:0.40"] = 387, -- Theramore, Talrendis Point, Astranaar
-				["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point
+				["0.64:0.67:0.40:0.51"] = 334, -- Theramore, Nijel's Point (christian starr reported 359)
 				["0.64:0.67:0.40:0.51:0.39:0.40"] = 454, -- Theramore, Nijel's Point, Stonetalon Peak (Was 801 but Nikolas Beckel, Scott Wilson, Sean Flattery, Martin Sodoma, Othman Arnaout, Tor Eivind Grevstad reported 454)
 				["0.64:0.67:0.43:0.25"] = 620, -- Theramore, Auberdine
 				["0.64:0.67:0.61:0.40:0.46:0.40:0.43:0.25:0.42:0.16"] = 619, -- Theramore, Talrendis Point, Astranaar, Auberdine, Rut'theran Village

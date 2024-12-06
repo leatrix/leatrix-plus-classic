@@ -1,4 +1,4 @@
-﻿1.15.64.alpha.4 - 2nd December 2024
+﻿1.15.64 - 6th December 2024
 - For 'Enhance minimap' ('Interface'), added a new setting that lets you hide the Looking for Group button while you are not queued.  This only applies to game realms with the Looking for Group feature.
 - The 'Party from friends' and 'Invite from whispers' options ('Social') now check to ensure you are not queued in the Looking for Group feature.  On realms without the Looking for Group feature, the options only ensure you are not queued for a battleground as before.
 - The 'Enable viewport' option ('System') is now 'Show borders' ('Interface') mirroring retail.  The new option does not have a screen resize button.
